@@ -7,7 +7,7 @@ interface Props {
   onFermer: () => void;
 }
 
-type Etape = 1 | 2 | 3 | 4;
+type Etape = 1 | 2 | 3 | 4 | 5;
 type Carte = { id: string; texte: string; aide: string };
 
 const TRANSCRIPTION: Carte[] = [
@@ -22,7 +22,9 @@ const TRADUCTION: Carte[] = [
   { id: 'init', texte: 'مرحلة الانطلاق', aide: 'يثبت الريبوزوم على رامزة البداية AUG.' },
   { id: 'elong', texte: 'مرحلة الاستطالة', aide: 'تدخل ARNt وتتكون الروابط الببتيدية.' },
   { id: 'stop', texte: 'مرحلة النهاية', aide: 'تصل رامزة توقف وتنطلق السلسلة البيبتيدية.' },
-  { id: 'protein', texte: 'سلسلة بيبتيدية / بروتين', aide: 'تكتسب بنيتها ووظيفتها بعد الترجمة.' },
+  { id: 'protein', texte: 'سلسلة بيبتيدية', aide: 'تنفصل في نهاية الترجمة.' },
+  { id: 'folding', texte: 'نضج / طيّ البروتين', aide: 'تكتسب السلسلة بنيتها الفراغية.' },
+  { id: 'target', texte: 'توجيه البروتين', aide: 'يُوجّه حسب مكان عمله داخل الخلية أو خارجها.' },
 ];
 
 const LINKS = [
@@ -36,19 +38,22 @@ const RECALL = [
   { id: 'r1', text: 'ما المرحلة التي تحول المعلومة الموجودة في ADN إلى ARNm؟', answer: 'الاستنساخ' },
   { id: 'r2', text: 'ما المرحلة التي تحول رسالة ARNm إلى سلسلة أحماض أمينية؟', answer: 'الترجمة' },
   { id: 'r3', text: 'ما العناصر التي تنقل الأحماض الأمينية إلى الريبوزوم؟', answer: 'ARNt' },
+  { id: 'r4', text: 'أين تحدث الترجمة عند حقيقيات النوى؟', answer: 'في الهيولى عند الريبوزومات' },
+  { id: 'r5', text: 'ماذا يحدث للسلسلة البيبتيدية بعد الترجمة؟', answer: 'تنضج وتطوى ثم تُوجّه حسب وظيفتها' },
 ];
 
 function Progress({ etape }: { etape: Etape }) {
-  return <div className="mb-5 flex gap-2" aria-label="مراحل الورشة">{[1, 2, 3, 4].map((number) => <span key={number} className={`h-2 flex-1 rounded-full ${number <= etape ? 'bg-forest' : 'bg-line'}`} />)}</div>;
+  return <div className="mb-5 flex gap-2" aria-label="مراحل الورشة">{[1, 2, 3, 4, 5].map((number) => <span key={number} className={`h-2 flex-1 rounded-full ${number <= etape ? 'bg-forest' : 'bg-line'}`} />)}</div>;
 }
 
 export default function AtelierDomaine1({ fait, onTerminer, onFermer }: Props) {
-  const [etape, setEtape] = useState<Etape>(fait ? 4 : 1);
+  const [etape, setEtape] = useState<Etape>(fait ? 5 : 1);
   const [transcription, setTranscription] = useState<string[]>(fait ? TRANSCRIPTION.map((c) => c.id) : []);
   const [traduction, setTraduction] = useState<string[]>(fait ? TRADUCTION.map((c) => c.id) : []);
   const [choisie, setChoisie] = useState<string | null>(null);
   const [linkIndex, setLinkIndex] = useState(0);
   const [linkChoice, setLinkChoice] = useState<string | null>(null);
+  const [comparaison, setComparaison] = useState<Record<string, boolean>>(fait ? { proc: true, euc: true } : {});
   const [recall, setRecall] = useState<Record<string, boolean>>(fait ? Object.fromEntries(RECALL.map((q) => [q.id, true])) : {});
   const [message, setMessage] = useState<string | null>(null);
   const [aide, setAide] = useState<string | null>(null);
@@ -93,7 +98,7 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer }: Props) {
     }
     setMessage('رابط علمي صحيح.');
     setLinkChoice(null);
-    if (linkIndex === LINKS.length - 1) setEtape(4);
+    if (linkIndex === LINKS.length - 1) setEtape(5);
     else setLinkIndex((index) => index + 1);
   }
 
@@ -127,19 +132,29 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer }: Props) {
             <Sequence items={traduction} all={TRADUCTION} />
             <Cards cards={TRADUCTION} used={traduction} selected={choisie} onSelect={choisirCarte} onHelp={(text) => setAide(text)} />
             {message && <Feedback message={message} help={aide} />}
-            {!placementComplete ? <button onClick={placerCarte} disabled={!choisie} className="btn btn-primary mt-5 w-full">ضع البطاقة</button> : <button onClick={continuerPlacement} className="btn btn-primary mt-5 w-full">انتقل إلى الروابط العلمية ←</button>}
+            {!placementComplete ? <button onClick={placerCarte} disabled={!choisie} className="btn btn-primary mt-5 w-full">ضع البطاقة</button> : <button onClick={continuerPlacement} className="btn btn-primary mt-5 w-full">انتقل إلى المقارنة بين الخلايا ←</button>}
           </section>}
 
           {etape === 3 && <section>
-            <p className="eyebrow">المرحلة ٣ · العلاقات العلمية {linkIndex + 1} / {LINKS.length}</p><h2 className="font-naskh mt-2 text-2xl font-bold">اختر الرابط الصحيح</h2>
+            <p className="eyebrow">المرحلة ٣ · بدائيات النواة وحقيقيات النواة</p><h2 className="font-naskh mt-2 text-2xl font-bold">قارن بين تنظيم التعبير الجيني</h2>
+            <p className="mt-2 text-sm leading-relaxed text-mute">استعمل الرسم: عند بدائيات النواة يمكن أن تتزامن الترجمة مع الاستنساخ، أما عند حقيقيات النواة فتفصل النواة بين المرحلتين.</p>
+            <div className="mt-5 space-y-3">
+              <button onClick={() => setComparaison((old) => ({ ...old, proc: true }))} className={`w-full rounded-2xl border p-4 text-right ${comparaison.proc ? 'border-sage bg-sage-soft' : 'border-line bg-paper'}`}><p className="text-sm font-bold">بدائيات النواة</p><p className="mt-1 text-xs leading-relaxed text-mute">لا توجد نواة حقيقية؛ يمكن أن تبدأ الترجمة أثناء تشكل ARNm.</p></button>
+              <button onClick={() => setComparaison((old) => ({ ...old, euc: true }))} className={`w-full rounded-2xl border p-4 text-right ${comparaison.euc ? 'border-sage bg-sage-soft' : 'border-line bg-paper'}`}><p className="text-sm font-bold">حقيقيات النواة</p><p className="mt-1 text-xs leading-relaxed text-mute">الاستنساخ والمعالجة في النواة، ثم الترجمة في الهيولى.</p></button>
+            </div>
+            {comparaison.proc && comparaison.euc && <button onClick={() => setEtape(4)} className="btn btn-primary mt-5 w-full">انتقل إلى الروابط العلمية ←</button>}
+          </section>}
+
+          {etape === 4 && <section>
+            <p className="eyebrow">المرحلة ٤ · العلاقات العلمية {linkIndex + 1} / {LINKS.length}</p><h2 className="font-naskh mt-2 text-2xl font-bold">اختر الرابط الصحيح</h2>
             <div className="mt-5 rounded-2xl border border-sage bg-sage-soft p-4 text-center text-base font-bold"><span>{currentLink.phrase}</span><span className="mx-2 text-gold">{currentLink.answer === linkChoice ? currentLink.answer : '؟'}</span><span>{currentLink.target}</span></div>
             <div className="mt-4 grid gap-2">{currentLink.options.map((option) => <button key={option} onClick={() => { setLinkChoice(option); setMessage(null); }} className={`rounded-2xl border px-4 py-3 text-right text-sm font-bold ${linkChoice === option ? 'border-forest bg-sage text-forest-deep' : 'border-line bg-paper'}`}>{option}</button>)}</div>
             {message && <Feedback message={message} />}
             <button onClick={validerLien} disabled={!linkChoice} className="btn btn-primary mt-5 w-full">تحقق</button>
           </section>}
 
-          {etape === 4 && <section>
-            <p className="eyebrow">المرحلة ٤ · الاسترجاع النشط</p><h2 className="font-naskh mt-2 text-2xl font-bold">أعد بناء الدرس من الذاكرة</h2>
+          {etape === 5 && <section>
+            <p className="eyebrow">المرحلة ٥ · الاسترجاع النشط</p><h2 className="font-naskh mt-2 text-2xl font-bold">أعد بناء الدرس من الذاكرة</h2>
             <p className="mt-2 text-sm leading-relaxed text-mute">أجب عن الأسئلة ثم اكشف الجواب. لا توجد عقوبة: الهدف هو اكتشاف الثغرة.</p>
             <div className="mt-5 space-y-3">{RECALL.map((question) => <div key={question.id} className="rounded-2xl border border-line bg-paper p-4"><p className="text-sm font-bold leading-relaxed">{question.text}</p><button onClick={() => setRecall((old) => ({ ...old, [question.id]: true }))} className="btn btn-gold mt-3 w-full">{recall[question.id] ? `الجواب: ${question.answer}` : 'حاولتُ — أظهر الجواب'}</button></div>)}</div>
             <div className="mt-5 rounded-2xl border border-sage bg-sage-soft p-4"><p className="text-[11px] font-bold text-forest">جملة من نوع البكالوريا</p><p className="mt-1.5 text-sm font-bold leading-relaxed">تنتقل المعلومة الوراثية من ADN إلى ARNm بالاستنساخ، ثم تتحول رسالة ARNm إلى سلسلة بيبتيدية بالترجمة.</p></div>
