@@ -5,7 +5,6 @@ import { CHEMIN, UNITE_PAR_ID, titreItem, uniteDeItem } from '../data/programme'
 import { aujourdhui, compteLeconsAdj, nb, nbMin, formatJourAr, salue } from '../utils/dates';
 import { DUREE_TOTALE_MIN } from '../data/protocole';
 import CarteStats from './CarteStats';
-import { InviteSync } from './CarteSync';
 import type { Etat } from '../types';
 import type { ItemChemin } from '../data/programme';
 
@@ -14,10 +13,9 @@ interface Props {
   onOuvrirItem: (item: ItemChemin) => void;
   onDemarrerRevision: (lessonIds: string[]) => void;
   onVoirUnite: (uniteId: string) => void;
-  onConsentementSync: (ok: boolean) => void;
 }
 
-export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onVoirUnite, onConsentementSync }: Props) {
+export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onVoirUnite }: Props) {
   const action = prochaineAction(etat);
   const rythme = rythmeSemaine(etat);
   const position = positionClasse(etat);
@@ -179,9 +177,6 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
           </p>
         )}
       </section>
-
-      {/* دعوة المزامنة — مرة واحدة فقط */}
-      <InviteSync etat={etat} onChoix={onConsentementSync} />
 
       {/* إيقاع الأسبوع — لا سلسلة قابلة للكسر */}
       <section className="card mt-5 p-5">

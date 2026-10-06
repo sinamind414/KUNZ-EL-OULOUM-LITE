@@ -159,26 +159,27 @@ de son unité — l'objectif est de rester synchronisé avec la classe, un cours
 
 ---
 
-## ☁️ Synchronisation optionnelle (`src/utils/sync.ts`)
+## ☁️ Synchronisation (`src/utils/sync.ts`)
 
 L'application reste **offline-first** : elle fonctionne intégralement sans compte, sans réseau, sans
-serveur. Une couche *additive* et **silencieuse** permet en plus, si l'éditeur le souhaite, de récupérer
-un résumé de progression de chaque élève.
+serveur. Une couche *additive* et **silencieuse** permet en plus à l'éditeur de récupérer un résumé de
+progression de chaque élève, **activée dès l'inscription** (choix produit — voir ci-dessous).
 
-### Côté élève — opt-in explicite
+### Côté élève — activée à l'inscription, désactivable
 
 - Si les variables `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` sont absentes du `.env`, **rien ne
   s'affiche** et rien n'est envoyé (vérifié au navigateur).
-- Une **carte d'invitation unique** apparaît une fois sur l'écran اليوم (« ساعدنا على التحسين —
-  اختياري ») avec deux choix : أوافق / ليس الآن. Le résultat est stocké dans `etat.consentementSync`
-  et la carte ne réapparaît jamais.
-- Le réglage permanent se trouve dans l'onglet أنا (« المزامنة مع المطوّر ») : activation/arrêt à tout
-  moment, avec un texte qui décrit l'état courant.
+- La synchronisation est **active dès la création du compte** (`consentementSync: true` par défaut
+  dans `etatVierge()` et forcé dans `onCompteValide`) — aucun dialogue, aucun frein dans le parcours.
+- Un réglage discret reste dans l'onglet أنا (« المزامنة مع المطوّر ») : l'élève peut l'arrêter à tout
+  moment (texte décrivant l'état courant). C'est la seule interface visible de la fonction.
 - L'envoi est **best-effort** : debounce 6 s après chaque changement de l'état, envoi immédiat à la
   perte de visibilité et au retour du réseau. Tout échec est silencieux — l'app n'en dépend jamais.
 - **Vie privée par construction** : ne sont envoyés que des compteurs et des listes d'IDs (leçons
   terminées, jalons, ateliers, drills, XP, wilaya/daïra). **Jamais** le mot de passe (même haché), jamais
   le texte des notes du carnet, jamais les réponses écrites.
+- **Migration des installs existantes** : `consentementSync` absent vaut `true` (la condition d'envoi
+  est `=== false`), donc les élèves déjà inscrits se mettent à synchroniser dès la prochaine visite.
 
 ### Côté éditeur — mise en route (5 minutes)
 
@@ -344,8 +345,8 @@ npm run preview  # tester la version de production
 > PWA : le service worker **n'est pas** enregistré en mode `dev` (HMR). Faites `npm run build` +
 > `npm run preview` pour tester l'installation et le mode hors-ligne.
 
-> Synchronisation optionnelle : sans fichier `.env`, l'app est 100 % locale. Pour activer l'envoi des
-> résumés de progression (Supabase), voir la section ☁️ ci-dessus.
+> Synchronisation : sans fichier `.env`, l'app est 100 % locale. Pour activer l'envoi des résumés de
+> progression (Supabase), voir la section ☁️ ci-dessus.
 
 ## 🧠 Parcours élève (journée type)
 
@@ -418,9 +419,9 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   **statistiques du Mُرشد** (fautes/bonnes
   réponses par source, 45 derniers jours, clé séparée `kunz_stats_v1`, message neutre sans
   pourcentage) ; **XP des drills** (3 points par item réussi, dérivé de `etat.drills`).
-- **v0.5.1** — **synchronisation optionnelle** : couche additive offline-first (Supabase, opt-in
-  explicite, envoi best-effort silencieux) permettant à l'éditeur de récupérer un résumé de
-  progression par élève (voir section ☁️).
+- **v0.5.1** — **synchronisation** : couche additive offline-first (Supabase) permettant à l'éditeur
+  de récupérer un résumé de progression par élève — **activée dès l'inscription**, désactivable dans
+  أنا (voir section ☁️).
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

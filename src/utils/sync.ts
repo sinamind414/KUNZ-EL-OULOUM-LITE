@@ -94,7 +94,7 @@ async function clientSupabase() {
 // إرسال صامت: أي خطأ يُبتلع — التطبيق لا يعتمد على نجاحها أبدًا.
 export async function envoyerSnapshot(etat: Etat): Promise<void> {
   if (!syncActive()) return;
-  if (!etat.compte || etat.consentementSync !== true) return;
+  if (!etat.compte || etat.consentementSync === false) return;
   if (typeof navigator !== 'undefined' && !navigator.onLine) return;
   const snap = construireSnapshot(etat);
   if (!snap) return;
@@ -146,9 +146,7 @@ export async function envoyerSnapshot(etat: Etat): Promise<void> {
   }
 }
 
-// حالة الموافقة: لم يُقرّر بعد / موافق / غير موافق
-export function consentementEtat(etat: Etat): 'indecis' | 'oui' | 'non' {
-  if (etat.consentementSync === true) return 'oui';
-  if (etat.consentementSync === false) return 'non';
-  return 'indecis';
+// حالة المزامنة: مفعّلة افتراضيًّا — التلميذ يستطيع إيقافها من «أنا»
+export function consentementEtat(etat: Etat): 'oui' | 'non' {
+  return etat.consentementSync === false ? 'non' : 'oui';
 }

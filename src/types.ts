@@ -120,6 +120,6 @@ export function etatVierge(): Etat {
     dateBac: '2027-06-10',
     seancesComptees: 0,
     ateliers: {},
-    consentementSync: undefined,
+    consentementSync: true,
   };
 }

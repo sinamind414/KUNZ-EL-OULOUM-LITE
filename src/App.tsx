@@ -72,7 +72,7 @@ export default function App() {
   // ───────────── الحساب ─────────────
 
   function onCompteValide(compte: Compte) {
-    setEtat((prev) => ({ ...prev, compte }));
+    setEtat((prev) => ({ ...prev, compte, consentementSync: true }));
     ouvrirSession(compte.email);
     setSession(true);
   }
@@ -355,7 +355,6 @@ export default function App() {
           onOuvrirItem={ouvrirItem}
           onDemarrerRevision={(lessonIds) => setMode({ type: 'revision', lessonIds })}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
-          onConsentementSync={onConsentementSync}
         />
       )}
       {pret && onglet === 'masari' && (
