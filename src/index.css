@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ───────────── نظام التصميم: زيتونُ وكريم ───────────── */
+@theme {
+  --color-ink: #1c1914;
+  --color-ink-soft: #3f3a32;
+  --color-mute: #6b6458;
+  --color-cream: #f3eee4;
+  --color-paper: #fbf8f1;
+  --color-line: #e4d9c5;
+  --color-forest: #1f5c45;
+  --color-forest-deep: #143d2e;
+  --color-sage: #d7e6dc;
+  --color-sage-soft: #ebf2ed;
+  --color-gold: #9a7a2c;
+  --color-gold-soft: #f3e6c4;
+  --color-clay: #8a5a3c;
+  --color-clay-soft: #f0e2d6;
+
+  --font-sans: "Segoe UI", "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
+  --font-naskh: "Noto Naskh Arabic", "Geeza Pro", "Amiri", "Times New Roman", serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+  background-image: radial-gradient(rgba(28, 25, 20, 0.05) 0.7px, transparent 0.7px);
+  background-size: 4px 4px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-sage);
+  color: var(--color-forest-deep);
+}
+
+/* الأرقام والمصطلحات اللاتينية */
+.font-science {
+  font-family: "Cascadia Mono", "Segoe UI Mono", ui-monospace, monospace;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@layer components {
+  .card {
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 24px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-mute);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 16px;
+    padding: 0.75rem 1.1rem;
+    font-weight: 700;
+    transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn-primary {
+    background-color: var(--color-forest);
+    color: #fbf8f1;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-forest-deep);
+  }
+  .btn-gold {
+    background-color: var(--color-gold-soft);
+    color: #6b5320;
+  }
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-forest);
+    border: 1px solid var(--color-line);
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-sage-soft);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .field {
+    width: 100%;
+    resize: none;
+    border-radius: 16px;
+    border: 1px solid var(--color-line);
+    background-color: #fffdf8;
+    padding: 0.75rem;
+    color: var(--color-ink);
+  }
+  .field:focus {
+    outline: 2px solid color-mix(in srgb, var(--color-forest) 45%, transparent);
+  }
+  .field::placeholder {
+    color: #a79c8a;
+  }
+
+  .chip {
+    border-radius: 9999px;
+    border: 1px solid var(--color-line);
+    background-color: var(--color-sage-soft);
+    padding: 0.3rem 0.75rem;
+  }
+}
+
+/* تمرير ناعم */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.28s ease-out both;
+}

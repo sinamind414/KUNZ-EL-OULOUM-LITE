@@ -1,0 +1,25 @@
+{
+  "name": "kunz-el-ouloum-lite",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "description": "كنز العلوم Lite — تطبيق مراجعة مادة علوم الطبيعة والحياة — بكالوريا علوم تجريبية (الجزائر) — وفق بروتوكول المراجعة في 6 مراحل",
+  "scripts": {
+    "dev": "vite --host --port 3000",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host --port 3000"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  }
+}
