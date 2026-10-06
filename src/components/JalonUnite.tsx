@@ -101,7 +101,14 @@ export default function JalonUnite({
               بوّابة الجسر: اختر الجواب التركيبي الصحيح — من ذاكرتك وحدك، لا درس مفتوح. إن
               أخطأت أعد المحاولة حتى تصيب.
             </p>
-            {qcm && <ChoixUnique qcm={qcm} fait={qcmFait} onValide={() => setQcmFait(true)} />}
+            {qcm && (
+              <ChoixUnique
+                qcm={qcm}
+                fait={qcmFait}
+                onValide={() => setQcmFait(true)}
+                source="jalon"
+              />
+            )}
             <button
               onClick={() => setEtape(2)}
               disabled={!qcmFait}

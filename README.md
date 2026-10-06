@@ -34,10 +34,10 @@ marcher.
 
 | Onglet | Rôle |
 |---|---|
-| **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe. |
+| **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
-| **البكالوريا** | La date du Bac, le compte des leçons, le diagnostic des leçons fragiles. |
-| **أنا** | Le journal, les notes, les copies, les statistiques, le bouton de réinitialisation. |
+| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. |
+| **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -131,12 +131,21 @@ Partout ailleurs, l'élève est seul avec le contenu — la méthode se tait pou
 La valve **« أنا عالق »** (je suis bloqué) donne **2 indices par phase**, pas plus. Demander de l'aide
 est un droit, en abuser est impossible.
 
+Le Mُرشد **compte aussi les réponses** (`src/utils/stats.ts`, clé `kunz_stats_v1`) : bonnes réponses et
+fautes, par source (`phase | revision | jalon | atelier | exercice`) et sur les 45 derniers jours.
+Présenté en **comptes bruts, jamais en pourcentage**, avec un message neutre et non culpabilisant
+(« الخطوات السببية قبل اليقين : أعِد قراءة الدرس ثم أعد المحاولة »). Les statistiques sont effacées
+avec le reste par `viderStockage()`.
+
 ### 🧊 L'anti-stress
 
 - **Aucun pourcentage** affiché nulle part.
 - **Aucune série de jours** qui risque de se casser (le rythme est présenté en jours comptés, pas en
   série `🔥 12 jours`).
 - **Aucun compte à rebours angoissant** : le minuteur par phase est soft, désactivable.
+- **Aux entraînements تدريبات** : mauvaise réponse → message doux + remélange des options, la bonne
+  réponse n'est **jamais** révélée avant le bon choix ; aucun score chiffré en fin de journée, juste
+  le compte « أجبت n من m ».
 - **Les nombres en chiffres latins, partout** (`nb`, `nbMin`, `nbGrand`, `joursNb`, `minutesNb`,
   `compteLecons`, `compteLeconsAdj`) — choix explicite du produit : `1 يوم`, `5 أيام`, `2 درس من 5
   دروس`, `58 درسًا`, `3295 XP`. Seul l'accord arabe du nom est conservé
@@ -237,26 +246,29 @@ app-svt-bac/
 ├── src/
 │   ├── main.tsx                  # racine + enregistrement du SW
 │   ├── index.css                 # Tailwind + base RTL
-│   ├── App.tsx                   # 4 onglets : اليوم / مساري / البكالوريا / أنا
-│   ├── types.ts                  # État (jalons, notes, journal, séances, bonus)
+│   ├── App.tsx                   # 4 onglets : اليوم / مساري / تدريبات / أنا
+│   ├── types.ts                  # État (jalons, notes, journal, séances, bonus, drills)
 │   ├── data/
 │   │   ├── lessonGoldSummaries.ts # 58 résumés d'or (source de vérité du contenu)
 │   │   ├── programme.ts           # 11 unités + CHEMIN + fenêtres + poidsBac + piegésAr
 │   │   ├── protocole.ts           # 6 phases (durées 8/3/5/5/15/10 = 46 min)
 │   │   ├── qcmLecons.ts           # ⭐ 58 QCM écrits à la main (58/58 × 2 questions, 4 options)
-│   │   └── leconsPassives.ts      # mapping lessonId → cours HTML + question
+│   │   ├── leconsPassives.ts      # mapping lessonId → cours HTML + question
+│   │   └── drills/                # ⭐ 620 items en 3 chunks lazy (domaine1-3.ts) + axes.ts (49 axes)
 │   ├── utils/
 │   │   ├── moteur.ts              # ⭐ Next Best Action, verrous, quota, rythme, fragilité
 │   │   ├── srs.ts                 # SM-2 (premiereRevision / mettreAJourSrs / aReviserAujourdhui)
 │   │   ├── dates.ts               # calendrier, nombres en chiffres latins, grammaire (compteLeconsAdj…)
 │   │   ├── qcm.ts                 # qcmPourLecon() — aucun généré de secours (retourne null)
+│   │   ├── drills.ts              # chargement lazy des 3 chunks + composition des journées de 10
+│   │   ├── stats.ts               # ⭐ statistiques du Mُرشد (clé kunz_stats_v1, bloat-free)
 │   │   ├── storage.ts             # localStorage (charger/sauvegarder/vider)
 │   │   └── accents.ts             # couleurs des 3 domaines
 │   └── components/
-│       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe
+│       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
-│       ├── Bac.tsx                # ⭐ البكالوريا : date + diagnostic
-│       ├── Ana.tsx                # ⭐ أنا : journal + notes + copies + stats
+│       ├── Exercices.tsx          # ⭐ تدريبات : 49 axes à verrouillage linéaire + journées de 10
+│       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes
 │       ├── JalonUnite.tsx         # pont à 3 étapes en fin d'unité (étape 1 = QCM)
 │       ├── ProtocoleRunner.tsx    # ⭐ 6 phases + portes + fهرس des phases + Mُرشد + clôture
 │       ├── SessionRevision.tsx    # rappel SM-2 en 3 étapes (étape 3 = QCM)
@@ -264,6 +276,8 @@ app-svt-bac/
 │       ├── Communs.tsx            # composants partagés (Carte, ChoixUnique, OptionsMcq…)
 │       └── Icones.tsx             # icônes SVG inline
 ├── scripts/
+│   ├── importer-drills.mjs        # ⭐ parse le banque MD → src/data/drills/*.ts (620 items)
+│   ├── verifier-drills.mjs        # validateur des chunks générés (0 problème bloquant)
 │   └── unifier-theme.mjs          # ⚠️ à ne plus exécuter (source des RGB cassés)
 ```
 
@@ -337,14 +351,22 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   l'atelier immunite, factored coque `AtelierCadre`, clé `d1`/`domaine1` réconciliée,
   `onTerminer` branché sur les 3 ateliers, **bouton 📖 vers la leçon qui préserve l'état de
   l'atelier**.
-- **v0.4.0 (actuelle)** — **compte local de l'élève** : écran obligatoire après la vidéo
+- **v0.4.0** — **compte local de l'élève** : écran obligatoire après la vidéo
   (email + mot de passe haché SHA-256 + wilaya + daïra, 58 wilayas / 548 dairas), session par
   onglet, déconnexion et suppression du compte dans أنا et dans la shara ; **badge XP + jours
   d'activité en haut à gauche** (niveau, ventilation des points, flash « + … XP » à chaque gain) ;
   **tous les nombres passés en chiffres latins** (`nb()` remplace `enArabe()` partout dans
   l'application).
-- **v0.4** — mode examen blanc (sujet Bac), carnet des failles (erreurs atomiques exportées),
-  conversion des 25 leçons au format manuel scolaire (suppression du scaffolding).
+- **v0.5.0 (actuelle)** — **onglet تدريبات** (remplace البكالوريا) : 620 items du programme officiel
+  (500 QCM + 120 définitions converties en QCM 4 options, 49 axes, 3 chunks lazy-loaded par
+  domaine, bon réponse toujours `o[0]`, l'UI remélange l'affichage) ; **même verrouillage linéaire
+  que مساري** (les axes d'une unité ne s'ouvrent qu'après le جسر de la précédente, la « جولة من كل
+  البرنامج » ne pioche que dans les unités débloquées) ; **statistiques du Mُرشد** (fautes/bonnes
+  réponses par source, 45 derniers jours, clé séparée `kunz_stats_v1`, message neutre sans
+  pourcentage) ; **XP des drills** (3 points par item réussi, dérivé de `etat.drills`).
+- **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
+  des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
+  (suppression du scaffolding).
 
 ---
 

@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from 'react';
 import type { QcmLecon } from '../data/qcmLecons';
+import { noterReponse, type SourceReponse } from '../utils/stats';
 import { IcoAide } from './Icones';
 
 // ───────────── كلام المُرشد (لحظات محددة فقط) ─────────────
@@ -59,7 +60,8 @@ export function OptionsMcq({
 }
 
 // ───────────── اختيار من متعدد: اختيار → تحقّق → إعادة المحاولة حتى الإصابة ─────────────
-// لا كتابة، لا عدّاد للأخطاء، لا نسبة مئوية. الجواب الصحيح أول عنصر في `options`.
+// لا كتابة، لا نسبة مئوية. الجواب الصحيح أول عنصر في `options`.
+// المحاولات يقيسها المُرشد جانبيًا (utils/stats) بلا ضغط وبلا كشف للجواب.
 function melanger(n: number): number[] {
   const t = Array.from({ length: n }, (_, i) => i);
   for (let i = n - 1; i > 0; i--) {
@@ -73,10 +75,12 @@ export function ChoixUnique({
   qcm,
   fait,
   onValide,
+  source,
 }: {
   qcm: QcmLecon;
   fait?: boolean;
   onValide: () => void;
+  source: SourceReponse;
 }) {
   const [ordre, setOrdre] = useState<number[]>(() => melanger(qcm.options.length));
   const [choix, setChoix] = useState<number | null>(null);
@@ -131,10 +135,12 @@ export function ChoixUnique({
         onClick={() => {
           if (choix === null) return;
           if (choix === ordre.indexOf(0)) {
+            noterReponse(source, true);
             setJuste(true);
             setErreur(false);
             onValide();
           } else {
+            noterReponse(source, false);
             setErreur(true);
             setOrdre(melanger(qcm.options.length));
             setChoix(null);

@@ -30,17 +30,16 @@ export function IcoRoute() {
   );
 }
 
-export function IcoDiplome() {
+export function IcoDumbbell() {
   return (
     <svg viewBox="0 0 24 24" fill="none" className="h-full w-full" aria-hidden>
+      <path d="M7 12h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <path
-        d="M12 3 3 7l9 4 9-4-9-4Z"
+        d="M5.5 8.5v7M3.5 10v4M18.5 8.5v7M20.5 10v4"
         stroke="currentColor"
         strokeWidth="1.8"
-        strokeLinejoin="round"
+        strokeLinecap="round"
       />
-      <path d="M7 9.5V15c0 1.7 2.2 3 5 3s5-1.3 5-3V9.5" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M21 11v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }

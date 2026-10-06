@@ -4,6 +4,7 @@ import { prochaineAction, positionClasse, rythmeSemaine, itemsFaits } from '../u
 import { CHEMIN, UNITE_PAR_ID, titreItem, uniteDeItem } from '../data/programme';
 import { aujourdhui, compteLeconsAdj, nb, nbMin, formatJourAr, salue } from '../utils/dates';
 import { DUREE_TOTALE_MIN } from '../data/protocole';
+import CarteStats from './CarteStats';
 import type { Etat } from '../types';
 import type { ItemChemin } from '../data/programme';
 
@@ -216,6 +217,11 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
           الهدف {nb(rythme.cible)} أيام من {nb(7)} — لا أكثر. الراحة جزء من الخطة، لا كسر فيها شيء.
         </p>
       </section>
+
+      {/* إحصاء المُرشد — كم صحيحة وكم ليست صحيحة */}
+      <div className="mt-5">
+        <CarteStats />
+      </div>
 
       {/* موضع القسم */}
       <section className="card mt-5 p-5">

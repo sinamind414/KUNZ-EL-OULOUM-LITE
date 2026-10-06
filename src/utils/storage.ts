@@ -2,6 +2,7 @@
 // المفتاح: murajih_svt_v1 (تبقى عليه التقدّم القديم)
 
 import { etatVierge, progressionVierge, type Etat, type ProgressionLecon } from '../types';
+import { viderStats } from './stats';
 
 const CLE = 'murajih_svt_v1';
 
@@ -41,6 +42,8 @@ export function viderStockage(): void {
   } catch {
     // تجاهل
   }
+  // إحصاء المُرشد يُمسح مع كل شيء عند إعادة الضبط
+  viderStats();
 }
 
 // الدقائق المسجّلة سابقًا للدرس (قراءة مباشرة من التخزين لتفادي تقادم حالة React)

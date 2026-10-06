@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
+import { noterReponse } from '../utils/stats';
 
 interface Props {
   onFermer: () => void;
@@ -62,11 +63,13 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
     if (!choisie) return;
     if (choisie !== attendue.id) {
       // رسالة لطيفة + مزج جديد: لا نسمح بحفظ الترتيب بالموقع
+      noterReponse('atelier', false);
       setMessage('ليست هذه المرحلة التالية. أعِد ترتيب البطاقات ثم حاول من جديد.');
       setChoisie(null);
       setOrdre(melange(ETAPES.map((e) => e.id)));
       return;
     }
+    noterReponse('atelier', true);
     setPlacees((old) => [...old, choisie]);
     setChoisie(null);
     setMessage(null);

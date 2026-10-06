@@ -10,7 +10,7 @@ export const VALEURS = {
   lecon: 60, // درس مُتمّم كاملًا
   jalon: 200, // جسر وحدة مكتوب
   atelier: 150, // ورشة منجزة
-  copie: 120, // نسخة بكالوريا مكتوبة
+  drill: 3, // عنصر تدريب جيب عنه correctly
   demiHeure: 10, // كل نصف ساعة تركيز مسجّلة
 } as const;
 
@@ -30,7 +30,7 @@ export function xpDe(etat: Etat): number {
   }
   xp += Object.values(etat.jalons).filter((j) => j.fait).length * VALEURS.jalon;
   xp += Object.values(etat.ateliers ?? {}).filter((a) => a.fait).length * VALEURS.atelier;
-  xp += (etat.copies ?? 0) * VALEURS.copie;
+  xp += Object.keys(etat.drills ?? {}).length * VALEURS.drill;
   xp += Math.floor(etat.minutesTotales / 30) * VALEURS.demiHeure;
   return xp;
 }

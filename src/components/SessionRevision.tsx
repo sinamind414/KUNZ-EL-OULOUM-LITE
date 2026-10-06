@@ -238,6 +238,7 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
                   qcm={qcm.synthese}
                   fait={qcmFait}
                   onValide={() => setQcmFait(true)}
+                  source="revision"
                 />
               </>
             )}

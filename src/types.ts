@@ -91,7 +91,7 @@ export interface Etat {
   seancesJour?: string; // تاريخ آخر حصّة جديدة
   seancesComptees: number; // عدد الحصص الجديدة في seancesJour
   bonusJour?: string; // تاريخ استعمال الحصّة الإضافية
-  copies?: number; // عدد نسخ البكالوريا المُنجزة (تدريب على الورق)
+  drills?: Record<string, true>; // عناصر التدريبات المُجاب عنها correctly (المعرّف → true)
   ateliers?: Record<string, { fait: boolean; ts: string }>;
 }
 

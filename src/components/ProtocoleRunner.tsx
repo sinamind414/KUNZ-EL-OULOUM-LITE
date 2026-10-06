@@ -9,6 +9,7 @@ import { UNITE_PAR_ID, titreLecon, uniteDeLecon } from '../data/programme';
 import { aContenuLecon, questionLecon } from '../data/leconsPassives';
 import { ajouterJours, aujourdhui, nb, formatJourAr, minutesNb } from '../utils/dates';
 import { premiereRevision } from '../utils/srs';
+import { noterReponse } from '../utils/stats';
 import type { ProgressionLecon } from '../types';
 import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
 import { IcoRetour, IcoVerifie } from './Icones';
@@ -593,7 +594,9 @@ export default function ProtocoleRunner({
                   options={qEtapes.options}
                   value={mcq}
                   onChange={(k) => {
+                    if (k === mcq) return; // نقرة مكرّرة على الخيار نفسه — لا تُحتسب مرتين
                     setMcq(k);
+                    noterReponse('phase', k === String(qEtapes.n));
                     if (k !== String(qEtapes.n)) {
                       const e = echecs + 1;
                       setEchecs(e);
@@ -662,6 +665,7 @@ export default function ProtocoleRunner({
                   qcm={qcmLecon.rappel}
                   fait={qcmFait}
                   onValide={() => setQcmFait(true)}
+                  source="phase"
                 />
               )}
             </div>
@@ -739,7 +743,9 @@ export default function ProtocoleRunner({
                 options={qSequence.options}
                 value={mcq}
                 onChange={(k) => {
+                  if (k === mcq) return; // نقرة مكرّرة — لا تُحتسب مرتين
                   setMcq(k);
+                  noterReponse('phase', k === qSequence.reponse);
                   if (k !== qSequence.reponse) {
                     const e = echecs + 1;
                     setEchecs(e);
@@ -781,6 +787,7 @@ export default function ProtocoleRunner({
                   qcm={qcmLecon.synthese}
                   fait={qcmFait}
                   onValide={() => setQcmFait(true)}
+                  source="phase"
                 />
               )}
 

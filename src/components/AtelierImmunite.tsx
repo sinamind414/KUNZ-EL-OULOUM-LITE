@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
+import { noterReponse } from '../utils/stats';
 
 interface Props {
   onFermer: () => void;
@@ -65,11 +66,13 @@ export default function AtelierImmunite({ onFermer, onTerminer, onVoirLecon }: P
     const attendue = ligne.etapes[seq.length];
     if (choisie !== attendue) {
       // رسالة لطيفة + مزج جديد: لا كشف للجواب قبل الاختيار الصحيح
+      noterReponse('atelier', false);
       setMessage('ليست هذه البطاقة. أعِد ترتيب البطاقات ثم حاول من جديد.');
       setChoisie(null);
       setOrdres((old) => ({ ...old, [ligne.id]: melange(ligne.etapes) }));
       return;
     }
+    noterReponse('atelier', true);
     setPlacees((old) => ({ ...old, [ligne.id]: [...seq, choisie] }));
     setChoisie(null);
     setMessage(null);

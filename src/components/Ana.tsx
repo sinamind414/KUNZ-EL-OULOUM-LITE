@@ -8,6 +8,7 @@ import { joursConsecutifs, niveauDe, xpDe, xpTexte } from '../utils/xp';
 import { WILAYA_PAR_CODE } from '../data/wilayas';
 import { CHEMIN } from '../data/programme';
 import { Morceau } from './Communs';
+import CarteStats from './CarteStats';
 
 interface Props {
   etat: Etat;
@@ -73,8 +74,8 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
         />
         {etat.dateBac && (
           <p className="mt-2 text-[11px] text-mute">
-            متبقّيًا {nb(Math.max(0, differenceJours(aujourdhui(), etat.dateBac)))} يومًا — يُستعمل
-            لمعلم الامتحان التجريبي.
+            متبقّيًا {nb(Math.max(0, differenceJours(aujourdhui(), etat.dateBac)))} يومًا على
+            امتحانك — خُطّط بهدوء، يومًا بيوم.
           </p>
         )}
       </section>
@@ -152,6 +153,11 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
           المسموح بها هي مع نفسك بالأمس.
         </p>
       </section>
+
+      {/* إحصاء المُرشد — تفصيل حسب المصدر */}
+      <div className="mt-5">
+        <CarteStats complet />
+      </div>
 
       {/* سجلّ النشاط */}
       {derniersJours.length > 0 && (

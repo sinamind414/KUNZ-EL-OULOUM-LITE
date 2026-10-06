@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CadreAtelier, PointsEtape } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
+import { noterReponse } from '../utils/stats';
 
 interface Props {
   fait: boolean;
@@ -95,12 +96,14 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer, onVoirLeco
     if (!choisie) return;
     const attendue = sequence[currentSequence.length];
     if (choisie !== attendue.id) {
+      noterReponse('atelier', false);
       setMessage('ليست هذه المرحلة. أعِد ترتيب البطاقات ثم حاول من جديد.');
       setChoisie(null);
       // remélange : on ne donne jamais la réponse avant le bon choix
       setOrdre(melange(sequence.map((c) => c.id)));
       return;
     }
+    noterReponse('atelier', true);
     if (etape === 1) setTranscription((items) => [...items, choisie]);
     else setTraduction((items) => [...items, choisie]);
     setChoisie(null);
@@ -132,11 +135,13 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer, onVoirLeco
       return;
     }
     if (choixLien !== currentLien.answer) {
+      noterReponse('atelier', false);
       setMessage('راجع العلاقة بين المعطى والنتيجة ثم أعد المحاولة.');
       setChoixLien(null);
       setOrdreLien(melange(currentLien.options));
       return;
     }
+    noterReponse('atelier', true);
     setValide(true);
     setMessage('رابط علمي صحيح ✓');
   }

@@ -1,4 +1,4 @@
-// التطبيق — 4 تبويبات (اليوم / مساري / البكالوريا / أنا) + أوضاع جلسة كاملة الشاشة.
+// التطبيق — 4 تبويبات (اليوم / مساري / تدريبات / أنا) + أوضاع جلسة كاملة الشاشة.
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
 import { useEffect, useState } from 'react';
@@ -11,7 +11,7 @@ import type { Qualite } from './utils/srs';
 import { mettreAJourSrs } from './utils/srs';
 import Aujourdhui from './components/Aujourdhui';
 import Masari from './components/Masari';
-import Bac from './components/Bac';
+import Exercices from './components/Exercices';
 import Ana from './components/Ana';
 import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
@@ -27,12 +27,12 @@ import { fermerSession, ouvrirSession, sessionOuverte } from './utils/compte';
 import type { Compte } from './types';
 import {
   IcoCarnet,
-  IcoDiplome,
+  IcoDumbbell,
   IcoRoute,
   IcoSoleil,
 } from './components/Icones';
 
-type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
+type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'ana';
 type Mode =
   | { type: 'orogenese' }
   | { type: 'immunite' }
@@ -45,7 +45,7 @@ type Mode =
 const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
-  { id: 'bac', label: 'البكالوريا', icone: IcoDiplome },
+  { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -164,11 +164,17 @@ export default function App() {
     setMode(null);
   }
 
-  // ───────────── النسخ والملاحظات والهوية ─────────────
+  // ───────────── التدريبات ─────────────
 
-  function onCopie(): void {
-    setEtat((prev) => ({ ...prev, copies: (prev.copies ?? 0) + 1 }));
+  function onItemReussi(id: string): void {
+    setEtat((prev) =>
+      prev.drills?.[id]
+        ? prev
+        : { ...prev, drills: { ...(prev.drills ?? {}), [id]: true } }
+    );
   }
+
+  // ───────────── الملاحظات والهوية ─────────────
 
   function onSupprimerNote(id: string): void {
     setEtat((prev) => ({ ...prev, notes: prev.notes.filter((n) => n.id !== id) }));
@@ -329,7 +335,7 @@ export default function App() {
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
         />
       )}
-      {pret && onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
+      {pret && onglet === 'exercices' && <Exercices etat={etat} onItemReussi={onItemReussi} />}
       {pret && onglet === 'ana' && (
         <Ana
           etat={etat}

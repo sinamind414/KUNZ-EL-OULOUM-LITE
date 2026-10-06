@@ -43,13 +43,14 @@ export default function BaguetteXp({ etat, onDeconnexion }: Props) {
   const lecons = Object.values(etat.progression).filter((p) => p.statut === 'terminee').length;
   const jalons = Object.values(etat.jalons).filter((j) => j.fait).length;
   const ateliers = Object.values(etat.ateliers ?? {}).filter((a) => a.fait).length;
+  const drills = Object.keys(etat.drills ?? {}).length;
 
   const lignes: { label: string; valeur: string }[] = [
     { label: 'مراحل مُنجزة', valeur: `${nb(phases)} × ${nb(VALEURS.phase)}` },
     { label: 'دروس مُتمّمة', valeur: `${nb(lecons)} × ${nb(VALEURS.lecon)}` },
     { label: 'جسور مكتوبة', valeur: `${nb(jalons)} × ${nb(VALEURS.jalon)}` },
     { label: 'ورشات منجزة', valeur: `${nb(ateliers)} × ${nb(VALEURS.atelier)}` },
-    { label: 'نسخ بكالوريا', valeur: `${nb(etat.copies ?? 0)} × ${nb(VALEURS.copie)}` },
+    { label: 'تدريبات مُجابة', valeur: `${nb(drills)} × ${nb(VALEURS.drill)}` },
     {
       label: 'تركيز مسجّل',
       valeur: `${nb(Math.floor(etat.minutesTotales / 30))} × ${nb(VALEURS.demiHeure)}`,
