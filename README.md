@@ -68,6 +68,34 @@ possibilité de sauter une unité. C'est la garantie anti-accumulation des lacun
 
 Le pont validé → l'unité suivante se déverrouille.
 
+### 🧩 Les 3 ateliers de synthèse (`AtelierDomaine1.tsx`, `AtelierImmunite.tsx`, `AtelierOrogenese.tsx`)
+
+Après le pont, une **ورشة** (atelier) se débloque dans l'onglet مساري. Elle transforme le cours lu en
+manipulation : **ordonner des cartes, relier des notions, comparer** — puis **استرجاع نشط** (rappel
+actif) et une « جملة من نوع البكالوريا » avant de valider.
+
+| Atelier | Déblocage | Contenu |
+|---|---|---|
+| **ورشة تركيب المجال الأول** | les 5 unités du domaine 1 terminées | ordonner transcription puis traduction, comparer procaryotes/eucaryotes, 4 liens scientifiques, rappel actif |
+| **ورشة المناعة** | جسر de l'unité « الدفاع عن الذات » | 3 lignes LB / LT4 / LT8, de la reconnaissance au résultat immunitaire |
+| **ورشة الأوروجينيز** | جسر de l'unité « البنيات الجيولوجية… » | les 5 étapes du cycle orogénique, de l'extension à la collision |
+
+**Règles appliquées (identiques au protocole) :**
+
+- **zéro écriture libre** : l'élève ne fait que cliquer ; aucune saisie nulle part ;
+- **jamais de correction avant le bon choix** : en cas d'erreur → *message doux* (« ليست هذه
+  البطاقة… ») + **remélange des cartes** (`utils/melange.ts`), sans afficher la réponse ;
+- **anti-stress** : pas de %, pas de compteur de fautes, pas de chronomètre ; les rangs sont en
+  **lettres arabes** (`enArabe` : واحد، اثنان، ثلاثة…) ;
+- **le contenu de consolidation vient après** : la « المعنى البيولوجي » et le rappel actif ne
+  s'affichent qu'**après** la reconstruction complète, jamais avant ;
+- le bouton **📖 (افتح الدرس)** ouvre la leçon liée **au-dessus** de l'atelier (état conservé) :
+  `lecon_transcription`, `phase7_chapitres_13_14_2`, `phase21_chapitres_41_42_2` ;
+- la clé `etat.ateliers[d1|immunite|orogenese]` mémorise la fin de l'atelier → le bouton affiche
+  « إعادة الفتح ✓ ». L'atelier reste rejouable à volonté.
+
+Toutes les coques sont factorisées dans `AtelierCadre.tsx` (en-tête + rangs + bouton leçon).
+
 ### 🚪 Les portes dures des 6 phases (`ProtocoleRunner.tsx`)
 
 **Aucun bouton « passer ».** Chaque phase a une porte qui active le bouton suivant :
@@ -300,7 +328,14 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   17 hex tronqués, règle « texte noir » injectée) ; **correction de l'ancrage RTL des SVG** (58
   textes déportés hors de leur cadre, mesurés au `getBBox` puis `text-anchor` corrigé) ;
   **lecture réellement obligatoire en phase 1** (le lecteur doit être ouvert puis fermé) ;
-  **bouton ← vers le fهرس des phases** dans chaque phase.
+  **bouton ← vers le fهرس des phases** dans chaque phase ; **suppression des encadrés
+  مفتاح المنهجية / تذكير منهجي**.
+- **v0.3.3 (actuelle)** — **branche arena fusionnée : les 3 ateliers de synthèse** (المجال الأول /
+  المناعة / الأوروجينيز), remaniés : plus de divulgation de la réponse avant le bon choix,
+  **remélange des cartes après erreur**, **chiffres en lettres arabes**, état sorti du DOM dans
+  l'atelier immunite, factored coque `AtelierCadre`, clé `d1`/`domaine1` réconciliée,
+  `onTerminer` branché sur les 3 ateliers, **bouton 📖 vers la leçon qui préserve l'état de
+  l'atelier**.
 - **v0.4** — mode examen blanc (sujet Bac), carnet des failles (erreurs atomiques exportées),
   conversion des 25 leçons au format manuel scolaire (suppression du scaffolding).
 

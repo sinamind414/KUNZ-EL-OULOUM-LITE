@@ -164,19 +164,48 @@ export default function App() {
   // ───────────── الأوضاع كاملة الشاشة ─────────────
 
   if (mode) {
+    // القارئ يُفتح فوق الورشة فلا يُفقد التقدّم المكتسب فيها
+    const lecteurAtelier = ouverteLecon ? (
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-cream">
+        <LecteurLecon lessonId={ouverteLecon} onFermer={() => setOuverteLecon(null)} />
+      </div>
+    ) : null;
+
     if (mode.type === 'orogenese') {
-      return <AtelierOrogenese onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+      return (
+        <>
+          <AtelierOrogenese
+            onFermer={() => setMode(null)}
+            onTerminer={() => onTerminerAtelier('orogenese')}
+            onVoirLecon={() => setOuverteLecon('phase21_chapitres_41_42_2')}
+          />
+          {lecteurAtelier}
+        </>
+      );
     }
     if (mode.type === 'immunite') {
-      return <AtelierImmunite onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+      return (
+        <>
+          <AtelierImmunite
+            onFermer={() => setMode(null)}
+            onTerminer={() => onTerminerAtelier('immunite')}
+            onVoirLecon={() => setOuverteLecon('phase7_chapitres_13_14_2')}
+          />
+          {lecteurAtelier}
+        </>
+      );
     }
     if (mode.type === 'atelier') {
       return (
-        <AtelierDomaine1
-          fait={Boolean(etat.ateliers?.[mode.domaineId])}
-          onTerminer={() => onTerminerAtelier(mode.domaineId)}
-          onFermer={() => setMode(null)}
-        />
+        <>
+          <AtelierDomaine1
+            fait={Boolean(etat.ateliers?.[mode.domaineId])}
+            onTerminer={() => onTerminerAtelier(mode.domaineId)}
+            onFermer={() => setMode(null)}
+            onVoirLecon={() => setOuverteLecon('lecon_transcription')}
+          />
+          {lecteurAtelier}
+        </>
       );
     }
     if (mode.type === 'protocole') {

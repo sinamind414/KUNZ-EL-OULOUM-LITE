@@ -1,23 +1,181 @@
 import { useState } from 'react';
-import { IcoRetour } from './Icones';
+import { CadreAtelier } from './AtelierCadre';
+import { melange } from '../utils/melange';
+import { enArabe } from '../utils/dates';
 
-interface Props { onFermer: () => void; onTerminer: () => void; }
-const stages = [
-  ['1', 'استقرار القشرة القارية', 'قشرة قارية مستقرة فوق البرنس الليتوسفيري.'],
-  ['2', 'التباعد والتمدد', 'تؤدي قوى التباعد إلى تشققات وهبوط القشرة وتكوّن حوض أولي.'],
-  ['3', 'اتساع الحوض المحيطي', 'يتشكل قاع محيطي وتترسب الصخور الرسوبية على الحافتين.'],
-  ['4', 'التقارب والضغط', 'تتقارب الصفائح؛ يحدث الغوص وتتراكم الرواسب وتتضاغط القشرة.'],
-  ['5', 'التصادم وتكوّن السلسلة الجبلية', 'يتشكل معقد أفيوليتي وطيات وفوالق وسلسلة جبلية: الأوروجينيز.'],
+interface Props {
+  onFermer: () => void;
+  onTerminer: () => void;
+  onVoirLecon?: () => void;
+}
+
+const ETAPES: { id: string; titre: string; detail: string }[] = [
+  {
+    id: '1',
+    titre: 'استقرار القشرة القارية',
+    detail: 'قشرة قارية مستقرة فوق البرنس الليتوسفيري.',
+  },
+  {
+    id: '2',
+    titre: 'التباعد والتمدد',
+    detail: 'تؤدي قوى التباعد إلى تشققات وهبوط القشرة وتكوّن حوض أولي.',
+  },
+  {
+    id: '3',
+    titre: 'اتساع الحوض المحيطي',
+    detail: 'يتشكل قاع محيطي وتترسب الصخور الرسوبية على الحافتين.',
+  },
+  {
+    id: '4',
+    titre: 'التقارب والضغط',
+    detail: 'تتقارب الصفائح؛ يحدث الغوص وتتراكم الرواسب وتتضاغط القشرة.',
+  },
+  {
+    id: '5',
+    titre: 'التصادم وتكوّن السلسلة الجبلية',
+    detail: 'يشكّل تصادم القارّتين معقّدًا أفيوليتيًا وطيات وفوالق وسلسلة جبلية.',
+  },
 ];
-const questions = [
-  ['ماذا تفعل قوى التباعد في المرحلة 2؟', 'تمدد القشرة وتفتح حوضًا أوليًا.'],
+
+const SOUVENIRS: [string, string][] = [
+  ['ماذا تفعل قوى التباعد في المرحلة الثانية؟', 'تمدد القشرة وتفتح حوضًا أوليًا.'],
   ['ماذا يحدث عند التقارب؟', 'تتقارب الصفائح ويحدث الضغط والغوص.'],
   ['ما نتيجة التصادم القاري؟', 'تكوّن سلسلة جبلية وبنيات انضغاطية.'],
 ];
-export default function AtelierOrogenese({ onFermer, onTerminer }: Props) {
-  const [placed, setPlaced] = useState<string[]>([]); const [selected, setSelected] = useState<string | null>(null); const [error, setError] = useState(''); const [answers, setAnswers] = useState<boolean[]>([]);
-  const expected = stages[placed.length]?.[0];
-  function validate() { if (!selected) return; if (selected !== expected) { setError(`هذه ليست المرحلة التالية. ${stages[Number(expected) - 1]?.[2]}`); return; } setPlaced((old) => [...old, selected]); setSelected(null); setError(''); }
-  const complete = placed.length === stages.length;
-  return <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl"><header className="mx-auto flex max-w-3xl items-center gap-3"><button onClick={onFermer} className="flex h-9 w-9 items-center justify-center rounded-xl bg-paper text-mute"><span className="block h-5 w-5"><IcoRetour /></span></button><div className="min-w-0 flex-1"><p className="eyebrow">ورشة موجهة · التكتونية</p><h1 className="font-naskh truncate text-xl font-bold">من التباعد إلى تشكّل السلسلة الجبلية</h1></div></header><main className="card mx-auto mt-5 max-w-3xl p-5"><p className="text-sm leading-relaxed text-mute">حوّل المخطط التحصيلي إلى تسلسل سببي: لا تحفظ الرسومات فقط، بل فسّر القوة التكتونية والنتيجة في كل مرحلة.</p><div className="mt-5 space-y-2">{stages.map(([id, title, detail]) => <div key={id} className={`rounded-2xl border p-3 ${placed.includes(id) ? 'border-sage bg-sage-soft' : 'border-dashed border-line bg-paper'}`}><div className="flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-paper">{id}</span><p className="text-sm font-bold">{placed.includes(id) ? title : 'مرحلة مخفية'}</p></div>{placed.includes(id) && <p className="mt-1 text-xs leading-relaxed text-mute">{detail}</p>}</div>)}</div>{!complete && <><p className="mt-5 text-xs font-bold text-ink-soft">اختر المرحلة التالية</p><div className="mt-2 grid gap-2 sm:grid-cols-2">{stages.filter(([id]) => !placed.includes(id)).map(([id, title]) => <button key={id} onClick={() => { setSelected(id); setError(''); }} className={`rounded-2xl border p-3 text-right text-sm font-bold ${selected === id ? 'border-forest bg-sage text-forest-deep' : 'border-line bg-paper'}`}>{id}. {title}</button>)}</div>{error && <p className="mt-3 rounded-2xl bg-clay-soft p-3 text-sm font-bold text-clay">{error}</p>}<button onClick={validate} disabled={!selected} className="btn btn-primary mt-4 w-full">تثبيت المرحلة</button></>}{complete && <section className="mt-5 border-t border-line pt-5"><p className="eyebrow">الاسترجاع النشط</p>{questions.map(([question, answer], i) => <button key={question} onClick={() => setAnswers((old) => { const next = [...old]; next[i] = true; return next; })} className="mt-2 w-full rounded-2xl border border-line bg-paper p-3 text-right text-sm font-bold">{question}<span className="mt-1 block text-xs text-forest">{answers[i] ? answer : 'حاول ثم أظهر الجواب'}</span></button>)}<button onClick={onTerminer} disabled={answers.length !== 3 || !answers.every(Boolean)} className="btn btn-primary mt-5 w-full">أنهيت الورشة ✓</button></section>}</main></div>;
+
+export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: Props) {
+  const [placees, setPlacees] = useState<string[]>([]);
+  const [ordre, setOrdre] = useState<string[]>(() => melange(ETAPES.map((e) => e.id)));
+  const [choisie, setChoisie] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [souvenirs, setSouvenirs] = useState<boolean[]>(() => SOUVENIRS.map(() => false));
+
+  const complete = placees.length === ETAPES.length;
+  const attendue = ETAPES[placees.length];
+
+  function choisir(id: string) {
+    setChoisie(id);
+    setMessage(null);
+  }
+
+  function valider() {
+    if (!choisie) return;
+    if (choisie !== attendue.id) {
+      // رسالة لطيفة + مزج جديد: لا نسمح بحفظ الترتيب بالموقع
+      setMessage('ليست هذه المرحلة التالية. أعِد ترتيب البطاقات ثم حاول من جديد.');
+      setChoisie(null);
+      setOrdre(melange(ETAPES.map((e) => e.id)));
+      return;
+    }
+    setPlacees((old) => [...old, choisie]);
+    setChoisie(null);
+    setMessage(null);
+  }
+
+  const parId = new Map(ETAPES.map((e) => [e.id, e]));
+
+  return (
+    <CadreAtelier
+      surtitre="ورشة تركيبية · التكتونية"
+      titre="من التباعد إلى تشكّل السلسلة الجبلية"
+      onFermer={onFermer}
+      onVoirLecon={onVoirLecon}
+      etapes={{ total: ETAPES.length, courante: placees.length }}
+    >
+      <p className="text-sm leading-relaxed text-mute">
+        حوّل المخطط التحصيلي إلى تسلسل سببي: لا تحفظ الرسومات فقط، بل فسّر القوة التكتونية والنتيجة في كل
+        مرحلة.
+      </p>
+
+      <div className="mt-5 space-y-2">
+        {placees.map((id) => {
+          const etape = parId.get(id);
+          if (!etape) return null;
+          return (
+            <div key={id} className="rounded-2xl border border-sage bg-sage-soft p-3">
+              <div className="flex items-center gap-3">
+                <span className="flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full bg-forest px-1.5 text-xs font-bold text-paper">
+                  {enArabe(Number(id))}
+                </span>
+                <p className="text-sm font-bold">{etape.titre}</p>
+              </div>
+              <p className="mt-1 text-xs leading-relaxed text-mute">{etape.detail}</p>
+            </div>
+          );
+        })}
+        {!complete && (
+          <div className="rounded-2xl border border-dashed border-line bg-paper p-3">
+            <div className="flex items-center gap-3">
+              <span className="flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full bg-line px-1.5 text-xs font-bold text-mute">
+                {enArabe(placees.length + 1)}
+              </span>
+              <p className="text-sm font-bold text-mute">مرحلة مخفية — ضع البطاقة التالية هنا</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {!complete && (
+        <>
+          <p className="mt-5 text-xs font-bold text-ink-soft">اختر المرحلة التالية</p>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
+            {ordre
+              .filter((id) => !placees.includes(id))
+              .map((id) => {
+                const etape = parId.get(id);
+                if (!etape) return null;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => choisir(id)}
+                    className={`rounded-2xl border p-3 text-right text-sm font-bold transition-colors ${
+                      choisie === id ? 'border-forest bg-sage text-forest-deep' : 'border-line bg-paper hover:border-forest'
+                    }`}
+                  >
+                    {etape.titre}
+                  </button>
+                );
+              })}
+          </div>
+          {message && (
+            <p className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/50 p-3 text-sm font-bold text-[#6b5320]">
+              {message}
+            </p>
+          )}
+          <button onClick={valider} disabled={!choisie} className="btn btn-primary mt-4 w-full">
+            تثبيت المرحلة
+          </button>
+        </>
+      )}
+
+      {complete && (
+        <section className="mt-5 border-t border-line pt-5">
+          <p className="eyebrow">الاسترجاع النشط</p>
+          <div className="mt-3 space-y-2">
+            {SOUVENIRS.map(([question, reponse], index) => (
+              <button
+                key={question}
+                onClick={() => setSouvenirs((old) => old.map((v, i) => (i === index ? true : v)))}
+                className="w-full rounded-2xl border border-line bg-paper p-3 text-right text-sm font-bold"
+              >
+                {question}
+                <span className="mt-1 block text-xs text-forest">
+                  {souvenirs[index] ? reponse : 'اضغط لمحاولة ثم إظهار الجواب'}
+                </span>
+              </button>
+            ))}
+          </div>
+          <div className="mt-4 rounded-2xl border border-sage bg-sage-soft p-4">
+            <p className="text-[11px] font-bold text-forest">جملة من نوع البكالوريا</p>
+            <p className="mt-1.5 text-sm font-bold leading-relaxed">
+              يؤدي التباعد إلى تكوّن حوض محيطي، ثم يقود تقارب الصفائح إلى التصادم وتشكّل السلسلة الجبلية.
+            </p>
+          </div>
+          <button onClick={onTerminer} disabled={!souvenirs.every(Boolean)} className="btn btn-primary mt-5 w-full">
+            أنهيت الورشة ✓
+          </button>
+        </section>
+      )}
+    </CadreAtelier>
+  );
 }
