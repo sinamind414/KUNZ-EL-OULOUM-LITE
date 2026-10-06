@@ -1,5 +1,5 @@
 // التدريبات — 620 سؤالًا (500 اختيار + 120 تعريفًا محوّلًا) موزّعة على 49 محورًا.
-// جولة من 10 أسئلة لكل محور أو وحدة أو من كل البرنامج. لا مؤقّت ولا نسبة مئوية:
+// جولة من 10 أسئلة لكل محور. لا مؤقّت ولا نسبة مئوية:
 // الإجابة الخاطئة رسالة لطيفة + إعادة ترتيب الخيارات، والصحيحة تُسجَّل في الحالة.
 
 import { useState } from 'react';
@@ -13,7 +13,6 @@ import { nb } from '../utils/dates';
 import { itemVerrouille } from '../utils/moteur';
 import {
   chargerDomaineDeUnite,
-  chargerTousLesItems,
   composerJoueur,
 } from '../utils/drills';
 import { ChoixUnique } from './Communs';
@@ -24,7 +23,7 @@ interface Props {
   onItemReussi: (id: string) => void;
 }
 
-type Portee = { kind: 'axe'; axe: AxeDrill } | { kind: 'tout' };
+type Portee = { kind: 'axe'; axe: AxeDrill };
 type Vue = { type: 'liste' } | { type: 'seance'; portee: Portee; file: ItemDrill[]; index: number };
 
 const TAILLE_JOUR = 10;
@@ -39,11 +38,8 @@ export default function Exercices({ etat, onItemReussi }: Props) {
   async function demarrer(portee: Portee): Promise<void> {
     setEnCharge(true);
     try {
-      const tous = portee.kind === 'axe' ? await chargerDomaineDeUnite(portee.axe.u) : await chargerTousLesItems();
-      const cible =
-        portee.kind === 'axe'
-          ? tous.filter((i) => i.a === portee.axe.id)
-          : tous.filter((i) => debloquees.has(i.u));
+      const tous = await chargerDomaineDeUnite(portee.axe.u);
+      const cible = tous.filter((i) => i.a === portee.axe.id);
       const file = composerJoueur(cible, reussis, TAILLE_JOUR);
       setVue({ type: 'seance', portee, file, index: 0 });
     } finally {
@@ -86,22 +82,10 @@ export default function Exercices({ etat, onItemReussi }: Props) {
       </header>
 
       <section className="card p-5">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <p className="eyebrow">حصيلتك</p>
-            <p className="mt-1 text-lg font-bold text-ink-soft">
-              أجبت {nb(reussis.size)} من {nb(TOTAL_QCM + TOTAL_DEFS)}
-            </p>
-          </div>
-          <button
-            type="button"
-            disabled={enCharge}
-            onClick={() => demarrer({ kind: 'tout' })}
-            className="btn btn-primary shrink-0"
-          >
-            {enCharge ? 'جارٍ التحميل…' : 'جولة من كل البرنامج'}
-          </button>
-        </div>
+        <p className="eyebrow">حصيلتك</p>
+        <p className="mt-1 text-lg font-bold text-ink-soft">
+          أجبت {nb(reussis.size)} من {nb(TOTAL_QCM + TOTAL_DEFS)}
+        </p>
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-sage/40" aria-hidden="true">
           <div
             className="h-full rounded-full bg-forest transition-all"

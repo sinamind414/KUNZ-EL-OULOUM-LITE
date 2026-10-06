@@ -29,11 +29,6 @@ export async function chargerDomaineDeUnite(u: number): Promise<ItemDrill[]> {
   return chargerDomaine(domaineDeUnite(u));
 }
 
-export async function chargerTousLesItems(): Promise<ItemDrill[]> {
-  const groupes = await Promise.all([1, 2, 3].map((n) => chargerDomaine(n as NumeroDomaine)));
-  return groupes.flat();
-}
-
 // بناء جولة: العناصر غير المُجابة أولًا، ثم الباقي، بلا تكرار داخل الجولة.
 export function composerJoueur(tous: ItemDrill[], dejaFait: Set<string>, taille: number): ItemDrill[] {
   const restants = tous.filter((i) => !dejaFait.has(i.id));

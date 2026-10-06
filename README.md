@@ -360,8 +360,8 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
 - **v0.5.0 (actuelle)** — **onglet تدريبات** (remplace البكالوريا) : 620 items du programme officiel
   (500 QCM + 120 définitions converties en QCM 4 options, 49 axes, 3 chunks lazy-loaded par
   domaine, bon réponse toujours `o[0]`, l'UI remélange l'affichage) ; **même verrouillage linéaire
-  que مساري** (les axes d'une unité ne s'ouvrent qu'après le جسر de la précédente, la « جولة من كل
-  البرنامج » ne pioche que dans les unités débloquées) ; **statistiques du Mُرشد** (fautes/bonnes
+  que مساري** (les axes d'une unité ne s'ouvrent qu'après le جسر de la précédente) ;
+  **statistiques du Mُرشد** (fautes/bonnes
   réponses par source, 45 derniers jours, clé séparée `kunz_stats_v1`, message neutre sans
   pourcentage) ; **XP des drills** (3 points par item réussi, dérivé de `etat.drills`).
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
