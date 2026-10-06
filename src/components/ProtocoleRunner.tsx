@@ -12,7 +12,7 @@ import { premiereRevision } from '../utils/srs';
 import type { ProgressionLecon } from '../types';
 import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
 import { IcoRetour, IcoVerifie } from './Icones';
-import { QCM_LECONS } from '../data/qcmLecons';
+import { qcmPourLecon } from '../utils/qcm';
 
 interface Props {
   lessonId: string;
@@ -56,7 +56,7 @@ export default function ProtocoleRunner({
 }: Props) {
   const lecon = getLessonGoldSummary(lessonId);
   const unite = uniteDeLecon(lessonId);
-  const qcmLecon = QCM_LECONS[lessonId];
+  const qcmLecon = qcmPourLecon(lessonId, lecon);
 
   const faites = progression?.phases ?? [];
   const [index, setIndex] = useState<number>(Math.min(faites.length, PROTOCOLE.length - 1));

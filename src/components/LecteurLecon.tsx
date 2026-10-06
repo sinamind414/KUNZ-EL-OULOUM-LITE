@@ -6,6 +6,7 @@ import { titreLecon, uniteDeLecon } from '../data/programme';
 import { aContenuLecon, urlLecon } from '../data/leconsPassives';
 import { enArabe } from '../utils/dates';
 import { IcoRetour } from './Icones';
+import { useState } from 'react';
 
 interface Props {
   lessonId: string;
@@ -16,6 +17,7 @@ export default function LecteurLecon({ lessonId, onFermer }: Props) {
   const lecon = getLessonGoldSummary(lessonId);
   const unite = uniteDeLecon(lessonId);
   const aContenu = aContenuLecon(lessonId);
+  const [contenuIndisponible, setContenuIndisponible] = useState(false);
 
   return (
     <div className="flex min-h-dvh flex-col bg-cream">
@@ -56,19 +58,27 @@ export default function LecteurLecon({ lessonId, onFermer }: Props) {
             </div>
           )}
 
-          {aContenu ? (
-            <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+          {aContenu && !contenuIndisponible ? (
+            <div className="overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+              <div className="flex items-center justify-between border-b border-line bg-sage-soft px-4 py-2">
+                <span className="text-[11px] font-bold text-forest">المحتوى التفاعلي للدرس</span>
+                <span className="text-[10px] text-mute">مرجع القراءة</span>
+              </div>
               <iframe
                 src={urlLecon(lessonId)}
                 title={titreLecon(lessonId)}
-                className="h-[72vh] w-full"
-                loading="lazy"
+                className="h-[72vh] w-full bg-cream"
+                loading="eager"
+                onError={() => setContenuIndisponible(true)}
               />
             </div>
           ) : (
-            <div className="card p-6 text-center">
-              <p className="text-sm leading-relaxed text-mute">
-                لا يوجد محتوى كتاب لهذا الدرس بعد — الملخّص الذهبي في الأسفل هو مرجعك.
+            <div className="rounded-2xl border border-sage bg-sage-soft p-5 text-center">
+              <p className="text-sm font-bold text-forest-deep">
+                {aContenu ? 'المحتوى التفاعلي غير متاح مؤقتًا' : 'هذا الدرس متاح بصيغة الملخّص'}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-mute">
+                الملخّص الذهبي في الأسفل هو مرجعك الكامل — يمكنك متابعة الجلسة دون فقدان الدرس.
               </p>
             </div>
           )}

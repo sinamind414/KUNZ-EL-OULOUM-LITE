@@ -17,7 +17,7 @@ export const ACCENTS: Record<string, Accent> = {
     dot: 'bg-forest',
   },
   gold: {
-    text: 'text-[#8a6a1e]',
+    text: 'text-gold',
     bg: 'bg-[#9a7a2c]',
     bgSoft: 'bg-gold-soft',
     border: 'border-gold-soft',

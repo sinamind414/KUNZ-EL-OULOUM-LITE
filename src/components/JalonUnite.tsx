@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { UNITE_PAR_ID } from '../data/programme';
 import { leconLaPlusFragile, uniteTerminee } from '../utils/moteur';
 import { titreLecon } from '../data/programme';
-import { QCM_LECONS } from '../data/qcmLecons';
+import { qcmPourLecon } from '../utils/qcm';
+import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
 import { enArabe, formatJourAr } from '../utils/dates';
 import type { Etat } from '../types';
 import { ChoixUnique, Morceau, OptionsMcq } from './Communs';
@@ -52,7 +53,7 @@ export default function JalonUnite({
   const fragile = leconLaPlusFragile(etat, uniteId);
   // درس التركيب المختار للسؤال: أضعف درس إن وُجد، وإلّا آخر درس في الوحدة
   const cible = fragile ?? u.lessonIds[u.lessonIds.length - 1];
-  const qcm = QCM_LECONS[cible]?.synthese;
+  const qcm = qcmPourLecon(cible, getLessonGoldSummary(cible))?.synthese;
   const questions = etat.notes.filter(
     (n) => n.kind === 'question' && n.uniteId === uniteId && !gardeesVues[n.id]
   );

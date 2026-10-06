@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
-import { QCM_LECONS } from '../data/qcmLecons';
+import { qcmPourLecon } from '../utils/qcm';
 import { uniteDeLecon, titreLecon } from '../data/programme';
 import type { Qualite } from '../utils/srs';
 import { ChoixUnique, Morceau, OptionsMcq } from './Communs';
@@ -29,6 +29,7 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
   const lessonId = lessonIds[i];
   const lecon = lessonId ? getLessonGoldSummary(lessonId) : null;
   const unite = lessonId ? uniteDeLecon(lessonId) : undefined;
+  const qcm = qcmPourLecon(lessonId, lecon);
 
   const frag = rating === 'hard';
 
@@ -232,7 +233,7 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
               سؤال التركيب — اختر الجواب الصحيح بكلماتك أنت (لا مساعدة)
             </p>
             <ChoixUnique
-              qcm={QCM_LECONS[lessonId]?.synthese}
+              qcm={qcm!.synthese}
               fait={qcmFait}
               onValide={() => setQcmFait(true)}
             />

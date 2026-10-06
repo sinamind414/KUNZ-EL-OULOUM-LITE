@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 14 : النشاط 27 والنشاط 28</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --crimson-dark: #881337;
-            --crimson-light: #fff1f2;
-            --amber-dark: #92400e;
-            --amber-light: #fffbeb;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --crimson-dark: #6b3926;
+            --crimson-light: #fbf8f11f2;
+            --amber-dark: 107,57,38;
+            --amber-light: #f3e6c4;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch27 {
-            background: linear-gradient(135deg, #4c0519 0%, #9f1239 100%);
+            background: linear-gradient(135deg, 28,25,20 0%, #6b3926 100%);
         }
 
         .header-ch28 {
-            background: linear-gradient(135deg, #78350f 0%, #b45309 100%);
+            background: linear-gradient(135deg, #6b3926 0%, #6b5320 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: #ffe4e6;
-            color: #9f1239;
+            background: 243,238,228;
+            color: #6b3926;
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -161,8 +161,8 @@
         }
 
         .step-num-amber {
-            background: #fef3c7;
-            color: #b45309;
+            background: #f3e6c4;
+            color: #6b5320;
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -240,7 +240,7 @@
         }
 
         .btn-action {
-            background: #9f1239;
+            background: #6b3926;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -252,14 +252,14 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #881337; }
-        .btn-amber { background: #d97706; }
-        .btn-amber:hover { background: #b45309; }
+        .btn-action:hover { background: #6b3926; }
+        .btn-amber { background: #9a7a2c; }
+        .btn-amber:hover { background: #6b5320; }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -268,19 +268,19 @@
         .text-part {
             margin-bottom: 1.2rem;
             padding-right: 1rem;
-            border-right: 4px solid #9f1239;
+            border-right: 4px solid #6b3926;
         }
 
-        .text-part.ch28-border { border-right-color: #d97706; }
+        .text-part.ch28-border { border-right-color: #9a7a2c; }
 
         .text-part h4 {
             font-size: 0.95rem;
-            color: #9f1239;
+            color: #6b3926;
             margin-bottom: 0.3rem;
             font-weight: 800;
         }
 
-        .text-part.ch28-border h4 { color: #d97706; }
+        .text-part.ch28-border h4 { color: #9a7a2c; }
 
         /* Quiz */
         .question-item {
@@ -313,8 +313,8 @@
         }
 
         .option-btn:hover {
-            border-color: #9f1239;
-            background: #fff1f2;
+            border-color: #6b3926;
+            background: #fbf8f11f2;
         }
 
         .option-btn.correct {
@@ -340,19 +340,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -412,16 +412,16 @@
                     <span>التحليل المنهجي للسلسلة التنفسية واقتران الأكسدة بالفسفرة</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #4c0519;">
-                        <h4 style="color: #fda4af; margin-bottom: 1rem; font-size: 0.95rem;">مخطط السلسلة التنفسية على الغشاء الداخلي (الأعراف الميتوكندرية)</h4>
+                    <div class="doc-visual" style="background: 28,25,20;">
+                        <h4 style="color: 228,217,197; margin-bottom: 1rem; font-size: 0.95rem;">مخطط السلسلة التنفسية على الغشاء الداخلي (الأعراف الميتوكندرية)</h4>
                         <!-- SVG Respiratory Chain -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="السلسلة التنفسية: ضخ H⁺ عبر ناقلات الغشاء (تركيز H⁺ مرتفع جدًا)">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -429,75 +429,75 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">السلسلة التنفسية: ضخ H⁺ عبر ناقلات الغشاء (تركيز H⁺ مرتفع جدًا)</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Membrane interne — navette d’électrons, pompage H⁺ et ATP</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">السلسلة التنفسية: ضخ H⁺ عبر ناقلات الغشاء (تركيز H⁺ مرتفع جدًا)</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Membrane interne — navette d’électrons, pompage H⁺ et ATP</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">1</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">NADH → NAD⁺</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخلي عن e⁻ عند T₁</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">NADH</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">1</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">NADH → NAD⁺</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخلي عن e⁻ عند T₁</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">NADH</text>
   </g>
-  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#38bdf8" transform="rotate(0 220.5 224)"/>
-  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻ مفقود</text>
+  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#1f5c45" transform="rotate(0 220.5 224)"/>
+  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻ مفقود</text>
   <g transform="translate(226.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">2</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الناقل T₁ → T₆</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻ ينتقل عبر الغشاء</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">2</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الناقل T₁ → T₆</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻ ينتقل عبر الغشاء</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">e⁻</text>
   </g>
-  <line x1="383" y1="224" x2="417" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#38bdf8" transform="rotate(0 417 224)"/>
-  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ضخ H⁺</text>
+  <line x1="383" y1="224" x2="417" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#1f5c45" transform="rotate(0 417 224)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ضخ H⁺</text>
   <g transform="translate(423, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#f43f5e" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">3</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">½ O₂ + 2H⁺ + 2e⁻ →</text>
-  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">H₂O</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المرحلة النهائية</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">H₂O</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#8a5a3c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#8a5a3c" fill-opacity="0.22" stroke="#8a5a3c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">3</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">½ O₂ + 2H⁺ + 2e⁻ →</text>
+  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">H₂O</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المرحلة النهائية</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">H₂O</text>
   </g>
-  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#38bdf8" transform="rotate(0 613.5 224)"/>
-  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عودة H⁺</text>
+  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#1f5c45" transform="rotate(0 613.5 224)"/>
+  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عودة H⁺</text>
   <g transform="translate(619.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">4</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ATP synthase</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ADP + Pi → ATP</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">≈38 ATP</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">4</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ATP synthase</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ADP + Pi → ATP</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">≈38 ATP</text>
   </g>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أكسدة NADH على الناقلات تخفض H⁺ — والمحصلة النهائية H₂O و ATP.</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أكسدة NADH على الناقلات تخفض H⁺ — والمحصلة النهائية H₂O و ATP.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 الأكسجين هو المستقبل النهائي للإلكترونات، ويتحول إلى ماء.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 الأكسجين هو المستقبل النهائي للإلكترونات، ويتحول إلى ماء.</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #fff1f2; color: #9f1239;">خطوات الفسفرة التأكسدية</span>
+                        <span class="method-tag" style="background: #fbf8f11f2; color: #6b3926;">خطوات الفسفرة التأكسدية</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">كيف يركب الميتوكندرون 38 ATP؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>أكسدة النواقل المرجعة :</strong> تتأكسد جزيئات <span class="ltr-seq">NADH, H⁺</span> عند الناقل <span class="ltr-seq">T₁</span> وتتأكسد <span class="ltr-seq">FADH₂</span> عند <span class="ltr-seq">T₂</span>، محررة إلكترونات وبروتونات.</li>
@@ -518,14 +518,14 @@
                 </div>
                 <p>اضغط لمعاينة صرف النواقل المرجعة واختبار تأثير سم السيانيد القاتل :</p>
                 
-                <div class="interactive-box" style="background: #4c0519;">
+                <div class="interactive-box" style="background: 28,25,20;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simResp('normal')">🟢 تنفس هوائي سليم (أكسدة النواقل وإنتاج 38 ATP)</button>
-                        <button class="btn-action" style="background:#dc2626;" onclick="simResp('cn')">🔴 إضافة سم السيانيد (تثبيط الناقل T₆ والاختناق)</button>
+                        <button class="btn-action" style="background:#8a5a3c;" onclick="simResp('cn')">🔴 إضافة سم السيانيد (تثبيط الناقل T₆ والاختناق)</button>
                     </div>
-                    <div id="respDisplayBox" style="background: #881337; border: 2px solid #fb7185; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 الحصيلة الطاقوية الكاملة للتنفس (38 ATP)</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">كل جزيئة <span class="ltr-seq">1 NADH, H⁺</span> تعطي <strong>3 ATP</strong> (10 × 3 = 30 ATP). وكل جزيئة <span class="ltr-seq">1 FADH₂</span> تعطي <strong>2 ATP</strong> (2 × 2 = 4 ATP). زائد 4 ATP مباشرة (2 من التحلل + 2 من كريبس) = المجموع <strong><span class="ltr-seq">38 ATP</span></strong>.</p>
+                    <div id="respDisplayBox" style="background: #6b3926; border: 2px solid 167,156,138; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 الحصيلة الطاقوية الكاملة للتنفس (38 ATP)</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">كل جزيئة <span class="ltr-seq">1 NADH, H⁺</span> تعطي <strong>3 ATP</strong> (10 × 3 = 30 ATP). وكل جزيئة <span class="ltr-seq">1 FADH₂</span> تعطي <strong>2 ATP</strong> (2 × 2 = 4 ATP). زائد 4 ATP مباشرة (2 من التحلل + 2 من كريبس) = المجموع <strong><span class="ltr-seq">38 ATP</span></strong>.</p>
                     </div>
                 </div>
             </section>
@@ -571,7 +571,7 @@
                     <span>الإشكالية الطاقوية للوسط اللاهوائي</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--amber-dark); background: var(--amber-light);">
-                    <div class="problem-title" style="color: #92400e;">⚠️ كيف تعيش خلايا الخميرة أو عضلاتنا المجهدة دون أكسجين؟</div>
+                    <div class="problem-title" style="color: 107,57,38;">⚠️ كيف تعيش خلايا الخميرة أو عضلاتنا المجهدة دون أكسجين؟</div>
                     <p>في غياب الأكسجين (<span class="ltr-seq">Anaérobiose</span>)، تتوقف السلسلة التنفسية وتتوقف حلقة كريبس في الميتوكندرون لعدم وجود مستقبل نهائي للإلكترونات. ومع ذلك، تستمر خلايا الخميرة في الحياة والنمو البطيء، وتستمر عضلاتنا بالانقباض لعدة دقائق! <strong>كيف يتم التخلص من حمض البيروفيك وتجديد الـ NAD⁺ في الهيولى لضمان استمرار التحلل السكري وإنتاج الحد الأدنى من الطاقة (2 ATP)؟</strong></p>
                 </div>
             </section>
@@ -583,16 +583,16 @@
                     <span>التحليل المنهجي لمساري التخمر الكحولي والتخمر اللبني</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #451a03;">
-                        <h4 style="color: #fde047; margin-bottom: 1rem; font-size: 0.95rem;">مخطط التخمر اللبني والكحولي في الهيولى الأساسية (هدم جزئي للمادة العضوية)</h4>
+                    <div class="doc-visual" style="background: #6b3926;">
+                        <h4 style="color: #f3e6c4; margin-bottom: 1rem; font-size: 0.95rem;">مخطط التخمر اللبني والكحولي في الهيولى الأساسية (هدم جزئي للمادة العضوية)</h4>
                         <!-- SVG Fermentation -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط التخمر اللبني والكحولي: هدم جزئي للمادة العضوية">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f1-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -600,53 +600,53 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f1-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f1-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f1-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخطط التخمر اللبني والكحولي: هدم جزئي للمادة العضوية</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Fermentation lactique / alcoolique — 2 ATP seulement</text>
-  <rect x="30" y="104" width="360" height="44" rx="12" fill="#f43f5e" fill-opacity="0.18" stroke="#f43f5e" stroke-width="1.8"/>
-  <text x="210" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخمر اللبني</text>
-  <circle cx="210" cy="186" r="24" fill="#f43f5e" fill-opacity="0.14" stroke="#f43f5e" stroke-width="2"/>
-  <text x="210" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">L</text>
-  <text x="210" y="226" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض بيروفيك (C₃)</text>
-  <text x="210" y="247" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض لبني (C₃)</text>
-  <text x="210" y="268" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تعب عضلي / لبن رائب</text>
-  <rect x="410" y="104" width="360" height="44" rx="12" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="1.8"/>
-  <text x="590" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخمر الكحولي</text>
-  <circle cx="590" cy="186" r="24" fill="#fbbf24" fill-opacity="0.14" stroke="#fbbf24" stroke-width="2"/>
-  <text x="590" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">A</text>
-  <text x="590" y="226" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض بيروفيك (C₃)</text>
-  <text x="590" y="247" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 إيثانول (C₂) + 2CO₂↑</text>
-  <text x="590" y="268" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خميرة البيرة</text>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">كلاهما في الهيولى، بدون O₂، ويكتفي بـ 2 ATP (هدم جزئي للمادة العضوية).</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخطط التخمر اللبني والكحولي: هدم جزئي للمادة العضوية</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Fermentation lactique / alcoolique — 2 ATP seulement</text>
+  <rect x="30" y="104" width="360" height="44" rx="12" fill="#8a5a3c" fill-opacity="0.18" stroke="#8a5a3c" stroke-width="1.8"/>
+  <text x="210" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخمر اللبني</text>
+  <circle cx="210" cy="186" r="24" fill="#8a5a3c" fill-opacity="0.14" stroke="#8a5a3c" stroke-width="2"/>
+  <text x="210" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">L</text>
+  <text x="210" y="226" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض بيروفيك (C₃)</text>
+  <text x="210" y="247" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض لبني (C₃)</text>
+  <text x="210" y="268" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تعب عضلي / لبن رائب</text>
+  <rect x="410" y="104" width="360" height="44" rx="12" fill="#9a7a2c" fill-opacity="0.18" stroke="#9a7a2c" stroke-width="1.8"/>
+  <text x="590" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التخمر الكحولي</text>
+  <circle cx="590" cy="186" r="24" fill="#9a7a2c" fill-opacity="0.14" stroke="#9a7a2c" stroke-width="2"/>
+  <text x="590" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">A</text>
+  <text x="590" y="226" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 حمض بيروفيك (C₃)</text>
+  <text x="590" y="247" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 إيثانول (C₂) + 2CO₂↑</text>
+  <text x="590" y="268" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خميرة البيرة</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">كلاهما في الهيولى، بدون O₂، ويكتفي بـ 2 ATP (هدم جزئي للمادة العضوية).</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 الغرض البيولوجي للتخمر هو تجديد NAD⁺ لاستمرار التحلل السكري وإنتاج 2 ATP.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 الغرض البيولوجي للتخمر هو تجديد NAD⁺ لاستمرار التحلل السكري وإنتاج 2 ATP.</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #fef3c7; color: #b45309;">التفاصيل الكيميائية في البكالوريا</span>
+                        <span class="method-tag" style="background: #f3e6c4; color: #6b5320;">التفاصيل الكيميائية في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">ما هو الفرق بين التخمرين؟</h4>
                         <ul style="list-style-type: none; line-height: 1.8;">
                             <li>• <strong>التخمر الكحولي (<span class="ltr-seq">Fermentation Alcoolique الخميرة</span>) :</strong> يطرح حمض البيروفيك جزيئتي <span class="ltr-seq">2 CO₂</span>، ثم يرجع بواسطة <span class="ltr-seq">2 NADH, H⁺</span> ليعطي كحول الإيثانول (<span class="ltr-seq">CH₃-CH₂OH</span>).</li>
                             <li>• <strong>التخمر اللبني (<span class="ltr-seq">Fermentation Lactique العضلات / البكتيريا</span>) :</strong> يُرجع حمض البيروفيك مباشرة بواسطة <span class="ltr-seq">2 NADH, H⁺</span> دون طرح <span class="ltr-seq">CO₂</span>، ليعطي حمض اللبن الذي يسبب التعب العضلي.</li>
                         </ul>
                         <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--border);">
-                        <p style="font-weight: bold; color: #b45309;">الحصيلة الطاقوية : 2 ATP فقط (لأن الكحول وحمض اللبن بقايا عضوية غنية بالطاقة لم تهدم).</p>
+                        <p style="font-weight: bold; color: #6b5320;">الحصيلة الطاقوية : 2 ATP فقط (لأن الكحول وحمض اللبن بقايا عضوية غنية بالطاقة لم تهدم).</p>
                     </div>
                 </div>
             </section>
@@ -659,14 +659,14 @@
                 </div>
                 <p>قارن بين استهلاك الخميرة للغلوكوز في الوسط الهوائي والوسط اللاهوائي :</p>
                 
-                <div class="interactive-box" style="background: #451a03;">
+                <div class="interactive-box" style="background: #6b3926;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-amber" onclick="simFerm('resp')">🟢 وسط هوائي O₂ (تنفس : هدم كلي 38 ATP + تكاثر سريع)</button>
-                        <button class="btn-action" style="background:#dc2626;" onclick="simFerm('ferm')">🔴 وسط لاهوائي (تخمر : هدم جزئي 2 ATP + كحول إيثانول)</button>
+                        <button class="btn-action" style="background:#8a5a3c;" onclick="simFerm('ferm')">🔴 وسط لاهوائي (تخمر : هدم جزئي 2 ATP + كحول إيثانول)</button>
                     </div>
-                    <div id="fermDisplayBox" style="background: #78350f; border: 2px solid #fbbf24; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 وسط هوائي (التنفس الخلوي)</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">يتم هدم الغلوكوز كلياً إلى مواد معدنية خالية من الطاقة (<span class="ltr-seq">CO₂ + H₂O</span>). تنتج كمية هائلة من الطاقة (<strong><span class="ltr-seq">38 ATP</span></strong>) تسمح بتكاثر ونمو سريع جداً لخلايا الخميرة.</p>
+                    <div id="fermDisplayBox" style="background: #6b3926; border: 2px solid #9a7a2c; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 وسط هوائي (التنفس الخلوي)</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">يتم هدم الغلوكوز كلياً إلى مواد معدنية خالية من الطاقة (<span class="ltr-seq">CO₂ + H₂O</span>). تنتج كمية هائلة من الطاقة (<strong><span class="ltr-seq">38 ATP</span></strong>) تسمح بتكاثر ونمو سريع جداً لخلايا الخميرة.</p>
                     </div>
                 </div>
             </section>
@@ -675,7 +675,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 فسّر آلية الفسفرة التأكسدية ودور تدرج البروتونات في تركيب ATP.</p>
@@ -686,7 +686,7 @@
                     <li style="margin-bottom:6px;">يضخ تمرير الإلكترونات البروتونات نحو الحيز بين الغشائي مكوناً تدرجاً كهركيميائياً.</li>
                     <li style="margin-bottom:6px;">يعود H+ إلى الترجمة عبر ATP-synthase فيركب كمية كبيرة من ATP.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : الفسفرة التأكسدية / سلسلة نقل الإلكترونات</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : الفسفرة التأكسدية / سلسلة نقل الإلكترونات</p>
             </section>
 
             <!-- الحصيلة المعرفية الرسمية (citation verbatim du livre officiel — voir docs/RESUMES_MAARIFI_LIVRE_2026-09-21.md) -->
@@ -713,31 +713,31 @@
         <!-- ═══ Zone de synthèse commune (🏛 حصيلة + 🗺 مخطط) — hors chapter-view :
              visible dans LES DEUX leçons du fichier (survit au slicing lessonChapterSplit) ═══ -->
         <div class="synthese-zone" id="zone-synthese">
-<section class="card" id="hosila" style="border:2px solid #f59e0b;">
+<section class="card" id="hosila" style="border:2px solid #9a7a2c;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#b45309;">🏛</span>
+                    <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:#92400e; font-weight:700; margin:6px 0;">الوحدة: D2-U7 — الأكسدة التنفسية — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
+                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: D2-U7 — الأكسدة التنفسية — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
 
 <ul style="margin:8px 0; padding-right:24px; line-height:2; font-size:13px;">
 <li>يتميز الغشاء الداخلي للميتوكوندري بالسلسلة التنفسية (نواقل الإلكترونات) وبالكريات المذنبة (إنزيم ATP-Synthase).</li>
 <li>لا تستعمل الميتوكوندري الغلوكوز، بل حمض البيروفيك الناتج من هدمه في الهيولى.</li>
 </ul>
 <p style="font-weight:700; margin:6px 0;">حصيلة التحلل السكري :</p>
-<div style="background:#fff; border:1px solid #fcd34d; border-radius:12px; padding:8px; text-align:center; font-weight:700; direction:ltr;">Glucose + 2NAD⁺ + 2ADP + 2Pi → 2 Acide pyruvique + 2ATP + 2NADH,H⁺</div>
+<div style="background:#fbf8f1; border:1px solid #9a7a2c; border-radius:12px; padding:8px; text-align:center; font-weight:700; direction:ltr;">Glucose + 2NAD⁺ + 2ADP + 2Pi → 2 Acide pyruvique + 2ATP + 2NADH,H⁺</div>
 <p style="font-weight:700; margin:6px 0;">حصيلة حلقة كريبس (المعادلة الرسمية، لجزيء أستيل-CoA واحد) :</p>
-<div style="background:#fff; border:1px solid #fcd34d; border-radius:12px; padding:8px; text-align:center; font-weight:700; direction:ltr;">Acétyl-CoA + 3NAD⁺ + FAD + ADP + Pi → 2CO2 + 3NADH,H⁺ + FADH2 + ATP + CoA-SH</div>
+<div style="background:#fbf8f1; border:1px solid #9a7a2c; border-radius:12px; padding:8px; text-align:center; font-weight:700; direction:ltr;">Acétyl-CoA + 3NAD⁺ + FAD + ADP + Pi → 2CO2 + 3NADH,H⁺ + FADH2 + ATP + CoA-SH</div>
 <p style="font-weight:700; margin:10px 0 4px;">حصيلة عدد ATP :</p>
 <table style="width:100%; border-collapse:collapse; font-size:12px; text-align:center;">
-<tr style="background:#fef3c7; font-weight:800;"><td style="border:1px solid #fcd34d; padding:6px;">المرحلة</td><td style="border:1px solid #fcd34d; padding:6px;">ATP مباشرة</td><td style="border:1px solid #fcd34d; padding:6px;">NADH,H⁺</td><td style="border:1px solid #fcd34d; padding:6px;">FADH2</td></tr>
-<tr><td style="border:1px solid #fcd34d; padding:6px;">التحلل السكري (الهيولى)</td><td style="border:1px solid #fcd34d;">2</td><td style="border:1px solid #fcd34d;">2</td><td style="border:1px solid #fcd34d;">0</td></tr>
-<tr><td style="border:1px solid #fcd34d; padding:6px;">حلقة كريبس (بخطوتها التحضيرية)</td><td style="border:1px solid #fcd34d;">2</td><td style="border:1px solid #fcd34d;">2 + 6</td><td style="border:1px solid #fcd34d;">2</td></tr>
-<tr><td style="border:1px solid #fcd34d; padding:6px;">الفسفرة التأكسدية</td><td style="border:1px solid #fcd34d;">—</td><td style="border:1px solid #fcd34d;">أكسدة 10 NADH,H⁺</td><td style="border:1px solid #fcd34d;">أكسدة 2 FADH2</td></tr>
-<tr style="font-weight:800; background:#fef9c3;"><td style="border:1px solid #fcd34d; padding:6px;">الحصيلة</td><td style="border:1px solid #fcd34d;">4</td><td style="border:1px solid #fcd34d;">30</td><td style="border:1px solid #fcd34d;">4</td></tr>
-<tr><td style="border:1px solid #fcd34d; padding:6px;">الفسفرة التأكسدية (المجموع)</td><td colspan="3" style="border:1px solid #fcd34d;">34 ATP (أكسدة 10 NADH,H⁺ ← 30 + أكسدة 2 FADH₂ ← 4)</td></tr>
+<tr style="background:#f3e6c4; font-weight:800;"><td style="border:1px solid #9a7a2c; padding:6px;">المرحلة</td><td style="border:1px solid #9a7a2c; padding:6px;">ATP مباشرة</td><td style="border:1px solid #9a7a2c; padding:6px;">NADH,H⁺</td><td style="border:1px solid #9a7a2c; padding:6px;">FADH2</td></tr>
+<tr><td style="border:1px solid #9a7a2c; padding:6px;">التحلل السكري (الهيولى)</td><td style="border:1px solid #9a7a2c;">2</td><td style="border:1px solid #9a7a2c;">2</td><td style="border:1px solid #9a7a2c;">0</td></tr>
+<tr><td style="border:1px solid #9a7a2c; padding:6px;">حلقة كريبس (بخطوتها التحضيرية)</td><td style="border:1px solid #9a7a2c;">2</td><td style="border:1px solid #9a7a2c;">2 + 6</td><td style="border:1px solid #9a7a2c;">2</td></tr>
+<tr><td style="border:1px solid #9a7a2c; padding:6px;">الفسفرة التأكسدية</td><td style="border:1px solid #9a7a2c;">—</td><td style="border:1px solid #9a7a2c;">أكسدة 10 NADH,H⁺</td><td style="border:1px solid #9a7a2c;">أكسدة 2 FADH2</td></tr>
+<tr style="font-weight:800; background:243,230,196;"><td style="border:1px solid #9a7a2c; padding:6px;">الحصيلة</td><td style="border:1px solid #9a7a2c;">4</td><td style="border:1px solid #9a7a2c;">30</td><td style="border:1px solid #9a7a2c;">4</td></tr>
+<tr><td style="border:1px solid #9a7a2c; padding:6px;">الفسفرة التأكسدية (المجموع)</td><td colspan="3" style="border:1px solid #9a7a2c;">34 ATP (أكسدة 10 NADH,H⁺ ← 30 + أكسدة 2 FADH₂ ← 4)</td></tr>
 </table>
-<p style="text-align:center; font-weight:900; font-size:15px; margin-top:8px; color:#b45309;">الحصيلة الإجمالية : 38 ATP</p>
+<p style="text-align:center; font-weight:900; font-size:15px; margin-top:8px; color:#6b5320;">الحصيلة الإجمالية : 38 ATP</p>
 <p style="font-size:12px; line-height:1.9;">وفي التخمر (الهدم في غياب الأكسجين) تكون الطاقة المنتجة قليلة : <b>2 ATP فقط</b> مقابل 38 ATP في التنفس.</p>
 
             </section>
@@ -759,13 +759,13 @@
             let box = document.getElementById('respDisplayBox');
             if (state === 'normal') {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 الحصيلة الطاقوية الكاملة للتنفس (38 ATP)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">كل جزيئة <span class="ltr-seq">1 NADH, H⁺</span> تعطي <strong>3 ATP</strong> (10 × 3 = 30 ATP). وكل جزيئة <span class="ltr-seq">1 FADH₂</span> تعطي <strong>2 ATP</strong> (2 × 2 = 4 ATP). زائد 4 ATP مباشرة (2 من التحلل + 2 من كريبس) = المجموع <strong><span class="ltr-seq">38 ATP</span></strong>.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 الحصيلة الطاقوية الكاملة للتنفس (38 ATP)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">كل جزيئة <span class="ltr-seq">1 NADH, H⁺</span> تعطي <strong>3 ATP</strong> (10 × 3 = 30 ATP). وكل جزيئة <span class="ltr-seq">1 FADH₂</span> تعطي <strong>2 ATP</strong> (2 × 2 = 4 ATP). زائد 4 ATP مباشرة (2 من التحلل + 2 من كريبس) = المجموع <strong><span class="ltr-seq">38 ATP</span></strong>.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">🔴 سم السيانيد - شلل السلسلة التنفسية والاختناق</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يرتبط السيانيد بالناقل الأخير (<span class="ltr-seq">T₆ - Cytochrome oxydase</span>) ويمنعه من نقل الإلكترونات إلى الأكسجين. تتوقف السلسلة التنفسية، يتوقف ضخ البروتونات، ويتوقف إنتاج الـ <span class="ltr-seq">ATP</span> تماماً فتموت العضوية اختناقاً في دقائق.</p>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">🔴 سم السيانيد - شلل السلسلة التنفسية والاختناق</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يرتبط السيانيد بالناقل الأخير (<span class="ltr-seq">T₆ - Cytochrome oxydase</span>) ويمنعه من نقل الإلكترونات إلى الأكسجين. تتوقف السلسلة التنفسية، يتوقف ضخ البروتونات، ويتوقف إنتاج الـ <span class="ltr-seq">ATP</span> تماماً فتموت العضوية اختناقاً في دقائق.</p>
                 `;
             }
         }
@@ -774,13 +774,13 @@
             let box = document.getElementById('fermDisplayBox');
             if (type === 'resp') {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 وسط هوائي (التنفس الخلوي)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يتم هدم الغلوكوز كلياً إلى مواد معدنية خالية من الطاقة (<span class="ltr-seq">CO₂ + H₂O</span>). تنتج كمية هائلة من الطاقة (<strong><span class="ltr-seq">38 ATP</span></strong>) تسمح بتكاثر ونمو سريع جداً لخلايا الخميرة.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 وسط هوائي (التنفس الخلوي)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يتم هدم الغلوكوز كلياً إلى مواد معدنية خالية من الطاقة (<span class="ltr-seq">CO₂ + H₂O</span>). تنتج كمية هائلة من الطاقة (<strong><span class="ltr-seq">38 ATP</span></strong>) تسمح بتكاثر ونمو سريع جداً لخلايا الخميرة.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #fb923c; margin-bottom: 10px;">🔴 وسط لاهوائي (التخمر الكحولي)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يتم هدم الغلوكوز جزئياً ليعطي مادة عضوية غنية بالطاقة هي كحول الإيثانول. تنتج طاقة ضئيلة جداً (<strong><span class="ltr-seq">2 ATP</span></strong> فقط من التحلل السكري) فيكون تكاثر الخميرة بطيئاً جداً.</p>
+                    <h3 style="color: 154,122,44; margin-bottom: 10px;">🔴 وسط لاهوائي (التخمر الكحولي)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يتم هدم الغلوكوز جزئياً ليعطي مادة عضوية غنية بالطاقة هي كحول الإيثانول. تنتج طاقة ضئيلة جداً (<strong><span class="ltr-seq">2 ATP</span></strong> فقط من التحلل السكري) فيكون تكاثر الخميرة بطيئاً جداً.</p>
                 `;
             }
         }
@@ -797,10 +797,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> الأكسجين يختزل إلى ماء وهو محرك سحب الإلكترونات في السلسلة.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> الأكسجين O₂ هو المستقبل النهائي الحصري في التنفس الهوائي.';
             }
         }
@@ -817,10 +817,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> الهدم الجزئي يعني بقاء الطاقة في الروابط الكيميائية للكحول أو حمض اللبن.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> السبب الأساسي هو عدم اكتمال الأكسدة وبقاء منتج عضوي غني بالطاقة.';
             }
         }
@@ -929,8 +929,8 @@
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -942,7 +942,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -955,8 +955,8 @@
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -989,12 +989,12 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1017,7 +1017,7 @@
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1528,12 +1528,12 @@
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +
