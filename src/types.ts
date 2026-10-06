@@ -67,8 +67,19 @@ export interface NoteCarnet {
   ts: string; // ISO
 }
 
+// حساب التلميذ — يُحفظ في المتصفح فقط (لا خادم، لا تتبّع).
+// motDePasse = نص مجزّأ بـ SHA-256 مع ملح «kunz» — لا يُخزَّن نصًّا صريحًا.
+export interface Compte {
+  email: string;
+  motDePasse: string;
+  wilaya: string; // رمز الولاية '01' .. '58'
+  daira: string;
+  creeLe: string; // ISO
+}
+
 export interface Etat {
   version: number;
+  compte?: Compte;
   progression: Record<string, ProgressionLecon>;
   jalons: Record<string, JalonUnite>;
   notes: NoteCarnet[];

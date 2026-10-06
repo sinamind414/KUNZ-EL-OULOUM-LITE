@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import type { Etat, NoteCarnet } from '../types';
 import { itemsFaits } from '../utils/moteur';
-import { aujourdhui, differenceJours, enArabe, enArabeMin, formatCourteAr, formatJourAr } from '../utils/dates';
+import { aujourdhui, differenceJours, nb, nbMin, formatCourteAr, formatJourAr, joursNb } from '../utils/dates';
+import { joursConsecutifs, niveauDe, xpDe, xpTexte } from '../utils/xp';
+import { WILAYA_PAR_CODE } from '../data/wilayas';
 import { CHEMIN } from '../data/programme';
 import { Morceau } from './Communs';
 
@@ -13,22 +15,27 @@ interface Props {
   onDateBac: (iso: string) => void;
   onSupprimerNote: (id: string) => void;
   onReinitialiser: () => void;
+  onDeconnexion?: () => void;
 }
 
-export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReinitialiser }: Props) {
+export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReinitialiser, onDeconnexion }: Props) {
   const [confirme, setConfirme] = useState(false);
   const notes = [...etat.notes].sort((a, b) => (a.ts < b.ts ? 1 : -1));
   const faits = itemsFaits(etat);
   const jalons = Object.values(etat.jalons).filter((j) => j.fait).length;
+  const xp = xpDe(etat);
+  const niveau = niveauDe(xp);
+  const jours = joursConsecutifs(etat.journal);
+  const wilaya = etat.compte ? WILAYA_PAR_CODE[etat.compte.wilaya] : undefined;
 
   const h = Math.floor(etat.minutesTotales / 60);
   const m = etat.minutesTotales % 60;
   const tempsAr =
     h === 0
-      ? `${enArabe(m)} دقيقة`
+      ? `${nb(m)} دقيقة`
       : m === 0
-        ? `${enArabe(h)} ساعة`
-        : `${enArabe(h)} ساعة و${enArabe(m)} دقيقة`;
+        ? `${nb(h)} ساعة`
+        : `${nb(h)} ساعة و${nb(m)} دقيقة`;
 
   const derniersJours = [...etat.journal].sort().slice(-12);
 
@@ -66,11 +73,46 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
         />
         {etat.dateBac && (
           <p className="mt-2 text-[11px] text-mute">
-            متبقّيًا {enArabe(Math.max(0, differenceJours(aujourdhui(), etat.dateBac)))} يومًا — يُستعمل
+            متبقّيًا {nb(Math.max(0, differenceJours(aujourdhui(), etat.dateBac)))} يومًا — يُستعمل
             لمعلم الامتحان التجريبي.
           </p>
         )}
       </section>
+
+      {/* الحساب */}
+      {etat.compte && (
+        <section className="card mt-5 p-5">
+          <p className="eyebrow">حسابي</p>
+          <div className="mt-3 flex items-start gap-3">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-forest text-lg font-black text-paper">
+              {etat.compte.email.charAt(0).toUpperCase()}
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-bold" dir="ltr">
+                {etat.compte.email}
+              </p>
+              <p className="mt-1 text-xs text-mute">
+                {wilaya ? `${wilaya.nom} — ${etat.compte.daira}` : 'ولايتك غير محدّدة'}
+              </p>
+              <p className="mt-1 text-[11px] text-mute">
+                عضو منذ {formatJourAr(etat.compte.creeLe.slice(0, 10))}
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="chip text-[11px] font-bold text-forest-deep">{niveau.nom}</span>
+            <span className="chip text-[11px] font-bold text-forest-deep">{xpTexte(xp)}</span>
+            <span className="chip text-[11px] font-bold text-forest-deep">
+              🔥 {joursNb(jours)}
+            </span>
+          </div>
+          {onDeconnexion && (
+            <button onClick={onDeconnexion} className="btn btn-ghost mt-4 w-full text-sm">
+              تسجيل الخروج
+            </button>
+          )}
+        </section>
+      )}
 
       {/* الإحصاء بالحروف */}
       <section className="card mt-5 p-5">
@@ -82,22 +124,32 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
           </div>
           <div className="rounded-2xl border border-sage bg-sage-soft/60 p-3.5">
             <p className="font-naskh text-2xl font-black text-forest">
-              {enArabeMin(faits)} من {enArabeMin(CHEMIN.length)}
+              {nbMin(faits)} من {nbMin(CHEMIN.length)}
             </p>
             <p className="mt-1 text-[11px] font-bold text-forest-deep">بنية في الطريق</p>
           </div>
           <div className="rounded-2xl border border-gold-soft bg-gold-soft/60 p-3.5">
-            <p className="font-naskh text-2xl font-black text-[#6b5320]">{enArabe(etat.revisions)}</p>
+            <p className="font-naskh text-2xl font-black text-[#6b5320]">{nb(etat.revisions)}</p>
             <p className="mt-1 text-[11px] font-bold text-[#6b5320]">جلسات استرجاع</p>
           </div>
           <div className="rounded-2xl border border-gold-soft bg-gold-soft/60 p-3.5">
-            <p className="font-naskh text-2xl font-black text-[#6b5320]">{enArabe(jalons)}</p>
+            <p className="font-naskh text-2xl font-black text-[#6b5320]">{nb(jalons)}</p>
             <p className="mt-1 text-[11px] font-bold text-[#6b5320]">جسور مكتوبة</p>
+          </div>
+          <div className="rounded-2xl border border-gold-soft bg-gold-soft/60 p-3.5">
+            <p className="font-naskh text-lg font-black leading-snug text-[#6b5320]">
+              {xpTexte(xp)}
+            </p>
+            <p className="mt-1 text-[11px] font-bold text-[#6b5320]">نقاط الخبرة — {niveau.nom}</p>
+          </div>
+          <div className="rounded-2xl border border-sage bg-sage-soft/60 p-3.5">
+            <p className="font-naskh text-2xl font-black text-forest">🔥 {joursNb(jours)}</p>
+            <p className="mt-1 text-[11px] font-bold text-forest-deep">من النشاط المتّصل</p>
           </div>
         </div>
         <p className="mt-4 text-xs leading-relaxed text-mute">
-          لا نسبة مئوية، لا سلسلة قابلة للكسر. الأرقام هنا لتحفيذك فقط — والمقارنة الوحيدة المسموح
-          بها هي مع نفسك بالأمس.
+          لا نسبة مئوية، ولا سلسلة تُعرض لك كخسارة. الأرقام هنا لتحفيذك فقط — والمقارنة الوحيدة
+          المسموح بها هي مع نفسك بالأمس.
         </p>
       </section>
 
@@ -131,7 +183,7 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
                   ? 'ملاحظة واحدة'
                   : notes.length === 2
                     ? 'ملاحظتان'
-                    : `${enArabe(notes.length)} ملاحظات`}
+                    : `${nb(notes.length)} ملاحظات`}
             </p>
           </div>
           <span className="text-2xl">📓</span>

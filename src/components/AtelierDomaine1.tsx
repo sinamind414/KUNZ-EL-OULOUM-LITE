@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CadreAtelier, PointsEtape } from './AtelierCadre';
 import { melange } from '../utils/melange';
-import { enArabe } from '../utils/dates';
+import { nb } from '../utils/dates';
 
 interface Props {
   fait: boolean;
@@ -334,7 +334,7 @@ function Sequence({ items, all }: { items: string[]; all: Carte[] }) {
             }`}
           >
             <span className="flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-forest px-1.5 text-[10px] font-bold text-paper">
-              {enArabe(index + 1)}
+              {nb(index + 1)}
             </span>
             <span className="text-sm font-bold">{items[index] === card.id ? card.texte : '••••••••'}</span>
           </div>

@@ -96,11 +96,30 @@ export function enregistrerActivite(etat: Etat): Etat {
 
 // ───────────── إيقاع الأسبوع 5/7 ─────────────
 
-export function rythmeSemaine(etat: Etat): { jours: number; cible: number } {
+export interface RythmeJour {
+  iso: string;
+  actif: boolean;
+  aujourdhui: boolean;
+}
+
+export interface Rythme {
+  jours: number;
+  cible: number;
+  /** les 7 derniers jours, du plus ancien (à droite) à aujourd'hui (à gauche) */
+  sept: RythmeJour[];
+}
+
+export function rythmeSemaine(etat: Etat): Rythme {
   const auj = aujourdhui();
-  const debut = ajouterJours(auj, -6);
-  const jours = etat.journal.filter((j) => differenceJours(debut, j) >= 0).length;
-  return { jours: Math.min(jours, 7), cible: 5 };
+  const sept: RythmeJour[] = [];
+  let jours = 0;
+  for (let i = 6; i >= 0; i--) {
+    const iso = ajouterJours(auj, -i);
+    const actif = etat.journal.includes(iso);
+    if (actif) jours++;
+    sept.push({ iso, actif, aujourdhui: i === 0 });
+  }
+  return { jours: Math.min(jours, 7), cible: 5, sept };
 }
 
 // ───────────── موضع القسم (التدرّج السنوي) ─────────────

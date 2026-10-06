@@ -10,7 +10,7 @@ import {
   type ItemChemin,
 } from '../data/programme';
 import { itemFait, itemVerrouille, leconsUniteFaites } from '../utils/moteur';
-import { enArabe, compteLecons } from '../utils/dates';
+import { nb, compteLecons } from '../utils/dates';
 import type { Etat } from '../types';
 import { ACCENTS } from '../utils/accents';
 import { IcoVerifie, IcoVerrou } from './Icones';
@@ -100,7 +100,7 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
                                   : 'bg-gold-soft text-[#6b5320]'
                           }`}
                         >
-                          {jalonFait ? '✓' : enArabe(u.numero)}
+                          {jalonFait ? '✓' : nb(u.numero)}
                         </span>
                         <div className="min-w-0 flex-1">
                           <h3 className="truncate text-sm font-bold">{u.titre}</h3>
@@ -187,7 +187,7 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
                               <span className="text-lg">🌉</span>
                               <div className="flex-1">
                                 <p className="text-sm font-bold">
-                                  جسر الوحدة {enArabe(u.numero)}
+                                  جسر الوحدة {nb(u.numero)}
                                 </p>
                                 <p className="mt-0.5 text-[11px] leading-relaxed text-mute">
                                   {jalonFait
@@ -212,7 +212,7 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
                           <p className="text-[11px] leading-relaxed text-mute">
                             {u.numero === 1
                               ? 'يُفتح هذا القسم مع بداية الطريق.'
-                              : `يُفتح هذا القسم بعد إنهاء جسر الوحدة ${enArabe(
+                              : `يُفتح هذا القسم بعد إنهاء جسر الوحدة ${nb(
                                   u.numero - 1
                                 )}.`}
                           </p>
@@ -269,7 +269,7 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
       )}
 
       <p className="mt-8 text-center text-xs leading-relaxed text-mute">
-        الطريق وحده يصل بك. {enArabe(CHEMIN.length)} بنية، واحدة في كل حصّة.
+        الطريق وحده يصل بك. {nb(CHEMIN.length)} بنية، واحدة في كل حصّة.
       </p>
     </div>
   );

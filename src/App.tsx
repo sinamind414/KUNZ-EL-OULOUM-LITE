@@ -21,6 +21,10 @@ import AtelierDomaine1 from './components/AtelierDomaine1';
 import AtelierImmunite from './components/AtelierImmunite';
 import AtelierOrogenese from './components/AtelierOrogenese';
 import EcranDemarrage from './components/EcranDemarrage';
+import Inscription from './components/Inscription';
+import BaguetteXp from './components/BaguetteXp';
+import { fermerSession, ouvrirSession, sessionOuverte } from './utils/compte';
+import type { Compte } from './types';
 import {
   IcoCarnet,
   IcoDiplome,
@@ -56,10 +60,37 @@ export default function App() {
     if (typeof window === 'undefined') return false;
     return !sessionStorage.getItem('kunz_demarrage');
   });
+  // جلسة الدخول: تبقى مفتوحة ما دام التبويب مفتوحًا (لا كلمة مرور في كل تحميل)
+  const [session, setSession] = useState<boolean>(() => sessionOuverte(etat.compte?.email));
 
   function fermerDemarrage() {
     sessionStorage.setItem('kunz_demarrage', '1');
     setDemarrage(false);
+  }
+
+  // ───────────── الحساب ─────────────
+
+  function onCompteValide(compte: Compte) {
+    setEtat((prev) => ({ ...prev, compte }));
+    ouvrirSession(compte.email);
+    setSession(true);
+  }
+
+  function onDeconnexion() {
+    fermerSession();
+    setSession(false);
+    setOnglet('aujourdhui');
+    setMode(null);
+  }
+
+  function onSupprimerCompte() {
+    fermerSession();
+    setSession(false);
+    setEtat((prev) => {
+      const suivant = { ...prev };
+      delete suivant.compte;
+      return suivant;
+    });
   }
 
   useEffect(() => {
@@ -265,10 +296,22 @@ export default function App() {
     );
   }
 
+  const inscrit = Boolean(etat.compte) && session;
+  // لا تبويبات ولا شارة قبل اكتمال شاشة الإقلاع وفتح حساب
+  const pret = inscrit && !demarrage;
+
   return (
     <div className="min-h-dvh">
       {demarrage && <EcranDemarrage onTerminer={fermerDemarrage} />}
-      {onglet === 'aujourdhui' && (
+      {!demarrage && !inscrit && (
+        <Inscription
+          compte={etat.compte}
+          onValide={onCompteValide}
+          onSupprimerCompte={etat.compte ? onSupprimerCompte : undefined}
+        />
+      )}
+      {pret && mode === null && <BaguetteXp etat={etat} onDeconnexion={onDeconnexion} />}
+      {pret && onglet === 'aujourdhui' && (
         <Aujourdhui
           etat={etat}
           onOuvrirItem={ouvrirItem}
@@ -276,7 +319,7 @@ export default function App() {
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
         />
       )}
-      {onglet === 'masari' && (
+      {pret && onglet === 'masari' && (
         <Masari
           etat={etat}
           onOuvrirItem={ouvrirItem}
@@ -286,19 +329,21 @@ export default function App() {
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
         />
       )}
-      {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
-      {onglet === 'ana' && (
+      {pret && onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
+      {pret && onglet === 'ana' && (
         <Ana
           etat={etat}
           onNom={(nom) => setEtat((prev) => ({ ...prev, nom }))}
           onDateBac={(iso) => setEtat((prev) => ({ ...prev, dateBac: iso }))}
           onSupprimerNote={onSupprimerNote}
           onReinitialiser={onReinitialiser}
+          onDeconnexion={onDeconnexion}
         />
       )}
 
       {/* شريط التنقّل السفلي */}
-      <nav
+      {pret && (
+        <nav
         className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 backdrop-blur"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
@@ -335,6 +380,7 @@ export default function App() {
           })}
         </div>
       </nav>
+      )}
     </div>
   );
 }

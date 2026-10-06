@@ -85,8 +85,8 @@ actif) et une « جملة من نوع البكالوريا » avant de valider.
 - **zéro écriture libre** : l'élève ne fait que cliquer ; aucune saisie nulle part ;
 - **jamais de correction avant le bon choix** : en cas d'erreur → *message doux* (« ليست هذه
   البطاقة… ») + **remélange des cartes** (`utils/melange.ts`), sans afficher la réponse ;
-- **anti-stress** : pas de %, pas de compteur de fautes, pas de chronomètre ; les rangs sont en
-  **lettres arabes** (`enArabe` : واحد، اثنان، ثلاثة…) ;
+- **anti-stress** : pas de %, pas de compteur de fautes, pas de chronomètre ; tous les nombres
+  s'affichent en **chiffres latins** (`nb()` → `2 درس`, `58 درسًا`, `3295 XP`) ;
 - **le contenu de consolidation vient après** : la « المعنى البيولوجي » et le rappel actif ne
   s'affichent qu'**après** la reconstruction complète, jamais avant ;
 - le bouton **📖 (افتح الدرس)** ouvre la leçon liée **au-dessus** de l'atelier (état conservé) :
@@ -137,9 +137,10 @@ est un droit, en abuser est impossible.
 - **Aucune série de jours** qui risque de se casser (le rythme est présenté en jours comptés, pas en
   série `🔥 12 jours`).
 - **Aucun compte à rebours angoissant** : le minuteur par phase est soft, désactivable.
-- **Les nombres en lettres arabes** (`enArabe`, `enArabeMin`, `compteLecons`, `compteLeconsAdj`) —
-  respect des règles de grammaire arabe : `درس واحد` / `درجان` / `٥ دروس` / `٨١ درسًا`, et l'accord de
-  l'adjectif (`درس واحد مستحقّ` / `درجان مستحقّان`).
+- **Les nombres en chiffres latins, partout** (`nb`, `nbMin`, `nbGrand`, `joursNb`, `minutesNb`,
+  `compteLecons`, `compteLeconsAdj`) — choix explicite du produit : `1 يوم`, `5 أيام`, `2 درس من 5
+  دروس`, `58 درسًا`, `3295 XP`. Seul l'accord arabe du nom est conservé
+  (`1 درس مستحقّ` / `2 درس مستحقّان` / `4 دروس مستحقّة`).
 
 ### 📅 Le calendrier scolaire (`src/utils/dates.ts`)
 
@@ -247,7 +248,7 @@ app-svt-bac/
 │   ├── utils/
 │   │   ├── moteur.ts              # ⭐ Next Best Action, verrous, quota, rythme, fragilité
 │   │   ├── srs.ts                 # SM-2 (premiereRevision / mettreAJourSrs / aReviserAujourdhui)
-│   │   ├── dates.ts               # calendrier, nombres arabes, grammaire (compteLeconsAdj…)
+│   │   ├── dates.ts               # calendrier, nombres en chiffres latins, grammaire (compteLeconsAdj…)
 │   │   ├── qcm.ts                 # qcmPourLecon() — aucun généré de secours (retourne null)
 │   │   ├── storage.ts             # localStorage (charger/sauvegarder/vider)
 │   │   └── accents.ts             # couleurs des 3 domaines
@@ -330,12 +331,18 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   **lecture réellement obligatoire en phase 1** (le lecteur doit être ouvert puis fermé) ;
   **bouton ← vers le fهرس des phases** dans chaque phase ; **suppression des encadrés
   مفتاح المنهجية / تذكير منهجي**.
-- **v0.3.3 (actuelle)** — **branche arena fusionnée : les 3 ateliers de synthèse** (المجال الأول /
+- **v0.3.3** — **branche arena fusionnée : les 3 ateliers de synthèse** (المجال الأول /
   المناعة / الأوروجينيز), remaniés : plus de divulgation de la réponse avant le bon choix,
-  **remélange des cartes après erreur**, **chiffres en lettres arabes**, état sorti du DOM dans
+  **remélange des cartes après erreur**, état sorti du DOM dans
   l'atelier immunite, factored coque `AtelierCadre`, clé `d1`/`domaine1` réconciliée,
   `onTerminer` branché sur les 3 ateliers, **bouton 📖 vers la leçon qui préserve l'état de
   l'atelier**.
+- **v0.4.0 (actuelle)** — **compte local de l'élève** : écran obligatoire après la vidéo
+  (email + mot de passe haché SHA-256 + wilaya + daïra, 58 wilayas / 548 dairas), session par
+  onglet, déconnexion et suppression du compte dans أنا et dans la shara ; **badge XP + jours
+  d'activité en haut à gauche** (niveau, ventilation des points, flash « + … XP » à chaque gain) ;
+  **tous les nombres passés en chiffres latins** (`nb()` remplace `enArabe()` partout dans
+  l'application).
 - **v0.4** — mode examen blanc (sujet Bac), carnet des failles (erreurs atomiques exportées),
   conversion des 25 leçons au format manuel scolaire (suppression du scaffolding).
 

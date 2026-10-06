@@ -4,7 +4,7 @@
 import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
 import { titreLecon, uniteDeLecon } from '../data/programme';
 import { aContenuLecon, urlLecon } from '../data/leconsPassives';
-import { enArabe } from '../utils/dates';
+import { nb } from '../utils/dates';
 import { IcoRetour } from './Icones';
 import { useState } from 'react';
 
@@ -34,7 +34,7 @@ export default function LecteurLecon({ lessonId, onFermer }: Props) {
           </button>
           <div className="min-w-0 flex-1">
             <p className="truncate text-[11px] text-mute">
-              {unite ? `الوحدة ${enArabe(unite.numero)}: ${unite.titre}` : 'درس'}
+              {unite ? `الوحدة ${nb(unite.numero)}: ${unite.titre}` : 'درس'}
             </p>
             <h1 className="truncate text-base font-bold">{titreLecon(lessonId)}</h1>
           </div>

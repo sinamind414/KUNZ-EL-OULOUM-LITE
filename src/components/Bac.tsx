@@ -2,7 +2,7 @@
 
 import { UNITES, UNITE_PAR_ID, idUniteDeJalon } from '../data/programme';
 import { leconsUniteFaites, uniteTerminee } from '../utils/moteur';
-import { differenceJours, enArabe, formatCourteAr } from '../utils/dates';
+import { differenceJours, nb, formatCourteAr } from '../utils/dates';
 import type { Etat } from '../types';
 import { Morceau } from './Communs';
 
@@ -41,7 +41,7 @@ export default function Bac({ etat, onCopie }: Props) {
             </p>
           </div>
           <div className="shrink-0 text-left">
-            <p className="font-naskh text-4xl font-black text-forest">{enArabe(Math.max(0, restant))}</p>
+            <p className="font-naskh text-4xl font-black text-forest">{nb(Math.max(0, restant))}</p>
             <p className="text-[11px] font-bold text-mute">يومًا متبقّيًا</p>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Bac({ etat, onCopie }: Props) {
           </div>
         ) : (
           <p className="mt-3 text-sm leading-relaxed text-mute">
-            يُفتح هذا المعلم قبل البكالوريا بثمانية أسابيع (يوم{' '}
+            يُفتح هذا المعلم قبل البكالوريا ب8 أسابيع (يوم{' '}
             {formatCourteAr(
               new Date(new Date(dateBac + 'T12:00:00').getTime() - 56 * 86_400_000)
                 .toISOString()
@@ -101,7 +101,7 @@ export default function Bac({ etat, onCopie }: Props) {
                   ? 'نسخة مُنجزة'
                   : copies === 2
                     ? 'نسختان مُنجزتان'
-                    : `${enArabe(copies)} نسخ مُنجزة`}
+                    : `${nb(copies)} نسخ مُنجزة`}
             </p>
           </div>
           <button
@@ -141,7 +141,7 @@ export default function Bac({ etat, onCopie }: Props) {
                     terminee ? 'bg-forest text-paper' : 'bg-cream text-mute'
                   }`}
                 >
-                  {terminee ? '✓' : enArabe(u.numero)}
+                  {terminee ? '✓' : nb(u.numero)}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-bold">{u.titre}</p>
@@ -161,7 +161,7 @@ export default function Bac({ etat, onCopie }: Props) {
                   </div>
                 </div>
                 <span className="shrink-0 text-[11px] font-bold text-mute">
-                  {enArabe(faites)}/{enArabe(u.lessonIds.length)}
+                  {nb(faites)}/{nb(u.lessonIds.length)}
                 </span>
               </li>
             );
@@ -175,7 +175,7 @@ export default function Bac({ etat, onCopie }: Props) {
         <p className="mt-1 text-sm font-bold text-ink-soft">
           {jalons.length === 0
             ? 'لم تكتب أي جسر بعد'
-            : `${enArabe(jalons.length)} ${jalons.length === 1 ? 'جسر' : 'جسور'} مكتوبة`}
+            : `${nb(jalons.length)} ${jalons.length === 1 ? 'جسر' : 'جسور'} مكتوبة`}
         </p>
         {jalons.length === 0 ? (
           <p className="mt-3 text-xs leading-relaxed text-mute">
@@ -193,7 +193,7 @@ export default function Bac({ etat, onCopie }: Props) {
                 >
                   <div className="flex items-center justify-between gap-2">
                     <p className="text-sm font-bold">
-                      {u ? `الوحدة ${enArabe(u.numero)}: ${u.titre}` : uniteId}
+                      {u ? `الوحدة ${nb(u.numero)}: ${u.titre}` : uniteId}
                     </p>
                     {j.ts && (
                       <span className="shrink-0 text-[10px] text-mute">

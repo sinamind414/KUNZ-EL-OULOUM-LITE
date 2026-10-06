@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
-import { enArabe } from '../utils/dates';
+import { nb } from '../utils/dates';
 
 interface Props {
   onFermer: () => void;
@@ -120,7 +120,7 @@ export default function AtelierImmunite({ onFermer, onTerminer, onVoirLecon }: P
               className={`rounded-2xl border p-3 ${placee ? 'border-sage bg-sage-soft' : active ? 'border-forest bg-cream' : 'border-dashed border-line bg-paper'}`}
             >
               <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-forest px-1.5 text-[10px] font-bold text-paper">
-                {enArabe(index + 1)}
+                {nb(index + 1)}
               </span>
               <p className="mt-1 text-sm font-bold">{placee ?? (active ? 'ضع هنا البطاقة التالية' : 'في انتظار البطاقة')}</p>
             </div>

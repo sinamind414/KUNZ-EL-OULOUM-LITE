@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
-import { enArabe } from '../utils/dates';
+import { nb } from '../utils/dates';
 
 interface Props {
   onFermer: () => void;
@@ -95,7 +95,7 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
             <div key={id} className="rounded-2xl border border-sage bg-sage-soft p-3">
               <div className="flex items-center gap-3">
                 <span className="flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full bg-forest px-1.5 text-xs font-bold text-paper">
-                  {enArabe(Number(id))}
+                  {nb(Number(id))}
                 </span>
                 <p className="text-sm font-bold">{etape.titre}</p>
               </div>
@@ -107,7 +107,7 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
           <div className="rounded-2xl border border-dashed border-line bg-paper p-3">
             <div className="flex items-center gap-3">
               <span className="flex h-7 min-w-7 shrink-0 items-center justify-center rounded-full bg-line px-1.5 text-xs font-bold text-mute">
-                {enArabe(placees.length + 1)}
+                {nb(placees.length + 1)}
               </span>
               <p className="text-sm font-bold text-mute">مرحلة مخفية — ضع البطاقة التالية هنا</p>
             </div>

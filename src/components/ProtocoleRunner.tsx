@@ -7,7 +7,7 @@ import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
 import { DIAGNOSTICS, PROTOCOLE, type PhaseProtocole } from '../data/protocole';
 import { UNITE_PAR_ID, titreLecon, uniteDeLecon } from '../data/programme';
 import { aContenuLecon, questionLecon } from '../data/leconsPassives';
-import { ajouterJours, aujourdhui, enArabe, formatJourAr, minutesEnArabe } from '../utils/dates';
+import { ajouterJours, aujourdhui, nb, formatJourAr, minutesNb } from '../utils/dates';
 import { premiereRevision } from '../utils/srs';
 import type { ProgressionLecon } from '../types';
 import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
@@ -118,7 +118,7 @@ export default function ProtocoleRunner({
     const options = Array.from(new Set([n - 1, n, n + 1, n + 2].filter((x) => x >= 1)))
       .sort((a, b) => a - b)
       .slice(0, 4)
-      .map((x) => ({ key: String(x), label: `${enArabe(x)} خطوات` }));
+      .map((x) => ({ key: String(x), label: `${nb(x)} خطوات` }));
     return { n, options };
   }, [lecon]);
 
@@ -234,7 +234,7 @@ export default function ProtocoleRunner({
           <p className="eyebrow mt-4">أنهيت الدرس</p>
           <h1 className="font-naskh mt-2 text-2xl font-bold">{titreLecon(lessonId)}</h1>
           <p className="mt-2 text-sm text-mute">
-            {minutesEnArabe(minutes)} من التركيز — هذا هو الاستثمار الحقيقي.
+            {minutesNb(minutes)} من التركيز — هذا هو الاستثمار الحقيقي.
           </p>
 
           <div className="mt-5 space-y-3 text-right">
@@ -314,7 +314,7 @@ export default function ProtocoleRunner({
                     className="flex gap-3 rounded-2xl border border-line bg-cream/60 p-3"
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-[11px] font-bold text-paper">
-                      {enArabe(i + 1)}
+                      {nb(i + 1)}
                     </span>
                     <span className="text-sm leading-relaxed text-ink-soft">{etape}</span>
                   </li>
@@ -416,12 +416,12 @@ export default function ProtocoleRunner({
                       faite ? 'bg-forest text-paper' : 'bg-cream text-mute'
                     }`}
                   >
-                    {enArabe(p.id)}
+                    {nb(p.id)}
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-bold">{p.titre}</span>
                     <span className="mt-0.5 block text-[11px] leading-relaxed text-mute">
-                      {p.but} · {enArabe(p.dureeMin)} دقائق
+                      {p.but} · {nb(p.dureeMin)} دقائق
                     </span>
                     {!atteignable && (
                       <span className="mt-1 block text-[11px] text-mute">
@@ -439,7 +439,7 @@ export default function ProtocoleRunner({
         </ol>
 
         <button onClick={() => setVue('phase')} className="btn btn-primary mt-5 w-full text-base">
-          العودة إلى المرحلة {enArabe(phase.id)} ←
+          العودة إلى المرحلة {nb(phase.id)} ←
         </button>
       </div>
     );
@@ -565,8 +565,8 @@ export default function ProtocoleRunner({
               )}
               {lectureFaite && (
                 <p className="text-xs text-mute">
-                  يتكوّن الدرس من {enArabe(lecon.mechanismAr.length)} خطوات سببية و{' '}
-                  {enArabe(lecon.vocabulary.length)} كلمات مفتاحية. صفرها ذهنيًا الآن.
+                  يتكوّن الدرس من {nb(lecon.mechanismAr.length)} خطوات سببية و{' '}
+                  {nb(lecon.vocabulary.length)} كلمات مفتاحية. صفرها ذهنيًا الآن.
                 </p>
               )}
               {lectureFaite && (
@@ -607,7 +607,7 @@ export default function ProtocoleRunner({
               )}
               {echecMax && (
                 <p className="text-xs font-bold text-clay">
-                  الإجابة الصحيحة: {enArabe(qEtapes.n)} خطوات. سُجّلت هذه المرحلة كـ«هشّة» — لا بأس،
+                  الإجابة الصحيحة: {nb(qEtapes.n)} خطوات. سُجّلت هذه المرحلة كـ«هشّة» — لا بأس،
                   سنراجعها غدًا.
                 </p>
               )}
@@ -670,7 +670,7 @@ export default function ProtocoleRunner({
           {phase.id === 4 && (
             <div className="space-y-3">
               <p className="text-xs font-bold text-ink-soft">
-                الهيكل العظمي — {enArabe(lecon.mechanismAr.length)} صناديق سببية
+                الهيكل العظمي — {nb(lecon.mechanismAr.length)} صناديق سببية
               </p>
               <div className="space-y-2">
                 {lecon.mechanismAr.map((etape, i) => (

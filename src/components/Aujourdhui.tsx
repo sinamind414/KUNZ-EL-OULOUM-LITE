@@ -2,7 +2,7 @@
 
 import { prochaineAction, positionClasse, rythmeSemaine, itemsFaits } from '../utils/moteur';
 import { CHEMIN, UNITE_PAR_ID, titreItem, uniteDeItem } from '../data/programme';
-import { aujourdhui, compteLeconsAdj, enArabe, enArabeMin, formatJourAr, salue } from '../utils/dates';
+import { aujourdhui, compteLeconsAdj, nb, nbMin, formatJourAr, salue } from '../utils/dates';
 import { DUREE_TOTALE_MIN } from '../data/protocole';
 import type { Etat } from '../types';
 import type { ItemChemin } from '../data/programme';
@@ -66,7 +66,7 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
         <p className="mt-2 text-sm leading-relaxed text-mute">
           {faits === 0
             ? 'كل شيء يبدأ بخطوة واحدة. مهمّة اليوم وحدها تكفي.'
-            : `أنجزت ${enArabeMin(faits)} من ${enArabeMin(CHEMIN.length)} بنية في طريقك. مهمّة واحدة في كل مرة.`}
+            : `أنجزت ${nbMin(faits)} من ${nbMin(CHEMIN.length)} بنية في طريقك. مهمّة واحدة في كل مرة.`}
         </p>
       </header>
 
@@ -78,7 +78,7 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
             <h2 className="font-naskh mt-2 text-2xl font-bold leading-snug">أكمل ما بدأته</h2>
             <p className="mt-2 text-sm leading-relaxed text-mute">
               «{titreItem(action.item)}» — توقّفت في المرحلة{' '}
-              {enArabe((etat.progression[action.item.type === 'lecon' ? action.item.id : '']?.phases ?? []).length + 1)}{' '}
+              {nb((etat.progression[action.item.type === 'lecon' ? action.item.id : '']?.phases ?? []).length + 1)}{' '}
               من 6. أين توقّفت، نُحفظ.
             </p>
           </>
@@ -104,7 +104,7 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
                 </li>
               ))}
               {action.lessonIds.length > 3 && (
-                <li className="text-xs text-mute">و {enArabe(action.lessonIds.length - 3)} أخرى...</li>
+                <li className="text-xs text-mute">و {nb(action.lessonIds.length - 3)} أخرى...</li>
               )}
             </ul>
             <p className="mt-3 text-xs leading-relaxed text-mute">
@@ -124,12 +124,12 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
               if (!u) return null;
               return (
                 <p className="mt-2 text-sm leading-relaxed text-mute">
-                  الوحدة {enArabe(u.numero)}: {u.titre} · {u.fenetreAr}
+                  الوحدة {nb(u.numero)}: {u.titre} · {u.fenetreAr}
                 </p>
               );
             })()}
             <p className="mt-3 text-xs leading-relaxed text-mute">
-              {enArabe(DUREE_TOTALE_MIN)} دقيقة، 6 مراحل، بوّابة في كل مرحلة. لا زر تخطّي — الجدية هي
+              {nb(DUREE_TOTALE_MIN)} دقيقة، 6 مراحل، بوّابة في كل مرحلة. لا زر تخطّي — الجدية هي
               سرّ الطريقة.
             </p>
           </>
@@ -182,27 +182,38 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
           <div>
             <p className="eyebrow">إيقاع الأسبوع</p>
             <p className="mt-1 text-sm font-bold text-ink-soft">
-              {enArabe(rythme.jours)} من {enArabe(rythme.cible)} أيام
+              {rythme.jours >= rythme.cible
+                ? `${nb(rythme.cible)} من ${nb(rythme.cible)} أيام ✓`
+                : `${nb(rythme.jours)} من ${nb(rythme.cible)} أيام`}
             </p>
           </div>
-          <div className="flex gap-1.5" dir="rtl">
-            {Array.from({ length: 7 }).map((_, k) => (
-              <span
-                key={k}
-                className={`h-7 w-7 rounded-full ${
-                  k < rythme.cible
-                    ? k < rythme.jours
-                      ? 'bg-forest'
-                      : 'border border-line bg-paper'
-                    : 'bg-sage-soft'
-                }`}
-                aria-hidden
-              />
+          <div className="flex items-start gap-1.5" dir="rtl">
+            {rythme.sept.map((j) => (
+              <div
+                key={j.iso}
+                className="flex w-7 flex-col items-center gap-1"
+                title={formatJourAr(j.iso)}
+              >
+                <span
+                  className={`grid h-7 w-7 place-items-center rounded-full text-[11px] font-black ${
+                    j.actif ? 'bg-forest text-paper' : 'border border-line bg-paper text-mute'
+                  } ${j.aujourdhui ? 'ring-2 ring-gold ring-offset-1 ring-offset-paper' : ''}`}
+                >
+                  {j.actif ? '✓' : ''}
+                </span>
+                <span
+                  className={`text-[10px] leading-none ${
+                    j.aujourdhui ? 'font-black text-[#6b5320]' : 'text-mute'
+                  }`}
+                >
+                  {new Date(j.iso + 'T12:00:00').getDate()}
+                </span>
+              </div>
             ))}
           </div>
         </div>
         <p className="mt-3 text-xs leading-relaxed text-mute">
-          الهدف 5 أيام من 7 — لا أكثر. الراحة جزء من الخطة، لاكسر فيها شيء.
+          الهدف {nb(rythme.cible)} أيام من {nb(7)} — لا أكثر. الراحة جزء من الخطة، لا كسر فيها شيء.
         </p>
       </section>
 

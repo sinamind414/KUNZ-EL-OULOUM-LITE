@@ -7,7 +7,7 @@ import { leconLaPlusFragile, uniteTerminee } from '../utils/moteur';
 import { titreLecon } from '../data/programme';
 import { qcmPourLecon } from '../utils/qcm';
 import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
-import { enArabe, formatJourAr } from '../utils/dates';
+import { nb, formatJourAr } from '../utils/dates';
 import type { Etat } from '../types';
 import { ChoixUnique, Morceau, OptionsMcq } from './Communs';
 import { IcoRetour, IcoVerifie } from './Icones';
@@ -40,7 +40,7 @@ export default function JalonUnite({
           <span className="text-4xl">🔒</span>
           <h1 className="font-naskh mt-3 text-xl font-bold">الجسر مقفل</h1>
           <p className="mt-2 text-sm leading-relaxed text-mute">
-            أنجز كل دروس الوحدة {enArabe(u.numero)} أولًا، ثم يُفتح الجسر.
+            أنجز كل دروس الوحدة {nb(u.numero)} أولًا، ثم يُفتح الجسر.
           </p>
           <button onClick={onFermer} className="btn btn-ghost mt-5">
             رجوع
@@ -72,7 +72,7 @@ export default function JalonUnite({
             </span>
           </button>
           <div className="min-w-0 flex-1">
-            <p className="text-[11px] text-mute">الجسر · الوحدة {enArabe(u.numero)}</p>
+            <p className="text-[11px] text-mute">الجسر · الوحدة {nb(u.numero)}</p>
             <h1 className="truncate font-naskh text-lg font-bold">{u.titre}</h1>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function JalonUnite({
       </header>
 
       <main className="card flex-1 p-5">
-        <p className="eyebrow">الخطوة {enArabe(etape)} من 3</p>
+        <p className="eyebrow">الخطوة {nb(etape)} من 3</p>
 
         {etape === 1 && (
           <div className="mt-4 space-y-3">
@@ -120,7 +120,7 @@ export default function JalonUnite({
                 key={i}
                 className="rounded-2xl border border-clay-soft bg-clay-soft/50 p-3.5"
               >
-                <p className="text-[11px] font-bold text-clay">فخّ {enArabe(i + 1)}</p>
+                <p className="text-[11px] font-bold text-clay">فخّ {nb(i + 1)}</p>
                 <p className="mt-1 text-sm leading-relaxed">{piege}</p>
               </div>
             ))}
@@ -173,7 +173,7 @@ export default function JalonUnite({
             {questions.length > 0 && (
               <div>
                 <p className="text-xs font-bold text-ink-soft">
-                  أسئلة أجّلتها أثناء دروس هذه الوحدة ({enArabe(questions.length)})
+                  أسئلة أجّلتها أثناء دروس هذه الوحدة ({nb(questions.length)})
                 </p>
                 <div className="mt-2 space-y-2">
                   {questions.map((q) => (
@@ -195,8 +195,8 @@ export default function JalonUnite({
             )}
 
             <Morceau>
-              أنهيت الوحدة {enArabe(u.numero)}: {u.titre}. ثقلها في البكالوريا{' '}
-              {enArabe(u.poidsBac)} من 5. الوحدة التالية تنتظرك في الطريق — بعد راحة.
+              أنهيت الوحدة {nb(u.numero)}: {u.titre}. ثقلها في البكالوريا{' '}
+              {nb(u.poidsBac)} من 5. الوحدة التالية تنتظرك في الطريق — بعد راحة.
             </Morceau>
 
             <button
