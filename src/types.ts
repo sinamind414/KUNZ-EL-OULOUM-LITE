@@ -81,6 +81,7 @@ export interface Etat {
   seancesComptees: number; // عدد الحصص الجديدة في seancesJour
   bonusJour?: string; // تاريخ استعمال الحصّة الإضافية
   copies?: number; // عدد نسخ البكالوريا المُنجزة (تدريب على الورق)
+  ateliers?: Record<string, { fait: boolean; ts: string }>;
 }
 
 export function progressionVierge(): ProgressionLecon {
@@ -106,5 +107,6 @@ export function etatVierge(): Etat {
     nom: 'تلميذ',
     dateBac: '2027-06-10',
     seancesComptees: 0,
+    ateliers: {},
   };
 }

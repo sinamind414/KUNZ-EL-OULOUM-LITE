@@ -17,6 +17,9 @@ import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
 import JalonUnite from './components/JalonUnite';
 import LecteurLecon from './components/LecteurLecon';
+import AtelierDomaine1 from './components/AtelierDomaine1';
+import AtelierImmunite from './components/AtelierImmunite';
+import AtelierOrogenese from './components/AtelierOrogenese';
 import EcranDemarrage from './components/EcranDemarrage';
 import {
   IcoCarnet,
@@ -27,6 +30,9 @@ import {
 
 type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
 type Mode =
+  | { type: 'orogenese' }
+  | { type: 'immunite' }
+  | { type: 'atelier'; domaineId: string }
   | { type: 'protocole'; lessonId: string }
   | { type: 'revision'; lessonIds: string[] }
   | { type: 'jalon'; uniteId: string }
@@ -144,9 +150,35 @@ export default function App() {
     setOnglet('aujourdhui');
   }
 
+  function onTerminerAtelier(domaineId: string): void {
+    setEtat((prev) => ({
+      ...prev,
+      ateliers: {
+        ...(prev.ateliers ?? {}),
+        [domaineId]: { fait: true, ts: new Date().toISOString() },
+      },
+    }));
+    setMode(null);
+  }
+
   // ───────────── الأوضاع كاملة الشاشة ─────────────
 
   if (mode) {
+    if (mode.type === 'orogenese') {
+      return <AtelierOrogenese onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+    }
+    if (mode.type === 'immunite') {
+      return <AtelierImmunite onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+    }
+    if (mode.type === 'atelier') {
+      return (
+        <AtelierDomaine1
+          fait={Boolean(etat.ateliers?.[mode.domaineId])}
+          onTerminer={() => onTerminerAtelier(mode.domaineId)}
+          onFermer={() => setMode(null)}
+        />
+      );
+    }
     if (mode.type === 'protocole') {
       return (
         <>
@@ -220,6 +252,9 @@ export default function App() {
           etat={etat}
           onOuvrirItem={ouvrirItem}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
+          onOuvrirAtelier={() => setMode({ type: 'atelier', domaineId: 'd1' })}
+          onOuvrirImmunite={() => setMode({ type: 'immunite' })}
+          onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
         />
       )}
       {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
