@@ -62,7 +62,9 @@ export const LECONS_PASSIVES: Record<string, LeconPassive> = {
 export function urlLecon(lessonId: string): string {
   const l = LECONS_PASSIVES[lessonId];
   if (!l) return '';
-  return `/lecons/${l.fichier}${l.chapitre ? '#' + l.chapitre : ''}`;
+  // BASE_URL évite les 404 lorsque l'application est servie sous un sous-chemin.
+  const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+  return `${base}lecons/${l.fichier}${l.chapitre ? '#' + l.chapitre : ''}`;
 }
 
 // هل لهذا الدرس محتوى نصّي تفاعلي؟

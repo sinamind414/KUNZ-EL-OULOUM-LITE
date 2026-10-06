@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // لا vite-plugin-pwa (تفادي تعارض الإصدارات)، لا d3/jspdf/motion (تطبيق خفيف 100%).
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  server: { host: true, port: 3000 },
+  server: { host: true, port: 3000, allowedHosts: true },
   build: {
     target: 'es2022',
     outDir: 'dist',
