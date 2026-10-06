@@ -61,7 +61,8 @@ possibilité de sauter une unité. C'est la garantie anti-accumulation des lacun
 ### 🌉 Les jalons unités (`JalonUnite.tsx`)
 
 À la fin de chaque unité, un **pont** à 3 étapes :
-1. Question de synthèse de l'unité (frappe ≥ 30 caractères, écrite de mémoire).
+1. **بوّابة الجسر** — un QCM à choix unique sur la question de synthèse de l'unité, à répon­dir de
+   mémoire (leçon fermée).
 2. **مواجهة الفخّين** — l'élève confronte les pièges officiels de l'unité (`piegésAr`).
 3. **آخر تفتيش** — synthèse finale avant l'ouverture de l'unité suivante.
 
@@ -73,15 +74,26 @@ Le pont validé → l'unité suivante se déverrouille.
 
 | Phase | Durée | Porte |
 |---|---|---|
-| 1 — سؤال الدرس والقراءة الكاملة | 8 min | **lecture du cours obligatoire** (lien vers le cours interactif) + QCM « combien d'étapes causales ? » |
-| 2 — الأنماط | 3 min | classer 1 mot-clé par catégorie (avant/nouveau) |
-| 3 — أول استرجاع بعد القراءة | 5 min | écrire un rappel de ≥ 15 caractères |
+| 1 — سؤال الدرس والقراءة الكاملة | 8 min | **lecture obligatoire** : le lecteur de leçon doit être **ouvert puis fermé** (voir ci-dessous) + QCM « combien d'étapes causales ? » |
+| 2 — التقاط الأنماط | 3 min | classer les mots-clés par catégorie (avant/nouveau) |
+| 3 — أول استرجاع بعد القراءة | 5 min | **QCM de rappel** (choix unique, 4 propositions) |
 | 4 — الهيكل العظمي | 5 min | construire le squelette, puis le révéler |
 | 5 — القراءة الموجهة | 15 min | QCM « quelle étape vient après la étape N ? » |
-| 6 — الترسية | 10 min | écrire la phrase du Bac (≥ 25 caractères) + auto-évaluation contre l'erreur nucléaire |
+| 6 — الترسية | 10 min | **QCM de synthèse** + auto-évaluation contre l'erreur nucléaire |
 
 **2 échecs à une porte QCM** → révélation de la réponse + la phase est marquée **هشّة** (fragile) et
 reprogrammée à **J+1** au lieu de J+3. L'échec n'est pas puni, il est *utilisé*.
+
+### 🔁 Retour libre aux phases (bouton ←)
+
+L'en-tête de **chaque phase (1 → 6)** porte une flèche **←** qui n'**éjecte pas** du protocole :
+elle ouvre le **fهرس مراحل المراجعة** (la liste des 6 phases avec leur titre, leur objectif et leur
+durée). L'élève peut revenir à n'importe quelle phase **déjà atteinte**, et reprendre la phase en
+cours en un clic. Les phases non encore ouvertes restent désactivées (« تُفتح بعد إنهاء المرحلة
+السابقة »). Une phase déjà terminée reste franchissable sans devoir revalider sa porte.
+
+La sortie totale du protocole (→ onglet اليوم) se fait uniquement depuis ce fهرس (bouton خروج من
+الدرس).
 
 ### 🌿 Le Mُرشد (Morchid)
 
@@ -128,10 +140,35 @@ une phase précise :
 ### Les 25 cours interactifs
 
 25 fichiers HTML autonomes (schémas SVG, activités, quiz) dans `public/lecons/` couvrent 46 leçons.
-Le **lien du cours s'ouvre dès la phase 1** (`questionLecon` affichée juste au-dessus) : l'élève lit le
-cours **en entier avant d'entrer dans la méthode**, comme le ferait un élève avec son manuel. Les
-leçons sans cours interactif ont un bouton « راجعتُ الدرس في الكتاب الورقي ✓ » — la lecture reste
-obligatoire, sur le papier.
+Le **lien du cours s'ouvre dès la phase 1** (`questionLecon` affichée juste au-dessus).
+
+**La lecture est matériellement obligatoire** : le bouton « أنهيتُ قراءة الدرس ✓ » reste **grisé**
+tant que le lecteur n'a pas été ouvert **puis fermé**. La condition est portée par `App.tsx`
+(`leconLue`), pas par une simple case à cocher — il n'y a donc **aucun moyen d'éviter la lecture**.
+Un message de porte (« بوّابة القراءة… ») rappelle la règle tant qu'elle n'est pas remplie.
+
+- Leçons **avec** cours HTML → le lecteur affiche le fichier (`iframe`, avec `onError` de repli).
+- Leçons **sans** cours HTML → le même bouton ouvre le lecteur, qui affiche alors le **Résumé d'Or**.
+
+### ✍️ Zéro écriture libre
+
+Aucune vérification n'exige de taper du texte : **chaque contrôle est un QCM à choix unique à 4
+propositions** (`ChoixUnique` / `OptionsMcq`). Réponse fausse → message doux (« ليست الإجابة ») +
+remélange des propositions ; **jamais de correction avant le bon choix**. C'est le cas :
+
+- en phase 3 et phase 6 du protocole,
+- à la بوّابة du جسر (fin d'unité),
+- à l'étape 3 de la révision SM-2 (`SessionRevision`).
+
+Aucun champ de saisie n'existe dans l'application (seules les préférences de `Ana.tsx` sont
+éditables).
+
+### ⬛ Texte noir des leçons
+
+Règle impérative : **le texte des 25 leçons est noir**. Un bloc `/* RÈGLE : texte noir */` est
+injecté dans chaque fichier HTML ; 635 triplets `rgb(31,92,69)` et 17 hexadécimaux tronqués, laissés
+par `scripts/unifier-theme.mjs`, ont été réparés en `rgb(...)` pour que rien ne devienne illisible.
+(**Ne pas relancer `unifier-theme.mjs`** : c'est ce script qui a produit les valeurs cassées.)
 
 ---
 
@@ -139,8 +176,8 @@ obligatoire, sur le papier.
 
 1. **Fin de leçon** → `premiereRevision()` programme J+1 (fragile) ou J+3 (normal).
 2. **Le jour venu**, le moteur NBA **bloque les nouvelles leçons** et impose l'`استرجاع`.
-3. **`SessionRevision`** en 3 étapes : révélation du rappel → auto-check des termes (8 mots-clés) →
-   phrase de synthèse (≥ 12 caractères).
+3. **`SessionRevision`** en 3 étapes : révélation du rappel → auto-check des termes (mots-clés) →
+   **QCM de synthèse** (choix unique) + auto-évaluation.
 4. **Auto-évaluation** : سهل / متوسط / صعب → qualité 5 / 4 / 3 / 1 → `mettreAJourSrs` recalcule
    l'intervalle (J+1 → J+3 → J+7 → J+14 → J+28).
 5. **Aucune date n'est affichée à l'élève** — c'est la machine qui gère. Il voit seulement « حان موعد
@@ -177,11 +214,13 @@ app-svt-bac/
 │   │   ├── lessonGoldSummaries.ts # 58 résumés d'or (source de vérité du contenu)
 │   │   ├── programme.ts           # 11 unités + CHEMIN + fenêtres + poidsBac + piegésAr
 │   │   ├── protocole.ts           # 6 phases (durées 8/3/5/5/15/10 = 46 min)
+│   │   ├── qcmLecons.ts           # ⭐ 58 QCM écrits à la main (58/58 × 2 questions, 4 options)
 │   │   └── leconsPassives.ts      # mapping lessonId → cours HTML + question
 │   ├── utils/
 │   │   ├── moteur.ts              # ⭐ Next Best Action, verrous, quota, rythme, fragilité
 │   │   ├── srs.ts                 # SM-2 (premiereRevision / mettreAJourSrs / aReviserAujourdhui)
 │   │   ├── dates.ts               # calendrier, nombres arabes, grammaire (compteLeconsAdj…)
+│   │   ├── qcm.ts                 # qcmPourLecon() — aucun généré de secours (retourne null)
 │   │   ├── storage.ts             # localStorage (charger/sauvegarder/vider)
 │   │   └── accents.ts             # couleurs des 3 domaines
 │   └── components/
@@ -189,12 +228,14 @@ app-svt-bac/
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Bac.tsx                # ⭐ البكالوريا : date + diagnostic
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + copies + stats
-│       ├── JalonUnite.tsx         # pont à 3 étapes en fin d'unité
-│       ├── ProtocoleRunner.tsx    # ⭐ moteur des 6 phases + portes + Mُرشد + clôture
-│       ├── SessionRevision.tsx    # rappel SM-2 en 3 étapes
-│       ├── LecteurLecon.tsx       # lecture libre (post-terminaison)
-│       ├── Communs.tsx            # composants partagés (Carte, ChampTexte, OptionsMcq…)
+│       ├── JalonUnite.tsx         # pont à 3 étapes en fin d'unité (étape 1 = QCM)
+│       ├── ProtocoleRunner.tsx    # ⭐ 6 phases + portes + fهرس des phases + Mُرشد + clôture
+│       ├── SessionRevision.tsx    # rappel SM-2 en 3 étapes (étape 3 = QCM)
+│       ├── LecteurLecon.tsx       # lecteur de leçon (HTML + résumé d'or) — porteur de `leconLue`
+│       ├── Communs.tsx            # composants partagés (Carte, ChoixUnique, OptionsMcq…)
 │       └── Icones.tsx             # icônes SVG inline
+├── scripts/
+│   └── unifier-theme.mjs          # ⚠️ à ne plus exécuter (source des RGB cassés)
 ```
 
 ## 🚀 Installation
@@ -215,7 +256,8 @@ npm run preview  # tester la version de production
 2. Soit **استئناف** (reprendre là où il s'est arrêté), soit **الاسترجاع** (une révision due, prioritaire),
    soit **حصّة جديدة** (une nouvelle leçon — une seule/jour).
 3. La nouvelle leçon ouvre le protocole : **question + lecture du cours obligatoire** → classification
-   des mots-clés → **premier rappel après lecture** → squelette → lecture guidée → phrase du Bac.
+   des mots-clés → **premier rappel après lecture (QCM)** → squelette → lecture guidée → QCM du Bac.
+   L'élève peut revenir au fهرس des phases à tout moment (bouton ←), sans perdre sa progression.
 4. À la fin : message de clôture du Mُرشد + programmation de la prochaine révision (J+1 si fragile,
    J+3 sinon).
 5. Quand le moteur dit **يكفي اليوم**, l'élève s'arrête. Le repos fait partie de la méthode.
@@ -251,9 +293,16 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
 - **v0.3 (actuelle)** — **architecture OPUS** : 4 onglets (اليوم / مساري / البكالوريا / أنا), moteur
   Next Best Action, chemin linéaire verrouillé, portes dures, jalons unités (جسر), Mُرشد, anti-stress,
   lecture du cours obligatoire en phase 1, calendrier scolaire aligné.
-- **v0.3.1** — renommage **كنز العلوم Lite** + écran de démarrage animé (logo, jingle pirate).
-- **v0.4** — mode examen blanc (sujet Bac), mini-quiz QCM par leçon, carnet des failles (erreurs
-  atomiques exportées), schémas SVG légers pour les expériences historiques.
+- **v0.3.1** — renommage **كنز العلوم Lite** + écran de démarrage : vidéo muette `ouverture.mp4`
+  puis bouton « ابدأ ← ».
+- **v0.3.2 (actuelle)** — **58/58 QCM écrits à la main** (générateur de secours supprimé : il
+  produisait 3 options et deux bonnes réponses) ; **réparation des 25 leçons** (635 `rgb()` cassés,
+  17 hex tronqués, règle « texte noir » injectée) ; **correction de l'ancrage RTL des SVG** (58
+  textes déportés hors de leur cadre, mesurés au `getBBox` puis `text-anchor` corrigé) ;
+  **lecture réellement obligatoire en phase 1** (le lecteur doit être ouvert puis fermé) ;
+  **bouton ← vers le fهرس des phases** dans chaque phase.
+- **v0.4** — mode examen blanc (sujet Bac), carnet des failles (erreurs atomiques exportées),
+  conversion des 25 leçons au format manuel scolaire (suppression du scaffolding).
 
 ---
 
