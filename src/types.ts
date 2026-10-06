@@ -93,6 +93,7 @@ export interface Etat {
   bonusJour?: string; // تاريخ استعمال الحصّة الإضافية
   drills?: Record<string, true>; // عناصر التدريبات المُجاب عنها correctly (المعرّف → true)
   ateliers?: Record<string, { fait: boolean; ts: string }>;
+  consentementSync?: boolean; // موافقة التلميذ على إرسال ملخّص تقدّمه للمطوّر (انظر utils/sync.ts)
 }
 
 export function progressionVierge(): ProgressionLecon {
@@ -119,5 +120,6 @@ export function etatVierge(): Etat {
     dateBac: '2027-06-10',
     seancesComptees: 0,
     ateliers: {},
+    consentementSync: undefined,
   };
 }

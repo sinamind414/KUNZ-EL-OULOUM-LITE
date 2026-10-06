@@ -9,6 +9,7 @@ import { WILAYA_PAR_CODE } from '../data/wilayas';
 import { CHEMIN } from '../data/programme';
 import { Morceau } from './Communs';
 import CarteStats from './CarteStats';
+import { ReglageSync } from './CarteSync';
 
 interface Props {
   etat: Etat;
@@ -17,9 +18,10 @@ interface Props {
   onSupprimerNote: (id: string) => void;
   onReinitialiser: () => void;
   onDeconnexion?: () => void;
+  onConsentementSync: (ok: boolean) => void;
 }
 
-export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReinitialiser, onDeconnexion }: Props) {
+export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReinitialiser, onDeconnexion, onConsentementSync }: Props) {
   const [confirme, setConfirme] = useState(false);
   const notes = [...etat.notes].sort((a, b) => (a.ts < b.ts ? 1 : -1));
   const faits = itemsFaits(etat);
@@ -114,6 +116,9 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
           )}
         </section>
       )}
+
+      {/* المزامنة — إعداد دائم */}
+      <ReglageSync etat={etat} onChoix={onConsentementSync} />
 
       {/* الإحصاء بالحروف */}
       <section className="card mt-5 p-5">

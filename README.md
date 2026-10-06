@@ -159,6 +159,47 @@ de son unité — l'objectif est de rester synchronisé avec la classe, un cours
 
 ---
 
+## ☁️ Synchronisation optionnelle (`src/utils/sync.ts`)
+
+L'application reste **offline-first** : elle fonctionne intégralement sans compte, sans réseau, sans
+serveur. Une couche *additive* et **silencieuse** permet en plus, si l'éditeur le souhaite, de récupérer
+un résumé de progression de chaque élève.
+
+### Côté élève — opt-in explicite
+
+- Si les variables `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` sont absentes du `.env`, **rien ne
+  s'affiche** et rien n'est envoyé (vérifié au navigateur).
+- Une **carte d'invitation unique** apparaît une fois sur l'écran اليوم (« ساعدنا على التحسين —
+  اختياري ») avec deux choix : أوافق / ليس الآن. Le résultat est stocké dans `etat.consentementSync`
+  et la carte ne réapparaît jamais.
+- Le réglage permanent se trouve dans l'onglet أنا (« المزامنة مع المطوّر ») : activation/arrêt à tout
+  moment, avec un texte qui décrit l'état courant.
+- L'envoi est **best-effort** : debounce 6 s après chaque changement de l'état, envoi immédiat à la
+  perte de visibilité et au retour du réseau. Tout échec est silencieux — l'app n'en dépend jamais.
+- **Vie privée par construction** : ne sont envoyés que des compteurs et des listes d'IDs (leçons
+  terminées, jalons, ateliers, drills, XP, wilaya/daïra). **Jamais** le mot de passe (même haché), jamais
+  le texte des notes du carnet, jamais les réponses écrites.
+
+### Côté éditeur — mise en route (5 minutes)
+
+1. Créer un projet gratuit sur [supabase.com](https://supabase.com) (connexion GitHub).
+2. Copier `supabase/schema.sql` dans **Studio → SQL Editor → Run** (table `eleves` + RLS).
+3. Copier `.env.example` en `.env`, y coller **Project URL** et **anon public key**
+   (Project Settings → API).
+4. Reconstruire. Les élèves voient désormais la carte d'invitation.
+5. Lire les données dans **Studio → Table Editor** ou avec les **10 requêtes prêtes** de
+   `scripts/queries-admin.sql` (liste des élèves, top XP, répartition par wilaya, niveau d'activité,
+   leçons fragiles agrégées, taux de réussite…).
+
+### Sécurité
+
+La politique RLS accorde au rôle `anon` **l'écriture seulement** (insert/update), jamais la lecture :
+quiconque extrairait la clé publique publique ne pourrait pas lire les données des autres élèves.
+Seul le propriétaire du projet (via Studio, clé `service_role`) lit tout. Le risque résiduel est
+l'écriture de lignes parasitées — acceptable pour une app scolaire gratuite.
+
+---
+
 ## 📖 Correspondance champ du résumé ↔ phase
 
 La source de vérité est `src/data/lessonGoldSummaries.ts` (**58 Résumés d'Or**). Chaque champ alimente
@@ -262,13 +303,16 @@ app-svt-bac/
 │   │   ├── qcm.ts                 # qcmPourLecon() — aucun généré de secours (retourne null)
 │   │   ├── drills.ts              # chargement lazy des 3 chunks + composition des journées de 10
 │   │   ├── stats.ts               # ⭐ statistiques du Mُرشد (clé kunz_stats_v1, bloat-free)
+│   │   ├── sync.ts                # ⭐ synchronisation optionnelle vers Supabase (opt-in, best-effort)
 │   │   ├── storage.ts             # localStorage (charger/sauvegarder/vider)
 │   │   └── accents.ts             # couleurs des 3 domaines
 │   └── components/
-│       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats
+│       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : 49 axes à verrouillage linéaire + journées de 10
-│       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes
+│       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
+│       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
+│       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
 │       ├── JalonUnite.tsx         # pont à 3 étapes en fin d'unité (étape 1 = QCM)
 │       ├── ProtocoleRunner.tsx    # ⭐ 6 phases + portes + fهرس des phases + Mُرشد + clôture
 │       ├── SessionRevision.tsx    # rappel SM-2 en 3 étapes (étape 3 = QCM)
@@ -278,7 +322,14 @@ app-svt-bac/
 ├── scripts/
 │   ├── importer-drills.mjs        # ⭐ parse le banque MD → src/data/drills/*.ts (620 items)
 │   ├── verifier-drills.mjs        # validateur des chunks générés (0 problème bloquant)
+│   ├── analyser-drills.mjs        # stats brutes du fichier source (avant import)
+│   ├── queries-admin.sql          # ⭐ 10 requêtes Supabase prêtes pour l'éditeur
 │   └── unifier-theme.mjs          # ⚠️ à ne plus exécuter (source des RGB cassés)
+├── supabase/
+│   └── schema.sql                 # ⭐ table eleves + RLS (écriture seule pour l'app)
+├── .env.example                   # modèle des clés Supabase (VITE_SUPABASE_URL / _ANON_KEY)
+├── .gitignore                     # .env ignoré — les clés réelles ne remontent jamais
+└── README.md
 ```
 
 ## 🚀 Installation
@@ -292,6 +343,9 @@ npm run preview  # tester la version de production
 
 > PWA : le service worker **n'est pas** enregistré en mode `dev` (HMR). Faites `npm run build` +
 > `npm run preview` pour tester l'installation et le mode hors-ligne.
+
+> Synchronisation optionnelle : sans fichier `.env`, l'app est 100 % locale. Pour activer l'envoi des
+> résumés de progression (Supabase), voir la section ☁️ ci-dessus.
 
 ## 🧠 Parcours élève (journée type)
 
@@ -364,6 +418,9 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   **statistiques du Mُرشد** (fautes/bonnes
   réponses par source, 45 derniers jours, clé séparée `kunz_stats_v1`, message neutre sans
   pourcentage) ; **XP des drills** (3 points par item réussi, dérivé de `etat.drills`).
+- **v0.5.1** — **synchronisation optionnelle** : couche additive offline-first (Supabase, opt-in
+  explicite, envoi best-effort silencieux) permettant à l'éditeur de récupérer un résumé de
+  progression par élève (voir section ☁️).
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

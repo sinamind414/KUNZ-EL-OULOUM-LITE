@@ -1,11 +1,12 @@
 // التطبيق — 4 تبويبات (اليوم / مساري / تدريبات / أنا) + أوضاع جلسة كاملة الشاشة.
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Etat } from './types';
 import { chargerEtat, sauvegarderEtat, viderStockage } from './utils/storage';
 import { aujourdhui } from './utils/dates';
 import { enregistrerSeance } from './utils/moteur';
+import { envoyerSnapshot, syncActive } from './utils/sync';
 import type { ItemChemin } from './data/programme';
 import type { Qualite } from './utils/srs';
 import { mettreAJourSrs } from './utils/srs';
@@ -99,6 +100,30 @@ export default function App() {
     sauvegarderEtat({ ...etat, minutesTotales: minutes });
   }, [etat]);
 
+  // ───────────── المزامنة الاختيارية (صامتة، offline-first) ─────────────
+
+  const etatRef = useRef(etat);
+  etatRef.current = etat;
+
+  useEffect(() => {
+    if (!syncActive()) return;
+    // بعد كل تغيير: انتظر 6 ثوانٍ ثم أرسل (تفادي الإرسال المتكرر)
+    const delai = setTimeout(() => void envoyerSnapshot(etatRef.current), 6000);
+    // عند تصغير التطبيق أو تبديل التبويب: أرسل فورًا
+    const onVisibilite = () => {
+      if (document.visibilityState === 'hidden') void envoyerSnapshot(etatRef.current);
+    };
+    // عند عودة الشبكة: أرسل ما تجمّع
+    const onLigne = () => void envoyerSnapshot(etatRef.current);
+    document.addEventListener('visibilitychange', onVisibilite);
+    window.addEventListener('online', onLigne);
+    return () => {
+      clearTimeout(delai);
+      document.removeEventListener('visibilitychange', onVisibilite);
+      window.removeEventListener('online', onLigne);
+    };
+  }, [etat]);
+
   // ───────────── فتح بنود الطريق ─────────────
 
   function ouvrirItem(item: ItemChemin): void {
@@ -172,6 +197,13 @@ export default function App() {
         ? prev
         : { ...prev, drills: { ...(prev.drills ?? {}), [id]: true } }
     );
+  }
+
+  // ───────────── موافقة المزامنة ─────────────
+
+  function onConsentementSync(ok: boolean): void {
+    setEtat((prev) => ({ ...prev, consentementSync: ok }));
+    if (ok) void envoyerSnapshot(etatRef.current);
   }
 
   // ───────────── الملاحظات والهوية ─────────────
@@ -323,6 +355,7 @@ export default function App() {
           onOuvrirItem={ouvrirItem}
           onDemarrerRevision={(lessonIds) => setMode({ type: 'revision', lessonIds })}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
+          onConsentementSync={onConsentementSync}
         />
       )}
       {pret && onglet === 'masari' && (
@@ -344,6 +377,7 @@ export default function App() {
           onSupprimerNote={onSupprimerNote}
           onReinitialiser={onReinitialiser}
           onDeconnexion={onDeconnexion}
+          onConsentementSync={onConsentementSync}
         />
       )}
 
