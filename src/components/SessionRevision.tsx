@@ -221,7 +221,7 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
               </p>
             )}
             <button onClick={() => setEtape(3)} className="btn btn-primary w-full">
-              التالي: سؤال التركيب
+              {qcm ? 'التالي: سؤال التركيب' : 'التالي: التقييم'}
             </button>
           </div>
         )}
@@ -229,15 +229,19 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
         {/* الخطوة 3: سؤال تركيبي + التقييم */}
         {etape === 3 && (
           <div className="mt-4 space-y-3">
-            <p className="text-xs font-bold text-ink-soft">
-              سؤال التركيب — اختر الجواب الصحيح بكلماتك أنت (لا مساعدة)
-            </p>
-            <ChoixUnique
-              qcm={qcm!.synthese}
-              fait={qcmFait}
-              onValide={() => setQcmFait(true)}
-            />
-            {qcmFait && (
+            {qcm && (
+              <>
+                <p className="text-xs font-bold text-ink-soft">
+                  سؤال التركيب — اختر الجواب الصحيح بكلماتك أنت (لا مساعدة)
+                </p>
+                <ChoixUnique
+                  qcm={qcm.synthese}
+                  fait={qcmFait}
+                  onValide={() => setQcmFait(true)}
+                />
+              </>
+            )}
+            {(qcmFait || !qcm) && (
               <>
                 <p className="text-xs font-bold text-ink-soft">كيف سار هذا الاسترجاع؟</p>
                 <OptionsMcq

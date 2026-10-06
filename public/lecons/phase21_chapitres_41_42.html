@@ -18,9 +18,9 @@
             --danger: #8a5a3c;
             --danger-light: #f0e2d6;
             --cyan-dark: #1f5c45;
-            --cyan-light: 251,248,241;
-            --stone-dark: 63,58,50;
-            --stone-light: 251,248,241;
+            --cyan-light: rgb(251,248,241);
+            --stone-dark: rgb(63,58,50);
+            --stone-light: rgb(251,248,241);
             --text-main: #1c1914;
             --text-muted: #6b6458;
             --border: #e4d9c5;
@@ -85,11 +85,11 @@
         }
 
         .header-ch41 {
-            background: linear-gradient(135deg, 31,92,69 0%, 31,92,69 100%);
+            background: linear-gradient(135deg, rgb(31,92,69) 0%, rgb(31,92,69) 100%);
         }
 
         .header-ch42 {
-            background: linear-gradient(135deg, 28,25,20 0%, 107,100,88 100%);
+            background: linear-gradient(135deg, rgb(28,25,20) 0%, rgb(107,100,88) 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,7 +147,7 @@
         }
 
         .step-num {
-            background: 235,242,237;
+            background: rgb(235,242,237);
             color: #1f5c45;
             width: 38px;
             height: 38px;
@@ -161,8 +161,8 @@
         }
 
         .step-num-stone {
-            background: 243,238,228;
-            color: 63,58,50;
+            background: rgb(243,238,228);
+            color: rgb(63,58,50);
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: 107,57,38;
+            color: rgb(107,57,38);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -252,9 +252,9 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: 31,92,69; }
-        .btn-stone { background: 63,58,50; }
-        .btn-stone:hover { background: 28,25,20; }
+        .btn-action:hover { background: rgb(31,92,69); }
+        .btn-stone { background: rgb(63,58,50); }
+        .btn-stone:hover { background: rgb(28,25,20); }
 
         /* Scientific text */
         .scientific-text {
@@ -271,7 +271,7 @@
             border-right: 4px solid #1f5c45;
         }
 
-        .text-part.ch42-border { border-right-color: 63,58,50; }
+        .text-part.ch42-border { border-right-color: rgb(63,58,50); }
 
         .text-part h4 {
             font-size: 0.95rem;
@@ -280,7 +280,7 @@
             font-weight: 800;
         }
 
-        .text-part.ch42-border h4 { color: 63,58,50; }
+        .text-part.ch42-border h4 { color: rgb(63,58,50); }
 
         /* Quiz */
         .question-item {
@@ -314,7 +314,7 @@
 
         .option-btn:hover {
             border-color: #1f5c45;
-            background: 251,248,241;
+            background: rgb(251,248,241);
         }
 
         .option-btn.correct {
@@ -351,11 +351,29 @@
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
         .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
-        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.moyen{background:#f3e6c4;color:rgb(107,57,38);border:1px solid #f3e6c4}
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
-    </style>
+    
+        /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
+        .lesson-header {
+            background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
+            border: 1px solid #e4d9c5 !important;
+            color: #1c1914 !important;
+        }
+        .lesson-header *, .lesson-header h1, .lesson-header h2,
+        .lesson-header h3, .lesson-header div, .lesson-header span,
+        .lesson-header p, .lesson-header strong, .lesson-header em {
+            color: #1c1914 !important;
+        }
+        .lesson-header .lesson-breadcrumb { opacity: .8; }
+        .lesson-header .lesson-objectives {
+            background: rgba(251, 248, 241, .75) !important;
+            border: 1px solid #e4d9c5 !important;
+        }
+        .header-ch1, .header-ch2, .header-ch3 { background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important; }
+</style>
 </head>
 <body>
 
@@ -411,8 +429,8 @@
                     <span>التحليل المنهجي لصعود العمود الساخن والانصهار بتخفيف الضغط (Décompression adiabatique)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: 20,61,46;">
-                        <h4 style="color: 215,230,220; margin-bottom: 1rem; font-size: 0.95rem;">مقطع في محور الظهرة يوضح صعود البيريدوتيت وتقاطع مساره مع منحنى الصلابة</h4>
+                    <div class="doc-visual" style="background: rgb(20,61,46);">
+                        <h4 style="color: rgb(215,230,220); margin-bottom: 1rem; font-size: 0.95rem;">مقطع في محور الظهرة يوضح صعود البيريدوتيت وتقاطع مساره مع منحنى الصلابة</h4>
                         <!-- SVG Dorsale Magmatism -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مقطع في محور الظهرة: صعود البيريدوتيت وتقاطع منحنى الصلابة">
@@ -438,7 +456,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -478,7 +496,7 @@
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: 251,248,241; color: #1f5c45;">السر الترموديناميكي في البكالوريا</span>
+                        <span class="method-tag" style="background: rgb(251,248,241); color: #1f5c45;">السر الترموديناميكي في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">كيف ينصهر البيريدوتيت بتخفيف الضغط؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>الصعود الأدياباتيكي (<span class="ltr-seq">Montée adiabatique</span>) :</strong> تتسبب قوى الشد والتباعد في الظهرة في صعود سريع لعمود ساخن من البيريدوتيت الاستينوسفيري نحو الأعلى.</li>
@@ -497,13 +515,13 @@
                 </div>
                 <p>اضغط لمعاينة سرعة التبريد وتشكل صخور القشرة المحيطية الجديدة :</p>
                 
-                <div class="interactive-box" style="background: 20,61,46;">
+                <div class="interactive-box" style="background: rgb(20,61,46);">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-cyan" onclick="simDors('pillow')">🌊 تبريد سطحي فوري في مياه المحيط (بازلت الوسائد Pillow Lavas)</button>
                         <button class="btn-action btn-cyan" style="background:#143d2e;" onclick="simDors('gabbro')">🪨 تبريد بطيء في الغرفة الماغماتية العميقة (صخر الغابرو Gabbro)</button>
                     </div>
-                    <div id="dorsDisplayBox" style="background: 31,92,69; border: 2px solid 167,156,138; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: 215,230,220; margin-bottom: 10px;">🌊 بازلت الوسائد (Pillow Lavas - سطح القشرة المحيطية)</h3>
+                    <div id="dorsDisplayBox" style="background: rgb(31,92,69); border: 2px solid rgb(167,156,138); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: rgb(215,230,220); margin-bottom: 10px;">🌊 بازلت الوسائد (Pillow Lavas - سطح القشرة المحيطية)</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">عندما تتدفق الماغما البازلتية المائعة عبر خسف الظهرة وتلامس مياه المحيط الباردة (2°C)، تتصلب قشرتها الخارجية فوراً على شكل وسائد كروية متتالية. تتميز ببنية ميكروليتية وزجاجية بسبب التبريد الصاعق.</p>
                     </div>
                 </div>
@@ -562,8 +580,8 @@
                     <span>التحليل المنهجي لخطوات التصادم القاري وتسميك القشرة (التراكبات والسدائم)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: 28,25,20;">
-                        <h4 style="color: 243,238,228; margin-bottom: 1rem; font-size: 0.95rem;">مقطع رأسي في سلسلة جبال التصادم (الهيمالايا) يظهر تقصير وتسميك القشرة</h4>
+                    <div class="doc-visual" style="background: rgb(28,25,20);">
+                        <h4 style="color: rgb(243,238,228); margin-bottom: 1rem; font-size: 0.95rem;">مقطع رأسي في سلسلة جبال التصادم (الهيمالايا) يظهر تقصير وتسميك القشرة</h4>
                         <!-- SVG Collision -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مقطع رأسي في سلسلة الهيمالايا: تقصير وتسميك القشرة">
@@ -589,7 +607,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -629,7 +647,7 @@
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: 251,248,241; color: 63,58,50;">المميزات الجيولوجية للتصادم</span>
+                        <span class="method-tag" style="background: rgb(251,248,241); color: rgb(63,58,50);">المميزات الجيولوجية للتصادم</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">ما هي شواهد التصادم القاري؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>اختفاء المحيط التام :</strong> غوص القشرة المحيطية بالكامل وانغلاق الحوض المحيطي (وجود بقايا صخور الأفيوليت المحيطية محصورة بين القارتين).</li>
@@ -648,13 +666,13 @@
                 </div>
                 <p>اضغط لمعاينة مراحل تطور تصادم قارة الهند بآسيا وتأسيس جبال الهيمالايا :</p>
                 
-                <div class="interactive-box" style="background: 28,25,20;">
+                <div class="interactive-box" style="background: rgb(28,25,20);">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-stone" onclick="simColl('sub')">1️⃣ قبل 50 مليون سنة (غوص المحيط الفاصل التيثس)</button>
                         <button class="btn-action btn-stone" style="background:#6b5320;" onclick="simColl('coll')">2️⃣ لحظة التصادم واختفاء المحيط (احتجاز الأفيوليت)</button>
                         <button class="btn-action btn-stone" style="background:#143d2e;" onclick="simColl('oro')">3️⃣ التسميك وبلوغ قمة إيفرست (الوضع الحالي)</button>
                     </div>
-                    <div id="collDisplayBox" style="background: 63,58,50; border: 2px solid 167,156,138; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <div id="collDisplayBox" style="background: rgb(63,58,50); border: 2px solid rgb(167,156,138); border-radius: 12px; padding: 1.5rem; text-align: center;">
                         <h3 style="color: #1f5c45; margin-bottom: 10px;">3️⃣ التسميك وبلوغ قمة إيفرست (الوضع الحالي)</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">تستمر الهند بالدفع شمالاً بمعدل 5 سم/سنة. تنضغط القشرة القارية وتتكدس في طيات وتراكبات ضخمة، فيرتفع السطح ليتجاوز 8800 متر، وينغرس جذر الجبل في العمق ليتجاوز 70 كيلومتراً.</p>
                     </div>
@@ -714,7 +732,7 @@
             let box = document.getElementById('dorsDisplayBox');
             if (type === 'pillow') {
                 box.innerHTML = `
-                    <h3 style="color: 215,230,220; margin-bottom: 10px;">🌊 بازلت الوسائد (Pillow Lavas - سطح القشرة المحيطية)</h3>
+                    <h3 style="color: rgb(215,230,220); margin-bottom: 10px;">🌊 بازلت الوسائد (Pillow Lavas - سطح القشرة المحيطية)</h3>
                     <p style="color: #e4d9c5; line-height: 1.8;">عندما تتدفق الماغما البازلتية المائعة عبر خسف الظهرة وتلامس مياه المحيط الباردة (2°C)، تتصلب قشرتها الخارجية فوراً على شكل وسائد كروية متتالية. تتميز ببنية ميكروليتية وزجاجية بسبب التبريد الصاعق.</p>
                 `;
             } else {
@@ -734,7 +752,7 @@
                 `;
             } else if (stage === 'coll') {
                 box.innerHTML = `
-                    <h3 style="color: 154,122,44; margin-bottom: 10px;">2️⃣ لحظة التصادم واحتجاز الأفيوليت</h3>
+                    <h3 style="color: rgb(154,122,44); margin-bottom: 10px;">2️⃣ لحظة التصادم واحتجاز الأفيوليت</h3>
                     <p style="color: #e4d9c5; line-height: 1.8;">استنفد الغلاف الصخري المحيطي بالكامل والتقت حافتا القارتين. يتم كشط واحتجاز أجزاء من القشرة المحيطية القديمة (الأفيوليت) بين القارتين المتصادمتين كشاهد قبر للمحيط المفقود.</p>
                 `;
             } else {
@@ -916,7 +934,7 @@
         display: none;
         flex-direction: column;
         background: rgba(20, 61, 46, .95);
-        color: 251,248,241;
+        color: rgb(251,248,241);
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -954,7 +972,7 @@
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
+    .pfe-zoom-btn.is-close { background: rgb(138,90,60); border-color: rgb(138,90,60); }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1493,7 +1511,7 @@
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
             '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:rgb(63,58,50);text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

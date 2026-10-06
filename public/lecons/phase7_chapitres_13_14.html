@@ -17,8 +17,8 @@
             --warning-light: #f3e6c4;
             --danger: #8a5a3c;
             --danger-light: #f0e2d6;
-            --purple-dark: 63,58,50;
-            --purple-light: 251,248,241;
+            --purple-dark: rgb(63,58,50);
+            --purple-light: rgb(251,248,241);
             --gold: #6b5320;
             --gold-light: #f3e6c4;
             --text-main: #1c1914;
@@ -85,7 +85,7 @@
         }
 
         .header-ch13 {
-            background: linear-gradient(135deg, 107,100,88 0%, #6b5320 100%);
+            background: linear-gradient(135deg, rgb(107,100,88) 0%, #6b5320 100%);
         }
 
         .header-ch14 {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: 107,57,38;
+            color: rgb(107,57,38);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -252,9 +252,9 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: 107,100,88; }
+        .btn-action:hover { background: rgb(107,100,88); }
         .btn-gold { background: var(--gold); }
-        .btn-gold:hover { background: 107,57,38; }
+        .btn-gold:hover { background: rgb(107,57,38); }
 
         /* Scientific text */
         .scientific-text {
@@ -314,7 +314,7 @@
 
         .option-btn:hover {
             border-color: #6b5320;
-            background: 251,248,241;
+            background: rgb(251,248,241);
         }
 
         .option-btn.correct {
@@ -351,39 +351,57 @@
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
         .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
-        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.moyen{background:#f3e6c4;color:rgb(107,57,38);border:1px solid #f3e6c4}
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     
         /* ═══ Zone التثبيت : design system des cartes de synthèse (📝🏛🗺) — pilot ═══ */
         .card-resume{background:linear-gradient(180deg,#ebf2ed 0%,#fbf8f1 55%);border:1.5px solid #1f5c45;border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:1.6rem;box-shadow:0 2px 10px rgba(31,92,69,.08)}
-        .fix-question{display:flex;align-items:flex-start;gap:8px;background:235,242,237;border-radius:12px;padding:10px 14px;font-weight:800;font-size:15px;color:20,61,46;margin:0 0 14px}
+        .fix-question{display:flex;align-items:flex-start;gap:8px;background:rgb(235,242,237);border-radius:12px;padding:10px 14px;font-weight:800;font-size:15px;color:rgb(20,61,46);margin:0 0 14px}
         .card-resume ol{margin:0;padding:0 28px 0 0;line-height:2.05;font-size:15px}
         .card-resume ol li{margin-bottom:8px}
         .card-resume ol li::marker{color:#1f5c45;font-weight:900}
-        .fix-key{display:block;background:#f3e6c4;border:1.5px dashed #9a7a2c;border-radius:12px;padding:10px 14px;font-weight:800;font-size:14px;color:107,57,38;margin-top:14px}
+        .fix-key{display:block;background:#f3e6c4;border:1.5px dashed #9a7a2c;border-radius:12px;padding:10px 14px;font-weight:800;font-size:14px;color:rgb(107,57,38);margin-top:14px}
         .card-hosila{position:relative;background:#f3e6c4;border:1.5px solid #9a7a2c;border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:1.6rem;box-shadow:0 2px 10px rgba(154,122,44,.10);overflow:hidden}
         .card-hosila::before{content:'❝';position:absolute;top:-6px;left:10px;font-size:96px;color:#9a7a2c;opacity:.12;font-weight:900;line-height:1}
-        .hosila-meta{font-size:12.5px;color:107,57,38;font-weight:700;margin:0 0 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .hosila-meta{font-size:12.5px;color:rgb(107,57,38);font-weight:700;margin:0 0 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
         .hosila-meta .src-chip{background:#f3e6c4;border-radius:999px;padding:4px 12px;font-size:12px}
         .hosila-quote{font-weight:700;line-height:2.15;font-size:16px;color:#6b3926;margin:0}
         .hosila-quote .kw{color:#6b5320;background:#f3e6c4;border-radius:6px;padding:0 5px;font-weight:900}
-        .hosila-source{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding-top:10px;border-top:1.5px dashed #9a7a2c;font-size:12px;color:107,57,38;font-weight:700}
+        .hosila-source{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding-top:10px;border-top:1.5px dashed #9a7a2c;font-size:12px;color:rgb(107,57,38);font-weight:700}
         .card-schema{background:#fbf8f1;border:1.5px solid #1f5c45;border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:0;box-shadow:0 2px 10px rgba(31,92,69,.08)}
         .schema-figure{margin:0 0 14px}
-        .schema-figure img{width:100%;max-width:920px;display:block;margin:0 auto;border-radius:12px;border:1px solid 235,242,237}
-        .schema-figure figcaption{text-align:center;font-size:13px;color:31,92,69;font-weight:800;margin-top:8px}
+        .schema-figure img{width:100%;max-width:920px;display:block;margin:0 auto;border-radius:12px;border:1px solid rgb(235,242,237)}
+        .schema-figure figcaption{text-align:center;font-size:13px;color:rgb(31,92,69);font-weight:800;margin-top:8px}
         .schema-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:0 0 12px}
         .schema-legend .leg{background:#f3eee4;border:1.5px solid #e4d9c5;border-radius:12px;padding:10px 12px}
         .schema-legend .leg h4{margin:0 0 6px;font-size:14px;font-weight:900}
         .schema-legend .leg p{margin:0;font-size:13px;line-height:1.95}
-        .schema-keyline{background:#ebf2ed;border-radius:12px;padding:10px 14px;font-weight:800;font-size:14px;color:31,92,69;text-align:center;margin:0}
+        .schema-keyline{background:#ebf2ed;border-radius:12px;padding:10px 14px;font-weight:800;font-size:14px;color:rgb(31,92,69);text-align:center;margin:0}
         .schema-notes{margin-top:10px;font-size:11.5px;color:#6b6458}
-        .schema-notes summary{cursor:pointer;font-weight:800;color:107,57,38}
+        .schema-notes summary{cursor:pointer;font-weight:800;color:rgb(107,57,38)}
         .schema-notes p{margin:6px 0 0;line-height:1.9}
-        .nav-zone{font-size:.75rem;font-weight:900;color:#1f5c45;background:235,242,237;border:1px dashed 31,92,69;border-radius:8px;padding:6px 10px;white-space:nowrap;flex-shrink:0}
-    </style>
+        .nav-zone{font-size:.75rem;font-weight:900;color:#1f5c45;background:rgb(235,242,237);border:1px dashed rgb(31,92,69);border-radius:8px;padding:6px 10px;white-space:nowrap;flex-shrink:0}
+    
+        /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
+        .lesson-header {
+            background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
+            border: 1px solid #e4d9c5 !important;
+            color: #1c1914 !important;
+        }
+        .lesson-header *, .lesson-header h1, .lesson-header h2,
+        .lesson-header h3, .lesson-header div, .lesson-header span,
+        .lesson-header p, .lesson-header strong, .lesson-header em {
+            color: #1c1914 !important;
+        }
+        .lesson-header .lesson-breadcrumb { opacity: .8; }
+        .lesson-header .lesson-objectives {
+            background: rgba(251, 248, 241, .75) !important;
+            border: 1px solid #e4d9c5 !important;
+        }
+        .header-ch1, .header-ch2, .header-ch3 { background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important; }
+</style>
 </head>
 <body>
 
@@ -442,8 +460,8 @@
                     <span>التحليل المنهجي للتعرف المزدوج والصدمة الحلولية (البرفورين Perforine)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: 63,58,50;">
-                        <h4 style="color: 215,230,220; margin-bottom: 1rem; font-size: 0.95rem;">آلية التعرف المزدوج وإفراز البرفورين لإحداث الصدمة الحلولية</h4>
+                    <div class="doc-visual" style="background: rgb(63,58,50);">
+                        <h4 style="color: rgb(215,230,220); margin-bottom: 1rem; font-size: 0.95rem;">آلية التعرف المزدوج وإفراز البرفورين لإحداث الصدمة الحلولية</h4>
                         <!-- SVG Cytotoxic Lyse -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="التعريف المزدوج وإفراز البرفورين لإحداث الصدمة الحلولية">
@@ -469,7 +487,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -547,14 +565,14 @@
                 </div>
                 <p>اضغط لمتابعة المراحل المتسلسلة لعملية القضاء الخلوي :</p>
                 
-                <div class="interactive-box" style="background: 63,58,50;">
+                <div class="interactive-box" style="background: rgb(63,58,50);">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simLtc(1)">1️⃣ التعرف المزدوج والالتصاق</button>
                         <button class="btn-action" onclick="simLtc(2)">2️⃣ إفراز وبلمرة البرفورين</button>
                         <button class="btn-action" style="background:#8a5a3c;" onclick="simLtc(3)">3️⃣ انفجار الخلية المصابة</button>
                     </div>
-                    <div id="ltcDisplayBox" style="background: 63,58,50; border: 2px solid #9a7a2c; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: 215,230,220; margin-bottom: 10px;">1️⃣ التعرف المزدوج الدقيق</h3>
+                    <div id="ltcDisplayBox" style="background: rgb(63,58,50); border: 2px solid #9a7a2c; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: rgb(215,230,220); margin-bottom: 10px;">1️⃣ التعرف المزدوج الدقيق</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">تضمن الخلية القاتلة <span class="ltr-seq">LTc</span> أنها لا تهاجم إلا الخلية التابعة للذات المصابة بالمستضد المحدد، وذلك باشتراط تطابق الـ <span class="ltr-seq">CD8</span> مع <span class="ltr-seq">CMH-I</span> وتطابق الـ <span class="ltr-seq">TCR</span> مع المستضد معاً.</p>
                     </div>
                 </div>
@@ -601,7 +619,7 @@
                     <span>الإشكالية الكبرى لختام وحدة المناعة</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--gold); background: var(--gold-light);">
-                    <div class="problem-title" style="color: 107,57,38;">⚠️ لماذا يدمر فيروس الإيدز (VIH) المناعة بالكامل رغم أنه يهاجم خلايا LT4 فقط؟</div>
+                    <div class="problem-title" style="color: rgb(107,57,38);">⚠️ لماذا يدمر فيروس الإيدز (VIH) المناعة بالكامل رغم أنه يهاجم خلايا LT4 فقط؟</div>
                     <p>يهاجم فيروس السيدا (<span class="ltr-seq">VIH</span>) حصرياً الخلايا اللمفاوية التائية المساعدة <strong><span class="ltr-seq">LT4</span> (التي تحمل مؤشر <span class="ltr-seq">CD4</span>)</strong>. وعندما يتناقص عدد خلايا <span class="ltr-seq">LT4</span>، تنهار المناعة الخلطية (إنتاج الأجسام المضادة من طرف <span class="ltr-seq">LB</span>) وتنهار المناعة الخلوية (<span class="ltr-seq">LTc</span>) معاً، فيموت المريض بأبسط الأمراض الانتهازية! <strong>كيف تفسر هذا الدور المحوري والخارق لخلايا <span class="ltr-seq">LT4</span> في التنسيق بين جميع الخلايا المناعية؟</strong></p>
                 </div>
             </section>
@@ -640,7 +658,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -770,7 +788,7 @@
                 </figure>
                 <div class="schema-legend">
                     <div class="leg"><h4 style="color:#1f5c45;">خط اللمفاويات LB (الاستجابة الخلطية)</h4><p>تعرف المستضد بمستقبلاتها الغشائية ← تركيب مستقبلات لـ IL2 ← تكاثر تحت تأثير IL2 ← تمايز إلى <b>خلايا بلازمية (بلاسموسيت)</b> تفرز الأجسام المضادة + <b>LBm</b> خلايا ذاكرة.</p></div>
-                    <div class="leg"><h4 style="color:31,92,69;">خط اللمفاويات LT₄ (المساعدة)</h4><p>تتعرف على المستضد المعروض بجزيئات <b>HLA II</b> (بواسطة <b>TCR</b>) ← مستقبلات IL2 ← تكاثر ← <b>LTh</b> المساعدة (تفرز IL2 لدعم LB و LT₈) + <b>LT₄m</b> ذاكرة.</p></div>
+                    <div class="leg"><h4 style="color:rgb(31,92,69);">خط اللمفاويات LT₄ (المساعدة)</h4><p>تتعرف على المستضد المعروض بجزيئات <b>HLA II</b> (بواسطة <b>TCR</b>) ← مستقبلات IL2 ← تكاثر ← <b>LTh</b> المساعدة (تفرز IL2 لدعم LB و LT₈) + <b>LT₄m</b> ذاكرة.</p></div>
                     <div class="leg"><h4 style="color:#8a5a3c;">خط اللمفاويات LT₈ (السامة)</h4><p>تتعرف على المستضد المعروض بجزيئات <b>HLA I</b> (بواسطة TCR) ← مستقبلات IL2 ← تكاثر ← <b>LTc</b> السامة التي تفرز <b>البرفورين</b> فيحدث انحلال الخلية المصابة.</p></div>
                 </div>
                 <p class="schema-keyline">🔑 العامل المشترك : الأنترلوكين 2 (IL2) المفرز من LTh هو مبلغ التكاثر المشترك للخطوط الثلاثة.</p>
@@ -800,7 +818,7 @@
             let box = document.getElementById('ltcDisplayBox');
             if (step === 1) {
                 box.innerHTML = `
-                    <h3 style="color: 215,230,220; margin-bottom: 10px;">1️⃣ التعرف المزدوج الدقيق</h3>
+                    <h3 style="color: rgb(215,230,220); margin-bottom: 10px;">1️⃣ التعرف المزدوج الدقيق</h3>
                     <p style="color: #e4d9c5; line-height: 1.8;">تضمن الخلية القاتلة <span class="ltr-seq">LTc</span> أنها لا تهاجم إلا الخلية التابعة للذات المصابة بالمستضد المحدد، وذلك باشتراط تطابق الـ <span class="ltr-seq">CD8</span> مع <span class="ltr-seq">CMH-I</span> وتطابق الـ <span class="ltr-seq">TCR</span> مع المستضد معاً.</p>
                 `;
             } else if (step === 2) {
@@ -1007,7 +1025,7 @@
         display: none;
         flex-direction: column;
         background: rgba(20, 61, 46, .95);
-        color: 251,248,241;
+        color: rgb(251,248,241);
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -1045,7 +1063,7 @@
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
+    .pfe-zoom-btn.is-close { background: rgb(138,90,60); border-color: rgb(138,90,60); }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1584,7 +1602,7 @@
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
             '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:rgb(63,58,50);text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

@@ -17,10 +17,10 @@
             --warning-light: #f3e6c4;
             --danger: #8a5a3c;
             --danger-light: #f0e2d6;
-            --emerald-dark: 31,92,69;
-            --emerald-light: 235,242,237;
-            --fuchsia-dark: 107,100,88;
-            --fuchsia-light: 251,248,241;
+            --emerald-dark: rgb(31,92,69);
+            --emerald-light: rgb(235,242,237);
+            --fuchsia-dark: rgb(107,100,88);
+            --fuchsia-light: rgb(251,248,241);
             --text-main: #1c1914;
             --text-muted: #6b6458;
             --border: #e4d9c5;
@@ -85,11 +85,11 @@
         }
 
         .header-ch17 {
-            background: linear-gradient(135deg, 31,92,69 0%, 31,92,69 100%);
+            background: linear-gradient(135deg, rgb(31,92,69) 0%, rgb(31,92,69) 100%);
         }
 
         .header-ch18 {
-            background: linear-gradient(135deg, 107,100,88 0%, 167,156,138 100%);
+            background: linear-gradient(135deg, rgb(107,100,88) 0%, rgb(167,156,138) 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: 215,230,220;
-            color: 31,92,69;
+            background: rgb(215,230,220);
+            color: rgb(31,92,69);
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -161,8 +161,8 @@
         }
 
         .step-num-fuchsia {
-            background: 251,248,241;
-            color: 167,156,138;
+            background: rgb(251,248,241);
+            color: rgb(167,156,138);
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: 107,57,38;
+            color: rgb(107,57,38);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -252,9 +252,9 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: 31,92,69; }
-        .btn-fuchsia { background: 167,156,138; }
-        .btn-fuchsia:hover { background: 107,100,88; }
+        .btn-action:hover { background: rgb(31,92,69); }
+        .btn-fuchsia { background: rgb(167,156,138); }
+        .btn-fuchsia:hover { background: rgb(107,100,88); }
 
         /* Scientific text */
         .scientific-text {
@@ -271,7 +271,7 @@
             border-right: 4px solid #1f5c45;
         }
 
-        .text-part.ch18-border { border-right-color: 167,156,138; }
+        .text-part.ch18-border { border-right-color: rgb(167,156,138); }
 
         .text-part h4 {
             font-size: 0.95rem;
@@ -280,7 +280,7 @@
             font-weight: 800;
         }
 
-        .text-part.ch18-border h4 { color: 167,156,138; }
+        .text-part.ch18-border h4 { color: rgb(167,156,138); }
 
         /* Quiz */
         .question-item {
@@ -314,7 +314,7 @@
 
         .option-btn:hover {
             border-color: #1f5c45;
-            background: 235,242,237;
+            background: rgb(235,242,237);
         }
 
         .option-btn.correct {
@@ -351,11 +351,29 @@
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
         .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
-        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.moyen{background:#f3e6c4;color:rgb(107,57,38);border:1px solid #f3e6c4}
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
-    </style>
+    
+        /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
+        .lesson-header {
+            background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
+            border: 1px solid #e4d9c5 !important;
+            color: #1c1914 !important;
+        }
+        .lesson-header *, .lesson-header h1, .lesson-header h2,
+        .lesson-header h3, .lesson-header div, .lesson-header span,
+        .lesson-header p, .lesson-header strong, .lesson-header em {
+            color: #1c1914 !important;
+        }
+        .lesson-header .lesson-breadcrumb { opacity: .8; }
+        .lesson-header .lesson-objectives {
+            background: rgba(251, 248, 241, .75) !important;
+            border: 1px solid #e4d9c5 !important;
+        }
+        .header-ch1, .header-ch2, .header-ch3 { background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important; }
+</style>
 </head>
 <body>
 
@@ -412,7 +430,7 @@
                 </div>
                 <div class="doc-viewer">
                     <div class="doc-visual" style="background: #143d2e;">
-                        <h4 style="color: 167,156,138; margin-bottom: 1rem; font-size: 0.95rem;">البنية التشريحية والجزيئية للمشبك الكيميائي التنبيهي</h4>
+                        <h4 style="color: rgb(167,156,138); margin-bottom: 1rem; font-size: 0.95rem;">البنية التشريحية والجزيئية للمشبك الكيميائي التنبيهي</h4>
                         <!-- SVG Synapse -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="البنية التشريحية والجزيئية للمشبك الكيميائي التنبيهي">
@@ -438,7 +456,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -502,8 +520,8 @@
                         <button class="btn-action" style="background:#8a5a3c;" onclick="simSyn(2)">🔴 تأثير سم الكرار (Curare - شلل عضلات)</button>
                         <button class="btn-action" style="background:#9a7a2c;" onclick="simSyn(3)">⚠️ غاز السارين أو المبيدات الحشرية (تثبيط AChE)</button>
                     </div>
-                    <div id="synDisplayBox" style="background: 31,92,69; border: 2px solid #1f5c45; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: 167,156,138; margin-bottom: 10px;">🟢 النقل المشبكي الطبيعي</h3>
+                    <div id="synDisplayBox" style="background: rgb(31,92,69); border: 2px solid #1f5c45; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: rgb(167,156,138); margin-bottom: 10px;">🟢 النقل المشبكي الطبيعي</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">يرتبط الأستيل كولين مؤقتاً، يفتح المستقبل القنوي، يدخل الصوديوم فتتولد موجة تنبيهية (<span class="ltr-seq">PPSE</span>). ثم يتدخل إنزيم <span class="ltr-seq">AChE</span> ليفككه في أجزاء من الملي ثانية وتعود العضلة للراحة.</p>
                     </div>
                 </div>
@@ -549,8 +567,8 @@
                     <span class="step-num step-num-fuchsia">1</span>
                     <span>الإشكالية الحسابية للخلية العصبية المحركة</span>
                 </div>
-                <div class="problem-box" style="border-right-color: 167,156,138; background: 251,248,241;">
-                    <div class="problem-title" style="color: 107,100,88;">⚠️ كيف تتخذ الخلية العصبية الحركية قرار الانقباض أو الاسترخاء عندما تتلقى آلاف السيالات المتضادة؟</div>
+                <div class="problem-box" style="border-right-color: rgb(167,156,138); background: rgb(251,248,241);">
+                    <div class="problem-title" style="color: rgb(107,100,88);">⚠️ كيف تتخذ الخلية العصبية الحركية قرار الانقباض أو الاسترخاء عندما تتلقى آلاف السيالات المتضادة؟</div>
                     <p>تتصل الخلية العصبية المحركة في النخاع الشوكي بآلاف النهايات العصبية. بعضها يرسل أوامر تنبيهية (انقباض) وبعضها يرسل أوامر تثبيطية (استرخاء كبح). <strong>كيف تقوم هذه الخلية بدمج وحساب كل هذه الرسائل الكيميائية المتضادة في القطعة الابتدائية (<span class="ltr-seq">Segment Initial SI</span>) لتقرر توليد كمون عمل واحد أو الصمت؟</strong></p>
                 </div>
             </section>
@@ -562,8 +580,8 @@
                     <span>التحليل المنهجي للمشبك التثبيطي (GABA) وظاهرة الإدماج العصبي</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: 63,58,50;">
-                        <h4 style="color: 240,226,214; margin-bottom: 1rem; font-size: 0.95rem;">مقارنة بين الكمون التنبيهي (PPSE) والكمون التثبيطي (PPSI)</h4>
+                    <div class="doc-visual" style="background: rgb(63,58,50);">
+                        <h4 style="color: rgb(240,226,214); margin-bottom: 1rem; font-size: 0.95rem;">مقارنة بين الكمون التنبيهي (PPSE) والكمون التثبيطي (PPSI)</h4>
                         <!-- SVG PPSE vs PPSI -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مقارنة الكمون التنبيهي PPSE والكمون التثبيطي PPSI">
@@ -589,7 +607,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -644,7 +662,7 @@
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: 251,248,241; color: 107,100,88;">مبدأ الإدماج في البكالوريا</span>
+                        <span class="method-tag" style="background: rgb(251,248,241); color: rgb(107,100,88);">مبدأ الإدماج في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">كيف يحسب القطعة الابتدائية (<span class="ltr-seq">SI</span>) الحصيلة؟</h4>
                         <p>تقوم الخلية العصبية بعد المشبكية بدمج الكمونات القادمة وفق آليتين :</p>
                         <ul style="list-style-type: none; line-height: 1.8;">
@@ -665,12 +683,12 @@
                 </div>
                 <p>اختر مزيج التنبيهات القادمة للخلية الحركية لمعرفة هل يتولد كمون عمل في القطعة الابتدائية :</p>
                 
-                <div class="interactive-box" style="background: 63,58,50;">
+                <div class="interactive-box" style="background: rgb(63,58,50);">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-fuchsia" onclick="simInteg(1)">🟢 2 تنبيه تنبيهي (+15 mV لكل مشبك PPSE)</button>
                         <button class="btn-action btn-fuchsia" onclick="simInteg(2)">🔴 تنبيه تنبيهي واحد + تنبيه تثبيطي واحد (PPSE + PPSI)</button>
                     </div>
-                    <div id="integDisplayBox" style="background: 107,100,88; border: 2px solid 228,217,197; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <div id="integDisplayBox" style="background: rgb(107,100,88); border: 2px solid rgb(228,217,197); border-radius: 12px; padding: 1.5rem; text-align: center;">
                         <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 تجميع فضائي يفوق العتبة (-40 mV)</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">كمون الراحة (-70 mV) + 30 mV تنبيه = <strong>-40 mV</strong>. بما أن الحصيلة تفوق عتبة التوليد (-50 mV)، يولد القطعة الابتدائية <span class="ltr-seq">SI</span> كمون عمل كامل (+30 mV) ينتقل نحو العضلة.</p>
                     </div>
@@ -730,7 +748,7 @@
             let box = document.getElementById('synDisplayBox');
             if (num === 1) {
                 box.innerHTML = `
-                    <h3 style="color: 167,156,138; margin-bottom: 10px;">🟢 النقل المشبكي الطبيعي</h3>
+                    <h3 style="color: rgb(167,156,138); margin-bottom: 10px;">🟢 النقل المشبكي الطبيعي</h3>
                     <p style="color: #e4d9c5; line-height: 1.8;">يرتبط الأستيل كولين مؤقتاً، يفتح المستقبل القنوي، يدخل الصوديوم فتتولد موجة تنبيهية (<span class="ltr-seq">PPSE</span>). ثم يتدخل إنزيم <span class="ltr-seq">AChE</span> ليفككه في أجزاء من الملي ثانية وتعود العضلة للراحة.</p>
                 `;
             } else if (num === 2) {
@@ -932,7 +950,7 @@
         display: none;
         flex-direction: column;
         background: rgba(20, 61, 46, .95);
-        color: 251,248,241;
+        color: rgb(251,248,241);
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -970,7 +988,7 @@
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
+    .pfe-zoom-btn.is-close { background: rgb(138,90,60); border-color: rgb(138,90,60); }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1509,7 +1527,7 @@
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
             '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:rgb(63,58,50);text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

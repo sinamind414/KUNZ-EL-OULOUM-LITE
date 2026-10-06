@@ -1,28 +1,18 @@
 import type { LessonGoldSummary } from '../data/lessonGoldSummaries';
 import { QCM_LECONS, type QcmDeLecon } from '../data/qcmLecons';
 
-/** Retourne toujours un QCM utilisable, y compris pour les leçons ajoutées récemment. */
-export function qcmPourLecon(lessonId: string, lecon: LessonGoldSummary | null | undefined): QcmDeLecon | null {
-  const existant = QCM_LECONS[lessonId];
-  if (existant) return existant;
-  if (!lecon) return null;
-
-  const bonneReponse = lecon.evidenceAr || lecon.mechanismAr[0];
-  const distracteurs = [
-    lecon.commonErrorAr,
-    lecon.mechanismAr[lecon.mechanismAr.length - 1],
-    lecon.vocabulary.slice(0, 2).join(' و '),
-  ].filter((value, index, values) => value && values.indexOf(value) === index && value !== bonneReponse);
-  const options = [bonneReponse, ...distracteurs].slice(0, 4);
-
-  const fabriquer = (prefixe: string) => ({
-    question: `${prefixe}: ${lecon.missionAr}`,
-    options,
-    explication: `الجواب يعتمد على الدليل: ${bonneReponse}`,
-  });
-
-  return {
-    rappel: fabriquer('استرجع الفكرة الأساسية للدرس'),
-    synthese: fabriquer('ما الخلاصة الصحيحة التي تكتبها في البكالوريا'),
-  };
+/**
+ * Retourne le QCM dédié d'une leçon, ou null si la banque ne le couvre pas.
+ *
+ * Les 58 leçons du programme ont chacune un QCM écrit à la main dans
+ * `qcmLecons.ts` (choix unique, 4 propositions, une seule réponse exacte).
+ * Pas de fallback généré automatiquement : il risquait de produire des QCM
+ * à seulement 3 options, voire avec deux réponses correctes (une étape
+ * vraie de la chaîne causale prise comme distracteur).
+ *
+ * Les composants appellent doivent donc gérer le cas `null` en sautant
+ * l'étape QCM au lieu de crasher.
+ */
+export function qcmPourLecon(lessonId: string, _lecon?: LessonGoldSummary | null | undefined): QcmDeLecon | null {
+  return QCM_LECONS[lessonId] ?? null;
 }

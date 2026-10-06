@@ -17,8 +17,8 @@
             --warning-light: #f3e6c4;
             --danger: #8a5a3c;
             --danger-light: #f0e2d6;
-            --stone-dark: 63,58,50;
-            --stone-light: 251,248,241;
+            --stone-dark: rgb(63,58,50);
+            --stone-light: rgb(251,248,241);
             --amber-dark: #6b5320;
             --amber-light: #f3e6c4;
             --text-main: #1c1914;
@@ -85,7 +85,7 @@
         }
 
         .header-ch43 {
-            background: linear-gradient(135deg, 28,25,20 0%, 63,58,50 100%);
+            background: linear-gradient(135deg, rgb(28,25,20) 0%, rgb(63,58,50) 100%);
         }
 
         .header-ch44 {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: 243,238,228;
-            color: 63,58,50;
+            background: rgb(243,238,228);
+            color: rgb(63,58,50);
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: 107,57,38;
+            color: rgb(107,57,38);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -240,7 +240,7 @@
         }
 
         .btn-action {
-            background: 63,58,50;
+            background: rgb(63,58,50);
             color: white;
             border: none;
             padding: 12px 24px;
@@ -252,7 +252,7 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: 28,25,20; }
+        .btn-action:hover { background: rgb(28,25,20); }
         .btn-amber { background: #9a7a2c; }
         .btn-amber:hover { background: #6b5320; }
 
@@ -268,14 +268,14 @@
         .text-part {
             margin-bottom: 1.2rem;
             padding-right: 1rem;
-            border-right: 4px solid 63,58,50;
+            border-right: 4px solid rgb(63,58,50);
         }
 
         .text-part.ch44-border { border-right-color: #9a7a2c; }
 
         .text-part h4 {
             font-size: 0.95rem;
-            color: 63,58,50;
+            color: rgb(63,58,50);
             margin-bottom: 0.3rem;
             font-weight: 800;
         }
@@ -313,8 +313,8 @@
         }
 
         .option-btn:hover {
-            border-color: 63,58,50;
-            background: 251,248,241;
+            border-color: rgb(63,58,50);
+            background: rgb(251,248,241);
         }
 
         .option-btn.correct {
@@ -351,11 +351,29 @@
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
         .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
-        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.moyen{background:#f3e6c4;color:rgb(107,57,38);border:1px solid #f3e6c4}
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
-    </style>
+    
+        /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
+        .lesson-header {
+            background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
+            border: 1px solid #e4d9c5 !important;
+            color: #1c1914 !important;
+        }
+        .lesson-header *, .lesson-header h1, .lesson-header h2,
+        .lesson-header h3, .lesson-header div, .lesson-header span,
+        .lesson-header p, .lesson-header strong, .lesson-header em {
+            color: #1c1914 !important;
+        }
+        .lesson-header .lesson-breadcrumb { opacity: .8; }
+        .lesson-header .lesson-objectives {
+            background: rgba(251, 248, 241, .75) !important;
+            border: 1px solid #e4d9c5 !important;
+        }
+        .header-ch1, .header-ch2, .header-ch3 { background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important; }
+</style>
 </head>
 <body>
 
@@ -384,7 +402,7 @@
         <!-- CHAPTER 43 : LE CYCLE DES ROCHES DANS LA NATURE (النشاط 43) -->
         <!-- ================================================================= -->
         <div id="ch43" class="chapter-view active">
-            <div style="background:#f3e6c4;border:2px dashed #9a7a2c;border-radius:12px;padding:10px 14px;margin:0 0 14px;font-size:.85rem;font-weight:800;color:107,57,38;">📚 ثقافة عامة إثرائية — دورة الصخور خارج المنهاج الرسمي (TDM) وغير مطلوبة في البكالوريا : للاطلاع فقط.</div>
+            <div style="background:#f3e6c4;border:2px dashed #9a7a2c;border-radius:12px;padding:10px 14px;margin:0 0 14px;font-size:.85rem;font-weight:800;color:rgb(107,57,38);">📚 ثقافة عامة إثرائية — دورة الصخور خارج المنهاج الرسمي (TDM) وغير مطلوبة في البكالوريا : للاطلاع فقط.</div>
             
             <header class="lesson-header header-ch43">
                 <div class="lesson-breadcrumb">المجال الثالث : التكتونية العامة • الوحدة 3 : النشاط التكتوني والبنيات الجيولوجية المرتبطة به</div>
@@ -414,8 +432,8 @@
                     <span>التحليل المنهجي لمخطط دورة الصخور (التجوية، التصخر، التحول، والانصهار)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: 28,25,20;">
-                        <h4 style="color: 243,238,228; margin-bottom: 1rem; font-size: 0.95rem;">مخطط دورة الصخور الجيوديناميكية في القشرة والبرنس</h4>
+                    <div class="doc-visual" style="background: rgb(28,25,20);">
+                        <h4 style="color: rgb(243,238,228); margin-bottom: 1rem; font-size: 0.95rem;">مخطط دورة الصخور الجيوديناميكية في القشرة والبرنس</h4>
                         <!-- SVG Cycle des Roches -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="دورة الصخور الجيوديناميكية في القشرة والبرنس">
@@ -441,7 +459,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -504,7 +522,7 @@
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: 251,248,241; color: 63,58,50;">العمليات الصخرية في البكالوريا</span>
+                        <span class="method-tag" style="background: rgb(251,248,241); color: rgb(63,58,50);">العمليات الصخرية في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">كيف تتم الدورة الصخرية؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>الصخور النارية (<span class="ltr-seq">Roches Magmatiques</span>) :</strong> تنتج عن تصلب وتبريد الماغما الساخنة (مثل الغرانيت في العمق والبازلت على السطح).</li>
@@ -523,13 +541,13 @@
                 </div>
                 <p>اختر العامل الجيولوجي المؤثر لمعاينة الصخر الناتج :</p>
                 
-                <div class="interactive-box" style="background: 28,25,20;">
+                <div class="interactive-box" style="background: rgb(28,25,20);">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simCycle('sed')">🌧️ تجوية + تعرية + ترسيب وتصخر</button>
-                        <button class="btn-action" style="background:107,100,88;" onclick="simCycle('meta')">🔥 زيادة الضغط والحرارة دون انصهار (تحول)</button>
+                        <button class="btn-action" style="background:rgb(107,100,88);" onclick="simCycle('meta')">🔥 زيادة الضغط والحرارة دون انصهار (تحول)</button>
                         <button class="btn-action" style="background:#8a5a3c;" onclick="simCycle('magma')">🌋 انصهار كلي ثم تبريد وتصلب (صهارة ونار)</button>
                     </div>
-                    <div id="cycleDisplayBox" style="background: 63,58,50; border: 2px solid 167,156,138; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <div id="cycleDisplayBox" style="background: rgb(63,58,50); border: 2px solid rgb(167,156,138); border-radius: 12px; padding: 1.5rem; text-align: center;">
                         <h3 style="color: #9a7a2c; margin-bottom: 10px;">🌧️ تشكل الصخور الرسوبية</h3>
                         <p style="color: #e4d9c5; line-height: 1.8;">تتفتت الصخور السابقة وتنقل الجزيئات لتترسب على شكل طبقات متتالية في قاع البحار والبحيرات. تنضغط وتلتحم بمرور ملايين السنين مشكلة صخوراً رسوبية طبقية غنية بالمستحاثات.</p>
                     </div>
@@ -560,7 +578,7 @@
         <!-- CHAPTER 44 : RESSOURCES GÉOLOGIQUES EN ALGÉRIE (النشاط 44 - ختام البرنامج) -->
         <!-- ================================================================= -->
         <div id="ch44" class="chapter-view">
-            <div style="background:#f3e6c4;border:2px dashed #9a7a2c;border-radius:12px;padding:10px 14px;margin:0 0 14px;font-size:.85rem;font-weight:800;color:107,57,38;">📚 ثقافة عامة إثرائية — الموارد البترولية والطاقوية خارج المنهاج الرسمي (TDM) وغير مطلوبة في البكالوريا : للاطلاع فقط.</div>
+            <div style="background:#f3e6c4;border:2px dashed #9a7a2c;border-radius:12px;padding:10px 14px;margin:0 0 14px;font-size:.85rem;font-weight:800;color:rgb(107,57,38);">📚 ثقافة عامة إثرائية — الموارد البترولية والطاقوية خارج المنهاج الرسمي (TDM) وغير مطلوبة في البكالوريا : للاطلاع فقط.</div>
             
             <header class="lesson-header header-ch44">
                 <div class="lesson-breadcrumb">المجال الثالث : التكتونية العامة • الوحدة 3 : النشاط التكتوني والبنيات الجيولوجية المرتبطة به</div>
@@ -578,7 +596,7 @@
                     <span>الإشكالية الاقتصادية والجيولوجية للصحراء الجزائرية</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--amber-dark); background: var(--amber-light);">
-                    <div class="problem-title" style="color: 107,57,38;">⚠️ كيف تختزن صحراء الجزائر الجافة أكبر احتياطيات البترول والغاز والمياه العذبة في العالم؟</div>
+                    <div class="problem-title" style="color: rgb(107,57,38);">⚠️ كيف تختزن صحراء الجزائر الجافة أكبر احتياطيات البترول والغاز والمياه العذبة في العالم؟</div>
                     <p>تضم الصحراء الجزائرية حقولاً عالمية عملاقة مثل حقل البترول في <strong>حاسي مسعود</strong> وحقل الغاز في <strong>حاسي الرمل</strong>، بالإضافة لأكبر خزان مياه عذبة جوفية في العالم (الطبقة الألبية <span class="ltr-seq">Nappe Albienne</span>). <strong>كيف أدى التاريخ الجيولوجي العريق لأحواض الصحراء (عندما كانت مغطاة ببحار دافئة قبل ملايين السنين) والتشوهات التكتونية (الطيات والفوالق) إلى تشكل وحجز هذه الثروات الاستراتيجية؟</strong></p>
                 </div>
             </section>
@@ -617,7 +635,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -685,7 +703,7 @@
                 <div class="interactive-box" style="background: #6b3926;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-amber" onclick="simDz('petrole')">🛢️ حقل حاسي مسعود (البترول الخام)</button>
-                        <button class="btn-action btn-amber" style="background:154,122,44;" onclick="simDz('gaz')">🔥 حقل حاسي الرمل (الغاز الطبيعي)</button>
+                        <button class="btn-action btn-amber" style="background:rgb(154,122,44);" onclick="simDz('gaz')">🔥 حقل حاسي الرمل (الغاز الطبيعي)</button>
                         <button class="btn-action btn-amber" style="background:#1f5c45;" onclick="simDz('eau')">💧 حوض الألبي الجوفي (المياه العذبة المستحاثية)</button>
                     </div>
                     <div id="dzDisplayBox" style="background: #6b3926; border: 2px solid #9a7a2c; border-radius: 12px; padding: 1.5rem; text-align: center;">
@@ -744,7 +762,7 @@
                     <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: D3-U11 — الظواهر التكتونية — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
+                <p style="font-size:11px; color:rgb(107,57,38); font-weight:700; margin:6px 0;">الوحدة: D3-U11 — الظواهر التكتونية — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
 
 <ul style="margin:8px 0; padding-right:24px; line-height:2; font-size:13px;">
 <li>ينتج عن <b>التقلص القشري</b> تحول الصخور العميقة تحت تأثير ارتفاع درجة الحرارة والضغط، وانصهار جزئي لغرانيت القشرة القارية (صخر الميغماتيت).</li>
@@ -794,7 +812,7 @@
                 `;
             } else if (type === 'meta') {
                 box.innerHTML = `
-                    <h3 style="color: 215,230,220; margin-bottom: 10px;">🔥 تشكل الصخور المتحولة</h3>
+                    <h3 style="color: rgb(215,230,220); margin-bottom: 10px;">🔥 تشكل الصخور المتحولة</h3>
                     <p style="color: #e4d9c5; line-height: 1.8;">عند غوص الصخور الرسوبية أو النارية في أعماق القشرة أو عند اصطدام القارات، تتعرض לحرارة وضغط شديدين فيتغير نسيجها وتركيبها المعدني وهي صلبة (مثل تحول الكلس لرخام والغرانيت لغنيس).</p>
                 `;
             } else {
@@ -996,7 +1014,7 @@
         display: none;
         flex-direction: column;
         background: rgba(20, 61, 46, .95);
-        color: 251,248,241;
+        color: rgb(251,248,241);
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -1034,7 +1052,7 @@
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
+    .pfe-zoom-btn.is-close { background: rgb(138,90,60); border-color: rgb(138,90,60); }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1573,7 +1591,7 @@
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
             '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:rgb(63,58,50);text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

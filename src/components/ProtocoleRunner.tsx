@@ -20,6 +20,7 @@ interface Props {
   onProgresse: (p: ProgressionLecon) => void;
   onTerminer: (p: ProgressionLecon, minutes: number) => void;
   onLireLecon: () => void;
+  leconLue: boolean;
   onFermer: () => void;
 }
 
@@ -52,6 +53,7 @@ export default function ProtocoleRunner({
   onProgresse,
   onTerminer,
   onLireLecon,
+  leconLue,
   onFermer,
 }: Props) {
   const lecon = getLessonGoldSummary(lessonId);
@@ -74,6 +76,8 @@ export default function ProtocoleRunner({
   const [echecMax, setEchecMax] = useState(false);
   const [classes, setClasses] = useState<Record<string, 'avant' | 'nouveau'>>({});
   const [lectureFaite, setLectureFaite] = useState(false);
+  // «العودة إلى مراحل المراجعة»: شاشة فهرس المراحل يملكها التلميذ
+  const [vue, setVue] = useState<'phase' | 'sommaire'>('phase');
   const [qcmFait, setQcmFait] = useState(false);
   const [auto, setAuto] = useState<'plein' | 'partiel' | 'non' | null>(null);
   const [diagnostic, setDiagnostic] = useState<string | null>(null);
@@ -138,6 +142,8 @@ export default function ProtocoleRunner({
 
   function verrouPasse(): boolean {
     if (!lecon) return false;
+    // مرحلة أنجزتها من قبل: تُفتح لك دائمًا حين تعود إليها (لا إعادة إجبارية)
+    if (faites.includes(phase.id)) return true;
     switch (phase.id) {
       case 1:
         return lectureFaite && (echecMax || mcq === String(qEtapes?.n));
@@ -352,15 +358,103 @@ export default function ProtocoleRunner({
     );
   }
 
+  // ───────────── شاشة فهرس المراحل (ملك التلميذ: يعود متى شاء) ─────────────
+
+  if (vue === 'sommaire') {
+    const maxAtteint = Math.max(phase.id, ...faites);
+    return (
+      <div className="mx-auto max-w-2xl px-4 pb-6 pt-5">
+        <header className="mb-4 flex items-center justify-between gap-2">
+          <button
+            onClick={onFermer}
+            className="flex h-9 w-9 items-center justify-center rounded-xl bg-paper text-mute transition-colors hover:bg-sage-soft"
+            aria-label="خروج من الدرس"
+            title="خروج من الدرس"
+          >
+            <span className="block h-5 w-5">
+              <IcoRetour />
+            </span>
+          </button>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="truncate text-[11px] text-mute">
+              {unite ? `الوحدة ${unite.numero}: ${unite.titre}` : 'درس'}
+            </p>
+            <h1 className="truncate text-base font-bold">{titreLecon(lessonId)}</h1>
+          </div>
+          <div className="h-9 w-9" aria-hidden="true" />
+        </header>
+
+        <h2 className="font-naskh text-xl font-bold">مراحل المراجعة</h2>
+        <p className="mt-1 text-xs leading-relaxed text-mute">
+          اختر أي مرحلة تريد العودة إليها — لا شيء يُفقد، ولا مرحلة تُحذف.
+        </p>
+
+        <ol className="mt-4 space-y-2.5" dir="rtl">
+          {PROTOCOLE.map((p) => {
+            const faite = faites.includes(p.id) || p.id < phase.id;
+            const actuelle = p.id === phase.id;
+            const atteignable = p.id <= maxAtteint;
+            return (
+              <li key={p.id}>
+                <button
+                  type="button"
+                  disabled={!atteignable}
+                  onClick={() => {
+                    setIndex(p.id - 1);
+                    setVue('phase');
+                  }}
+                  className={`flex w-full items-start gap-3 rounded-2xl border p-3.5 text-right transition-colors ${
+                    actuelle
+                      ? 'border-forest bg-sage-soft'
+                      : faite
+                        ? 'border-line bg-paper'
+                        : 'border-dashed border-line bg-cream/50'
+                  } ${atteignable ? 'hover:bg-sage-soft' : 'cursor-not-allowed opacity-50'}`}
+                >
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      faite ? 'bg-forest text-paper' : 'bg-cream text-mute'
+                    }`}
+                  >
+                    {enArabe(p.id)}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-bold">{p.titre}</span>
+                    <span className="mt-0.5 block text-[11px] leading-relaxed text-mute">
+                      {p.but} · {enArabe(p.dureeMin)} دقائق
+                    </span>
+                    {!atteignable && (
+                      <span className="mt-1 block text-[11px] text-mute">
+                        تُفتح بعد إنهاء المرحلة السابقة
+                      </span>
+                    )}
+                  </span>
+                  {actuelle && (
+                    <span className="chip shrink-0 text-[10px]">الحالية</span>
+                  )}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+
+        <button onClick={() => setVue('phase')} className="btn btn-primary mt-5 w-full text-base">
+          العودة إلى المرحلة {enArabe(phase.id)} ←
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto flex min-h-dvh max-w-2xl flex-col px-4 pb-6 pt-5">
       {/* رأس */}
       <header className="mb-4">
         <div className="flex items-center justify-between gap-2">
           <button
-            onClick={onFermer}
+            onClick={() => setVue('sommaire')}
             className="flex h-9 w-9 items-center justify-center rounded-xl bg-paper text-mute transition-colors hover:bg-sage-soft"
-            aria-label="إغلاق"
+            aria-label="العودة إلى مراحل المراجعة"
+            title="العودة إلى مراحل المراجعة"
           >
             <span className="block h-5 w-5">
               <IcoRetour />
@@ -443,18 +537,16 @@ export default function ProtocoleRunner({
                 <p className="text-[11px] font-bold text-forest">إشكالية الدرس</p>
                 <p className="mt-1.5 text-sm font-bold leading-relaxed">{lecon.missionAr}</p>
               </div>
-              {aContenuLecon(lessonId) && (
-                <button
-                  type="button"
-                  onClick={onLireLecon}
-                  className="btn btn-primary w-full text-sm"
-                >
-                  📖 افتح الدرس واقرأه كاملًا (من أوله إلى آخره)
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={onLireLecon}
+                className="btn btn-primary w-full text-sm"
+              >
+                📖 افتح الدرس واقرأه كاملًا (من أوله إلى آخره)
+              </button>
               <button
                 onClick={() => setLectureFaite(true)}
-                disabled={lectureFaite}
+                disabled={lectureFaite || !leconLue}
                 className={`btn w-full text-sm ${
                   lectureFaite ? 'btn-gold' : 'btn-ghost border border-line'
                 }`}
@@ -465,6 +557,12 @@ export default function ProtocoleRunner({
                     ? 'أنهيتُ قراءة الدرس كاملًا ✓'
                     : 'راجعتُ الدرس في الكتاب الورقي ✓'}
               </button>
+              {!lectureFaite && !leconLue && (
+                <p className="rounded-xl border border-dashed border-line bg-cream/60 p-2.5 text-center text-xs leading-relaxed text-mute">
+                  بوّابة القراءة: افتح الدرس أولًا واقرأه من أوله إلى آخره، ثم عُد إلى هنا.
+                  لا يُفتح هذا الزر قبل ذلك.
+                </p>
+              )}
               {lectureFaite && (
                 <p className="text-xs text-mute">
                   يتكوّن الدرس من {enArabe(lecon.mechanismAr.length)} خطوات سببية و{' '}

@@ -44,6 +44,8 @@ export default function App() {
   const [onglet, setOnglet] = useState<Onglet>('aujourdhui');
   const [mode, setMode] = useState<Mode | null>(null);
   const [ouverteLecon, setOuverteLecon] = useState<string | null>(null);
+  // قراءة الدرس مُفروضة: لا تُفتح بوّابة المرحلة 1 قبل فتح القارئ وإغلاقه فعلًا
+  const [leconLue, setLeconLue] = useState(false);
   const [demarrage, setDemarrage] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return !sessionStorage.getItem('kunz_demarrage');
@@ -79,6 +81,7 @@ export default function App() {
       if (comptees >= 1) suivant.bonusJour = aujourdhui();
       return suivant;
     });
+    setLeconLue(false);
     setMode({ type: 'protocole', lessonId: item.id });
   }
 
@@ -154,13 +157,17 @@ export default function App() {
             onProgresse={(p) => onProgresse(mode.lessonId, p)}
             onTerminer={(p) => onTerminer(mode.lessonId, p)}
             onLireLecon={() => setOuverteLecon(mode.lessonId)}
+            leconLue={leconLue}
             onFermer={() => setMode(null)}
           />
           {ouverteLecon && (
             <div className="fixed inset-0 z-50 overflow-y-auto bg-cream">
               <LecteurLecon
                 lessonId={ouverteLecon}
-                onFermer={() => setOuverteLecon(null)}
+                onFermer={() => {
+                  setOuverteLecon(null);
+                  setLeconLue(true);
+                }}
               />
             </div>
           )}

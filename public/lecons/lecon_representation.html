@@ -88,7 +88,7 @@
 
         /* Hero Header */
         .lesson-header {
-            background: linear-gradient(135deg, #143d2e 0%, 31,92,69 100%);
+            background: linear-gradient(135deg, #143d2e 0%, rgb(31,92,69) 100%);
             color: white;
             border-radius: var(--radius);
             padding: 2.5rem;
@@ -176,7 +176,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: 107,57,38;
+            color: rgb(107,57,38);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -301,8 +301,8 @@
             overflow-x: auto;
         }
 
-        .dna-strand { background: rgba(31,92,69,.20); border: 1px dashed 167,156,138; color: #d7e6dc; }
-        .rna-strand { background: rgba(31,92,69,.20); border: 1px solid 31,92,69; color: #1f5c45; min-height: 52px; }
+        .dna-strand { background: rgba(31,92,69,.20); border: 1px dashed rgb(167,156,138); color: #d7e6dc; }
+        .rna-strand { background: rgba(31,92,69,.20); border: 1px solid rgb(31,92,69); color: #1f5c45; min-height: 52px; }
 
         .btn-sim {
             background: var(--accent);
@@ -317,7 +317,7 @@
             margin: 5px;
         }
 
-        .btn-sim:hover { background: 31,92,69; }
+        .btn-sim:hover { background: rgb(31,92,69); }
         .btn-reset { background: #6b6458; }
 
         /* Bilan & Texte scientifique */
@@ -428,11 +428,29 @@
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
         .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
-        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.moyen{background:#f3e6c4;color:rgb(107,57,38);border:1px solid #f3e6c4}
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:640px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
-    </style>
+    
+        /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
+        .lesson-header {
+            background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
+            border: 1px solid #e4d9c5 !important;
+            color: #1c1914 !important;
+        }
+        .lesson-header *, .lesson-header h1, .lesson-header h2,
+        .lesson-header h3, .lesson-header div, .lesson-header span,
+        .lesson-header p, .lesson-header strong, .lesson-header em {
+            color: #1c1914 !important;
+        }
+        .lesson-header .lesson-breadcrumb { opacity: .8; }
+        .lesson-header .lesson-objectives {
+            background: rgba(251, 248, 241, .75) !important;
+            border: 1px solid #e4d9c5 !important;
+        }
+        .header-ch1, .header-ch2, .header-ch3 { background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important; }
+</style>
 </head>
 <body>
 
@@ -513,7 +531,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -574,7 +592,7 @@
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
@@ -865,7 +883,7 @@
         display: none;
         flex-direction: column;
         background: rgba(20, 61, 46, .95);
-        color: 251,248,241;
+        color: rgb(251,248,241);
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -903,7 +921,7 @@
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
+    .pfe-zoom-btn.is-close { background: rgb(138,90,60); border-color: rgb(138,90,60); }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1442,7 +1460,7 @@
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
             '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:rgb(63,58,50);text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +
