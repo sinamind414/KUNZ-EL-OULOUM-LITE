@@ -383,7 +383,6 @@
             font-size: 0.95rem;
             display: none;
         }
-    
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype phase1) === */
         .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
@@ -400,7 +399,6 @@
         .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
-    
         /* ══ RÈGLE : texte noir dans l'en-tête de leçon ══ */
         .lesson-header {
             background: linear-gradient(135deg, #ebf2ed 0%, #f3e6c4 100%) !important;
@@ -422,9 +420,7 @@
 </head>
 <body>
 
-    
 
-    
     <!-- Sommaire sticky (prototype v3.2) -->
     <div class="sommaire" id="sommaire">
         <a href="#ch1-step1" id="link-ch1-step1" onclick="scrollToStep('ch1-step1',event)">📖 1-1 وضعية</a>
@@ -445,7 +441,6 @@
         <!-- CHAPTER 1 : SIÈGE DE LA SYNTHÈSE DES PROTÉINES (مقر تركيب البروتين) -->
         <!-- ================================================================= -->
         <div id="ch1" class="chapter-view active">
-            
             <header class="lesson-header header-ch1">
                 <div class="lesson-breadcrumb">المجال الأول : التخصص الوظيفي للبروتينات • الوحدة 1 : تركيب البروتين</div>
                 <h1>النشاط 1 : تذكير بالمكتسبات ومقر تركيب البروتين في الخلية</h1>
@@ -504,7 +499,6 @@
       <stop offset="0%" stop-color="rgb(31,92,69)" />
       <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
-    
   </defs>
 
   <rect x="10" y="10" width="780" height="460" rx="24" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
@@ -579,7 +573,6 @@
 
                     <div class="doc-analysis">
                         <span class="method-tag">منهجية البكالوريا : الاستدلال العلمي</span>
-                        <div class="miftah-encadre">🔑 <b>مفتاح المنهجية:</b> البوابة 1 → <b>📄 ورقة</b> (وثيقة حاضرة) · البوابة 2 → <b>📷 صورة</b> (حلّل/صِف → <span class="ltr-seq" style="font-size:.8rem">1→2→4</span>) · السنّ 2: استخرج <b>رقم + وحدة + اتجاه</b> قبل أي تفسير</div>
                         <h4 style="margin: 8px 0; color: var(--primary);">لماذا استعمل العلماء الأحماض الأمينية المشعة تحديدًا؟</h4>
                         <ul style="list-style-type: none; padding-right: 0;">
                             <li style="margin-bottom: 10px;">• <strong>الأحماض الأمينية</strong> هي الوحدات البنائية الأساسية لتركيب البروتينات.</li>
@@ -599,7 +592,6 @@
                     <span>المستكشف التفاعلي لحركية البروتين داخل الخلية الإفرازية</span>
                 </div>
                 <p>اضغط على الزمن التجريبي لمتابعة مسار البروتين المصنوع حديثا :</p>
-                
                 <div class="interactive-box">
                     <div class="cell-explorer-btns">
                         <button class="btn-exp active" onclick="exploreTime(3, event)">⏱️ بعد 3 دقائق (البداية)</button>
@@ -644,7 +636,6 @@
         <!-- CHAPTER 2 : CODE GÉNÉTIQUE ET ACTIVATION (الشفرة الوراثية والتنشيط) -->
         <!-- ================================================================= -->
         <div id="ch2" class="chapter-view">
-            
             <header class="lesson-header header-ch2">
                 <div class="lesson-breadcrumb">المجال الأول : التخصص الوظيفي للبروتينات • الوحدة 1 : تركيب البروتين</div>
                 <h1>النشاط 2 : الشفرة الوراثية وتنشيط الأحماض الأمينية</h1>
@@ -680,7 +671,6 @@
                 </div>
                                         <div class="miftah-encadre">🔑 <b>تذكير منهجي:</b> البوابة 1 → <b>📄 ورقة</b> · البوابة 2 → <b>🎬 فيلم</b> (فسّر/علل → <span class="ltr-seq" style="font-size:.8rem">1→2→3→4</span>) · السنّ 3: <b>لأنّ</b> مسبوقة بمعطى من الوثيقة</div>
                 <p>اختر القواعد الآزوتية الثلاث (الرامزة على الـ <span class="ltr-seq">ARNm</span>) لاكتشاف الحمض الأميني الموافق ومعنى الرامزات الخاصة :</p>
-                
                 <div class="interactive-box" style="background: #143d2e;">
                     <div class="decoder-controls">
                         <div>
@@ -727,7 +717,6 @@
                     <span>آلية تنشيط الأحماض الأمينية (المرحلة التحضيرية للترجمة)</span>
                 </div>
                 <p>لكي يشارك الحمض الأميني في تركيب البروتين، يجب أن يُربط أولاً بالناقل الخاص به وهو الـ <strong><span class="ltr-seq">ARNt</span> (ARN de transfert)</strong>. تتم هذه العملية بتدخل ثلاثة عناصر جوهرية :</p>
-                
                 <div class="doc-viewer" style="margin-top: 1rem;">
                     <div class="doc-visual" style="background: #143d2e;">
                         <h4 style="color: rgb(215,230,220); margin-bottom: 10px; font-size: 0.95rem;">شروط ومتطلبات عملية التنشيط</h4>
@@ -740,7 +729,6 @@
                     </div>
 
                     <div class="doc-analysis">
-                                                <div class="miftah-encadre">🔑 <b>مفتاح المنهجية:</b> البوابة 1 → <b>📄 ورقة</b> · البوابة 2 → <b>🎬 فيلم</b> (فسّر/علل → <span class="ltr-seq" style="font-size:.8rem">1→2→3→4</span>) · السنّ 3: <b>لأنّ</b> مسبوقة بمعطى من الوثيقة</div>
                         <span class="method-tag" style="background: rgb(235,242,237); color: rgb(107,100,88);">خطوات التنشيط في البكالوريا</span>
                         <p style="margin-top: 5px;">1. يتوضع كل من الحمض الأميني والـ <span class="ltr-seq">ARNt</span> في المواقع الفعالة النوعية لإنزيم التنشيط.</p>
                         <p>2. تتم إماهة جزيئة الـ <span class="ltr-seq">ATP</span> لربط الحمض الأميني بالـ <span class="ltr-seq">ARNt</span> برابطة إسترية غنية بالطاقة.</p>
@@ -911,7 +899,6 @@
                 }
             }
         }
-    
         // === v3.2 prototype: sommaire + badges faible/moyen/mumtaz ===
         let c1Score = null, c2Correct = 0, c2Answered = 0;
         function scrollToStep(id, evt){
