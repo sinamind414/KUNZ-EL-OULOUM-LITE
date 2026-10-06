@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 10 : النشاط 19 والنشاط 20</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --slate-dark: #334155;
-            --slate-light: #f1f5f9;
-            --lime-dark: #15803d;
-            --lime-light: #f0fdf4;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --slate-dark: #3f3a32;
+            --slate-light: #fbf8f1;
+            --lime-dark: #143d2e;
+            --lime-light: #ebf2ed;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch19 {
-            background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            background: linear-gradient(135deg, #1c1914 0%, #6b6458 100%);
         }
 
         .header-ch20 {
-            background: linear-gradient(135deg, #14532d 0%, #16a34a 100%);
+            background: linear-gradient(135deg, 20,61,46 0%, #1f5c45 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: #e2e8f0;
-            color: #334155;
+            background: #e4d9c5;
+            color: #3f3a32;
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -161,8 +161,8 @@
         }
 
         .step-num-lime {
-            background: #dcfce7;
-            color: #15803d;
+            background: 235,242,237;
+            color: #143d2e;
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -240,7 +240,7 @@
         }
 
         .btn-action {
-            background: #334155;
+            background: #3f3a32;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -252,14 +252,14 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #475569; }
-        .btn-lime { background: #16a34a; }
-        .btn-lime:hover { background: #15803d; }
+        .btn-action:hover { background: #6b6458; }
+        .btn-lime { background: #1f5c45; }
+        .btn-lime:hover { background: #143d2e; }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -268,19 +268,19 @@
         .text-part {
             margin-bottom: 1.2rem;
             padding-right: 1rem;
-            border-right: 4px solid #334155;
+            border-right: 4px solid #3f3a32;
         }
 
-        .text-part.ch20-border { border-right-color: #16a34a; }
+        .text-part.ch20-border { border-right-color: #1f5c45; }
 
         .text-part h4 {
             font-size: 0.95rem;
-            color: #334155;
+            color: #3f3a32;
             margin-bottom: 0.3rem;
             font-weight: 800;
         }
 
-        .text-part.ch20-border h4 { color: #16a34a; }
+        .text-part.ch20-border h4 { color: #1f5c45; }
 
         /* Quiz */
         .question-item {
@@ -313,8 +313,8 @@
         }
 
         .option-btn:hover {
-            border-color: #334155;
-            background: #f1f5f9;
+            border-color: #3f3a32;
+            background: #fbf8f1;
         }
 
         .option-btn.correct {
@@ -340,19 +340,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -413,16 +413,16 @@
                     <span>التحليل المنهجي لمشبك الألم والمستقبلات الأفيونية قبل المشبكية</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #1e293b;">
-                        <h4 style="color: #cbd5e1; margin-bottom: 1rem; font-size: 0.95rem;">آلية التثبيط قبل المشبكي لرسالة الألم (المادة P مقابل الأنكيفالين/المورفين)</h4>
+                    <div class="doc-visual" style="background: #1c1914;">
+                        <h4 style="color: #e4d9c5; margin-bottom: 1rem; font-size: 0.95rem;">آلية التثبيط قبل المشبكي لرسالة الألم (المادة P مقابل الأنكيفالين/المورفين)</h4>
                         <!-- SVG Pain Synapse -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="آلية التثبيط قبل المشبكي لرسالة الألم (المادة P مقابل الأنكيفالين)">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -430,70 +430,70 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">آلية التثبيط قبل المشبكي لرسالة الألم (المادة P مقابل الأنكيفالين)</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Douleur — substance P vs enképhalines (récepteurs opiacés)</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">آلية التثبيط قبل المشبكي لرسالة الألم (المادة P مقابل الأنكيفالين)</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Douleur — substance P vs enképhalines (récepteurs opiacés)</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#f43f5e" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">1</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نهاية عصبون الألم</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يفرز مادة P</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Substance P</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#8a5a3c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#8a5a3c" fill-opacity="0.22" stroke="#8a5a3c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">1</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نهاية عصبون الألم</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يفرز مادة P</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Substance P</text>
   </g>
-  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#38bdf8" transform="rotate(0 220.5 224)"/>
-  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مادة P</text>
+  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#1f5c45" transform="rotate(0 220.5 224)"/>
+  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مادة P</text>
   <g transform="translate(226.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">2</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عصبون جامع</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أنكيفالين (مورفين)</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Enképhaline</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">2</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عصبون جامع</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أنكيفالين (مورفين)</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Enképhaline</text>
   </g>
-  <line x1="383" y1="224" x2="417" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#38bdf8" transform="rotate(0 417 224)"/>
-  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ربط أفيوني</text>
+  <line x1="383" y1="224" x2="417" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#1f5c45" transform="rotate(0 417 224)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ربط أفيوني</text>
   <g transform="translate(423, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">3</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مستقبل أفيوني</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">قناة Ca²⁺ تُحجب</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Ca²⁺ bloqué</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">3</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مستقبل أفيوني</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">قناة Ca²⁺ تُحجب</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Ca²⁺ bloqué</text>
   </g>
-  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#38bdf8" transform="rotate(0 613.5 224)"/>
-  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حجب Ca²⁺</text>
+  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#1f5c45" transform="rotate(0 613.5 224)"/>
+  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حجب Ca²⁺</text>
   <g transform="translate(619.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">4</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إفراز أقل من P</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">العصبون الوارد نحو الدماغ</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Pain ↓</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">4</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إفراز أقل من P</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">العصبون الوارد نحو الدماغ</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Pain ↓</text>
   </g>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التثبيط قبل مشبكي: الأنكيفالين يقلّل إفراز مادة P فيتقل الألم.</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التثبيط قبل مشبكي: الأنكيفالين يقلّل إفراز مادة P فيتقل الألم.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 ارتباط المورفين بالمستقبل الأفيوني يغلق قنوات Ca²⁺ فيمنع إطراح المادة P.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 ارتباط المورفين بالمستقبل الأفيوني يغلق قنوات Ca²⁺ فيمنع إطراح المادة P.</p>
                     </div>
 
                     <div class="doc-analysis">
@@ -516,15 +516,15 @@
                 </div>
                 <p>اختر الحالة المشبكية لملاحظة إفراز المادة P وانتقال رسالة الألم :</p>
                 
-                <div class="interactive-box" style="background: #1e293b;">
+                <div class="interactive-box" style="background: #1c1914;">
                     <div style="margin-bottom: 15px;">
-                        <button class="btn-action" style="background:#dc2626;" onclick="simPain('normal')">🔴 إصابة مؤلمة (إفراز كثيف للمادة P)</button>
-                        <button class="btn-action" style="background:#7c3aed;" onclick="simPain('enk')">🟣 تدخل الأنكيفالين الطبيعي (كبح مؤقت)</button>
-                        <button class="btn-action" style="background:#16a34a;" onclick="simPain('morph')">🟢 حقن المورفين الطبي (تسكين عميق ودائم)</button>
+                        <button class="btn-action" style="background:#8a5a3c;" onclick="simPain('normal')">🔴 إصابة مؤلمة (إفراز كثيف للمادة P)</button>
+                        <button class="btn-action" style="background:167,156,138;" onclick="simPain('enk')">🟣 تدخل الأنكيفالين الطبيعي (كبح مؤقت)</button>
+                        <button class="btn-action" style="background:#1f5c45;" onclick="simPain('morph')">🟢 حقن المورفين الطبي (تسكين عميق ودائم)</button>
                     </div>
-                    <div id="painDisplayBox" style="background: #0f172a; border: 2px solid #64748b; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #fca5a5; margin-bottom: 10px;">🔴 الشعور بألم حاد ومستمر</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">قنوات الكالسيوم مفتوحة، تفرز المادة P بكثافة في الشق المشبكي وتولد تواتراً عالياً من كمونات العمل نحو الدماغ.</p>
+                    <div id="painDisplayBox" style="background: #143d2e; border: 2px solid #6b6458; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #f0e2d6; margin-bottom: 10px;">🔴 الشعور بألم حاد ومستمر</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">قنوات الكالسيوم مفتوحة، تفرز المادة P بكثافة في الشق المشبكي وتولد تواتراً عالياً من كمونات العمل نحو الدماغ.</p>
                     </div>
                 </div>
             </section>
@@ -569,8 +569,8 @@
                     <span class="step-num step-num-lime">1</span>
                     <span>الإشكالية الطاقوية الكبرى للمجال الثاني</span>
                 </div>
-                <div class="problem-box" style="border-right-color: #16a34a; background: #f0fdf4;">
-                    <div class="problem-title" style="color: #15803d;">⚠️ كيف تحول النباتات الخضراء أشعة الشمس إلى سكر النشا؟</div>
+                <div class="problem-box" style="border-right-color: #1f5c45; background: #ebf2ed;">
+                    <div class="problem-title" style="color: #143d2e;">⚠️ كيف تحول النباتات الخضراء أشعة الشمس إلى سكر النشا؟</div>
                     <p>تعتبر النباتات اليخضورات المنتجات الأولية للطاقة في المحيط الحيوي، حيث تقوم بظاهرة <strong>التركيب الضوئي (<span class="ltr-seq">Photosynthèse</span>)</strong> التي تحول الطاقة الضوئية الفزيائية إلى طاقة كيميائية كامنة مخزنة في الروابط الكربونية للجزيئات العضوية (النشا والغلوكوز). <strong>أين تتم هذه الظاهرة بالتحديد داخل الخلية النباتية؟ وكيف تتلاءم البنية المجهرية الفوقية لعضية "الصانعة الخضراء" مع أداء هذه التفاعلات المعقدة؟</strong></p>
                 </div>
             </section>
@@ -582,16 +582,16 @@
                     <span>التحليل المنهجي للبنية الفوقية للصانعة الخضراء بالمجهر الإلكتروني</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #064e3b;">
-                        <h4 style="color: #86efac; margin-bottom: 1rem; font-size: 0.95rem;">رسم تخطيطي ثلاثي الأبعاد لـ الصانعة الخضراء (Chloroplaste) ومقصوراتها</h4>
+                    <div class="doc-visual" style="background: #143d2e;">
+                        <h4 style="color: 215,230,220; margin-bottom: 1rem; font-size: 0.95rem;">رسم تخطيطي ثلاثي الأبعاد لـ الصانعة الخضراء (Chloroplaste) ومقصوراتها</h4>
                         <!-- SVG Chloroplast -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="الصانعة الخضراء (Chloroplaste) ومقصوراتها">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f1-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -599,57 +599,57 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f1-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f1-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f1-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الصانعة الخضراء (Chloroplaste) ومقصوراتها</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Chloroplaste — enveloppe, stroma, granum, grain d’amidon</text>
-  <text x="165" y="96" text-anchor="end" font-size="11" font-weight="700" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكوّن</text>
-  <text x="575" y="96" text-anchor="start" font-size="11" font-weight="700" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الطبيعة</text>
-  <rect x="175" y="106" width="385" height="69" rx="6" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1.8"/>
-  <text x="190" y="130" text-anchor="start" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الغشاء الخارجي والداخلي</text>
-  <text x="190" y="150" text-anchor="start" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يفصل بينهما فراغ بين غشائي</text>
-  <text x="165" y="130" text-anchor="end" font-size="11.5" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الأغشية</text>
-  <text x="575" y="130" text-anchor="start" font-size="11.5" fill="#e2e8f0" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 غشاء</text>
-  <rect x="175" y="175" width="385" height="79.4" rx="6" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.8"/>
-  <text x="190" y="199" text-anchor="start" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الحشوة (Stroma)</text>
-  <text x="190" y="219" text-anchor="start" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سائل داخلي — إنزيمات التثبيت والدورة</text>
-  <text x="165" y="199" text-anchor="end" font-size="11.5" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Stroma</text>
-  <text x="575" y="199" text-anchor="start" font-size="11.5" fill="#e2e8f0" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سائل</text>
-  <line x1="175" y1="175" x2="560" y2="175" stroke="#0c1322" stroke-width="2" stroke-linecap="round"/>
-  <rect x="175" y="254.5" width="385" height="79.4" rx="6" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1.8"/>
-  <text x="190" y="278.5" text-anchor="start" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البذور (Granum)</text>
-  <text x="190" y="298.5" text-anchor="start" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أقراص التيلاكويدات المكدسة</text>
-  <text x="165" y="278.5" text-anchor="end" font-size="11.5" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Granum</text>
-  <text x="575" y="278.5" text-anchor="start" font-size="11.5" fill="#e2e8f0" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أقراص</text>
-  <line x1="175" y1="254.5" x2="560" y2="254.5" stroke="#0c1322" stroke-width="2" stroke-linecap="round"/>
-  <rect x="175" y="333.9" width="385" height="62.1" rx="6" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1.8"/>
-  <text x="190" y="357.9" text-anchor="start" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حبيبة النشا</text>
-  <text x="190" y="377.9" text-anchor="start" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخزن طاقة داخل الحشوة</text>
-  <text x="165" y="357.9" text-anchor="end" font-size="11.5" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Amidon</text>
-  <text x="575" y="357.9" text-anchor="start" font-size="11.5" fill="#e2e8f0" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخزن</text>
-  <line x1="175" y1="333.9" x2="560" y2="333.9" stroke="#0c1322" stroke-width="2" stroke-linecap="round"/>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التيلاكويدات داخل البذرة = موقع التفاعلات الضوئية.</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الصانعة الخضراء (Chloroplaste) ومقصوراتها</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Chloroplaste — enveloppe, stroma, granum, grain d’amidon</text>
+  <text x="165" y="96" text-anchor="end" font-size="11" font-weight="700" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكوّن</text>
+  <text x="575" y="96" text-anchor="start" font-size="11" font-weight="700" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الطبيعة</text>
+  <rect x="175" y="106" width="385" height="69" rx="6" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1.8"/>
+  <text x="190" y="130" text-anchor="start" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الغشاء الخارجي والداخلي</text>
+  <text x="190" y="150" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يفصل بينهما فراغ بين غشائي</text>
+  <text x="165" y="130" text-anchor="end" font-size="11.5" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الأغشية</text>
+  <text x="575" y="130" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 غشاء</text>
+  <rect x="175" y="175" width="385" height="79.4" rx="6" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1.8"/>
+  <text x="190" y="199" text-anchor="start" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الحشوة (Stroma)</text>
+  <text x="190" y="219" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سائل داخلي — إنزيمات التثبيت والدورة</text>
+  <text x="165" y="199" text-anchor="end" font-size="11.5" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Stroma</text>
+  <text x="575" y="199" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سائل</text>
+  <line x1="175" y1="175" x2="560" y2="175" stroke="#143d2e" stroke-width="2" stroke-linecap="round"/>
+  <rect x="175" y="254.5" width="385" height="79.4" rx="6" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1.8"/>
+  <text x="190" y="278.5" text-anchor="start" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البذور (Granum)</text>
+  <text x="190" y="298.5" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أقراص التيلاكويدات المكدسة</text>
+  <text x="165" y="278.5" text-anchor="end" font-size="11.5" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Granum</text>
+  <text x="575" y="278.5" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أقراص</text>
+  <line x1="175" y1="254.5" x2="560" y2="254.5" stroke="#143d2e" stroke-width="2" stroke-linecap="round"/>
+  <rect x="175" y="333.9" width="385" height="62.1" rx="6" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1.8"/>
+  <text x="190" y="357.9" text-anchor="start" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حبيبة النشا</text>
+  <text x="190" y="377.9" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخزن طاقة داخل الحشوة</text>
+  <text x="165" y="357.9" text-anchor="end" font-size="11.5" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Amidon</text>
+  <text x="575" y="357.9" text-anchor="start" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخزن</text>
+  <line x1="175" y1="333.9" x2="560" y2="333.9" stroke="#143d2e" stroke-width="2" stroke-linecap="round"/>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">التيلاكويدات داخل البذرة = موقع التفاعلات الضوئية.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">🟢 التيلاكويد يحمل أصبغة اليخضور، والحشوة تحتوي على إنزيم الروبيسكو (Rubisco).</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">🟢 التيلاكويد يحمل أصبغة اليخضور، والحشوة تحتوي على إنزيم الروبيسكو (Rubisco).</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #ecfdf5; color: #15803d;">أساسيات المجال الثاني في البكالوريا</span>
+                        <span class="method-tag" style="background: 235,242,237; color: #143d2e;">أساسيات المجال الثاني في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">مقارنة المقصورتين الفعالتين في الصانعة</h4>
                         <ul style="list-style-type: none; line-height: 1.8;">
                             <li>• <strong>التيلاكويد (<span class="ltr-seq">Thylakoïde</span>) :</strong> أكياس غشائية مسطحة تتوضع أحياناً فوق بعضها مشكلة البذرة (<span class="ltr-seq">Granum</span>). يحتوي غشاؤها على <strong>أصبغة اليخضور (<span class="ltr-seq">Chlorophylle</span>) والأنظمة الضوئية (<span class="ltr-seq">PS I و PS II</span>) وإنزيم الـ <span class="ltr-seq">ATP synthase</span></strong> $\leftarrow$ مقر المرحلة الكيميوضوئية.</li>
@@ -667,14 +667,14 @@
                 </div>
                 <p>اضغط على المقنصورة لاكتشاف شروط وتفاعلات المرحلة التابعة لها :</p>
                 
-                <div class="interactive-box" style="background: #14532d;">
+                <div class="interactive-box" style="background: 20,61,46;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-lime" onclick="simChloro('thyl')">🌿 غشاء التيلاكويد (المرحلة الكيميوضوئية)</button>
                         <button class="btn-action btn-lime" onclick="simChloro('stroma')">🧪 الحشوة / الستروما (المرحلة الكيميوحيوية)</button>
                     </div>
-                    <div id="chloroDisplayBox" style="background: #166534; border: 2px solid #4ade80; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #86efac; margin-bottom: 10px;">🌿 غشاء التيلاكويد (مقر المرحلة الكيميوضوئية)</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">يتطلب ضوءاً مباشراً. تقوم الأنظمة الضوئية بامتصاص الفوتونات وأكسدة الماء (<span class="ltr-seq">H₂O</span>) لانطلاق غاز الأكسجين (<span class="ltr-seq">O₂</span>)، وتركيب طاقة <span class="ltr-seq">ATP</span> وإرجاع النواقل (<span class="ltr-seq">NADPH, H⁺</span>).</p>
+                    <div id="chloroDisplayBox" style="background: #143d2e; border: 2px solid #1f5c45; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: 215,230,220; margin-bottom: 10px;">🌿 غشاء التيلاكويد (مقر المرحلة الكيميوضوئية)</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">يتطلب ضوءاً مباشراً. تقوم الأنظمة الضوئية بامتصاص الفوتونات وأكسدة الماء (<span class="ltr-seq">H₂O</span>) لانطلاق غاز الأكسجين (<span class="ltr-seq">O₂</span>)، وتركيب طاقة <span class="ltr-seq">ATP</span> وإرجاع النواقل (<span class="ltr-seq">NADPH, H⁺</span>).</p>
                     </div>
                 </div>
             </section>
@@ -683,7 +683,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 اشرح تأثير المخدرات على النقل المشبكي، وحدّد مقر التركيب الضوئي وبنيته.</p>
@@ -694,7 +694,7 @@
                     <li style="margin-bottom:6px;">تجري المرحلة الكيموضوئية على أغشية التيلاكويد، والكيميوحيوية في الحشوة.</li>
                     <li style="margin-bottom:6px;">تنتج التفاعلات الضوئية ATP و NADPH تستعملهما الحشوة لتحويل CO2 إلى مادة عضوية.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : المرابط الأفيونية / الصانعة الخضراء</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : المرابط الأفيونية / الصانعة الخضراء</p>
             </section>
 
             <!-- الحصيلة المعرفية الرسمية (texte corrigé fourni par l'utilisateur 2026-09-21 — voir docs/RESUMES_MAARIFI_LIVRE_2026-09-21.md §11) -->
@@ -723,12 +723,12 @@
         <!-- ═══ Zone de synthèse commune (🏛 حصيلة + 🗺 مخطط) — hors chapter-view :
              visible dans LES DEUX leçons du fichier (survit au slicing lessonChapterSplit) ═══ -->
         <div class="synthese-zone" id="zone-synthese">
-<section class="card" id="hosila" style="border:2px solid #f59e0b;">
+<section class="card" id="hosila" style="border:2px solid #9a7a2c;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#b45309;">🏛</span>
+                    <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:#92400e; font-weight:700; margin:6px 0;">الوحدة: U5 — دور البروتينات في الاتصال العصبي — نص بتنسيق قرائي، دون تغيير المعنى.</p>
+                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: U5 — دور البروتينات في الاتصال العصبي — نص بتنسيق قرائي، دون تغيير المعنى.</p>
 
 <ul style="margin:8px 0; padding-right:24px; line-height:1.9; font-size:13px;">
 <li>تنتقل الرسالة العصبية في الليف قبل المشبكي على شكل <b>تواترات كمونات عمل</b>، وتتحول على مستوى المشبك إلى رسالة مشفرة <b>بتركيز المبلغ العصبي</b>.</li>
@@ -742,13 +742,13 @@
 
 
             </section>
-<section class="card" id="schema-synthese" style="border:2px solid #2563eb;">
+<section class="card" id="schema-synthese" style="border:2px solid #1f5c45;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#2563eb;">🗺</span>
+                    <span class="step-num" style="background:#1f5c45;">🗺</span>
                     <span>مخطط تحصيلي — آلية النقل العصبي على مستوى المشبك (ص 165)</span>
                 </div>
-                <img src="/assets/images/schemas/domaine1_proteines/schema_synthese_nerf_U5.jpg" alt="مخطط تحصيلي آلية النقل العصبي في المشبك" style="width:100%; max-width:920px; display:block; margin:0 auto 10px; border-radius:12px; border:1px solid #e2e8f0;">
-                <p style="font-size:11px; color:#78716c; margin:0 0 8px; text-align:center;">الصورة الأصلية — تحوي طبقة الصورة أخطاء استخراج آلي («الفقوات» بدل القنوات...)؛ التسلسل المصحح أدناه هو المرجع القرائي.</p>
+                <img src="/assets/images/schemas/domaine1_proteines/schema_synthese_nerf_U5.jpg" alt="مخطط تحصيلي آلية النقل العصبي في المشبك" style="width:100%; max-width:920px; display:block; margin:0 auto 10px; border-radius:12px; border:1px solid #e4d9c5;">
+                <p style="font-size:11px; color:#6b6458; margin:0 0 8px; text-align:center;">الصورة الأصلية — تحوي طبقة الصورة أخطاء استخراج آلي («الفقوات» بدل القنوات...)؛ التسلسل المصحح أدناه هو المرجع القرائي.</p>
                 <ol style="margin:6px 0; padding-right:22px; line-height:1.9; font-size:12.5px;">
                     <li>يتوجه <b>كمون العمل</b> نحو النهاية العصبية.</li>
                     <li>وصول موجة <b>زوال استقطاب</b> إلى النهاية العصبية يؤدي إلى انفتاح القنوات الغشائية لـ Ca²⁺.</li>
@@ -761,7 +761,7 @@
                     <li>دخول شوارد الصوديوم يولد <b>كمون عمل</b> في غشاء الخلية بعد المشبكية.</li>
                     <li>إعادة تكوين الحويصلات المشبكية انطلاقا من الغشاء (لإعادة الاستعمال).</li>
                 </ol>
-                <p style="font-size:10.5px; color:#78716c; margin-top:8px; text-align:center;">🗺 الصورة الأصلية + تنسيق قرائي مصحح — المفردات مثبتة في النص (تحقّق آلي داخلي).</p>
+                <p style="font-size:10.5px; color:#6b6458; margin-top:8px; text-align:center;">🗺 الصورة الأصلية + تنسيق قرائي مصحح — المفردات مثبتة في النص (تحقّق آلي داخلي).</p>
             </section>
         </div>
 
@@ -781,18 +781,18 @@
             let box = document.getElementById('painDisplayBox');
             if (state === 'normal') {
                 box.innerHTML = `
-                    <h3 style="color: #fca5a5; margin-bottom: 10px;">🔴 الشعور بألم حاد ومستمر</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">قنوات الكالسيوم مفتوحة، تفرز المادة P بكثافة في الشق المشبكي وتولد تواتراً عالياً من كمونات العمل نحو الدماغ.</p>
+                    <h3 style="color: #f0e2d6; margin-bottom: 10px;">🔴 الشعور بألم حاد ومستمر</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">قنوات الكالسيوم مفتوحة، تفرز المادة P بكثافة في الشق المشبكي وتولد تواتراً عالياً من كمونات العمل نحو الدماغ.</p>
                 `;
             } else if (state === 'enk') {
                 box.innerHTML = `
-                    <h3 style="color: #d8b4fe; margin-bottom: 10px;">🟣 كبح طبيعي قصير المدى (الأنكيفالين)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يفرز العصبون الجامع الأنكيفالين الذي يرتبط بالمستقبلات الأفيونية. يقل دخول Ca²⁺ ويقل إفراز المادة P فيخف الشعور بالألم سرعان ما يتحلل الأنكيفالين.</p>
+                    <h3 style="color: 215,230,220; margin-bottom: 10px;">🟣 كبح طبيعي قصير المدى (الأنكيفالين)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يفرز العصبون الجامع الأنكيفالين الذي يرتبط بالمستقبلات الأفيونية. يقل دخول Ca²⁺ ويقل إفراز المادة P فيخف الشعور بالألم سرعان ما يتحلل الأنكيفالين.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #86efac; margin-bottom: 10px;">🟢 تسكين عميق وممتد (المورفين الطبي)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يرتبط المورفين بقوة وبثبات طويل بالمستقبلات الأفيونية قبل المشبكية. تغلق قنوات Ca²⁺ تماماً وينعدم إطراح المادة P، فيختفي الشعور بالألم كلياً أثناء الجراحة.</p>
+                    <h3 style="color: 215,230,220; margin-bottom: 10px;">🟢 تسكين عميق وممتد (المورفين الطبي)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يرتبط المورفين بقوة وبثبات طويل بالمستقبلات الأفيونية قبل المشبكية. تغلق قنوات Ca²⁺ تماماً وينعدم إطراح المادة P، فيختفي الشعور بالألم كلياً أثناء الجراحة.</p>
                 `;
             }
         }
@@ -801,13 +801,13 @@
             let box = document.getElementById('chloroDisplayBox');
             if (part === 'thyl') {
                 box.innerHTML = `
-                    <h3 style="color: #86efac; margin-bottom: 10px;">🌿 غشاء التيلاكويد (مقر المرحلة الكيميوضوئية)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يتطلب ضوءاً مباشراً. تقوم الأنظمة الضوئية بامتصاص الفوتونات وأكسدة الماء (<span class="ltr-seq">H₂O</span>) لانطلاق غاز الأكسجين (<span class="ltr-seq">O₂</span>)، وتركيب طاقة <span class="ltr-seq">ATP</span> وإرجاع النواقل (<span class="ltr-seq">NADPH, H⁺</span>).</p>
+                    <h3 style="color: 215,230,220; margin-bottom: 10px;">🌿 غشاء التيلاكويد (مقر المرحلة الكيميوضوئية)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يتطلب ضوءاً مباشراً. تقوم الأنظمة الضوئية بامتصاص الفوتونات وأكسدة الماء (<span class="ltr-seq">H₂O</span>) لانطلاق غاز الأكسجين (<span class="ltr-seq">O₂</span>)، وتركيب طاقة <span class="ltr-seq">ATP</span> وإرجاع النواقل (<span class="ltr-seq">NADPH, H⁺</span>).</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #fde68a; margin-bottom: 10px;">🧪 الحشوة / الستروما (مقر المرحلة الكيميوحيوية)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">لا تتطلب ضوءاً مباشراً ولكنها تستهلك نواتج المرحلة السابقة (<span class="ltr-seq">ATP و NADPH, H⁺</span>). يتدخل إنزيم الروبيسكو لتثبيت غاز <span class="ltr-seq">CO₂</span> وبناء السكريات (حلقة كالفن).</p>
+                    <h3 style="color: #f3e6c4; margin-bottom: 10px;">🧪 الحشوة / الستروما (مقر المرحلة الكيميوحيوية)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">لا تتطلب ضوءاً مباشراً ولكنها تستهلك نواتج المرحلة السابقة (<span class="ltr-seq">ATP و NADPH, H⁺</span>). يتدخل إنزيم الروبيسكو لتثبيت غاز <span class="ltr-seq">CO₂</span> وبناء السكريات (حلقة كالفن).</p>
                 `;
             }
         }
@@ -824,10 +824,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> التثبيط قبل المشبكي هو سر آلية تسكين المورفين.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> المستقبلات الأفيونية توجد على غشاء نهاية العصبون الحسي للألم.';
             }
         }
@@ -844,10 +844,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> التقسيم إلى مقصورات يسمح بعزل التفاعلات وتوفير التراكيز المثالية لكل مرحلة.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> التقسيم لمقصورات هو خاصية بنيوية ووظيفية أساسية في الصانعة الخضراء.';
             }
         }
@@ -956,8 +956,8 @@
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -969,7 +969,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -982,8 +982,8 @@
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -1016,12 +1016,12 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1044,7 +1044,7 @@
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1555,12 +1555,12 @@
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 13 : النشاط 25 والنشاط 26</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --orange-dark: #9a3412;
-            --orange-light: #fff7ed;
-            --red-dark: #991b1b;
-            --red-light: #fef2f2;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --orange-dark: 107,57,38;
+            --orange-light: #fbf8f17ed;
+            --red-dark: #6b3926;
+            --red-light: #f0e2d6;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch25 {
-            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+            background: linear-gradient(135deg, 107,57,38 0%, #8a5a3c 100%);
         }
 
         .header-ch26 {
-            background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%);
+            background: linear-gradient(135deg, 107,57,38 0%, #8a5a3c 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: #ffedd5;
-            color: #9a3412;
+            background: 240,226,214;
+            color: 107,57,38;
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -161,8 +161,8 @@
         }
 
         .step-num-red {
-            background: #fee2e2;
-            color: #991b1b;
+            background: 243,238,228;
+            color: #6b3926;
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -240,7 +240,7 @@
         }
 
         .btn-action {
-            background: #ea580c;
+            background: #8a5a3c;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -252,14 +252,14 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #c2410c; }
-        .btn-red { background: #dc2626; }
-        .btn-red:hover { background: #b91c1c; }
+        .btn-action:hover { background: 154,122,44; }
+        .btn-red { background: #8a5a3c; }
+        .btn-red:hover { background: #8a5a3c; }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -268,19 +268,19 @@
         .text-part {
             margin-bottom: 1.2rem;
             padding-right: 1rem;
-            border-right: 4px solid #ea580c;
+            border-right: 4px solid #8a5a3c;
         }
 
-        .text-part.ch26-border { border-right-color: #dc2626; }
+        .text-part.ch26-border { border-right-color: #8a5a3c; }
 
         .text-part h4 {
             font-size: 0.95rem;
-            color: #ea580c;
+            color: #8a5a3c;
             margin-bottom: 0.3rem;
             font-weight: 800;
         }
 
-        .text-part.ch26-border h4 { color: #dc2626; }
+        .text-part.ch26-border h4 { color: #8a5a3c; }
 
         /* Quiz */
         .question-item {
@@ -313,8 +313,8 @@
         }
 
         .option-btn:hover {
-            border-color: #ea580c;
-            background: #fff7ed;
+            border-color: #8a5a3c;
+            background: #fbf8f17ed;
         }
 
         .option-btn.correct {
@@ -340,19 +340,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -411,16 +411,16 @@
                     <span>التحليل المنهجي لمراحل التحلل السكري في الهيولى (التنشيط والانشطار والأكسدة)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #431407;">
-                        <h4 style="color: #fdba74; margin-bottom: 1rem; font-size: 0.95rem;">مخطط التحلل السكري (تفكيك الغلوكوز C₆ إلى 2 بيروفيك C₃)</h4>
+                    <div class="doc-visual" style="background: 28,25,20;">
+                        <h4 style="color: #f0e2d6; margin-bottom: 1rem; font-size: 0.95rem;">مخطط التحلل السكري (تفكيك الغلوكوز C₆ إلى 2 بيروفيك C₃)</h4>
                         <!-- SVG Glycolysis -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط التحلل السكري — تفكيك الغلوكوز C₆ إلى 2 بيروفيك C₃">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -428,70 +428,70 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخطط التحلل السكري — تفكيك الغلوكوز C₆ إلى 2 بيروفيك C₃</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Glycolyse (cytoplasme) — bilan net 2 ATP + 2 NADH</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مخطط التحلل السكري — تفكيك الغلوكوز C₆ إلى 2 بيروفيك C₃</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Glycolyse (cytoplasme) — bilan net 2 ATP + 2 NADH</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">1</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">غلوكوز (C₆)</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₆H₁₂O₆ بداية المسار</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">1</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">غلوكوز (C₆)</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₆H₁₂O₆ بداية المسار</text>
   </g>
-  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#38bdf8" transform="rotate(0 220.5 224)"/>
-  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">استهلاك 2 ATP</text>
+  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#1f5c45" transform="rotate(0 220.5 224)"/>
+  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">استهلاك 2 ATP</text>
   <g transform="translate(226.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">2</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فركتوز ثنائي</text>
-  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الفوسفات</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إدخال 2 ATP وتفعيل</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">F-1,6-BP</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">2</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فركتوز ثنائي</text>
+  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الفوسفات</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إدخال 2 ATP وتفعيل</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">F-1,6-BP</text>
   </g>
-  <line x1="383" y1="224" x2="417" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#38bdf8" transform="rotate(0 417 224)"/>
-  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انشطار</text>
+  <line x1="383" y1="224" x2="417" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#1f5c45" transform="rotate(0 417 224)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انشطار</text>
   <g transform="translate(423, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#a78bfa" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#a78bfa" fill-opacity="0.22" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#a78bfa" font-family="'Consolas', monospace">3</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">PGAL (C₃) ×2</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انشطار إلى جزيئين</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#a78bfa" fill-opacity="0.16" stroke="#a78bfa" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#a78bfa" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₃ ×2</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">3</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">PGAL (C₃) ×2</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انشطار إلى جزيئين</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₃ ×2</text>
   </g>
-  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#38bdf8" transform="rotate(0 613.5 224)"/>
-  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 ATP + NADH</text>
+  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#1f5c45" transform="rotate(0 613.5 224)"/>
+  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 ATP + NADH</text>
   <g transform="translate(619.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">4</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بيروفيك (C₃) ×2</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ربح صافي للـ ATP</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 ATP + 2 NADH</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">4</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بيروفيك (C₃) ×2</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ربح صافي للـ ATP</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">2 ATP + 2 NADH</text>
   </g>
-  <rect x="30" y="424" width="740" height="56" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="446" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكان: السيتوبلازم — لا يشترط الأكسجين (Glycolyse).</text>
-  <text x="400" y="472" text-anchor="middle" font-size="12.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الصافي لكل غلوكوز: 2 ATP + 2 NADH قبل دورة كريبس.</text>
+  <rect x="30" y="424" width="740" height="56" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="446" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكان: السيتوبلازم — لا يشترط الأكسجين (Glycolyse).</text>
+  <text x="400" y="472" text-anchor="middle" font-size="12.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الصافي لكل غلوكوز: 2 ATP + 2 NADH قبل دورة كريبس.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 الحصيلة الصافية : +2 ATP و +2 NADH, H⁺ لكل جزيء غلوكوز.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 الحصيلة الصافية : +2 ATP و +2 NADH, H⁺ لكل جزيء غلوكوز.</p>
                     </div>
 
                     <div class="doc-analysis">
@@ -514,15 +514,15 @@
                 </div>
                 <p>اضغط لتنفيذ تفاعلات التحلل السكري وحساب الحصيلة الصافية :</p>
                 
-                <div class="interactive-box" style="background: #431407;">
+                <div class="interactive-box" style="background: 28,25,20;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simGly(1)">1️⃣ استثمار 2 ATP لتنشيط الغلوكوز</button>
                         <button class="btn-action" onclick="simGly(2)">2️⃣ انشطار السكر إلى جزيئتي PGAL</button>
                         <button class="btn-action" onclick="simGly(3)">3️⃣ الأكسدة وإنتاج 4 ATP و 2 بيروفيك</button>
                     </div>
-                    <div id="glyDisplayBox" style="background: #7c2d12; border: 2px solid #fb923c; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #fdba74; margin-bottom: 10px;">1️⃣ تنشيط الغلوكوز بالفسفرة</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">الغلوكوز جزيء مستقر جداً. لكي يبدأ التفاعل، يجب "استثمار" جزيئتي <span class="ltr-seq">2 ATP</span> من هيولى الخلية لإضافة مجموعتي فوسفات للغلوكوز وتحويله لفركتوز ثنائي الفوسفات جاهز للانشطار.</p>
+                    <div id="glyDisplayBox" style="background: 107,57,38; border: 2px solid 154,122,44; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #f0e2d6; margin-bottom: 10px;">1️⃣ تنشيط الغلوكوز بالفسفرة</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">الغلوكوز جزيء مستقر جداً. لكي يبدأ التفاعل، يجب "استثمار" جزيئتي <span class="ltr-seq">2 ATP</span> من هيولى الخلية لإضافة مجموعتي فوسفات للغلوكوز وتحويله لفركتوز ثنائي الفوسفات جاهز للانشطار.</p>
                     </div>
                 </div>
             </section>
@@ -568,7 +568,7 @@
                     <span>الإشكالية الميتوكندرية للتنفس الخلوي</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--red-dark); background: var(--red-light);">
-                    <div class="problem-title" style="color: #991b1b;">⚠️ كيف يحرر الميتوكندرون الطاقة الهائلة المخزنة في حمض البيروفيك؟</div>
+                    <div class="problem-title" style="color: #6b3926;">⚠️ كيف يحرر الميتوكندرون الطاقة الهائلة المخزنة في حمض البيروفيك؟</div>
                     <p>في وجود الأكسجين (وسط هوائي)، يدخل حمض البيروفيك (<span class="ltr-seq">CH₃-CO-COOH</span>) الناتج عن التحلل السكري إلى عضية متخصصة تسمى <strong>الميتوكندرون (<span class="ltr-seq">Mitochondrie</span>)</strong>. وبالتحديد في سائل <strong>المادة الأساسية (<span class="ltr-seq">Matrice</span>)</strong>، يخضع لسلسلة تفاعلات دائرية أكسدة ونزع كربون تسمى <strong>حلقة كريبس (<span class="ltr-seq">Cycle de Krebs</span>)</strong>. <strong>كيف يتم هدم حمض البيروفيك كلياً إلى غاز CO₂؟ وما هي كمية النواقل المرجعة التي تنتجها هذه الحلقة؟</strong></p>
                 </div>
             </section>
@@ -580,16 +580,16 @@
                     <span>التحليل المنهجي لتشكل الأستيل-CoA وحلقة كريبس في المادة الأساسية</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #450a0a;">
-                        <h4 style="color: #fca5a5; margin-bottom: 1rem; font-size: 0.95rem;">مخطط حلقة كريبس لهدم الأستيل مرافق الإنزيم أ (Acétyl-CoA C₂)</h4>
+                    <div class="doc-visual" style="background: 28,25,20;">
+                        <h4 style="color: #f0e2d6; margin-bottom: 1rem; font-size: 0.95rem;">مخطط حلقة كريبس لهدم الأستيل مرافق الإنزيم أ (Acétyl-CoA C₂)</h4>
                         <!-- SVG Krebs -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="حلقة كريبس — هدم الأستيل مرافق الإنزيم أ">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f1-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -597,80 +597,80 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f1-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f1-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f1-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حلقة كريبس — هدم الأستيل مرافق الإنزيم أ</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Cycle de Krebs (matrice mitocondriale) — Acétyl-CoA C₂</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حلقة كريبس — هدم الأستيل مرافق الإنزيم أ</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Cycle de Krebs (matrice mitocondriale) — Acétyl-CoA C₂</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">1</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بيروفيك (C₃)</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">من التحلل السكري</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₃</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">1</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بيروفيك (C₃)</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">من التحلل السكري</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₃</text>
   </g>
-  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#38bdf8" transform="rotate(0 220.5 224)"/>
-  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نزع CO₂ + NADH</text>
+  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#1f5c45" transform="rotate(0 220.5 224)"/>
+  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نزع CO₂ + NADH</text>
   <g transform="translate(226.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#f43f5e" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">2</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أستيل-CoA (C₂)</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يدخل مع أوكسالوأسيتات</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₂ + C₄</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#8a5a3c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#8a5a3c" fill-opacity="0.22" stroke="#8a5a3c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">2</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أستيل-CoA (C₂)</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يدخل مع أوكسالوأسيتات</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₂ + C₄</text>
   </g>
-  <line x1="383" y1="224" x2="417" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#38bdf8" transform="rotate(0 417 224)"/>
-  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تكاثف C₂ + C₄</text>
+  <line x1="383" y1="224" x2="417" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#1f5c45" transform="rotate(0 417 224)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تكاثف C₂ + C₄</text>
   <g transform="translate(423, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">3</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سترات (C₆)</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أول مركب في الحلقة</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₆</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">3</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">سترات (C₆)</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أول مركب في الحلقة</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₆</text>
   </g>
-  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#38bdf8" transform="rotate(0 613.5 224)"/>
-  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">3 NADH + FADH₂</text>
+  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#1f5c45" transform="rotate(0 613.5 224)"/>
+  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">3 NADH + FADH₂</text>
   <g transform="translate(619.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">4</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أوكسالوأسيتات C₄</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تتجدد لدورة جديدة</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₄</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">4</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">أوكسالوأسيتات C₄</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تتجدد لدورة جديدة</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">C₄</text>
   </g>
-  <line x1="694.8" y1="306" x2="694.8" y2="344" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
-  <line x1="694.8" y1="344" x2="105.3" y2="344" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
-  <line x1="105.3" y1="344" x2="105.3" y2="306" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/><path d="M 105.3,306 L 99.7,302.2 L 99.7,309.9 z" fill="#94a3b8" transform="rotate(-90 105.3 306)"/>
-  <rect x="250" y="320" width="300" height="20" rx="10" fill="#0c1322" fill-opacity="0.95" stroke="none" stroke-width="1"/>
-  <text x="400" y="334" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تجدد الأوكسالوأسيتات — إطلاق CO₂ و NADH</text>
-  <rect x="30" y="424" width="740" height="56" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="446" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">النواتج لكل بيروفيك: 3 NADH + 1 FADH₂ + 1 ATP + 2 CO₂.</text>
-  <text x="400" y="472" text-anchor="middle" font-size="12.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكان: حشوة الميتوكوندري (Matrix).</text>
+  <line x1="694.8" y1="306" x2="694.8" y2="344" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
+  <line x1="694.8" y1="344" x2="105.3" y2="344" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
+  <line x1="105.3" y1="344" x2="105.3" y2="306" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/><path d="M 105.3,306 L 99.7,302.2 L 99.7,309.9 z" fill="#a79c8a" transform="rotate(-90 105.3 306)"/>
+  <rect x="250" y="320" width="300" height="20" rx="10" fill="#143d2e" fill-opacity="0.95" stroke="none" stroke-width="1"/>
+  <text x="400" y="334" text-anchor="middle" font-size="11.5" font-weight="700" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تجدد الأوكسالوأسيتات — إطلاق CO₂ و NADH</text>
+  <rect x="30" y="424" width="740" height="56" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="446" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">النواتج لكل بيروفيك: 3 NADH + 1 FADH₂ + 1 ATP + 2 CO₂.</text>
+  <text x="400" y="472" text-anchor="middle" font-size="12.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">المكان: حشوة الميتوكوندري (Matrix).</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 يندمج الأستيل (C₂) مع مركب رباعي (C₄) ليعطي السترات (C₆) ثم يتأكسد.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 يندمج الأستيل (C₂) مع مركب رباعي (C₄) ليعطي السترات (C₆) ثم يتأكسد.</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #fef2f2; color: #991b1b;">تفاعلات المادة الأساسية في البكالوريا</span>
+                        <span class="method-tag" style="background: #f0e2d6; color: #6b3926;">تفاعلات المادة الأساسية في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">ما هي خطوات هدم البيروفيك؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>المرحلة التمهيدية (تشكل الأستيل-CoA) :</strong> يخضع حمض البيروفيك (<span class="ltr-seq">C₃</span>) في المادة الأساسية لنزع كربون (<span class="ltr-seq">CO₂ ↑</span>) ونزع هيدروجين (<span class="ltr-seq">NADH, H⁺</span>) ويرتبط بمرافق الإنزيم أ ليعطي مركب ثنائي الكربون <strong>الأستيل-CoA (<span class="ltr-seq">C₂</span>)</strong>.</li>
@@ -689,15 +689,15 @@
                 </div>
                 <p>اضغط لمعاينة التفاعل التمهيدي وحساب نواتج دورة كريبس لجزيء غلوكوز واحد (يتطلب جزيئتي بيروفيك = دورتي كريبس) :</p>
                 
-                <div class="interactive-box" style="background: #450a0a;">
+                <div class="interactive-box" style="background: 28,25,20;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-red" onclick="simKrebs(1)">1️⃣ التفاعل التمهيدي (بيروفيك ← أستيل-CoA)</button>
                         <button class="btn-action btn-red" onclick="simKrebs(2)">2️⃣ دورة كريبس واحدة (لـ 1 حمض بيروفيك)</button>
-                        <button class="btn-action btn-red" style="background:#15803d;" onclick="simKrebs(3)">3️⃣ الحصيلة الإجمالية للمادة الأساسية (لـ 1 غلوكوز = 2 بيروفيك)</button>
+                        <button class="btn-action btn-red" style="background:#143d2e;" onclick="simKrebs(3)">3️⃣ الحصيلة الإجمالية للمادة الأساسية (لـ 1 غلوكوز = 2 بيروفيك)</button>
                     </div>
-                    <div id="krebsDisplayBox" style="background: #7f1d1d; border: 2px solid #f87171; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #fca5a5; margin-bottom: 10px;">1️⃣ التفاعل التمهيدي في المادة الأساسية</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">قبل دخول حلقة كريبس، يفقد كل حمض بيروفيك (<span class="ltr-seq">C₃</span>) جزيئة <span class="ltr-seq">CO₂</span> ويرجع جزيئة <span class="ltr-seq">1 NAD⁺ → 1 NADH, H⁺</span> ويتصل بمرافق الإنزيم أ مشكلاً الأستيل-CoA (<span class="ltr-seq">C₂</span>).</p>
+                    <div id="krebsDisplayBox" style="background: 107,57,38; border: 2px solid 167,156,138; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #f0e2d6; margin-bottom: 10px;">1️⃣ التفاعل التمهيدي في المادة الأساسية</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">قبل دخول حلقة كريبس، يفقد كل حمض بيروفيك (<span class="ltr-seq">C₃</span>) جزيئة <span class="ltr-seq">CO₂</span> ويرجع جزيئة <span class="ltr-seq">1 NAD⁺ → 1 NADH, H⁺</span> ويتصل بمرافق الإنزيم أ مشكلاً الأستيل-CoA (<span class="ltr-seq">C₂</span>).</p>
                     </div>
                 </div>
             </section>
@@ -706,7 +706,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 بيّن مراحل التحلل السكري وتحويل الغلوكوز إلى حمض البيروفيك.</p>
@@ -717,7 +717,7 @@
                     <li style="margin-bottom:6px;">يدخل حمض البيروفيك إلى المتوكندري ليكمل تفككه في مرحلة لاحقة.</li>
                     <li style="margin-bottom:6px;">يمثل التحلل السكري الخطوة الأولى المشتركة للأكسدة التنفسية والتخمر.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : التحلل السكري (Glycolyse) / حمض البيروفيك</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : التحلل السكري (Glycolyse) / حمض البيروفيك</p>
             </section>
 
             <section class="card" id="ch2-step4">
@@ -755,18 +755,18 @@
             let box = document.getElementById('glyDisplayBox');
             if (step === 1) {
                 box.innerHTML = `
-                    <h3 style="color: #fdba74; margin-bottom: 10px;">1️⃣ تنشيط الغلوكوز بالفسفرة</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">الغلوكوز جزيء مستقر جداً. لكي يبدأ التفاعل، يجب "استثمار" جزيئتي <span class="ltr-seq">2 ATP</span> من هيولى الخلية لإضافة مجموعتي فوسفات للغلوكوز وتحويله لفركتوز ثنائي الفوسفات جاهز للانشطار.</p>
+                    <h3 style="color: #f0e2d6; margin-bottom: 10px;">1️⃣ تنشيط الغلوكوز بالفسفرة</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">الغلوكوز جزيء مستقر جداً. لكي يبدأ التفاعل، يجب "استثمار" جزيئتي <span class="ltr-seq">2 ATP</span> من هيولى الخلية لإضافة مجموعتي فوسفات للغلوكوز وتحويله لفركتوز ثنائي الفوسفات جاهز للانشطار.</p>
                 `;
             } else if (step === 2) {
                 box.innerHTML = `
-                    <h3 style="color: #86efac; margin-bottom: 10px;">2️⃣ انشطار الفركتوز إلى جزيئتي PGAL</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">ينقسم الفركتوز 1،6 ثنائي الفوسفات (<span class="ltr-seq">C₆</span>) في منتصفه ليعطي جزيئتين متماثلتين من سكر الفوسفوغليسيرألديهيد (<strong><span class="ltr-seq">2 PGAL C₃</span></strong>).</p>
+                    <h3 style="color: 215,230,220; margin-bottom: 10px;">2️⃣ انشطار الفركتوز إلى جزيئتي PGAL</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">ينقسم الفركتوز 1،6 ثنائي الفوسفات (<span class="ltr-seq">C₆</span>) في منتصفه ليعطي جزيئتين متماثلتين من سكر الفوسفوغليسيرألديهيد (<strong><span class="ltr-seq">2 PGAL C₃</span></strong>).</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">3️⃣ الأكسدة وإنتاج 4 ATP و 2 بيروفيك</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">تتأكسد جزيئتا <span class="ltr-seq">PGAL</span> بنزع الهيدروجين لإنتاج <span class="ltr-seq">2 NADH, H⁺</span>، وتنتج 4 جزيئات <span class="ltr-seq">ATP</span>، وتتحول في النهاية إلى جزيئتين من <strong>حمض البيروفيك (<span class="ltr-seq">CH₃-CO-COOH</span>)</strong>. الحصيلة الصافية : +2 ATP و +2 NADH.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">3️⃣ الأكسدة وإنتاج 4 ATP و 2 بيروفيك</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">تتأكسد جزيئتا <span class="ltr-seq">PGAL</span> بنزع الهيدروجين لإنتاج <span class="ltr-seq">2 NADH, H⁺</span>، وتنتج 4 جزيئات <span class="ltr-seq">ATP</span>، وتتحول في النهاية إلى جزيئتين من <strong>حمض البيروفيك (<span class="ltr-seq">CH₃-CO-COOH</span>)</strong>. الحصيلة الصافية : +2 ATP و +2 NADH.</p>
                 `;
             }
         }
@@ -775,18 +775,18 @@
             let box = document.getElementById('krebsDisplayBox');
             if (step === 1) {
                 box.innerHTML = `
-                    <h3 style="color: #fca5a5; margin-bottom: 10px;">1️⃣ التفاعل التمهيدي في المادة الأساسية</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">قبل دخول حلقة كريبس، يفقد كل حمض بيروفيك (<span class="ltr-seq">C₃</span>) جزيئة <span class="ltr-seq">CO₂</span> ويرجع جزيئة <span class="ltr-seq">1 NAD⁺ → 1 NADH, H⁺</span> ويتصل بمرافق الإنزيم أ مشكلاً الأستيل-CoA (<span class="ltr-seq">C₂</span>).</p>
+                    <h3 style="color: #f0e2d6; margin-bottom: 10px;">1️⃣ التفاعل التمهيدي في المادة الأساسية</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">قبل دخول حلقة كريبس، يفقد كل حمض بيروفيك (<span class="ltr-seq">C₃</span>) جزيئة <span class="ltr-seq">CO₂</span> ويرجع جزيئة <span class="ltr-seq">1 NAD⁺ → 1 NADH, H⁺</span> ويتصل بمرافق الإنزيم أ مشكلاً الأستيل-CoA (<span class="ltr-seq">C₂</span>).</p>
                 `;
             } else if (step === 2) {
                 box.innerHTML = `
-                    <h3 style="color: #fde047; margin-bottom: 10px;">2️⃣ دورة كريبس واحدة (لـ 1 حمض بيروفيك)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يندمج الأستيل (<span class="ltr-seq">C₂</span>) مع الأوكسالوأسيتات (<span class="ltr-seq">C₄</span>) ليعطي السترات (<span class="ltr-seq">C₆</span>). خلال الدورة ينتج : <span class="ltr-seq">2 CO₂ + 3 NADH, H⁺ + 1 FADH₂ + 1 ATP</span> ويتجدد الأوكسالوأسيتات.</p>
+                    <h3 style="color: #f3e6c4; margin-bottom: 10px;">2️⃣ دورة كريبس واحدة (لـ 1 حمض بيروفيك)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يندمج الأستيل (<span class="ltr-seq">C₂</span>) مع الأوكسالوأسيتات (<span class="ltr-seq">C₄</span>) ليعطي السترات (<span class="ltr-seq">C₆</span>). خلال الدورة ينتج : <span class="ltr-seq">2 CO₂ + 3 NADH, H⁺ + 1 FADH₂ + 1 ATP</span> ويتجدد الأوكسالوأسيتات.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">3️⃣ الحصيلة الشاملة للمادة الأساسية (لـ 1 غلوكوز = 2 بيروفيك)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">بما أن جزيء الغلوكوز يعطي 2 بيروفيك، نضرب نواتج التمهيدي وكريبس × 2، فنجد في المادة الأساسية : <strong><span class="ltr-seq">6 CO₂ + 8 NADH, H⁺ + 2 FADH₂ + 2 ATP</span></strong>.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">3️⃣ الحصيلة الشاملة للمادة الأساسية (لـ 1 غلوكوز = 2 بيروفيك)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">بما أن جزيء الغلوكوز يعطي 2 بيروفيك، نضرب نواتج التمهيدي وكريبس × 2، فنجد في المادة الأساسية : <strong><span class="ltr-seq">6 CO₂ + 8 NADH, H⁺ + 2 FADH₂ + 2 ATP</span></strong>.</p>
                 `;
             }
         }
@@ -803,10 +803,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> حساب الحصيلة الصافية يستوجب خصم الـ 2 ATP المستهلكة في مرحلة التنشيط.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> التحلل السكري ينتج 4 ATP ويستهلك 2 ATP، فالحصيلة الصافية هي 2 ATP.';
             }
         }
@@ -823,10 +823,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> الحساب الدقيق لنواقل المادة الأساسية هو 8 NADH و 2 FADH₂ لكل غلوكوز.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> تذكر أن كل حمض بيروفيك ينتج 1 NADH في التمهيدي و 3 NADH + 1 FADH₂ في كريبس، والمجموع × 2 للغلوكوز.';
             }
         }
@@ -935,8 +935,8 @@
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -948,7 +948,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -961,8 +961,8 @@
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -995,12 +995,12 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1023,7 +1023,7 @@
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1534,12 +1534,12 @@
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

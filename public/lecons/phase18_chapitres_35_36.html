@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 18 : النشاط 35 والنشاط 36</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --orange-dark: #9a3412;
-            --orange-light: #fff7ed;
-            --amber-dark: #b45309;
-            --amber-light: #fffbeb;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --orange-dark: 107,57,38;
+            --orange-light: #fbf8f17ed;
+            --amber-dark: #6b5320;
+            --amber-light: #f3e6c4;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch35 {
-            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+            background: linear-gradient(135deg, 107,57,38 0%, #8a5a3c 100%);
         }
 
         .header-ch36 {
-            background: linear-gradient(135deg, #78350f 0%, #b45309 100%);
+            background: linear-gradient(135deg, #6b3926 0%, #6b5320 100%);
         }
 
         .lesson-breadcrumb {
@@ -147,8 +147,8 @@
         }
 
         .step-num {
-            background: #ffedd5;
-            color: #9a3412;
+            background: 240,226,214;
+            color: 107,57,38;
             width: 38px;
             height: 38px;
             flex-shrink: 0;
@@ -161,8 +161,8 @@
         }
 
         .step-num-amber {
-            background: #fef3c7;
-            color: #b45309;
+            background: #f3e6c4;
+            color: #6b5320;
         }
 
         .problem-box {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -240,7 +240,7 @@
         }
 
         .btn-action {
-            background: #ea580c;
+            background: #8a5a3c;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -252,14 +252,14 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #c2410c; }
-        .btn-amber { background: #d97706; }
-        .btn-amber:hover { background: #b45309; }
+        .btn-action:hover { background: 154,122,44; }
+        .btn-amber { background: #9a7a2c; }
+        .btn-amber:hover { background: #6b5320; }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -268,19 +268,19 @@
         .text-part {
             margin-bottom: 1.2rem;
             padding-right: 1rem;
-            border-right: 4px solid #ea580c;
+            border-right: 4px solid #8a5a3c;
         }
 
-        .text-part.ch36-border { border-right-color: #d97706; }
+        .text-part.ch36-border { border-right-color: #9a7a2c; }
 
         .text-part h4 {
             font-size: 0.95rem;
-            color: #ea580c;
+            color: #8a5a3c;
             margin-bottom: 0.3rem;
             font-weight: 800;
         }
 
-        .text-part.ch36-border h4 { color: #d97706; }
+        .text-part.ch36-border h4 { color: #9a7a2c; }
 
         /* Quiz */
         .question-item {
@@ -313,8 +313,8 @@
         }
 
         .option-btn:hover {
-            border-color: #ea580c;
-            background: #fff7ed;
+            border-color: #8a5a3c;
+            background: #fbf8f17ed;
         }
 
         .option-btn.correct {
@@ -340,19 +340,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -412,16 +412,16 @@
                     <span>التحليل المنهجي لمصدر الحرارة وأنماط انتقالها (التوصيل مقابل الحمل الحراري)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #431407;">
-                        <h4 style="color: #fdba74; margin-bottom: 1rem; font-size: 0.95rem;">مخطط طرق انتقال الحرارة في أغلفة الأرض</h4>
+                    <div class="doc-visual" style="background: 28,25,20;">
+                        <h4 style="color: #f0e2d6; margin-bottom: 1rem; font-size: 0.95rem;">مخطط طرق انتقال الحرارة في أغلفة الأرض</h4>
                         <!-- SVG Heat Transfer -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="طرق انتقال الحرارة في أغلفة الأرض (توصيل مقابل حمل)">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -429,44 +429,44 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">طرق انتقال الحرارة في أغلفة الأرض (توصيل مقابل حمل)</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Conduction dans la lithosphère vs convection dans le manteau</text>
-  <rect x="30" y="104" width="295" height="44" rx="12" fill="#38bdf8" fill-opacity="0.18" stroke="#38bdf8" stroke-width="1.8"/>
-  <text x="177.5" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الغلاف الصخري الصلب</text>
-  <circle cx="177.5" cy="186" r="24" fill="#38bdf8" fill-opacity="0.14" stroke="#38bdf8" stroke-width="2"/>
-  <text x="177.5" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">L</text>
-  <text x="177.5" y="226" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">توصيل (Conduction)</text>
-  <text x="177.5" y="247" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انتقال بطيء جدًا</text>
-  <text x="177.5" y="268" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">دون حركة مادة</text>
-  <rect x="475" y="104" width="295" height="44" rx="12" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="1.8"/>
-  <text x="622.5" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البرنس اللدن</text>
-  <circle cx="622.5" cy="186" r="24" fill="#fbbf24" fill-opacity="0.14" stroke="#fbbf24" stroke-width="2"/>
-  <text x="622.5" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">A</text>
-  <text x="622.5" y="226" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تيارات الحمل (Convection)</text>
-  <text x="622.5" y="247" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مع حركة مادة</text>
-  <text x="622.5" y="268" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صعود ساخن / هبوط بارد</text>
-  <line x1="467" y1="230" x2="333" y2="230" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/><path d="M 333,230 L 327.4,226.2 L 327.4,233.9 z" fill="#fbbf24" transform="rotate(180 333 230)"/>
-  <text x="400" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حرارة الباطن ↑</text>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Manteau - Asthénosphère: الحمل الحراري هو محرّك حركة الصفائح.</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">طرق انتقال الحرارة في أغلفة الأرض (توصيل مقابل حمل)</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Conduction dans la lithosphère vs convection dans le manteau</text>
+  <rect x="30" y="104" width="295" height="44" rx="12" fill="#1f5c45" fill-opacity="0.18" stroke="#1f5c45" stroke-width="1.8"/>
+  <text x="177.5" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الغلاف الصخري الصلب</text>
+  <circle cx="177.5" cy="186" r="24" fill="#1f5c45" fill-opacity="0.14" stroke="#1f5c45" stroke-width="2"/>
+  <text x="177.5" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">L</text>
+  <text x="177.5" y="226" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">توصيل (Conduction)</text>
+  <text x="177.5" y="247" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">انتقال بطيء جدًا</text>
+  <text x="177.5" y="268" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">دون حركة مادة</text>
+  <rect x="475" y="104" width="295" height="44" rx="12" fill="#9a7a2c" fill-opacity="0.18" stroke="#9a7a2c" stroke-width="1.8"/>
+  <text x="622.5" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البرنس اللدن</text>
+  <circle cx="622.5" cy="186" r="24" fill="#9a7a2c" fill-opacity="0.14" stroke="#9a7a2c" stroke-width="2"/>
+  <text x="622.5" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">A</text>
+  <text x="622.5" y="226" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تيارات الحمل (Convection)</text>
+  <text x="622.5" y="247" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مع حركة مادة</text>
+  <text x="622.5" y="268" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صعود ساخن / هبوط بارد</text>
+  <line x1="467" y1="230" x2="333" y2="230" stroke="#9a7a2c" stroke-width="2.5" stroke-linecap="round"/><path d="M 333,230 L 327.4,226.2 L 327.4,233.9 z" fill="#9a7a2c" transform="rotate(180 333 230)"/>
+  <text x="400" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حرارة الباطن ↑</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Manteau - Asthénosphère: الحمل الحراري هو محرّك حركة الصفائح.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 الحمل الحراري هو أسرع وأكفأ وسيلة لنقل الحرارة في الأغلفة اللدنة.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 الحمل الحراري هو أسرع وأكفأ وسيلة لنقل الحرارة في الأغلفة اللدنة.</p>
                     </div>
 
                     <div class="doc-analysis">
@@ -491,14 +491,14 @@
                 </div>
                 <p>قارن كفاءة التوصيل الحراري بالحمل الحراري في الصخور :</p>
                 
-                <div class="interactive-box" style="background: #431407;">
+                <div class="interactive-box" style="background: 28,25,20;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simHeat('cond')">🪨 النقل بالتوصيل في الغلاف الصخري (Conduction)</button>
-                        <button class="btn-action" style="background:#16a34a;" onclick="simHeat('conv')">🌋 النقل بالحمل الحراري في البرنس (Convection)</button>
+                        <button class="btn-action" style="background:#1f5c45;" onclick="simHeat('conv')">🌋 النقل بالحمل الحراري في البرنس (Convection)</button>
                     </div>
-                    <div id="heatDisplayBox" style="background: #7c2d12; border: 2px solid #fb923c; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #fdba74; margin-bottom: 10px;">🪨 النقل بالتوصيل (Conduction)</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">يحدث في الصخور الصلبة. تهتز الذرات الساخنة وتنقل الحرارة للذرات المجاورة دون أن تغادر مكانها. يعتبر الغلاف الصخري عازلاً حرارياً جيداً، مما يجعل تسرب الحرارة بالتوصيل بطيئاً جداً فيحافظ على سخونة باطن الأرض.</p>
+                    <div id="heatDisplayBox" style="background: 107,57,38; border: 2px solid 154,122,44; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #f0e2d6; margin-bottom: 10px;">🪨 النقل بالتوصيل (Conduction)</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">يحدث في الصخور الصلبة. تهتز الذرات الساخنة وتنقل الحرارة للذرات المجاورة دون أن تغادر مكانها. يعتبر الغلاف الصخري عازلاً حرارياً جيداً، مما يجعل تسرب الحرارة بالتوصيل بطيئاً جداً فيحافظ على سخونة باطن الأرض.</p>
                     </div>
                 </div>
             </section>
@@ -544,7 +544,7 @@
                     <span>الإشكالية الميكانيكية لحركة الصفائح</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--amber-dark); background: var(--amber-light);">
-                    <div class="problem-title" style="color: #92400e;">⚠️ كيف تتحول الحرارة الصامتة في باطن الأرض إلى محرك جبار يحرك القارات؟</div>
+                    <div class="problem-title" style="color: 107,57,38;">⚠️ كيف تتحول الحرارة الصامتة في باطن الأرض إلى محرك جبار يحرك القارات؟</div>
                     <p>تزن القارات والمحيطات ملايين المليارات من الأطنان. <strong>ما هي القوة الميكانيكية الخارقة القادرة على شق الظهرات المحيطية ودفع القارات وحني الغلاف الصخري في مناطق الغوص؟ وكيف تعمل الكرة الأرضية كـ "آلة حرارية" (<span class="ltr-seq">Machine thermique</span>) دقيقة؟</strong></p>
                 </div>
             </section>
@@ -556,16 +556,16 @@
                     <span>التحليل المنهجي لخلية الحمل الحراري (صعود الأعمدة الساخنة وهبوط الألواح الباردة)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #451a03;">
-                        <h4 style="color: #fde047; margin-bottom: 1rem; font-size: 0.95rem;">خلية الحمل الحراري في البرنس المحركة للصفائح</h4>
+                    <div class="doc-visual" style="background: #6b3926;">
+                        <h4 style="color: #f3e6c4; margin-bottom: 1rem; font-size: 0.95rem;">خلية الحمل الحراري في البرنس المحركة للصفائح</h4>
                         <!-- SVG Convection Motor -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خلية الحمل الحراري في البرنس المحركة للصفائح">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f1-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -573,81 +573,81 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f1-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f1-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f1-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خلية الحمل الحراري في البرنس المحركة للصفائح</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Cellule de convection — panache, rift, subduction</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خلية الحمل الحراري في البرنس المحركة للصفائح</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Cellule de convection — panache, rift, subduction</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#f43f5e" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">1</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حدود البرنس مع</text>
-  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">النواة</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">منطقة ساخنة جدًا</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Chaleur</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#8a5a3c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#8a5a3c" fill-opacity="0.22" stroke="#8a5a3c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">1</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">حدود البرنس مع</text>
+  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">النواة</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">منطقة ساخنة جدًا</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Chaleur</text>
   </g>
-  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#38bdf8" transform="rotate(0 220.5 224)"/>
-  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صعود</text>
+  <line x1="186.5" y1="224" x2="220.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 220.5,224 L 214.9,220.2 L 214.9,227.9 z" fill="#1f5c45" transform="rotate(0 220.5 224)"/>
+  <text x="203.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صعود</text>
   <g transform="translate(226.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">2</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عمود ساخن صاعد</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Panache خفيف</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Panache</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">2</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عمود ساخن صاعد</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Panache خفيف</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Panache</text>
   </g>
-  <line x1="383" y1="224" x2="417" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#38bdf8" transform="rotate(0 417 224)"/>
-  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تباعد</text>
+  <line x1="383" y1="224" x2="417" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 417,224 L 411.4,220.2 L 411.4,227.9 z" fill="#1f5c45" transform="rotate(0 417 224)"/>
+  <text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تباعد</text>
   <g transform="translate(423, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">3</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ظهرة محيطية</text>
-  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">(تباعد)</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صفيحة محيطية جديدة</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Rift</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">3</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">ظهرة محيطية</text>
+  <text x="75.3" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">(تباعد)</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صفيحة محيطية جديدة</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Rift</text>
   </g>
-  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#38bdf8" transform="rotate(0 613.5 224)"/>
-  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تبريد وغوص</text>
+  <line x1="579.5" y1="224" x2="613.5" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 613.5,224 L 607.9,220.2 L 607.9,227.9 z" fill="#1f5c45" transform="rotate(0 613.5 224)"/>
+  <text x="596.5" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تبريد وغوص</text>
   <g transform="translate(619.5, 150)">
-  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">4</text>
-  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صفيحة باردة غائصة</text>
-  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عودة المادة نحو البرنس</text>
-  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Subduction</text>
+  <rect x="0" y="0" width="150.5" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">4</text>
+  <text x="75.3" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">صفيحة باردة غائصة</text>
+  <text x="75.3" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">عودة المادة نحو البرنس</text>
+  <rect x="17.3" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="75.3" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Subduction</text>
   </g>
-  <line x1="694.8" y1="306" x2="694.8" y2="344" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
-  <line x1="694.8" y1="344" x2="105.3" y2="344" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
-  <line x1="105.3" y1="344" x2="105.3" y2="306" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/><path d="M 105.3,306 L 99.7,302.2 L 99.7,309.9 z" fill="#94a3b8" transform="rotate(-90 105.3 306)"/>
-  <rect x="250" y="320" width="300" height="20" rx="10" fill="#0c1322" fill-opacity="0.95" stroke="none" stroke-width="1"/>
-  <text x="400" y="334" text-anchor="middle" font-size="11.5" font-weight="700" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">دورة مغلقة: النواة ← ظهرة ← غوص ← البرنس</text>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خلية الحمل الحراري في البرنس هي المحرّك الأساسي لحركة الصفائح.</text>
+  <line x1="694.8" y1="306" x2="694.8" y2="344" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
+  <line x1="694.8" y1="344" x2="105.3" y2="344" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>
+  <line x1="105.3" y1="344" x2="105.3" y2="306" stroke="#a79c8a" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/><path d="M 105.3,306 L 99.7,302.2 L 99.7,309.9 z" fill="#a79c8a" transform="rotate(-90 105.3 306)"/>
+  <rect x="250" y="320" width="300" height="20" rx="10" fill="#143d2e" fill-opacity="0.95" stroke="none" stroke-width="1"/>
+  <text x="400" y="334" text-anchor="middle" font-size="11.5" font-weight="700" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">دورة مغلقة: النواة ← ظهرة ← غوص ← البرنس</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">خلية الحمل الحراري في البرنس هي المحرّك الأساسي لحركة الصفائح.</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 صعود المادة يسحب الظهرة، وهبوط اللوح البارد يسحب منطقة الغوص.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 صعود المادة يسحب الظهرة، وهبوط اللوح البارد يسحب منطقة الغوص.</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #fef3c7; color: #b45309;">محرك الأرض في البكالوريا</span>
+                        <span class="method-tag" style="background: #f3e6c4; color: #6b5320;">محرك الأرض في البكالوريا</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">كيف تعمل الآلة الحرارية للأرض؟</h4>
                         <ol style="padding-right: 1.2rem; line-height: 1.8;">
                             <li><strong>تسخين وتمدد المادة في العمق :</strong> تسخن مادة البرنس العميقة بفعل الحرارة الإشعاعية، فتتمدد وتقل كثافتها وتصعد نحو الأعلى مشكلة <strong>أعمده ساخنة صاعدة (<span class="ltr-seq">Panaches chauds</span>)</strong> أسفل الظهرات المحيطية، مما يدفع الصفائح للتباعد.</li>
@@ -665,14 +665,14 @@
                 </div>
                 <p>اضغط لتشغيل محرك الحمل الحراري ومعاينة تحول الطاقة الحرارية لميكانيكية :</p>
                 
-                <div class="interactive-box" style="background: #451a03;">
+                <div class="interactive-box" style="background: #6b3926;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-amber" onclick="simMotor('run')">⚙️ تشغيل تيارات الحمل الحراري (نشاط تكتوني مستمر)</button>
-                        <button class="btn-action" style="background:#dc2626;" onclick="simMotor('stop')">❄️ تبريد باطن الأرض (توقف المحرك وموت الكوكب تكتونياً)</button>
+                        <button class="btn-action" style="background:#8a5a3c;" onclick="simMotor('stop')">❄️ تبريد باطن الأرض (توقف المحرك وموت الكوكب تكتونياً)</button>
                     </div>
-                    <div id="motorDisplayBox" style="background: #78350f; border: 2px solid #fbbf24; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #4ade80; margin-bottom: 10px;">⚙️ الأرض آلة حرارية حية ونشطة</h3>
-                        <p style="color: #cbd5e1; line-height: 1.8;">تتحول الطاقة الحرارية الناتجة عن التفكك الإشعاعي إلى طاقة حركية (تيارات الحمل الحراري). صعود الماغما يدفع الظهرات، وغوص الألواح الباردة يسحب الخنادق، فتستمر زحزحة القارات وتجدد قشرة الأرض.</p>
+                    <div id="motorDisplayBox" style="background: #6b3926; border: 2px solid #9a7a2c; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #1f5c45; margin-bottom: 10px;">⚙️ الأرض آلة حرارية حية ونشطة</h3>
+                        <p style="color: #e4d9c5; line-height: 1.8;">تتحول الطاقة الحرارية الناتجة عن التفكك الإشعاعي إلى طاقة حركية (تيارات الحمل الحراري). صعود الماغما يدفع الظهرات، وغوص الألواح الباردة يسحب الخنادق، فتستمر زحزحة القارات وتجدد قشرة الأرض.</p>
                     </div>
                 </div>
             </section>
@@ -681,7 +681,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 بيّن مصدر الطاقة الداخلية للأرض ودورها في تحريك الصفائح التكتونية.</p>
@@ -692,7 +692,7 @@
                     <li style="margin-bottom:6px;">تسحب تيارات الحمل الصفائح الليثوسفيرية وتحركها فوق الأستينوسفير.</li>
                     <li style="margin-bottom:6px;">تتجلى الطاقة الداخلية في الزلازل والبراكين وبناء السلاسل الجبلية.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : تيارات الحمل / الاضمحلال الإشعاعي</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : تيارات الحمل / الاضمحلال الإشعاعي</p>
             </section>
 
             <!-- الحصيلة المعرفية الرسمية (texte corrigé fourni par l'utilisateur 2026-09-21 — voir docs/RESUMES_MAARIFI_LIVRE_2026-09-21.md §11) -->
@@ -719,12 +719,12 @@
         <!-- ═══ Zone de synthèse commune (🏛 حصيلة + 🗺 مخطط) — hors chapter-view :
              visible dans LES DEUX leçons du fichier (survit au slicing lessonChapterSplit) ═══ -->
         <div class="synthese-zone" id="zone-synthese">
-<section class="card" id="hosila" style="border:2px solid #f59e0b;">
+<section class="card" id="hosila" style="border:2px solid #9a7a2c;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#b45309;">🏛</span>
+                    <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:#92400e; font-weight:700; margin:6px 0;">الوحدة: U9 — تحديد الصفائح التكتونية وحركاتها — نص بتنسيق قرائي، دون تغيير المعنى.</p>
+                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: U9 — تحديد الصفائح التكتونية وحركاتها — نص بتنسيق قرائي، دون تغيير المعنى.</p>
 
 <ul style="margin:8px 0; padding-right:24px; line-height:1.9; font-size:13px;">
 <li>ينقسم الغلاف الصخري (القشرة الأرضية) إلى <b>صفائح صلبة</b> تفصلها أحزمة نشطة (زلازل، براكين، ظهرات، خنادق).</li>
@@ -734,7 +734,7 @@
 <li><b>الطاقة الداخلية</b> : حرارة أولية (تشكل الأرض) + تحلل ذري للعناصر المشعة (²³⁸U, ²³⁵U, ⁴⁰K, ²³²Th) ← <b>تيارات حمل</b> في البرنس تحرك الصفائح فوق الأستينوسفير.</li>
 </ul>
 
-<p style="font-size:11px; color:#78716c; margin-top:6px;">نصّ حصيلة الوحدة 9 مصحَّح يدوياً؛ لم تُستخرج من النسخة الممسوحة ضوئياً.</p>
+<p style="font-size:11px; color:#6b6458; margin-top:6px;">نصّ حصيلة الوحدة 9 مصحَّح يدوياً؛ لم تُستخرج من النسخة الممسوحة ضوئياً.</p>
             </section>
         </div>
 
@@ -754,13 +754,13 @@
             let box = document.getElementById('heatDisplayBox');
             if (type === 'cond') {
                 box.innerHTML = `
-                    <h3 style="color: #fdba74; margin-bottom: 10px;">🪨 النقل بالتوصيل (Conduction)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يحدث في الصخور الصلبة. تهتز الذرات الساخنة وتنقل الحرارة للذرات المجاورة دون أن تغادر مكانها. يعتبر الغلاف الصخري عازلاً حرارياً جيداً، مما يجعل تسرب الحرارة بالتوصيل بطيئاً جداً فيحافظ على سخونة باطن الأرض.</p>
+                    <h3 style="color: #f0e2d6; margin-bottom: 10px;">🪨 النقل بالتوصيل (Conduction)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يحدث في الصخور الصلبة. تهتز الذرات الساخنة وتنقل الحرارة للذرات المجاورة دون أن تغادر مكانها. يعتبر الغلاف الصخري عازلاً حرارياً جيداً، مما يجعل تسرب الحرارة بالتوصيل بطيئاً جداً فيحافظ على سخونة باطن الأرض.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">🌋 النقل بالحمل الحراري (Convection)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">يحدث في البرنس اللدن (<span class="ltr-seq">Asthénosphère</span>). تنقل الحرارة بحركة وانتقال المادة نفسها! تصعد الصخور اللدنة الساخنة والخفيفة نحو الأعلى، وتهبط الصخور الباردة والكثيفة نحو الأسفل. وهو نقل سريع وفعال جداً.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">🌋 النقل بالحمل الحراري (Convection)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">يحدث في البرنس اللدن (<span class="ltr-seq">Asthénosphère</span>). تنقل الحرارة بحركة وانتقال المادة نفسها! تصعد الصخور اللدنة الساخنة والخفيفة نحو الأعلى، وتهبط الصخور الباردة والكثيفة نحو الأسفل. وهو نقل سريع وفعال جداً.</p>
                 `;
             }
         }
@@ -769,13 +769,13 @@
             let box = document.getElementById('motorDisplayBox');
             if (state === 'run') {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">⚙️ الأرض آلة حرارية حية ونشطة</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">تتحول الطاقة الحرارية الناتجة عن التفكك الإشعاعي إلى طاقة حركية (تيارات الحمل الحراري). صعود الماغما يدفع الظهرات، وغوص الألواح الباردة يسحب الخنادق، فتستمر زحزحة القارات وتجدد قشرة الأرض.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">⚙️ الأرض آلة حرارية حية ونشطة</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">تتحول الطاقة الحرارية الناتجة عن التفكك الإشعاعي إلى طاقة حركية (تيارات الحمل الحراري). صعود الماغما يدفع الظهرات، وغوص الألواح الباردة يسحب الخنادق، فتستمر زحزحة القارات وتجدد قشرة الأرض.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #ef4444; margin-bottom: 10px;">❄️ توقف المحرك التكتوني (سيناريو الموت الحراري)</h3>
-                    <p style="color: #cbd5e1; line-height: 1.8;">لو نفدت النظائر المشعة وبرد باطن الأرض، ستتوقف تيارات الحمل الحراري نهائياً. ستتوقف الظهرات ومناطق الغوص، وتتوقف الزلازل والبراكين، وتتجمد الأرض ككوكب ميت جيولوجياً مثل القمر أو المريخ.</p>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">❄️ توقف المحرك التكتوني (سيناريو الموت الحراري)</h3>
+                    <p style="color: #e4d9c5; line-height: 1.8;">لو نفدت النظائر المشعة وبرد باطن الأرض، ستتوقف تيارات الحمل الحراري نهائياً. ستتوقف الظهرات ومناطق الغوص، وتتوقف الزلازل والبراكين، وتتجمد الأرض ككوكب ميت جيولوجياً مثل القمر أو المريخ.</p>
                 `;
             }
         }
@@ -792,10 +792,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> التفكك الإشعاعي للنظائر هو المصدر المستدام والداخلي للحرارة.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> الشمس تؤثر على سطح الأرض فقط ولا علاقة لها بحرارة النواة والبرنس.';
             }
         }
@@ -812,10 +812,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> تحويل الحرارة إلى طاقة ميكانيكية حركية هو التعريف الدقيق للآلة الحرارية في البكالوريا.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> الآلة الحرارية تعني التحويل الفعلي للطاقة الحرارية إلى شغل ميكانيكي (حركة الصفائح).';
             }
         }
@@ -924,8 +924,8 @@
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -937,7 +937,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -950,8 +950,8 @@
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -984,12 +984,12 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1012,7 +1012,7 @@
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1523,12 +1523,12 @@
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 3 : النشاط 5 والنشاط 6</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --amber: #d97706;
-            --amber-light: #fffbeb;
-            --cyan: #0891b2;
-            --cyan-light: #ecfeff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --amber: #9a7a2c;
+            --amber-light: #f3e6c4;
+            --cyan: 31,92,69;
+            --cyan-light: 251,248,241;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch5 {
-            background: linear-gradient(135deg, #78350f 0%, #d97706 100%);
+            background: linear-gradient(135deg, #6b3926 0%, #9a7a2c 100%);
         }
 
         .header-ch6 {
-            background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+            background: linear-gradient(135deg, #1f5c45 0%, 31,92,69 100%);
         }
 
         .lesson-breadcrumb {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -252,14 +252,14 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #0e7490; }
+        .btn-action:hover { background: #1f5c45; }
         .btn-amber { background: var(--amber); }
-        .btn-amber:hover { background: #b45309; }
+        .btn-amber:hover { background: #6b5320; }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -314,7 +314,7 @@
 
         .option-btn:hover {
             border-color: var(--cyan);
-            background: #ecfeff;
+            background: 251,248,241;
         }
 
         .option-btn.correct {
@@ -340,19 +340,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -413,15 +413,15 @@
                 </div>
                 <div class="doc-viewer">
                     <div class="doc-visual">
-                        <h4 style="margin-bottom: 1rem; color: #fde68a; font-size: 0.95rem;">خطوات تجربة أنفنصن على إنزيم الريبونكلياز (Ribonucléase) ذو 4 جسور ثنائية الكبريت</h4>
+                        <h4 style="margin-bottom: 1rem; color: #f3e6c4; font-size: 0.95rem;">خطوات تجربة أنفنصن على إنزيم الريبونكلياز (Ribonucléase) ذو 4 جسور ثنائية الكبريت</h4>
                         <!-- SVG Anfinsen -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="تجربة أنفنصن على إنزيم الريبونكلياز (4 جسور ثنائية الكبريت)">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -429,60 +429,60 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تجربة أنفنصن على إنزيم الريبونكلياز (4 جسور ثنائية الكبريت)</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Anfinsen (1961) — la séquence primaire détermine le repliement</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تجربة أنفنصن على إنزيم الريبونكلياز (4 جسور ثنائية الكبريت)</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Anfinsen (1961) — la séquence primaire détermine le repliement</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">1</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بنية طبيعية فعالة</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">4 جسور ثنائية الكبريت</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">100% نشاط</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">1</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">بنية طبيعية فعالة</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">4 جسور ثنائية الكبريت</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">100% نشاط</text>
   </g>
-  <line x1="252" y1="224" x2="286" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 286,224 L 280.4,220.2 L 280.4,227.9 z" fill="#38bdf8" transform="rotate(0 286 224)"/>
-  <text x="269" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">+ يوريا و</text>
-  <text x="269" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">β-مركابتوإثانول</text>
+  <line x1="252" y1="224" x2="286" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 286,224 L 280.4,220.2 L 280.4,227.9 z" fill="#1f5c45" transform="rotate(0 286 224)"/>
+  <text x="269" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">+ يوريا و</text>
+  <text x="269" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">β-مركابتوإثانول</text>
   <g transform="translate(292, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#f43f5e" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#f43f5e" fill-opacity="0.22" stroke="#f43f5e" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e" font-family="'Consolas', monospace">2</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فقدان البنية</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يوريا + β-مركابتوإثانول</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#f43f5e" fill-opacity="0.16" stroke="#f43f5e" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#f43f5e" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">0% نشاط</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#8a5a3c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#8a5a3c" fill-opacity="0.22" stroke="#8a5a3c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a3c" font-family="'Consolas', monospace">2</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فقدان البنية</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">يوريا + β-مركابتوإثانول</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#8a5a3c" fill-opacity="0.16" stroke="#8a5a3c" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#8a5a3c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">0% نشاط</text>
   </g>
-  <line x1="514" y1="224" x2="548" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 548,224 L 542.4,220.2 L 542.4,227.9 z" fill="#38bdf8" transform="rotate(0 548 224)"/>
-  <text x="531" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إزالة المواد الكيميائية</text>
+  <line x1="514" y1="224" x2="548" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 548,224 L 542.4,220.2 L 542.4,227.9 z" fill="#1f5c45" transform="rotate(0 548 224)"/>
+  <text x="531" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إزالة المواد الكيميائية</text>
   <g transform="translate(554, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">3</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">استرجاع البنية</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إزالة المواد الكيميائية</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">100% نشاط</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">3</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">استرجاع البنية</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">إزالة المواد الكيميائية</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">100% نشاط</text>
   </g>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البنية الفراغية للبروتين تتبع من التسلسل الأولي (فرضية أنفنصن).</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">البنية الفراغية للبروتين تتبع من التسلسل الأولي (فرضية أنفنصن).</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">🧪 مادة اليوريا تعيق الروابط الهيدروجينية، و β-مركابتوإيثانول يكسر الجسور ثنائية الكبريت.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">🧪 مادة اليوريا تعيق الروابط الهيدروجينية، و β-مركابتوإيثانول يكسر الجسور ثنائية الكبريت.</p>
                     </div>
 
                     <div class="doc-analysis">
@@ -491,7 +491,7 @@
                         <p>1. تكسير الروابط الكيميائية (تخريب البنية الفراغية) يؤدي مباشرة إلى <strong>فقدان الوظيفة البيولوجية</strong> للبروتين.</p>
                         <p>2. إزالة عوامل التخريب تسمح للبروتين بالانطواء التلقائي الصحيح واسترجاع بنيته وفعاليته.</p>
                         <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--border);">
-                        <p style="font-weight: bold; color: #b45309;">الاستنتاج الذهبي في البكالوريا :</p>
+                        <p style="font-weight: bold; color: #6b5320;">الاستنتاج الذهبي في البكالوريا :</p>
                         <p>البنية الفراغية الثلاثية للبروتين محددة ومفروضة <strong>وراثياً</strong> بعدد ونوع وترتيب الأحماض الأمينية التي تشكل السلسلة البيبتيدية (البنية الأولية).</p>
                     </div>
                 </div>
@@ -505,15 +505,15 @@
                 </div>
                 <p>تحدد المورثة (<span class="ltr-seq">ADN</span>) تسلسل الأحماض الأمينية في البروتين. اضغط لإحداث طفرة استبدال وملاحظة النتيجة الجزيئية والخلويـة :</p>
                 
-                <div class="interactive-box" style="background: #0f172a;">
+                <div class="interactive-box" style="background: #143d2e;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action btn-amber" onclick="simMut('hba')">🟢 الحالة الطبيعية (الهيموغلوبين HbA)</button>
-                        <button class="btn-action" style="background: #e11d48;" onclick="simMut('hbs')">🔴 طفرة مرض فقر الدم المنجلي (الهيموغلوبين HbS)</button>
+                        <button class="btn-action" style="background: #8a5a3c;" onclick="simMut('hbs')">🔴 طفرة مرض فقر الدم المنجلي (الهيموغلوبين HbS)</button>
                     </div>
-                    <div id="mutDisplayBox" style="background: #1e293b; border: 2px solid #334155; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 الهيموغلوبين الطبيعي (HbA)</h3>
-                        <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#93c5fd; margin: 10px 0;">Codons : 5'- ... - CCU - GAG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Glu(6) - Glu(7) - ...</p>
-                        <p style="color: #cbd5e1; line-height: 1.8;">الحمض الأميني رقم 6 هو <strong>حمض الغلوتاميك (<span class="ltr-seq">Glu</span> المحب للماء)</strong>. يبقى جزيء الهيموغلوبين ذائباً ومنفصلاً في هيولى كرية الدم الحمراء، فتحتفظ الكرية بشكلها القرصي المرن القادر على نقل الأكسجين والمرور بسلاسة في الشعيرات الدموية.</p>
+                    <div id="mutDisplayBox" style="background: #1c1914; border: 2px solid #3f3a32; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 الهيموغلوبين الطبيعي (HbA)</h3>
+                        <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#d7e6dc; margin: 10px 0;">Codons : 5'- ... - CCU - GAG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Glu(6) - Glu(7) - ...</p>
+                        <p style="color: #e4d9c5; line-height: 1.8;">الحمض الأميني رقم 6 هو <strong>حمض الغلوتاميك (<span class="ltr-seq">Glu</span> المحب للماء)</strong>. يبقى جزيء الهيموغلوبين ذائباً ومنفصلاً في هيولى كرية الدم الحمراء، فتحتفظ الكرية بشكلها القرصي المرن القادر على نقل الأكسجين والمرور بسلاسة في الشعيرات الدموية.</p>
                     </div>
                 </div>
             </section>
@@ -565,7 +565,7 @@
                     <span>الإشكالية الأساسية للوحدة الثالثة</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--cyan); background: var(--cyan-light);">
-                    <div class="problem-title" style="color: #0e7490;">⚠️ كيف تنجز الإنزيمات تفاعلات معقدة في درجة حرارة الجسم (37°C)؟</div>
+                    <div class="problem-title" style="color: #1f5c45;">⚠️ كيف تنجز الإنزيمات تفاعلات معقدة في درجة حرارة الجسم (37°C)؟</div>
                     <p>تتطلب التفاعلات الكيميائية في المختبر درجات حرارة مرتفعة وأحماضاً قوية لتفكيك الجزيئات المعقدة، بينما تتم نفس التفاعلات داخل الخلايا الحية في درجة حرارة هادئة (37°C) وبسرعة فائقة جداً. <strong>يعود هذا الفضل للإنزيمات (<span class="ltr-seq">Enzymes</span>). ما هو السر البنيوي في الإنزيم الذي يمنحه هذه القدرة والخصوصية الفائقة؟</strong></p>
                 </div>
             </section>
@@ -577,16 +577,16 @@
                     <span>التحليل المنهجي للموقع الفعال ونموذج التوافق المحرض (Adaptation Induite)</span>
                 </div>
                 <div class="doc-viewer">
-                    <div class="doc-visual" style="background: #083344;">
-                        <h4 style="color: #67e8f9; margin-bottom: 1rem; font-size: 0.95rem;">نموذج التوافق المحرض (التداخل والتكامل البنيوي أثناء اقتراب مادة التفاعل)</h4>
+                    <div class="doc-visual" style="background: 20,61,46;">
+                        <h4 style="color: 215,230,220; margin-bottom: 1rem; font-size: 0.95rem;">نموذج التوافق المحرض (التداخل والتكامل البنيوي أثناء اقتراب مادة التفاعل)</h4>
                         <!-- SVG Induced Fit -->
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="نموذج التوافق المحرض — التداخل والتكامل البنيوي">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-f1-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -594,65 +594,65 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-f1-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-f1-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-f1-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-f1-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
-  <rect x="10" y="10" width="780" height="480" rx="22" fill="#0c1322" stroke="#1e293b" stroke-width="2"/>
-  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نموذج التوافق المحرض — التداخل والتكامل البنيوي</text>
-  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#94a3b8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Induced fit (Koshland, 1958) — E + S → complexe E·S</text>
+  <rect x="10" y="10" width="780" height="480" rx="22" fill="#143d2e" stroke="#1c1914" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">نموذج التوافق المحرض — التداخل والتكامل البنيوي</text>
+  <text x="400" y="62" text-anchor="middle" font-size="11.5" fill="#a79c8a" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">Induced fit (Koshland, 1958) — E + S → complexe E·S</text>
   <g transform="translate(30, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" font-family="'Consolas', monospace">1</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الإنزيم (E) قبل</text>
-  <text x="108" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الارتباط</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الموقع النشط مرن</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#38bdf8" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">غير متوافق</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">1</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الإنزيم (E) قبل</text>
+  <text x="108" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الارتباط</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الموقع النشط مرن</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">غير متوافق</text>
   </g>
-  <line x1="252" y1="224" x2="286" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 286,224 L 280.4,220.2 L 280.4,227.9 z" fill="#38bdf8" transform="rotate(0 286 224)"/>
-  <text x="269" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">+ اقتراب S</text>
+  <line x1="252" y1="224" x2="286" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 286,224 L 280.4,220.2 L 280.4,227.9 z" fill="#1f5c45" transform="rotate(0 286 224)"/>
+  <text x="269" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">+ اقتراب S</text>
   <g transform="translate(292, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#fbbf24" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#fbbf24" fill-opacity="0.22" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#fbbf24" font-family="'Consolas', monospace">2</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مادة التفاعل (S)</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تقترب من الموقع</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">اقتراب S</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#9a7a2c" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#9a7a2c" fill-opacity="0.22" stroke="#9a7a2c" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#9a7a2c" font-family="'Consolas', monospace">2</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">مادة التفاعل (S)</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تقترب من الموقع</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#9a7a2c" fill-opacity="0.16" stroke="#9a7a2c" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">اقتراب S</text>
   </g>
-  <line x1="514" y1="224" x2="548" y2="224" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/><path d="M 548,224 L 542.4,220.2 L 542.4,227.9 z" fill="#38bdf8" transform="rotate(0 548 224)"/>
-  <text x="531" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fbbf24" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">توافق محرض</text>
+  <line x1="514" y1="224" x2="548" y2="224" stroke="#1f5c45" stroke-width="2.5" stroke-linecap="round"/><path d="M 548,224 L 542.4,220.2 L 542.4,227.9 z" fill="#1f5c45" transform="rotate(0 548 224)"/>
+  <text x="531" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#9a7a2c" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">توافق محرض</text>
   <g transform="translate(554, 150)">
-  <rect x="0" y="0" width="216" height="148" rx="14" fill="#111c31" stroke="#34d399" stroke-width="2"/>
-  <circle cx="24" cy="26" r="14" fill="#34d399" fill-opacity="0.22" stroke="#34d399" stroke-width="1.5"/>
-  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399" font-family="'Consolas', monospace">3</text>
-  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">معقد (E - S)</text>
-  <text x="108" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">متوافق</text>
-  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تكامل بنيوي تام</text>
-  <rect x="50" y="126" width="116" height="20" rx="10" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1"/>
-  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#34d399" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فعالية قصوى</text>
+  <rect x="0" y="0" width="216" height="148" rx="14" fill="#143d2e" stroke="#1f5c45" stroke-width="2"/>
+  <circle cx="24" cy="26" r="14" fill="#1f5c45" fill-opacity="0.22" stroke="#1f5c45" stroke-width="1.5"/>
+  <text x="24" y="31" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c45" font-family="'Consolas', monospace">3</text>
+  <text x="108" y="64" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">معقد (E - S)</text>
+  <text x="108" y="82" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f3eee4" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">متوافق</text>
+  <text x="108" y="104" text-anchor="middle" font-size="11.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">تكامل بنيوي تام</text>
+  <rect x="50" y="126" width="116" height="20" rx="10" fill="#1f5c45" fill-opacity="0.16" stroke="#1f5c45" stroke-width="1"/>
+  <text x="108" y="141" text-anchor="middle" font-size="11" font-weight="700" fill="#1f5c45" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">فعالية قصوى</text>
   </g>
-  <rect x="30" y="444" width="740" height="36" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
-  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#cbd5e1" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الموقع النشط يتكيّف مع المادة — لا قفل/صندوق ثابت (Koshland).</text>
+  <rect x="30" y="444" width="740" height="36" rx="10" fill="#143d2e" stroke="#1c1914" stroke-width="1"/>
+  <text x="400" y="468" text-anchor="middle" font-size="12.5" fill="#e4d9c5" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif">الموقع النشط يتكيّف مع المادة — لا قفل/صندوق ثابت (Koshland).</text>
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">💡 عند اقتراب مادة التفاعل، يغير الإنزيم شكل موقعه الفعال ليتكامل بنيوياً مع مادة التفاعل.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">💡 عند اقتراب مادة التفاعل، يغير الإنزيم شكل موقعه الفعال ليتكامل بنيوياً مع مادة التفاعل.</p>
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #ecfeff; color: #0891b2;">مفاهيم البكالوريا الأساسية</span>
+                        <span class="method-tag" style="background: 251,248,241; color: 31,92,69;">مفاهيم البكالوريا الأساسية</span>
                         <h4 style="margin: 8px 0; color: var(--primary);">ما هو الموقع الفعال (<span class="ltr-seq">Site Actif</span>)؟</h4>
                         <p>هو تجويف أو منطقة محددة في البنية الفراغية للإنزيم، يتكون من عدد قليل من الأحماض الأمينية المحددة وراثياً، وينقسم إلى قسمين :</p>
                         <p>• <strong>موقع التثبيت (<span class="ltr-seq">Site de fixation</span>) :</strong> يتعرف ويثبت مادة التفاعل (<span class="ltr-seq">Substrat S</span>).</p>
@@ -671,14 +671,14 @@
                 </div>
                 <p>تتميز الإنزيمات بخصوصية عالية جداً، فهي متخصصة بالنسبة <strong>لمادة التفاعل (<span class="ltr-seq">Substrat</span>)</strong> وبالنسبة <strong> لنوع التفاعل (<span class="ltr-seq">Type de réaction</span>)</strong>. اضغط لاختبار الخصوصية :</p>
                 
-                <div class="interactive-box" style="background: #164e63;">
+                <div class="interactive-box" style="background: 31,92,69;">
                     <div style="margin-bottom: 15px;">
                         <button class="btn-action" onclick="simEnz('s1')">🧪 إنزيم السكراز (Saccharase) + سكر السكروز</button>
-                        <button class="btn-action" style="background:#be123c;" onclick="simEnz('s2')">🧪 إنزيم السكراز + سكر المالتوز</button>
+                        <button class="btn-action" style="background:138,90,60;" onclick="simEnz('s2')">🧪 إنزيم السكراز + سكر المالتوز</button>
                     </div>
-                    <div id="enzDisplayBox" style="background: #083344; border: 2px solid #06b6d4; border-radius: 12px; padding: 1.5rem; text-align: center;">
-                        <h3 style="color: #67e8f9; margin-bottom: 10px;">🧪 اضغط على أحد التفاعلات أعلاه لمشاهدة تأثير الخصوصية</h3>
-                        <p style="color: #cbd5e1;">ستلاحظ هل يتشكل المعقد الإنزيمي (<span class="ltr-seq">ES</span>) أم يحدث تنافر بنيوي.</p>
+                    <div id="enzDisplayBox" style="background: 20,61,46; border: 2px solid 31,92,69; border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="color: 215,230,220; margin-bottom: 10px;">🧪 اضغط على أحد التفاعلات أعلاه لمشاهدة تأثير الخصوصية</h3>
+                        <p style="color: #e4d9c5;">ستلاحظ هل يتشكل المعقد الإنزيمي (<span class="ltr-seq">ES</span>) أم يحدث تنافر بنيوي.</p>
                     </div>
                 </div>
             </section>
@@ -687,7 +687,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock ; restructuration É2 du résumé hérité) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 بيّن أن تسلسل الأحماض الأمينية يحدد البنية الفراغية، وأن الوظيفة مرتبطة بالبنية.</p>
@@ -698,7 +698,7 @@
                     <li style="margin-bottom:6px;">يغير استبدال حمض أميني واحد شكل الموقع الفعال فيتغير نمط عمل الإنزيم.</li>
                     <li style="margin-bottom:6px;">تتوقف خصوصية الإنزيم المزدوج على البنية الفراغية للموقع الفعال ومادة محددة.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : التسلسل يحدد البنية / العلاقة بين البنية والوظيفة</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : التسلسل يحدد البنية / العلاقة بين البنية والوظيفة</p>
             </section>
 
             
@@ -726,12 +726,12 @@
              visible dans LES DEUX leçons du fichier (survit au slicing lessonChapterSplit) ═══ -->
         <div class="synthese-zone" id="zone-synthese">
 <!-- الحصيلة المعرفية الرسمية (citation verbatim du livre officiel — voir docs/RESUMES_MAARIFI_LIVRE_2026-09-21.md) -->
-            <section class="card" id="hosila" style="border:2px solid #f59e0b;">
+            <section class="card" id="hosila" style="border:2px solid #9a7a2c;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#b45309;">🏛</span>
+                    <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:#92400e; font-weight:700; margin:6px 0;">الوحدة: D1-U2 — بنية البروتين ووظيفته — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
+                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: D1-U2 — بنية البروتين ووظيفته — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
 
 <ol style="margin:8px 0; padding-right:24px; line-height:2; font-size:13px;">
 <li>ترتبط الأحماض الأمينية المتتالية في السلسلة الببتيدية بروابط تكافؤية تدعى <b>الروابط الببتيدية</b>، وتنشأ من تفاعل مجموعة الكربوكسيل (COOH) لحمض أميني مع مجموعة الأمين (NH2) لحمض أميني آخر مع خروج جزيئة ماء.</li>
@@ -761,15 +761,15 @@
             let box = document.getElementById('mutDisplayBox');
             if (type === 'hba') {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">🟢 الهيموغلوبين الطبيعي (HbA)</h3>
-                    <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#93c5fd; margin: 10px 0;">Codons : 5'- ... - CCU - GAG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Glu(6) - Glu(7) - ...</p>
-                    <p style="color: #cbd5e1; line-height: 1.8;">الحمض الأميني رقم 6 هو <strong>حمض الغلوتاميك (<span class="ltr-seq">Glu</span> المحب للماء)</strong>. يبقى جزيء الهيموغلوبين ذائباً ومنفصلاً في هيولى كرية الدم الحمراء، فتحتفظ الكرية بشكلها القرصي المرن القادر على نقل الأكسجين والمرور بسلاسة في الشعيرات الدموية.</p>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">🟢 الهيموغلوبين الطبيعي (HbA)</h3>
+                    <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#d7e6dc; margin: 10px 0;">Codons : 5'- ... - CCU - GAG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Glu(6) - Glu(7) - ...</p>
+                    <p style="color: #e4d9c5; line-height: 1.8;">الحمض الأميني رقم 6 هو <strong>حمض الغلوتاميك (<span class="ltr-seq">Glu</span> المحب للماء)</strong>. يبقى جزيء الهيموغلوبين ذائباً ومنفصلاً في هيولى كرية الدم الحمراء، فتحتفظ الكرية بشكلها القرصي المرن القادر على نقل الأكسجين والمرور بسلاسة في الشعيرات الدموية.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #f43f5e; margin-bottom: 10px;">🔴 طفرة مرض فقر الدم المنجلي (الهيموغلوبين HbS)</h3>
-                    <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#fca5a5; margin: 10px 0;">Codons : 5'- ... - CCU - GUG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Val(6) - Glu(7) - ...</p>
-                    <p style="color: #cbd5e1; line-height: 1.8;">استبدال الغلوتاميك بـ <strong>الفالين (<span class="ltr-seq">Val</span> الكاره للماء)</strong> يسبب نشأة نقطة كارهة للماء على سطح الهيموغلوبين. تتجاذب الجزيئات وتتراص على شكل ألياف أنبوبية صلبة وطويلة تشوه كرية الدم الحمراء إلى شكل منجلي، فتنسد الأوعية وتتكسر الكريات.</p>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">🔴 طفرة مرض فقر الدم المنجلي (الهيموغلوبين HbS)</h3>
+                    <p style="direction:ltr; font-family:monospace; font-size:1.1rem; color:#f0e2d6; margin: 10px 0;">Codons : 5'- ... - CCU - GUG - GAG - ... -3'<br>Acides aminés : ... - Pro(4) - Val(6) - Glu(7) - ...</p>
+                    <p style="color: #e4d9c5; line-height: 1.8;">استبدال الغلوتاميك بـ <strong>الفالين (<span class="ltr-seq">Val</span> الكاره للماء)</strong> يسبب نشأة نقطة كارهة للماء على سطح الهيموغلوبين. تتجاذب الجزيئات وتتراص على شكل ألياف أنبوبية صلبة وطويلة تشوه كرية الدم الحمراء إلى شكل منجلي، فتنسد الأوعية وتتكسر الكريات.</p>
                 `;
             }
         }
@@ -779,12 +779,12 @@
             let box = document.getElementById('enzDisplayBox');
             if (sub === 's1') {
                 box.innerHTML = `
-                    <h3 style="color: #4ade80; margin-bottom: 10px;">✅ تفاعل ناجح (تكامل بنيوي تام)</h3>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">✅ تفاعل ناجح (تكامل بنيوي تام)</h3>
                     <p style="line-height: 1.8;">مادة التفاعل (السكروز) تتكامل بنيوياً مع الموقع الفعال لإنزيم السكراز. يتشكل المعقد الإنزيمي (<span class="ltr-seq">ES</span>)، وينجز الإنزيم تفاعل التحلل المائي ليعطي غلوكوز + فركتوز ويتحرر الإنزيم سليماً.</p>
                 `;
             } else {
                 box.innerHTML = `
-                    <h3 style="color: #f43f5e; margin-bottom: 10px;">❌ عدم حدوث تفاعل (غياب التكامل البنيوي)</h3>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">❌ عدم حدوث تفاعل (غياب التكامل البنيوي)</h3>
                     <p style="line-height: 1.8;">سكر المالتوز لا يتوافق هندسياً ولا كيميائياً مع الموقع الفعال لإنزيم السكراز. لا يتشكل المعقد الإنزيمي (<span class="ltr-seq">ES</span>) ولا يحدث تفاعل، مما يثبت <strong>الخصوصية العالية للإنزيم تجاه مادة التفاعل</strong>.</p>
                 `;
             }
@@ -802,10 +802,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> حمض الفالين كاره للماء فيؤدي لتراص جزيئات الهيموغلوبين لتجنب الماء في هيولى الكرية.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> السبب هو الخاصية الكيميائية لجذر الفالين (كاره للماء) مقارنة بالغلوتاميك (محب للماء ومحمل بشحنة سالبة).';
             }
         }
@@ -822,10 +822,10 @@
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> الخصوصية المزدوجة هي تخصص الإنزيم في مادة التفاعل وفي نوع التفاعل في آن واحد.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> الخصوصية المزدوجة تعني الجمع بين خصوصية مادة التفاعل (Substrat) وخصوصية نوع التفاعل (Réaction).';
             }
         }
@@ -934,8 +934,8 @@
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -947,7 +947,7 @@
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -960,8 +960,8 @@
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -994,12 +994,12 @@
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1022,7 +1022,7 @@
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1533,12 +1533,12 @@
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +

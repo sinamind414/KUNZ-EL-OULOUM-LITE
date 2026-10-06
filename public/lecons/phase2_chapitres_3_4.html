@@ -6,24 +6,24 @@
     <title>منصة بنزر العلم | المرحلة 2 : النشاط 3 والنشاط 4</title>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --accent-light: #eff6ff;
-            --success: #16a34a;
-            --success-light: #f0fdf4;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --danger: #dc2626;
-            --danger-light: #fef2f2;
-            --teal: #0d9488;
-            --teal-light: #f0fdf4;
-            --rose: #e11d48;
-            --rose-light: #fff1f2;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --bg-main: #f3eee4;
+            --surface: #fbf8f1;
+            --primary: #143d2e;
+            --accent: #1f5c45;
+            --accent-light: #ebf2ed;
+            --success: #1f5c45;
+            --success-light: #ebf2ed;
+            --warning: #9a7a2c;
+            --warning-light: #f3e6c4;
+            --danger: #8a5a3c;
+            --danger-light: #f0e2d6;
+            --teal: 31,92,69;
+            --teal-light: #ebf2ed;
+            --rose: #8a5a3c;
+            --rose-light: #fbf8f11f2;
+            --text-main: #1c1914;
+            --text-muted: #6b6458;
+            --border: #e4d9c5;
             --radius: 16px;
             --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
@@ -49,7 +49,7 @@
             font-family: monospace;
             font-weight: bold;
             color: var(--accent);
-            background: #f1f5f9;
+            background: #fbf8f1;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -85,11 +85,11 @@
         }
 
         .header-ch3 {
-            background: linear-gradient(135deg, #0f172a 0%, #0d9488 100%);
+            background: linear-gradient(135deg, #143d2e 0%, 31,92,69 100%);
         }
 
         .header-ch4 {
-            background: linear-gradient(135deg, #4c0519 0%, #e11d48 100%);
+            background: linear-gradient(135deg, 28,25,20 0%, #8a5a3c 100%);
         }
 
         .lesson-breadcrumb {
@@ -175,7 +175,7 @@
 
         .problem-title {
             font-weight: 800;
-            color: #92400e;
+            color: 107,57,38;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -195,7 +195,7 @@
         }
 
         .doc-visual {
-            background: #0f172a;
+            background: #143d2e;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -221,8 +221,8 @@
 
         .method-tag {
             display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #ebf2ed;
+            color: #143d2e;
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -232,7 +232,7 @@
 
         /* Interactive simulators */
         .interactive-box {
-            background: #1e293b;
+            background: #1c1914;
             border-radius: 12px;
             padding: 1.5rem;
             color: white;
@@ -240,8 +240,8 @@
         }
 
         .sim-ribosome-display {
-            background: #0f172a;
-            border: 2px solid #334155;
+            background: #143d2e;
+            border: 2px solid #3f3a32;
             border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
@@ -265,8 +265,8 @@
             margin: 5px;
         }
 
-        .btn-action:hover { background: #0f766e; }
-        .btn-reset { background: #475569; }
+        .btn-action:hover { background: #1f5c45; }
+        .btn-reset { background: #6b6458; }
 
         /* Structure Selector */
         .struct-tabs {
@@ -281,9 +281,9 @@
         }
 
         .btn-struct {
-            background: #334155;
+            background: #3f3a32;
             color: white;
-            border: 1px solid #475569;
+            border: 1px solid #6b6458;
             padding: 10px;
             border-radius: 8px;
             font-family: inherit;
@@ -295,13 +295,13 @@
 
         .btn-struct.active {
             background: var(--rose);
-            border-color: #fda4af;
+            border-color: 228,217,197;
         }
 
         /* Scientific text */
         .scientific-text {
             background: var(--surface);
-            border: 2px solid #cbd5e1;
+            border: 2px solid #e4d9c5;
             border-radius: 12px;
             padding: 1.5rem;
             margin-top: 1rem;
@@ -356,7 +356,7 @@
 
         .option-btn:hover {
             border-color: var(--teal);
-            background: #f0fdf4;
+            background: #ebf2ed;
         }
 
         .option-btn.correct {
@@ -382,19 +382,19 @@
         }
     
         /* === MIFTAH + Sommaire + Badge (v3.2 prototype) === */
-        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#0f172a;border:1px solid #334155;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(15,23,42,.35)}
+        .sommaire{position:sticky;top:0;z-index:999;max-width:1100px;width:calc(100% - 16px);margin:8px auto 0;background:#143d2e;border:1px solid #3f3a32;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;box-shadow:0 10px 28px rgba(20,61,46,.20)}
         .sommaire::-webkit-scrollbar{display:none}
-        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e2e8f0;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #475569;background:#1e293b;transition:all .15s}
-        .sommaire a:hover{border-color:#38bdf8;color:#7dd3fc;background:#0ea5e9}
-        .sommaire a.active{background:#2563eb;color:#fff;border-color:#60a5fa}
-        .sommaire .sep{width:1px;background:#475569;margin:0 4px;flex-shrink:0}
-        .miftah-encadre{background:#fffdf4;border:1px solid #f3e0b0;border-right:4px solid #c08a1f;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
-        .miftah-encadre b{color:#7a5610}
+        .sommaire a{white-space:nowrap;font-size:.82rem;font-weight:800;color:#e4d9c5;text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid #6b6458;background:#1c1914;transition:all .15s}
+        .sommaire a:hover{border-color:#1f5c45;color:#d7e6dc;background:#1f5c45}
+        .sommaire a.active{background:#1f5c45;color:#fbf8f1;border-color:#1f5c45}
+        .sommaire .sep{width:1px;background:#6b6458;margin:0 4px;flex-shrink:0}
+        .miftah-encadre{background:#fbf8f1;border:1px solid #f3e6c4;border-right:4px solid #9a7a2c;border-radius:10px;padding:10px 13px;margin:10px 0;font-size:.88rem;line-height:1.65}
+        .miftah-encadre b{color:#6b5320}
         .quiz-badge{display:none;margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:800;text-align:center;font-size:.95rem;animation:fadeIn .25s ease}
         .quiz-badge.show{display:block}
-        .quiz-badge.faible{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-        .quiz-badge.moyen{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-        .quiz-badge.mumtaz{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .quiz-badge.faible{background:#f0e2d6;color:#6b3926;border:1px solid #f0e2d6}
+        .quiz-badge.moyen{background:#f3e6c4;color:107,57,38;border:1px solid #f3e6c4}
+        .quiz-badge.mumtaz{background:#ebf2ed;color:#143d2e;border:1px solid #d7e6dc}
         @media(max-width:768px){.sommaire{top:0;width:100%;max-width:100%;border-radius:0;margin-left:0;margin-right:0}}
 
     </style>
@@ -456,14 +456,14 @@
                 </div>
                 <div class="doc-viewer">
                     <div class="doc-visual">
-                        <h4 style="margin-bottom: 1rem; color: #5eead4; font-size: 0.95rem;">صورة بالمجهر الإلكتروني ورسم تفسيري لمتعدد الريبوزوم أثناء الترجمة</h4>
+                        <h4 style="margin-bottom: 1rem; color: 215,230,220; font-size: 0.95rem;">صورة بالمجهر الإلكتروني ورسم تفسيري لمتعدد الريبوزوم أثناء الترجمة</h4>
                         <!-- Generated by ProFigureEngine - SVT BAC DZ -->
 <svg class="svg-container pfe-figure" viewBox="0 0 840 450" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="متعدد الريبوزوم (Polysome) وآلية الرفع من مردود تركيب البروتين">
   <defs>
     <style>
-      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f8fafc; }
-      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #cbd5e1; }
-      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .pfe-title { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-weight: 700; fill: #f3eee4; }
+      .pfe-label { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; font-size: 13px; fill: #e4d9c5; }
+      .pfe-sub { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 11px; fill: #a79c8a; }
       .pfe-badge { font-family: monospace; font-size: 11px; font-weight: bold; }
     </style>
     <filter id="pf-b0-pfe-glow-red" x="-20%" y="-20%" width="140%" height="140%">
@@ -471,86 +471,86 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <marker id="pf-b0-pfe-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1f5c45" />
     </marker>
     <marker id="pf-b0-pfe-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#9a7a2c" />
     </marker>
     <linearGradient id="pf-b0-pfe-membrane-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#1c1914" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     <linearGradient id="pf-b0-pfe-nucleus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a5f" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="31,92,69" />
+      <stop offset="100%" stop-color="#143d2e" />
     </linearGradient>
     
   </defs>
 
-  <rect x="10" y="10" width="820" height="430" rx="24" fill="#0b1326" stroke="#1e293b" stroke-width="2"/>
+  <rect x="10" y="10" width="820" height="430" rx="24" fill="28,25,20" stroke="#1c1914" stroke-width="2"/>
 
   <!-- ARNm Backbone -->
   <g id="pf-b0-mrna-backbone">
-    <path d="M 60,240 C 200,230 400,250 780,240" stroke="#f43f5e" stroke-width="6" stroke-linecap="round"/>
-    <path d="M 60,240 C 200,230 400,250 780,240" stroke="#fda4af" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 60,240 C 200,230 400,250 780,240" stroke="#8a5a3c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 60,240 C 200,230 400,250 780,240" stroke="228,217,197" stroke-width="2" stroke-linecap="round"/>
 
-    <rect x="40" y="215" width="48" height="26" rx="6" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
-    <text x="64" y="233" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#fecdd3">5'</text>
+    <rect x="40" y="215" width="48" height="26" rx="6" fill="#6b3926" stroke="#8a5a3c" stroke-width="1.5"/>
+    <text x="64" y="233" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="240,226,214">5'</text>
 
-    <rect x="750" y="215" width="48" height="26" rx="6" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
-    <text x="774" y="233" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#fecdd3">3'</text>
+    <rect x="750" y="215" width="48" height="26" rx="6" fill="#6b3926" stroke="#8a5a3c" stroke-width="1.5"/>
+    <text x="774" y="233" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="240,226,214">3'</text>
   </g>
 
   <!-- Ribosomes -->
   <g id="pf-b0-ribosome-1" transform="translate(150, 240)">
-    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
-    <text x="0" y="22" text-anchor="middle" font-size="10" fill="#ccfbf1">40S</text>
-    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="#115e59" stroke="#2dd4bf" stroke-width="2.5"/>
-    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="#ccfbf1">60S</text>
-    <path d="M 0,-38 Q -10,-55 -5,-65" fill="none" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="-5" cy="-65" r="5" fill="#f59e0b"/>
+    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#1f5c45" stroke="#1f5c45" stroke-width="2"/>
+    <text x="0" y="22" text-anchor="middle" font-size="10" fill="215,230,220">40S</text>
+    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="31,92,69" stroke="#1f5c45" stroke-width="2.5"/>
+    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="215,230,220">60S</text>
+    <path d="M 0,-38 Q -10,-55 -5,-65" fill="none" stroke="#9a7a2c" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="-5" cy="-65" r="5" fill="#9a7a2c"/>
   </g>
 
   <g id="pf-b0-ribosome-2" transform="translate(310, 242)">
-    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
-    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="#115e59" stroke="#2dd4bf" stroke-width="2.5"/>
-    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="#ccfbf1">60S</text>
-    <path d="M 0,-38 Q -15,-60 5,-80 Q 20,-100 0,-115" fill="none" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="0" cy="-115" r="6" fill="#f59e0b"/>
+    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#1f5c45" stroke="#1f5c45" stroke-width="2"/>
+    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="31,92,69" stroke="#1f5c45" stroke-width="2.5"/>
+    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="215,230,220">60S</text>
+    <path d="M 0,-38 Q -15,-60 5,-80 Q 20,-100 0,-115" fill="none" stroke="#9a7a2c" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="0" cy="-115" r="6" fill="#9a7a2c"/>
   </g>
 
   <g id="pf-b0-ribosome-3" transform="translate(480, 243)">
-    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
-    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="#115e59" stroke="#2dd4bf" stroke-width="2.5"/>
-    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="#ccfbf1">60S</text>
-    <path d="M 0,-38 Q -20,-65 10,-95 Q 30,-125 -10,-145 Q -25,-160 -10,-175" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
-    <circle cx="-10" cy="-175" r="7" fill="#f59e0b"/>
+    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#1f5c45" stroke="#1f5c45" stroke-width="2"/>
+    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="31,92,69" stroke="#1f5c45" stroke-width="2.5"/>
+    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="215,230,220">60S</text>
+    <path d="M 0,-38 Q -20,-65 10,-95 Q 30,-125 -10,-145 Q -25,-160 -10,-175" fill="none" stroke="#9a7a2c" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-10" cy="-175" r="7" fill="#9a7a2c"/>
   </g>
 
   <g id="pf-b0-ribosome-4" transform="translate(660, 240)">
-    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
-    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="#115e59" stroke="#2dd4bf" stroke-width="2.5"/>
-    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="#ccfbf1">60S</text>
-    <path d="M 0,-38 Q -25,-70 15,-105 Q 40,-140 -15,-165 Q -30,-185 10,-205" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
-    <circle cx="10" cy="-205" r="8" fill="#f59e0b"/>
+    <ellipse cx="0" cy="18" rx="28" ry="16" fill="#1f5c45" stroke="#1f5c45" stroke-width="2"/>
+    <ellipse cx="0" cy="-18" rx="36" ry="24" fill="31,92,69" stroke="#1f5c45" stroke-width="2.5"/>
+    <text x="0" y="-14" text-anchor="middle" font-size="11" font-weight="bold" fill="215,230,220">60S</text>
+    <path d="M 0,-38 Q -25,-70 15,-105 Q 40,-140 -15,-165 Q -30,-185 10,-205" fill="none" stroke="#9a7a2c" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="10" cy="-205" r="8" fill="#9a7a2c"/>
   </g>
 
   <!-- Direction de déplacement -->
   <g id="pf-b0-translation-direction">
-    <path d="M 140,320 L 680,320" stroke="#38bdf8" stroke-width="3" marker-end="url(#pf-b0-pfe-arrow)"/>
-    <rect x="290" y="300" width="260" height="38" rx="8" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1"/>
-    <text x="420" y="324" text-anchor="middle" class="pfe-title" font-size="13" fill="#e0f2fe">اتجاه حركة وانتقال الريبوزومات ➡️</text>
-    <text x="420" y="355" text-anchor="middle" font-size="11.5" fill="#94a3b8">قراءة الشفرة الوراثية دوماً من النهاية 5' نحو النهاية 3'</text>
+    <path d="M 140,320 L 680,320" stroke="#1f5c45" stroke-width="3" marker-end="url(#pf-b0-pfe-arrow)"/>
+    <rect x="290" y="300" width="260" height="38" rx="8" fill="31,92,69" stroke="#1f5c45" stroke-width="1"/>
+    <text x="420" y="324" text-anchor="middle" class="pfe-title" font-size="13" fill="#ebf2ed">اتجاه حركة وانتقال الريبوزومات ➡️</text>
+    <text x="420" y="355" text-anchor="middle" font-size="11.5" fill="#a79c8a">قراءة الشفرة الوراثية دوماً من النهاية 5' نحو النهاية 3'</text>
   </g>
 
   <!-- Cartouche pédagogique -->
-  <rect x="40" y="30" width="400" height="90" rx="10" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="55" y="55" font-size="13" font-weight="bold" fill="#a5b4fc">💡 المبدأ العلمي لمتعدد الريبوزوم (Polysome) :</text>
-  <text x="55" y="78" font-size="12" fill="#e0e7ff">• كل ريبوزوم يركب سلسلة بيبتيدية متطابقة لنفس البروتين.</text>
-  <text x="55" y="100" font-size="12" fill="#fde047">• طول السلسلة يزداد كلما اقترب الريبوزوم من النهاية 3'.</text>
+  <rect x="40" y="30" width="400" height="90" rx="10" fill="#143d2e" stroke="167,156,138" stroke-width="1.5"/>
+  <text x="55" y="55" font-size="13" font-weight="bold" fill="215,230,220">💡 المبدأ العلمي لمتعدد الريبوزوم (Polysome) :</text>
+  <text x="55" y="78" font-size="12" fill="235,242,237">• كل ريبوزوم يركب سلسلة بيبتيدية متطابقة لنفس البروتين.</text>
+  <text x="55" y="100" font-size="12" fill="#f3e6c4">• طول السلسلة يزداد كلما اقترب الريبوزوم من النهاية 3'.</text>
 
 </svg>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 10px;">🟡 الخيوط الصفراء المتدرجة في الطول تمثل السلاسل البيبتيدية قيد التشكل.</p>
+                        <p style="font-size: 0.85rem; color: #e4d9c5; margin-top: 10px;">🟡 الخيوط الصفراء المتدرجة في الطول تمثل السلاسل البيبتيدية قيد التشكل.</p>
                     </div>
 
                     <div class="doc-analysis">
@@ -579,8 +579,8 @@
                         <button class="btn-action" onclick="simTrans(3)">3️⃣ مرحلة النهاية (Terminaison)</button>
                     </div>
                     <div class="sim-ribosome-display" id="simTransBox">
-                        <h3 style="color: #2dd4bf; margin-bottom: 10px;">🔬 اختر مرحلة من المراحل أعلاه لمعاينة تفاصيلها الجزيئية</h3>
-                        <p style="color: #cbd5e1;">ستشاهد كيف يتحرك الريبوزوم خطوة بخطوة (بمقدار رامزة واحدة) وكيف تتشكل الرابطة البيبتيدية.</p>
+                        <h3 style="color: #1f5c45; margin-bottom: 10px;">🔬 اختر مرحلة من المراحل أعلاه لمعاينة تفاصيلها الجزيئية</h3>
+                        <p style="color: #e4d9c5;">ستشاهد كيف يتحرك الريبوزوم خطوة بخطوة (بمقدار رامزة واحدة) وكيف تتشكل الرابطة البيبتيدية.</p>
                     </div>
                 </div>
             </section>
@@ -635,7 +635,7 @@
                     <span>الإشكالية الأساسية للوحدة الثانية</span>
                 </div>
                 <div class="problem-box" style="border-right-color: var(--rose); background: var(--rose-light);">
-                    <div class="problem-title" style="color: #881337;">⚠️ لماذا يفقد البروتين وظيفته إذا تغيرت شكله؟</div>
+                    <div class="problem-title" style="color: #6b3926;">⚠️ لماذا يفقد البروتين وظيفته إذا تغيرت شكله؟</div>
                     <p>بعد انتهاء الترجمة، لا تبقى السلسلة البيبتيدية كخيط مستقيم طويل، بل تلتف وتنطوي بشكل ثلاثي الأبعاد دقيق ومحدد وراثيا يسمى <strong>البنية الفراغية (<span class="ltr-seq">Structure spatiale</span>)</strong>. <strong>ما هي المستويات المتدرجة لهذه البنية؟ وما هي الروابط الكيميائية التي تحافظ على استقرارها وتمنحها التخصص الوظيفي؟</strong></p>
                 </div>
             </section>
@@ -648,15 +648,15 @@
                 </div>
                 <p>اضغط على المستوى الفراغي لمعاينة خصائصه الهندسية والروابط المساهمة فيه :</p>
                 
-                <div class="interactive-box" style="background: #18181b;">
+                <div class="interactive-box" style="background: 28,25,20;">
                     <div class="struct-tabs">
                         <button class="btn-struct active" onclick="showStruct(1, event)">1️⃣ البنية الأولية (Primaire)</button>
                         <button class="btn-struct" onclick="showStruct(2, event)">2️⃣ البنية الثانوية (Secondaire)</button>
                         <button class="btn-struct" onclick="showStruct(3, event)">3️⃣ البنية الثالثية (Tertiaire)</button>
                         <button class="btn-struct" onclick="showStruct(4, event)">4️⃣ البنية الرابعية (Quaternaire)</button>
                     </div>
-                    <div id="structBox" style="background: #27272a; border-radius: 10px; padding: 1.5rem; border: 1px solid #3f3f46;">
-                        <h3 style="color: #fda4af; margin-bottom: 10px;">1️⃣ البنية الأولية (<span class="ltr-seq">Structure Primaire</span>)</h3>
+                    <div id="structBox" style="background: 28,25,20; border-radius: 10px; padding: 1.5rem; border: 1px solid 63,58,50;">
+                        <h3 style="color: 228,217,197; margin-bottom: 10px;">1️⃣ البنية الأولية (<span class="ltr-seq">Structure Primaire</span>)</h3>
                         <p style="line-height: 1.8;">هي تسلسل خطي بسيط للأحماض الأمينية المرتبطة ببعضها البعض بواسطة <strong>روابط ببتيدية (<span class="ltr-seq">Liaisons peptidiques التكافؤية قوية</span>)</strong> فقط. لا تمتلك البنية الأولية أي التفاف أو وظيفة بيولوجية فعالة.</p>
                     </div>
                 </div>
@@ -671,8 +671,8 @@
                 <p>تستقر البنية الثالثية بفضل نشأة روابط كيميائية بين الجذور الحرة (<span class="ltr-seq">Radicaux R</span>) للأحماض الأمينية المحددة وراثياً :</p>
                 
                 <div class="doc-viewer" style="margin-top: 1rem;">
-                    <div class="doc-visual" style="background: #3f1d38;">
-                        <h4 style="color: #fda4af; margin-bottom: 12px;">تصنيف الروابط حسب القوة والنوعية</h4>
+                    <div class="doc-visual" style="background: 63,58,50;">
+                        <h4 style="color: 228,217,197; margin-bottom: 12px;">تصنيف الروابط حسب القوة والنوعية</h4>
                         <ul style="list-style-type: none; line-height: 2.2; font-size: 0.95rem;">
                             <li>🔒 <strong>جسور ثنائية الكبريت (<span class="ltr-seq">Ponts disulfures</span>) :</strong> رابطة تكافؤية قوية جداً تنشأ بين جذري حمضين من السيستيين (<span class="ltr-seq">Cys - Cys</span>).</li>
                             <li>⚡ <strong>روابط شاردية الأيونية (<span class="ltr-seq">Liaisons ioniques</span>) :</strong> تجاذب كهربائي بين جذر سالب (حامضي) وجذر موجب (قاعدي).</li>
@@ -682,7 +682,7 @@
                     </div>
 
                     <div class="doc-analysis">
-                        <span class="method-tag" style="background: #ffe4e6; color: #9f1239;">قاعدة ذهبية في أسئلة البكالوريا</span>
+                        <span class="method-tag" style="background: 243,238,228; color: #6b3926;">قاعدة ذهبية في أسئلة البكالوريا</span>
                         <p style="margin-top: 8px;">تتوقف وظيفة البروتين على <strong>بنيته الفراغية الثلاثية أو الرابعية</strong>، وهذه الأخيرة تتوقف على <strong>عدد ونوع وترتيب الأحماض الأمينية</strong> (البنية الأولية) التي تحدد مواضع الروابط الكيميائية بدقة.</p>
                         <p style="margin-top: 8px; font-weight: bold; color: var(--rose);">أي تغير في تسلسل الأحماض الأمينية (طفرة) يؤدي إلى تغير أماكن الروابط، وبالتالي تخريب البنية الفراغية وفقدان الوظيفة.</p>
                     </div>
@@ -693,7 +693,7 @@
             <!-- خلاصة النشاط (standard 2026-09-21, ancrée au livre officiel — verrou resumes.lock ; restructuration É2 du résumé hérité) -->
             <section class="card" id="resume">
                 <div class="section-title">
-                    <span class="step-num" style="background:#059669;">📝</span>
+                    <span class="step-num" style="background:#1f5c45;">📝</span>
                     <span>خلاصة الدرس</span>
                 </div>
                 <p style="font-weight:700; font-size:14px; margin:10px 0;">🎯 فسّر المراحل الثلاث للترجمة على مستوى متعدد الريبوزومات.</p>
@@ -704,7 +704,7 @@
                     <li style="margin-bottom:6px;">تتوقف الترجمة عند رامزة توقف فتتحرر السلسلة الببتيدية من الريبوزوم.</li>
                     <li style="margin-bottom:6px;">يسمح متعدد الريبوزومات بتركيب عدة نسخ من البروتين في الوقت نفسه.</li>
                 </ol>
-                <p style="font-weight:800; font-size:13px; color:#b45309; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : المراحل الثلاث للترجمة / متعدد الريبوزومات</p>
+                <p style="font-weight:800; font-size:13px; color:#6b5320; margin-top:10px;">🔑 المصطلح المفتاحي في البكالوريا : المراحل الثلاث للترجمة / متعدد الريبوزومات</p>
             </section>
 
             
@@ -744,34 +744,34 @@
              visible dans LES DEUX leçons du fichier (survit au slicing lessonChapterSplit) ═══ -->
         <div class="synthese-zone" id="zone-synthese">
 <!-- الحصيلة المعرفية الرسمية (citation verbatim du livre officiel — voir docs/RESUMES_MAARIFI_LIVRE_2026-09-21.md) -->
-            <section class="card" id="hosila" style="border:2px solid #f59e0b;">
+            <section class="card" id="hosila" style="border:2px solid #9a7a2c;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#b45309;">🏛</span>
+                    <span class="step-num" style="background:#6b5320;">🏛</span>
                     <span>الحصيلة المعرفية</span>
                 </div>
-                <p style="font-size:11px; color:#92400e; font-weight:700; margin:6px 0;">الوحدة: D1-U1 — تركيب البروتين — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
+                <p style="font-size:11px; color:107,57,38; font-weight:700; margin:6px 0;">الوحدة: D1-U1 — تركيب البروتين — نص بتنسيق قرائي، دون تغيير في المعنى، مع تنسيق قرائي يجعل النص مقروءاً.</p>
 
 <p style="font-weight:700; margin:8px 0;">📌 المخطط التحصيلي لعملية تركيب البروتين :</p>
-<div style="background:#fff; border:1px solid #fcd34d; border-radius:12px; padding:12px; text-align:center; font-weight:700; line-height:2.2;">
+<div style="background:#fbf8f1; border:1px solid #9a7a2c; border-radius:12px; padding:12px; text-align:center; font-weight:700; line-height:2.2;">
 ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>ARNm ⬇ ترجمة على الريبوزوم (تحت الوحدة الكبرى)<br>⬇<br>سلسلة ببتيدية ⬇ بروتين بوظيفة محددة
 </div>
-<p style="font-size:11px; color:#78716c; margin-top:6px;">يميز المخطط الرسمي بين موقع الترجمة عند أوليات النواة (في الهيولى) وعند حقيقيات النواة (على الشبكة الهيولية) — تنسيق قرائي لعناصر المخطط دون تغيير مضمونه.</p>
+<p style="font-size:11px; color:#6b6458; margin-top:6px;">يميز المخطط الرسمي بين موقع الترجمة عند أوليات النواة (في الهيولى) وعند حقيقيات النواة (على الشبكة الهيولية) — تنسيق قرائي لعناصر المخطط دون تغيير مضمونه.</p>
 
             </section>
 <!-- المخطط الشامل لآليات تركيب البروتين (reconstruit mécaniquement depuis le texte officiel — تحقّق آلي داخلي: 12/12) -->
-            <section class="card" id="schema-synthese" style="border:2px solid #2563eb;">
+            <section class="card" id="schema-synthese" style="border:2px solid #1f5c45;">
                 <div class="section-title">
-                    <span class="step-num" style="background:#2563eb;">🗺</span>
+                    <span class="step-num" style="background:#1f5c45;">🗺</span>
                     <span>المخطط الشامل لآليات تركيب البروتين</span>
                 </div>
 
-                <img src="/assets/images/schemas/domaine1_traduction/schema_synthese_traduction_U1.jpg" alt="المخطط الشامل لآليات تركيب البروتين" style="width:100%; max-width:920px; display:block; margin:0 auto 10px; border-radius:12px; border:1px solid #e2e8f0;">
-                <p style="font-size:11px; color:#78716c; margin:0 0 10px; text-align:center;">الأصل المُدرج — تحوي طبقة الصورة أخطاء استخراج آلي معروفة (مثلا: «اللواة» بدل «النواة»، «المعلمة الواقعية»)؛ النسخة النصية المصححة أدناه هي المرجع القرائي.</p>
+                <img src="/assets/images/schemas/domaine1_traduction/schema_synthese_traduction_U1.jpg" alt="المخطط الشامل لآليات تركيب البروتين" style="width:100%; max-width:920px; display:block; margin:0 auto 10px; border-radius:12px; border:1px solid #e4d9c5;">
+                <p style="font-size:11px; color:#6b6458; margin:0 0 10px; text-align:center;">الأصل المُدرج — تحوي طبقة الصورة أخطاء استخراج آلي معروفة (مثلا: «اللواة» بدل «النواة»، «المعلمة الواقعية»)؛ النسخة النصية المصححة أدناه هي المرجع القرائي.</p>
 
                 <div style="display:flex; gap:12px; flex-wrap:wrap; margin:12px 0;">
-                    <div style="flex:1; min-width:280px; background:#f3e8ff; border:1px solid #c084fc; border-radius:14px; padding:12px;">
+                    <div style="flex:1; min-width:280px; background:235,242,237; border:1px solid 215,230,220; border-radius:14px; padding:12px;">
                         <p style="font-weight:900; text-align:center; margin-bottom:8px;">حقيقيات النواة (Eukaryotes)</p>
-                        <div style="background:#fff; border-radius:10px; padding:10px; line-height:2.1; font-size:12.5px; text-align:center;">
+                        <div style="background:#fbf8f1; border-radius:10px; padding:10px; line-height:2.1; font-size:12.5px; text-align:center;">
                             ADN داخل <b>النواة</b> (غلاف نووي مسامي)<br>
                             ⬇ <b>استنساخ</b> في النواة<br>
                             ARNm <b>طليعي</b><br>
@@ -780,40 +780,40 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
                             ⬇ <b>ترجمة</b> في الهيولى على <b>البوليزوم</b><br>
                             ⬇ سلسلة ببتيدية
                         </div>
-                        <p style="font-size:11px; color:#6b21a8; margin-top:6px; text-align:center;">المرحلتان في مكانين مختلفين وفي وقتين مختلفين (بفصل الغشاء النووي).</p>
+                        <p style="font-size:11px; color:107,100,88; margin-top:6px; text-align:center;">المرحلتان في مكانين مختلفين وفي وقتين مختلفين (بفصل الغشاء النووي).</p>
                     </div>
-                    <div style="flex:1; min-width:280px; background:#dbeafe; border:1px solid #60a5fa; border-radius:14px; padding:12px;">
+                    <div style="flex:1; min-width:280px; background:235,242,237; border:1px solid #1f5c45; border-radius:14px; padding:12px;">
                         <p style="font-weight:900; text-align:center; margin-bottom:8px;">أوليات النواة (Prokaryotes)</p>
-                        <div style="background:#fff; border-radius:10px; padding:10px; line-height:2.1; font-size:12.5px; text-align:center;">
+                        <div style="background:#fbf8f1; border-radius:10px; padding:10px; line-height:2.1; font-size:12.5px; text-align:center;">
                             ADN في الهيولى (بدون نواة محددة الحدود)<br>
                             ⬇ <b>استنساخ</b> في الهيولى<br>
                             ARNm ← <b>ترجمة</b> فورية على الريبوزوم<br>
                             ⬇ سلسلة ببتيدية
                         </div>
-                        <p style="font-size:11px; color:#1e40af; margin-top:6px; text-align:center;">يمكن للترجمة أن تنطلق <b>قبل انتهاء الاستنساخ</b> : المرحلتان في نفس المكان وفي آن واحد.</p>
+                        <p style="font-size:11px; color:31,92,69; margin-top:6px; text-align:center;">يمكن للترجمة أن تنطلق <b>قبل انتهاء الاستنساخ</b> : المرحلتان في نفس المكان وفي آن واحد.</p>
                     </div>
                 </div>
 
                 <p style="font-weight:800; margin:10px 0 6px;">مراحل التعبير الجيني :</p>
                 <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <div style="flex:1; min-width:180px; background:#fff; border:2px solid #16a34a; border-radius:12px; padding:8px; text-align:center;">
+                    <div style="flex:1; min-width:180px; background:#fbf8f1; border:2px solid #1f5c45; border-radius:12px; padding:8px; text-align:center;">
                         <p style="font-weight:900; font-size:12.5px;">١. الاستنساخ (Transcription)</p>
                         <p style="font-size:11.5px; line-height:1.8;">تركيب ARNm انطلاقا من السلسلة المستنسخة للـ ADN بواسطة ARN بوليميراز (انطلاق ← استطالة ← نهاية).</p>
                     </div>
-                    <div style="flex:1; min-width:180px; background:#fff; border:2px solid #d97706; border-radius:12px; padding:8px; text-align:center;">
+                    <div style="flex:1; min-width:180px; background:#fbf8f1; border:2px solid #9a7a2c; border-radius:12px; padding:8px; text-align:center;">
                         <p style="font-weight:900; font-size:12.5px;">٢. نضج ARNm (Maturation)</p>
                         <p style="font-size:11.5px; line-height:1.8;">حذف القطع غير الدالة (Introns) والاحتفاظ بالقطع الدالة (Exons) : ARNm طليعي ← ناضج.</p>
                     </div>
-                    <div style="flex:1; min-width:180px; background:#fff; border:2px solid #2563eb; border-radius:12px; padding:8px; text-align:center;">
+                    <div style="flex:1; min-width:180px; background:#fbf8f1; border:2px solid #1f5c45; border-radius:12px; padding:8px; text-align:center;">
                         <p style="font-weight:900; font-size:12.5px;">٣. الترجمة (Traduction)</p>
                         <p style="font-size:11.5px; line-height:1.8;">انطلاق برامزة AUG في الموقع P، استطالة برابطة ببتيدية، توقف برامزة UAA/UAG/UGA.</p>
                     </div>
-                    <div style="flex:1; min-width:180px; background:#fff; border:2px solid #dc2626; border-radius:12px; padding:8px; text-align:center;">
+                    <div style="flex:1; min-width:180px; background:#fbf8f1; border:2px solid #8a5a3c; border-radius:12px; padding:8px; text-align:center;">
                         <p style="font-weight:900; font-size:12.5px;">٤. نضج وتوجيه البروتين</p>
                         <p style="font-size:11.5px; line-height:1.8;">انطواء البروتين واتجاهه إلى مقر وظيفته (داخل/خارج الخلية عبر الشبكة الهيولية الفعالة والحويصلات وجهاز غولجي).</p>
                     </div>
                 </div>
-                <p style="font-size:10.5px; color:#78716c; margin-top:10px; text-align:center;">🗺 مخطط مُعاد بناؤه آلياً — كل مفرداته مثبتة في النص (تحقّق آلي داخلي: 12/12).</p>
+                <p style="font-size:10.5px; color:#6b6458; margin-top:10px; text-align:center;">🗺 مخطط مُعاد بناؤه آلياً — كل مفرداته مثبتة في النص (تحقّق آلي داخلي: 12/12).</p>
             </section>
         </div>
 
@@ -834,21 +834,21 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
             let box = document.getElementById('simTransBox');
             if (step === 1) {
                 box.innerHTML = `
-                    <h3 style="color: #38bdf8; margin-bottom: 10px;">1️⃣ مرحلة البداية (Initiation)</h3>
+                    <h3 style="color: #1f5c45; margin-bottom: 10px;">1️⃣ مرحلة البداية (Initiation)</h3>
                     <p style="line-height: 1.8;">• تتوضع تحت الوحدة الصغرى للريبوزوم على رامزة البداية <span class="ltr-seq">5'- AUG -3'</span> للـ <span class="ltr-seq">ARNm</span>.<br>
                     • يلتحق الـ <span class="ltr-seq">ARNt</span> الحامل للميثيونين (<span class="ltr-seq">Met</span>) ذو الرامزة المضادة <span class="ltr-seq">UAC</span> بالموقع الببتيدي (<span class="ltr-seq">Site P</span>).<br>
                     • تلتحق تحت الوحدة الكبرى بالصغرى ليتشكل <strong>معقد الانطلاق الفعال</strong>، ويبقى الموقع الأميني (<span class="ltr-seq">Site A</span>) شاغراً لاستقبال الحمض الموالي.</p>
                 `;
             } else if (step === 2) {
                 box.innerHTML = `
-                    <h3 style="color: #fbbf24; margin-bottom: 10px;">2️⃣ مرحلة الاستطالة (Élongation)</h3>
+                    <h3 style="color: #9a7a2c; margin-bottom: 10px;">2️⃣ مرحلة الاستطالة (Élongation)</h3>
                     <p style="line-height: 1.8;">• يدخل الـ <span class="ltr-seq">ARNt</span> الثاني الحامل للحمض الأميني رقم 2 إلى الموقع <span class="ltr-seq">Site A</span>.<br>
                     • تنشأ <strong>رابطة ببتيدية</strong> بين الميثيونين والحمض الأميني الثاني بتدخل إنزيمات وريبو-إنزيمات في الريبوزوم.<br>
                     • ينفصل الـ <span class="ltr-seq">ARNt</span> الأول ويغادر الريبوزوم، ثم يتحرك الريبوزوم خطوة واحدة (رامزة واحدة) على خيط الـ <span class="ltr-seq">ARNm</span>، فيصبح الموقع <span class="ltr-seq">Site A</span> شاغراً من جديد.</p>
                 `;
             } else if (step === 3) {
                 box.innerHTML = `
-                    <h3 style="color: #f43f5e; margin-bottom: 10px;">3️⃣ مرحلة النهاية (Terminaison)</h3>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">3️⃣ مرحلة النهاية (Terminaison)</h3>
                     <p style="line-height: 1.8;">• يصل الموقع <span class="ltr-seq">Site A</span> للريبوزوم إلى إحدى رامزات التوقف (<span class="ltr-seq">UAA, UAG, UGA</span>).<br>
                     • لا يوجد أي <span class="ltr-seq">ARNt</span> يحمل رامزة مضادة لرامزات التوقف، فيتدخل عامل التحرير.<br>
                     • تنفصل السلسلة البيبتيدية المتشكلة، وينفصل الحمض الأميني الأول (الميثيونين <span class="ltr-seq">Met</span>)، وتتفكك تحت وحدتي الريبوزوم عن خيط الـ <span class="ltr-seq">ARNm</span>.</p>
@@ -864,22 +864,22 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
             let box = document.getElementById('structBox');
             if (num === 1) {
                 box.innerHTML = `
-                    <h3 style="color: #fda4af; margin-bottom: 10px;">1️⃣ البنية الأولية (<span class="ltr-seq">Structure Primaire</span>)</h3>
+                    <h3 style="color: 228,217,197; margin-bottom: 10px;">1️⃣ البنية الأولية (<span class="ltr-seq">Structure Primaire</span>)</h3>
                     <p style="line-height: 1.8;">هي تسلسل خطي بسيط للأحماض الأمينية المرتبطة ببعضها البعض بواسطة <strong>روابط ببتيدية (<span class="ltr-seq">Liaisons peptidiques التكافؤية القوية</span>)</strong> فقط. لا تمتلك البنية الأولية أي التفاف أو وظيفة بيولوجية فعالة.</p>
                 `;
             } else if (num === 2) {
                 box.innerHTML = `
-                    <h3 style="color: #fb7185; margin-bottom: 10px;">2️⃣ البنية الثانوية (<span class="ltr-seq">Structure Secondaire</span>)</h3>
+                    <h3 style="color: 167,156,138; margin-bottom: 10px;">2️⃣ البنية الثانوية (<span class="ltr-seq">Structure Secondaire</span>)</h3>
                     <p style="line-height: 1.8;">تنتج عن التفاف واطواء السلسلة البيبتيدية (البنية الأولية) في مناطق محددة بفضل نشأة <strong>روابط هيدروجينية</strong> بين مجموعات (<span class="ltr-seq">C=O</span>) ومجموعات (<span class="ltr-seq">N-H</span>) للروابط البيبتيدية. وتأخذ نمطين أساسيين : الحلزون ألفا (<span class="ltr-seq">α</span>) والوريقة المطوية بيتا (<span class="ltr-seq">β</span>).</p>
                 `;
             } else if (num === 3) {
                 box.innerHTML = `
-                    <h3 style="color: #f43f5e; margin-bottom: 10px;">3️⃣ البنية الثالثية (<span class="ltr-seq">Structure Tertiaire</span>)</h3>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">3️⃣ البنية الثالثية (<span class="ltr-seq">Structure Tertiaire</span>)</h3>
                     <p style="line-height: 1.8;">تنتج عن انطواء البنية الثانوية في الفراغ بفضل مناطق البينية (المنعطفات)، وتتميز بوجود 4 أنواع من الروابط بين الجذور الحرة (<span class="ltr-seq">Radicaux R</span>) : جسور ثنائية الكبريت، روابط شاردية، هيدروجينية، وتجاذب الجذور الكارهة للماء. وهي بنية وظيفية فعالة.</p>
                 `;
             } else if (num === 4) {
                 box.innerHTML = `
-                    <h3 style="color: #e11d48; margin-bottom: 10px;">4️⃣ البنية الرابعية (<span class="ltr-seq">Structure Quaternaire</span>)</h3>
+                    <h3 style="color: #8a5a3c; margin-bottom: 10px;">4️⃣ البنية الرابعية (<span class="ltr-seq">Structure Quaternaire</span>)</h3>
                     <p style="line-height: 1.8;">هي أعلى مستوى تنظيم فراغي، تنتج عن تجمع وترافق <strong>سلسلتين بيبتيديتين أو أكثر</strong> (تسمى كل سلسلة تحت وحدة - <span class="ltr-seq">Sous-unité</span> ذوات بنية ثالثية منفصلة). ترتبط تحت الوحدات فيما بينها بروابط ضعيفة (هيدروجينية، شاردية، كارهة للماء) مثل جزيئة الهيموغلوبين (<span class="ltr-seq">Hémoglobine</span>).</p>
                 `;
             }
@@ -897,10 +897,10 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> تتشكل الرابطة البيبتيدية داخل الموقع التحفيزي للريبوزوم بين الحمض الموجود في الموقع P والحمض الملتحق بالموقع A.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> الرابطة البيبتيدية تتشكل بين الأحماض الأمينية المتجاورة في الموقعين P و A للريبوزوم.';
             }
         }
@@ -917,10 +917,10 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
 
             fb.style.display = 'block';
             if (isCorrect) {
-                fb.style.background = '#f0fdf4'; fb.style.color = '#166534'; fb.style.border = '1px solid #bbf7d0';
+                fb.style.background = '#ebf2ed'; fb.style.color = '#143d2e'; fb.style.border = '1px solid #d7e6dc';
                 fb.innerHTML = '<strong>✅ إجابة صحيحة ممتاز!</strong> تعليل علمي دقيق ومتوافق مع المنهج الرسمي לבكالوريا الجزائر.';
             } else {
-                fb.style.background = '#fef2f2'; fb.style.color = '#991b1b'; fb.style.border = '1px solid #fecaca';
+                fb.style.background = '#f0e2d6'; fb.style.color = '#6b3926'; fb.style.border = '1px solid #f0e2d6';
                 if (qIdx === 1) {
                     fb.innerHTML = '<strong>❌ إجابة خاطئة.</strong> البنية الرابعية تتكون بالضرورة من سلسلتين بيبتيديتين على الأقل (تحت وحدتين).';
                 } else {
@@ -1033,8 +1033,8 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         padding: 7px 12px;
         border: 0;
         border-radius: 999px;
-        background: #006d37;
-        color: #fff;
+        background: #1f5c45;
+        color: #fbf8f1;
         font: 700 13px/1.1 system-ui, "Segoe UI", Tahoma, sans-serif;
         box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
         cursor: pointer;
@@ -1046,7 +1046,7 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         -webkit-tap-highlight-color: transparent;
     }
     .pfe-zoom-badge.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    .pfe-zoom-badge:hover { background: #00562b; }
+    .pfe-zoom-badge:hover { background: #143d2e; }
     .pfe-zoom-badge svg { width: 15px; height: 15px; }
 
     /* Verrou de défilement du document pendant l'agrandissement */
@@ -1059,8 +1059,8 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         z-index: 2147483100;
         display: none;
         flex-direction: column;
-        background: rgba(6, 12, 9, .95);
-        color: #f4faf6;
+        background: rgba(20, 61, 46, .95);
+        color: 251,248,241;
         direction: rtl;
         font-family: system-ui, "Segoe UI", Tahoma, sans-serif;
         touch-action: none;
@@ -1093,12 +1093,12 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, .22);
         background: rgba(255, 255, 255, .1);
-        color: #fff;
+        color: #fbf8f1;
         font: 700 15px/1 system-ui, "Segoe UI", Tahoma, sans-serif;
         cursor: pointer;
     }
     .pfe-zoom-btn:hover { background: rgba(255, 255, 255, .24); }
-    .pfe-zoom-btn.is-close { background: #b3261e; border-color: #b3261e; }
+    .pfe-zoom-btn.is-close { background: 138,90,60; border-color: 138,90,60; }
     .pfe-zoom-pct {
         min-width: 64px;
         text-align: center;
@@ -1121,7 +1121,7 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         display: block;
         max-width: none !important;
         max-height: none !important;
-        background: #fff;
+        background: #fbf8f1;
         border-radius: 10px;
         box-shadow: 0 14px 46px rgba(0, 0, 0, .5);
     }
@@ -1632,12 +1632,12 @@ ADN (النواة عند حقيقيات النواة)<br>⬇ استنساخ<br>A
         for (var i = 0; i < sheets.length; i++) { styles += String(sheets[i].textContent || ''); }
 
         var title = escapeHtml(figureTitle(openFig));
-        var extra = 'html,body{margin:0;background:#fff;color:#111}' +
+        var extra = 'html,body{margin:0;background:#fbf8f1;color:#1c1914}' +
             'body{padding:18px 16px 64px;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;direction:rtl}' +
             '.pfe-standalone-title{font-size:17px;font-weight:700;margin:0 0 14px;line-height:1.5}' +
-            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #e2e8e0;border-radius:16px;background:#fff}' +
+            '.pfe-standalone-fig{margin:0;padding:12px;border:1px solid #d7e6dc;border-radius:16px;background:#fbf8f1}' +
             '.pfe-standalone-fig svg,.pfe-standalone-fig img{width:100%;height:auto;max-width:none}' +
-            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:#3f5147;text-align:center;line-height:1.7}' +
+            '.pfe-standalone-tip{margin-top:16px;font-size:13.5px;color:63,58,50;text-align:center;line-height:1.7}' +
             '@media print{.pfe-standalone-tip{display:none}}';
 
         var doc = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8">' +
