@@ -19,6 +19,7 @@ interface Props {
   etat: Etat;
   onOuvrirItem: (item: ItemChemin) => void;
   onVoirUnite: (uniteId: string) => void;
+  onOuvrirAtelier: () => void;
 }
 
 function itemsUnite(uniteId: string): ItemChemin[] {
@@ -30,7 +31,12 @@ function itemsUnite(uniteId: string): ItemChemin[] {
   return items;
 }
 
-export default function Masari({ etat, onOuvrirItem, onVoirUnite }: Props) {
+export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier }: Props) {
+  const domaine1Pret = DOMAINES[0].unites.every((uniteId) =>
+    itemFait(etat, { type: 'jalon', uniteId })
+  );
+  const atelierFait = Boolean(etat.ateliers?.domaine1);
+
   return (
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
       <header className="mb-6">
@@ -214,6 +220,21 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite }: Props) {
           );
         })}
       </div>
+
+      {domaine1Pret && (
+        <section className="card mt-6 overflow-hidden border-forest/30">
+          <div className="bg-gradient-to-l from-forest to-forest-deep p-5 text-paper">
+            <p className="text-[11px] font-bold text-sage">محطة تركيبية جديدة</p>
+            <h2 className="font-naskh mt-1 text-xl font-bold">ورشة تركيب المجال الأول</h2>
+            <p className="mt-2 text-sm leading-relaxed text-paper/80">
+              اربط بين المعلومة الوراثية، بنية البروتين ووظيفته في خريطة واحدة، ثم استرجعها من الذاكرة.
+            </p>
+            <button onClick={onOuvrirAtelier} className="btn mt-4 w-full bg-paper text-forest-deep hover:bg-sage">
+              {atelierFait ? 'إعادة فتح الورشة' : 'ابدأ الورشة'} {atelierFait && '✓'}
+            </button>
+          </div>
+        </section>
+      )}
 
       <p className="mt-8 text-center text-xs leading-relaxed text-mute">
         الطريق وحده يصل بك. {enArabe(CHEMIN.length)} بنية، واحدة في كل حصّة.
