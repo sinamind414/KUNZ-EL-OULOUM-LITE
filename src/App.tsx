@@ -18,6 +18,7 @@ import SessionRevision from './components/SessionRevision';
 import JalonUnite from './components/JalonUnite';
 import LecteurLecon from './components/LecteurLecon';
 import AtelierDomaine1 from './components/AtelierDomaine1';
+import AtelierImmunite from './components/AtelierImmunite';
 import EcranDemarrage from './components/EcranDemarrage';
 import {
   IcoCarnet,
@@ -28,6 +29,7 @@ import {
 
 type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
 type Mode =
+  | { type: 'immunite' }
   | { type: 'atelier'; domaineId: string }
   | { type: 'protocole'; lessonId: string }
   | { type: 'revision'; lessonIds: string[] }
@@ -157,6 +159,9 @@ export default function App() {
   // ───────────── الأوضاع كاملة الشاشة ─────────────
 
   if (mode) {
+    if (mode.type === 'immunite') {
+      return <AtelierImmunite onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+    }
     if (mode.type === 'atelier') {
       return (
         <AtelierDomaine1
@@ -236,6 +241,7 @@ export default function App() {
           onOuvrirItem={ouvrirItem}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
           onOuvrirAtelier={() => setMode({ type: 'atelier', domaineId: 'd1' })}
+          onOuvrirImmunite={() => setMode({ type: 'immunite' })}
         />
       )}
       {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}

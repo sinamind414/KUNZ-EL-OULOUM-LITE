@@ -20,6 +20,7 @@ interface Props {
   onOuvrirItem: (item: ItemChemin) => void;
   onVoirUnite: (uniteId: string) => void;
   onOuvrirAtelier: () => void;
+  onOuvrirImmunite: () => void;
 }
 
 function itemsUnite(uniteId: string): ItemChemin[] {
@@ -31,11 +32,12 @@ function itemsUnite(uniteId: string): ItemChemin[] {
   return items;
 }
 
-export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier }: Props) {
+export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier, onOuvrirImmunite }: Props) {
   const domaine1Pret = DOMAINES[0].unites.every((uniteId) =>
     itemFait(etat, { type: 'jalon', uniteId })
   );
   const atelierFait = Boolean(etat.ateliers?.domaine1);
+  const immunitePret = itemFait(etat, { type: 'jalon', uniteId: 'u4' });
 
   return (
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
@@ -232,6 +234,17 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
             <button onClick={onOuvrirAtelier} className="btn mt-4 w-full bg-paper text-forest-deep hover:bg-sage">
               {atelierFait ? 'إعادة فتح الورشة' : 'ابدأ الورشة'} {atelierFait && '✓'}
             </button>
+          </div>
+        </section>
+      )}
+
+      {immunitePret && (
+        <section className="card mt-4 overflow-hidden border-clay/30">
+          <div className="bg-sage-soft p-5">
+            <p className="text-[11px] font-bold text-forest">ورشة تطبيقية · الوحدة ٤</p>
+            <h2 className="font-naskh mt-1 text-xl font-bold">آلية الدفاع عن الذات</h2>
+            <p className="mt-2 text-sm leading-relaxed text-mute">رتّب استجابة LB وLT4 وLT8 من التعرف إلى التكاثر ثم النتيجة المناعية.</p>
+            <button onClick={onOuvrirImmunite} className="btn btn-primary mt-4 w-full">ابدأ ورشة المناعة</button>
           </div>
         </section>
       )}
