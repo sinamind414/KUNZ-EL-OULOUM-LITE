@@ -21,6 +21,7 @@ interface Props {
   onVoirUnite: (uniteId: string) => void;
   onOuvrirAtelier: () => void;
   onOuvrirImmunite: () => void;
+  onOuvrirOrogenese: () => void;
 }
 
 function itemsUnite(uniteId: string): ItemChemin[] {
@@ -32,12 +33,13 @@ function itemsUnite(uniteId: string): ItemChemin[] {
   return items;
 }
 
-export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier, onOuvrirImmunite }: Props) {
+export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier, onOuvrirImmunite, onOuvrirOrogenese }: Props) {
   const domaine1Pret = DOMAINES[0].unites.every((uniteId) =>
     itemFait(etat, { type: 'jalon', uniteId })
   );
   const atelierFait = Boolean(etat.ateliers?.domaine1);
   const immunitePret = itemFait(etat, { type: 'jalon', uniteId: 'u4' });
+  const orogenesePret = itemFait(etat, { type: 'jalon', uniteId: 'u11' });
 
   return (
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
@@ -245,6 +247,17 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
             <h2 className="font-naskh mt-1 text-xl font-bold">آلية الدفاع عن الذات</h2>
             <p className="mt-2 text-sm leading-relaxed text-mute">رتّب استجابة LB وLT4 وLT8 من التعرف إلى التكاثر ثم النتيجة المناعية.</p>
             <button onClick={onOuvrirImmunite} className="btn btn-primary mt-4 w-full">ابدأ ورشة المناعة</button>
+          </div>
+        </section>
+      )}
+
+      {orogenesePret && (
+        <section className="card mt-4 overflow-hidden border-gold/30">
+          <div className="bg-gold-soft/50 p-5">
+            <p className="text-[11px] font-bold text-[#6b5320]">ورشة تركيبية · التكتونية</p>
+            <h2 className="font-naskh mt-1 text-xl font-bold">من التباعد إلى السلسلة الجبلية</h2>
+            <p className="mt-2 text-sm leading-relaxed text-mute">رتّب المراحل الخمس لتشكل الأوروجينيز: التمدد، اتساع الحوض، التقارب ثم التصادم.</p>
+            <button onClick={onOuvrirOrogenese} className="btn btn-primary mt-4 w-full">ابدأ ورشة الأوروجينيز</button>
           </div>
         </section>
       )}
