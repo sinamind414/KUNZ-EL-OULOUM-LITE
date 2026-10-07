@@ -22,6 +22,7 @@ interface Props {
   onOuvrirAtelier: () => void;
   onOuvrirImmunite: () => void;
   onOuvrirOrogenese: () => void;
+  onOuvrirStructureTerre: () => void;
 }
 
 function itemsUnite(uniteId: string): ItemChemin[] {
@@ -33,13 +34,14 @@ function itemsUnite(uniteId: string): ItemChemin[] {
   return items;
 }
 
-export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier, onOuvrirImmunite, onOuvrirOrogenese }: Props) {
+export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelier, onOuvrirImmunite, onOuvrirOrogenese, onOuvrirStructureTerre }: Props) {
   const domaine1Pret = DOMAINES[0].unites.every((uniteId) =>
     itemFait(etat, { type: 'jalon', uniteId })
   );
   const atelierFait = Boolean(etat.ateliers?.domaine1);
   const immunitePret = itemFait(etat, { type: 'jalon', uniteId: 'u4' });
   const orogenesePret = itemFait(etat, { type: 'jalon', uniteId: 'u11' });
+  const structureTerrePret = itemFait(etat, { type: 'jalon', uniteId: 'u10' });
 
   return (
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
@@ -247,6 +249,17 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite, onOuvrirAtelie
             <h2 className="font-naskh mt-1 text-xl font-bold">آلية الدفاع عن الذات</h2>
             <p className="mt-2 text-sm leading-relaxed text-mute">رتّب استجابة LB وLT4 وLT8 من التعرف إلى التكاثر ثم النتيجة المناعية.</p>
             <button onClick={onOuvrirImmunite} className="btn btn-primary mt-4 w-full">ابدأ ورشة المناعة</button>
+          </div>
+        </section>
+      )}
+
+      {structureTerrePret && (
+        <section className="card mt-4 overflow-hidden border-forest/30">
+          <div className="bg-sage-soft p-5">
+            <p className="text-[11px] font-bold text-forest">ورشة موجهة · بنية الأرض</p>
+            <h2 className="font-naskh mt-1 text-xl font-bold">بناء مقطع الكرة الأرضية</h2>
+            <p className="mt-2 text-sm leading-relaxed text-mute">رتّب الأغلفة حسب العمق، وافهم الحالة الفيزيائية ودور الموجات الزلزالية.</p>
+            <button onClick={onOuvrirStructureTerre} className="btn btn-primary mt-4 w-full">ابدأ ورشة بنية الأرض</button>
           </div>
         </section>
       )}

@@ -20,6 +20,7 @@ import LecteurLecon from './components/LecteurLecon';
 import AtelierDomaine1 from './components/AtelierDomaine1';
 import AtelierImmunite from './components/AtelierImmunite';
 import AtelierOrogenese from './components/AtelierOrogenese';
+import AtelierStructureTerre from './components/AtelierStructureTerre';
 import EcranDemarrage from './components/EcranDemarrage';
 import {
   IcoCarnet,
@@ -30,6 +31,7 @@ import {
 
 type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
 type Mode =
+  | { type: 'structureTerre' }
   | { type: 'orogenese' }
   | { type: 'immunite' }
   | { type: 'atelier'; domaineId: string }
@@ -161,6 +163,9 @@ export default function App() {
   // ───────────── الأوضاع كاملة الشاشة ─────────────
 
   if (mode) {
+    if (mode.type === 'structureTerre') {
+      return <AtelierStructureTerre onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
+    }
     if (mode.type === 'orogenese') {
       return <AtelierOrogenese onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
     }
@@ -248,6 +253,7 @@ export default function App() {
           onOuvrirAtelier={() => setMode({ type: 'atelier', domaineId: 'd1' })}
           onOuvrirImmunite={() => setMode({ type: 'immunite' })}
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
+          onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
         />
       )}
       {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
