@@ -11,7 +11,6 @@ import type { Qualite } from './utils/srs';
 import { mettreAJourSrs } from './utils/srs';
 import Aujourdhui from './components/Aujourdhui';
 import Masari from './components/Masari';
-import Bac from './components/Bac';
 import Ana from './components/Ana';
 import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
@@ -45,7 +44,7 @@ type Mode =
 const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
-  { id: 'bac', label: 'البكالوريا', icone: IcoDiplome },
+  { id: 'bac', label: 'منهجية', icone: IcoDiplome },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -261,7 +260,7 @@ export default function App() {
           onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
         />
       )}
-      {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} onOuvrirMethodologie={() => setMode({ type: 'methodologie' })} />}
+      {onglet === 'bac' && <Methodologie onFermer={() => setOnglet('aujourdhui')} />}
       {onglet === 'ana' && (
         <Ana
           etat={etat}
