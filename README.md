@@ -37,24 +37,33 @@ marcher.
 | **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
 | **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **deux choix (icônes) — أسئلة QCM ou الورشات** (les 4 ateliers). |
-| **منهجية** | La rubrique du but : **منهجية حل التمرين** — accueil « لا تحفظ الإجابة، تعلّم كيف تبنيها », **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels avec définition/conseil/exemple), **6 مسارات المنهجية** (chaînes de résolution) et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. Icône de l'onglet : la clé (مفتاح). |
+| **منهجية** | La rubrique du but : **منهجية حل التمرين** — la **méthode-clé « فعل ← دليل ← جواب ← فحص »** (accueil 🔑, écran des 4 حركات avec علامات الأمان, les 3 عمليات **أصف · أفسّر · أحكم**), **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels), **6 مسارات المنهجية**, les **4 مستويات التدريب** et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. Icône de l'onglet : la clé (مفتاح). |
 | **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
 
 ### 🧭 La rubrique منهجية (`Methodologie.tsx`)
 
 La 5ᵉ rubrique, **remplaçante de l'ancien onglet البكالوريا** — portée depuis la branche arena
-(`arena/7a3f2e84-kunz-el-ouloum-lite`, commits `5b3fe47` → `6a206d2`, état final `db7a65c`) et
-branchée sur les conventions de l'app : sons `sonJuste()`/`sonFaux()`, vert/rouge, **la bonne
-réponse jamais révélée avant le bon choix**, chiffres latins, zéro %, zéro culpabilisation.
+(`arena/7a3f2e84-kunz-el-ouloum-lite`, commits `5b3fe47` → `6a51bd7` puis `4bc29e2` « appliquer la
+méthode clé ») et branchée sur les conventions de l'app : sons `sonJuste()`/`sonFaux()`, vert/rouge,
+**la bonne réponse jamais révélée avant le bon choix**, chiffres latins, zéro %, zéro
+culpabilisation.
 
-- **Accueil** : « لا تحفظ الإجابة، تعلّم كيف تبنيها » → 3 portes : تشخيص · دليل الأفعال · المسارات.
+- **Accueil 🔑 — la méthode-clé « فعل ← دليل ← جواب ← فحص »** : hero dégradé (« لا تحفظ الإجابة »)
+  → diagnostic ; carte **النواة** (les 4 mouvements numérotés) ; 2 portes (**أصف · أفسّر · أحكم** /
+  **أفعال التعليمة**) ; bouton doré **مستويات التدريب الأربعة**. Badge « المفتاح » dans l'en-tête.
+- **المفتاح (4 حركات)** : فعل → دليل → جواب → فحص, chacun avec son texte et son **علامة الأمان**
+  (le garde-fou), puis enchaînement vers العمليات.
+- **العمليات الثلاث** : أصف / أفسّر / أحكم (question + لغة مفيدة + مثال combiné), sélection active.
 - **تشخيص (3 QCM)** : erreur → rouge + `sonFaux()` + message doux (« خذ وقتك، لا عجلة ») et
   **on réessaie sans afficher la réponse** ; succès → `sonJuste()`, score compté **au premier
-  essai**, résultat « حصلت على X / 3 » — rejouable à volonté.
+  essai**, résultat « حصلت على X / 3 » — rejouable à volonté → puis **مستويات التدريب**.
 - **دليل أفعال التعليمة** : les 11 verbes officiels des commandes du Bac (حدّد, استخرج, صف, قارن,
-  حلّل, فسّر, علّل, استنتج, أثبت, اقترح فرضية, مثّل) — définition + conseil + exemple.
+  حلّل, فسّر, علّل, استنتج, أثبت, اقترح فرضية, مثّل) — définition + exemple.
 - **6 مسارات المنهجية** : chaînes de résolution (ملاحظة → معلومة → تفسير → استنتاج, …) puis un
   **تمرين تطبيقي** QCM avec feedback vert/rouge après le choix.
+- **4 مستويات التدريب** : القدوة المشروحة → التمرين الموجه → التمرين المستقل → تشخيص الخطأ,
+  chacun ouvre les مسارات ; rappel non culpabilisant « لا تنتقل إلى المستوى التالي لمجرد أنك قرأت
+  الطريقة ».
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -362,7 +371,7 @@ app-svt-bac/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات (2 icônes) + 49 axes verrouillés + journées de 10
-│       ├── Methodologie.tsx       # ⭐ منهجية : تشخيص 3 QCM + 11 verbes + 6 مسارات + تمرين
+│       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -495,6 +504,12 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   `etat.copies` retirés. **4e atelier « بنية الأرض »** (`AtelierStructureTerre.tsx`) : porté,
   intégralement traduit en arabe (il était en français), sons ajoutés, marqué dans
   `etat.ateliers.structure`, listé dans تدريبات avec cadenas جسر u10.
+- **v0.5.6** — **la méthode-clé dans منهجية** (port du commit arena `4bc29e2`) : accueil 🔑 « فعل ←
+  دليل ← جواب ← فحص », écran **المفتاح** (4 mouvements + علامات الأمان), écran **العمليات الثلاث**
+  (أصف · أفسّر · أحكم avec مثال combiné), écran **4 مستويات التدريب** (القدوة المشروحة → تشخيص
+  الخطأ), badge « المفتاح » en en-tête ; les 11 verbes et les 6 مسارات passés en version condensée
+  (définition + exemple / chaîne seule). Conventions maison conservées : sons, vert/rouge, retry sans
+  révélation, score au 1er essai, « العودة إلى البداية ».
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).
