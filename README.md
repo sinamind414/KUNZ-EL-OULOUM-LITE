@@ -37,7 +37,7 @@ marcher.
 | **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
 | **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **deux choix (icônes) — أسئلة QCM ou الورشات** (les 4 ateliers). |
-| **منهجية** | La rubrique du but : **منهجية حل التمرين** — accueil « لا تحفظ الإجابة، تعلّم كيف تبنيها », **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels avec définition/conseil/exemple), **6 مسارات المنهجية** (chaînes de résolution) et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. |
+| **منهجية** | La rubrique du but : **منهجية حل التمرين** — accueil « لا تحفظ الإجابة، تعلّم كيف تبنيها », **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels avec définition/conseil/exemple), **6 مسارات المنهجية** (chaînes de résolution) et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. Icône de l'onglet : la clé (مفتاح). |
 | **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
 
 ### 🧭 La rubrique منهجية (`Methodologie.tsx`)

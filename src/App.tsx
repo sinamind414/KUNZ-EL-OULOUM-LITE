@@ -30,7 +30,7 @@ import { fermerSession, ouvrirSession, sessionOuverte } from './utils/compte';
 import type { Compte } from './types';
 import {
   IcoCarnet,
-  IcoDiplome,
+  IcoCle,
   IcoDumbbell,
   IcoRoute,
   IcoSoleil,
@@ -51,7 +51,7 @@ const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
   { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
-  { id: 'methodo', label: 'منهجية', icone: IcoDiplome },
+  { id: 'methodo', label: 'منهجية', icone: IcoCle },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 

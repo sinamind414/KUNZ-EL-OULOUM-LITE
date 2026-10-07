@@ -59,6 +59,18 @@ export function IcoDiplome() {
   );
 }
 
+// مفتاح — أيقونة تبويب «منهجية» (clé Miftah)
+export function IcoCle() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-full w-full" aria-hidden>
+      <circle cx="8" cy="16" r="4" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M11 13 20 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M14.5 9.5 16.5 11.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M17.5 6.5 19.5 8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function IcoCible() {
   return (
     <svg viewBox="0 0 24 24" fill="none" className="h-full w-full" aria-hidden>
