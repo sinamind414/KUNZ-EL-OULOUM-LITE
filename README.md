@@ -127,8 +127,9 @@ reprogrammée à **J+1** au lieu de J+3. L'échec n'est pas puni, il est *utilis
 
 À la fin de **chaque** phase (bouton « انتهيت من هذه المرحلة »), l'écran de célébration s'ouvre :
 
-- **la personnification كنز العلوم** sort et salue : mascotte dessinée en SVG interne (aucun asset
-  externe) — bras qui ondule, respiration, bulle de encouragement sans culpabilisation ;
+- **la personnification كنز العلوم (mascotte pirate)** sort et salue : image PNG de la mascotte
+  (`public/personnage-pirate.png`, 500×500, ajoutée au precache du service worker pour fonctionner
+  hors ligne) avec rebond/sourire animés et bulle de encouragement sans culpabilisation ;
 - **un son d'applaudissements** (`sonApplaudissement()`) : faux-bruit filtré + lardon vainqueur,
   générés en Web Audio — toujours offline, toujours doux ;
 - **des feux d'artifice** sur canvas léger (~5 s puis s'arrêtent, `prefers-reduced-motion` respecté,

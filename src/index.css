@@ -166,22 +166,6 @@ body {
   transform-origin: 50% 90%;
 }
 
-@keyframes ondule-bras {
-  0%,
-  100% {
-    transform: rotate(-6deg);
-  }
-  50% {
-    transform: rotate(14deg);
-  }
-}
-
-.bras-salue {
-  transform-box: view-box;
-  transform-origin: 164px 190px;
-  animation: ondule-bras 0.7s ease-in-out infinite;
-}
-
 /* ───────────── الطباعة: الملخّص الذهبي وحده ───────────── */
 @media print {
   html,
@@ -219,8 +203,7 @@ body {
     box-shadow: none;
   }
 
-  .animate-salue,
-  .bras-salue {
+  .animate-salue {
     animation: none !important;
   }
 }

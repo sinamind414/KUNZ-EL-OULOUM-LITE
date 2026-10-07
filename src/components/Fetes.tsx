@@ -7,129 +7,18 @@ import type { LessonGoldSummary } from '../data/lessonGoldSummaries';
 import { nb } from '../utils/dates';
 import { sonApplaudissement } from '../utils/son';
 
-// ───────────── الشخصية: كنز العلوم (شخصية مرسومة داخل SVG — تعمل دون إنترنت) ─────────────
+// ───────────── الشخصية: كنز العلوم — Mascotte pirate (image, تعمل دون إنترنت) ─────────────
 
 export function PersonnageKunz({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 240 300" className={className} role="img" aria-label="شخصية كنز العلوم">
-      <title>شخصية كنز العلوم</title>
-
-      {/* ظلّ الأرض */}
-      <ellipse cx="120" cy="284" rx="68" ry="9" fill="#143d2e" opacity="0.14" />
-
-      {/* الذراع المرفوعة يلوّح (خلف الجسم) */}
-      <g className="bras-salue">
-        <path
-          d="M164 190 C198 184 214 152 210 118"
-          fill="none"
-          stroke="#e4d9c5"
-          strokeWidth="30"
-          strokeLinecap="round"
-        />
-        <path
-          d="M164 190 C198 184 214 152 210 118"
-          fill="none"
-          stroke="#fbf8f1"
-          strokeWidth="24"
-          strokeLinecap="round"
-        />
-        <circle cx="209" cy="108" r="16" fill="#e8b98f" stroke="#d9a377" strokeWidth="3" />
-      </g>
-
-      {/* الرقبة */}
-      <rect x="106" y="148" width="28" height="36" rx="13" fill="#e0a87e" />
-
-      {/* الجسم: معطف المختبر */}
-      <path
-        d="M120 176 C96 176 78 186 72 206 C64 232 62 258 64 282 L176 282 C178 258 176 232 168 206 C162 186 144 176 120 176 Z"
-        fill="#fbf8f1"
-        stroke="#e4d9c5"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      {/* قميص أخضر تحت المعطف */}
-      <path d="M104 178 L120 214 L136 178 Z" fill="#1f5c45" />
-      {/* خطّ فتح المعطف والأزرار */}
-      <line x1="120" y1="214" x2="120" y2="282" stroke="#e4d9c5" strokeWidth="3" />
-      <circle cx="128" cy="236" r="3.5" fill="#9a7a2c" />
-      <circle cx="128" cy="258" r="3.5" fill="#9a7a2c" />
-      {/* شارة ADN صغيرة على الجيب */}
-      <g stroke="#1f5c45" strokeWidth="3" fill="none" strokeLinecap="round">
-        <path d="M150 224 C160 232 146 244 156 252" />
-        <path d="M156 224 C146 232 160 244 150 252" />
-        <line x1="151" y1="231" x2="155" y2="231" />
-        <line x1="151" y1="245" x2="155" y2="245" />
-      </g>
-
-      {/* الذراع الماثلة يحمل كتابًا */}
-      <path
-        d="M84 196 C70 216 68 244 76 264"
-        fill="none"
-        stroke="#e4d9c5"
-        strokeWidth="28"
-        strokeLinecap="round"
-      />
-      <path
-        d="M84 196 C70 216 68 244 76 264"
-        fill="none"
-        stroke="#fbf8f1"
-        strokeWidth="22"
-        strokeLinecap="round"
-      />
-      {/* الكتاب الذهبي */}
-      <g>
-        <rect x="42" y="252" width="68" height="40" rx="6" fill="#9a7a2c" />
-        <rect x="47" y="257" width="58" height="30" rx="3" fill="#f3e6c4" />
-        <line x1="76" y1="257" x2="76" y2="287" stroke="#9a7a2c" strokeWidth="2.5" />
-        <line x1="54" y1="266" x2="69" y2="266" stroke="#9a7a2c" strokeWidth="2" opacity="0.55" />
-        <line x1="54" y1="274" x2="69" y2="274" stroke="#9a7a2c" strokeWidth="2" opacity="0.55" />
-      </g>
-      {/* اليد تمسك الكتاب */}
-      <circle cx="78" cy="254" r="13" fill="#e8b98f" stroke="#d9a377" strokeWidth="3" />
-
-      {/* الرأس */}
-      <circle cx="120" cy="104" r="54" fill="#e8b98f" stroke="#d9a377" strokeWidth="3" />
-      <circle cx="66" cy="110" r="9" fill="#e8b98f" stroke="#d9a377" strokeWidth="3" />
-      <circle cx="174" cy="110" r="9" fill="#e8b98f" stroke="#d9a377" strokeWidth="3" />
-      {/* الشعر */}
-      <path
-        d="M66 100 C66 62 88 44 120 44 C152 44 174 62 174 100 C166 80 150 70 120 70 C90 70 74 80 66 100 Z"
-        fill="#3a342c"
-      />
-      {/* الحاجبان */}
-      <g stroke="#3a342c" strokeWidth="4" strokeLinecap="round" fill="none">
-        <path d="M88 84 Q99 78 110 83" />
-        <path d="M130 83 Q141 78 152 84" />
-      </g>
-      {/* النظّارة */}
-      <g fill="none" stroke="#1f5c45" strokeWidth="4">
-        <circle cx="99" cy="104" r="16" />
-        <circle cx="141" cy="104" r="16" />
-        <path d="M115 104 h10" />
-        <path d="M83 102 L71 106" />
-        <path d="M157 102 L169 106" />
-      </g>
-      {/* العينان */}
-      <circle cx="99" cy="105" r="4.5" fill="#1c1914" />
-      <circle cx="141" cy="105" r="4.5" fill="#1c1914" />
-      {/* الأنف والابتسامة والخدّان */}
-      <path
-        d="M120 112 Q125 122 118 125"
-        fill="none"
-        stroke="#d9a377"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M102 132 Q120 146 138 132"
-        fill="none"
-        stroke="#8a5a3c"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-      />
-      <ellipse cx="84" cy="126" rx="8" ry="5" fill="#d98a5f" opacity="0.4" />
-      <ellipse cx="156" cy="126" rx="8" ry="5" fill="#d98a5f" opacity="0.4" />
-    </svg>
+    <img
+      src="personnage-pirate.png"
+      alt="شخصية كنز العلوم"
+      width={500}
+      height={500}
+      draggable={false}
+      className={className}
+    />
   );
 }
 

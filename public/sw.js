@@ -9,6 +9,7 @@ const PRECACHE = [
   '/manifest.webmanifest',
   '/icon.svg',
   '/logo.png',
+  '/personnage-pirate.png',
   '/ouverture.mp4',
   '/lecons/lecon_activite_structure.html',
   '/lecons/lecon_representation.html',
