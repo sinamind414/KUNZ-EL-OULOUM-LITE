@@ -44,6 +44,21 @@ export function IcoDumbbell() {
   );
 }
 
+export function IcoDiplome() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-full w-full" aria-hidden>
+      <path
+        d="M12 3 3 7l9 4 9-4-9-4Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M7 9.5V15c0 1.7 2.2 3 5 3s5-1.3 5-3V9.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M21 11v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function IcoCible() {
   return (
     <svg viewBox="0 0 24 24" fill="none" className="h-full w-full" aria-hidden>

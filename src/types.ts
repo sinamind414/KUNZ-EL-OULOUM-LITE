@@ -88,6 +88,7 @@ export interface Etat {
   revisions: number;
   nom: string;
   dateBac?: string; // ISO
+  copies?: number; // نسخ البكالوريا المنجزة (rubrique البكالوريا)
   seancesJour?: string; // تاريخ آخر حصّة جديدة
   seancesComptees: number; // عدد الحصص الجديدة في seancesJour
   bonusJour?: string; // تاريخ استعمال الحصّة الإضافية
@@ -118,6 +119,7 @@ export function etatVierge(): Etat {
     revisions: 0,
     nom: 'تلميذ',
     dateBac: '2027-06-10',
+    copies: 0,
     seancesComptees: 0,
     ateliers: {},
     consentementSync: true,

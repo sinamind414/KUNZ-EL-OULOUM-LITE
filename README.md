@@ -26,18 +26,33 @@ un écran plein écran noir joue la **vidéo d'ouverture officielle** (`public/o
 
 ## 🧭 Architecture « OPUS » (v0.3)
 
-L'application n'est **pas** un sommaire de cours : c'est un **chemin**. Quatre onglets, un moteur qui
+L'application n'est **pas** un sommaire de cours : c'est un **chemin**. Cinq onglets, un moteur qui
 décide de la prochaine action, et des **portes verrouillées** qui empêchent l'élève de courir avant de
 marcher.
 
-### Les 4 onglets
+### Les 5 onglets
 
 | Onglet | Rôle |
 |---|---|
 | **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
-| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. |
+| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **deux choix (icônes) — أسئلة QCM ou الورشات** (les 3 ateliers). |
+| **البكالوريا** | La rubrique du but : date de l'écran + jours restants (messages doux, sans anxiété), **الامتحان التجريبي** qui s'ouvre à J-56 avec compteur de **نسخ** (copies du Bac), le **poids relatif des 11 unités** (poidsBac 1–5 + progrès des leçons) et l'**archive des جسور écrites** (synthèses datées de l'élève). Chiffres latins (`nb()`), zéro pourcentage. |
 | **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
+
+### 🎓 La rubrique البكالوريا (`Bac.tsx`)
+
+Restaurée depuis la branche arena (`arena/7a3f2e84-kunz-el-ouloum-lite`, supprimée dans `12db8ff`)
+et modernisée : `enArabe()` → `nb()` (chiffres latins), état `etat.copies` réintroduit
+(`types.ts`, `etatVierge()`), icône `IcoDiplome` recréée.
+
+- **Le compte des jours** reste **doux et en mots** (« الوقت طويل — لكنه يُهدر دقيقة دقيقة… ») —
+  jamais un compte à rebours angoissant ; à J-56, la carte الامتحان التجريبي s'entoure d'un anneau
+  vert et propose « سجّل كنسخة بكالوريا ».
+- **الوزن النسبي للوحدات** : les 11 barres `poidsBac` (1–5) avec le progrès `faites/total` de chaque
+  unité — « أين تُصنع النقاط », l'ordre de priorité du استرجاع.
+- **L'archive des جسور** : chaque synthèse écrite au moment du جسر est listée ici, datée
+  (`formatCourteAr`) — « مرجعك الأخير قبل الامتحان ».
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -321,7 +336,7 @@ app-svt-bac/
 ├── src/
 │   ├── main.tsx                  # racine + enregistrement du SW
 │   ├── index.css                 # Tailwind + base RTL
-│   ├── App.tsx                   # 4 onglets : اليوم / مساري / تدريبات / أنا
+│   ├── App.tsx                   # 5 onglets : اليوم / مساري / تدريبات / البكالوريا / أنا
 │   ├── types.ts                  # État (jalons, notes, journal, séances, bonus, drills)
 │   ├── data/
 │   │   ├── lessonGoldSummaries.ts # 58 résumés d'or (source de vérité du contenu)
@@ -344,6 +359,7 @@ app-svt-bac/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات (2 icônes) + 49 axes verrouillés + journées de 10
+│       ├── Bac.tsx                # ⭐ البكالوريا : date + jours doux + نسخ + poidsBac + archive des جسور
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -464,6 +480,11 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   l'onglet ; les 3 ateliers y sont listés avec leurs conditions de déblocage (جسور du domaine 1, u4,
   u11) et un cadenas explicite s'ils ne sont pas encore atteints. مساري ne contient plus que le chemin
   des leçons.
+- **v0.5.4** — **restauration de la rubrique البكالوريا (5e onglet)** : récupérée depuis la branche
+  `arena/7a3f2e84-kunz-el-ouloum-lite` (supprimée dans `12db8ff`) et modernisée — date du Bac +
+  jours restants en messages doux, الامتحان التجريبي à J-56, compteur de نسخ (`etat.copies`
+  réintroduit), aperçu du poids des 11 unités (`poidsBac` + progrès), archive datée des جسور
+  écrites ; chiffres latins `nb()`, icône `IcoDiplome` recréée, barre du bas à 5 onglets.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

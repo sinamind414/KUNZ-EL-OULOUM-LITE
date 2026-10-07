@@ -1,4 +1,4 @@
-// التطبيق — 4 تبويبات (اليوم / مساري / تدريبات / أنا) + أوضاع جلسة كاملة الشاشة.
+// التطبيق — 5 تبويبات (اليوم / مساري / تدريبات / البكالوريا / أنا) + أوضاع جلسة كاملة الشاشة.
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
 import { useEffect, useRef, useState } from 'react';
@@ -13,6 +13,7 @@ import { mettreAJourSrs } from './utils/srs';
 import Aujourdhui from './components/Aujourdhui';
 import Masari from './components/Masari';
 import Exercices from './components/Exercices';
+import Bac from './components/Bac';
 import Ana from './components/Ana';
 import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
@@ -28,12 +29,13 @@ import { fermerSession, ouvrirSession, sessionOuverte } from './utils/compte';
 import type { Compte } from './types';
 import {
   IcoCarnet,
+  IcoDiplome,
   IcoDumbbell,
   IcoRoute,
   IcoSoleil,
 } from './components/Icones';
 
-type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'ana';
+type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'bac' | 'ana';
 type Mode =
   | { type: 'orogenese' }
   | { type: 'immunite' }
@@ -47,6 +49,7 @@ const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
   { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
+  { id: 'bac', label: 'البكالوريا', icone: IcoDiplome },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -197,6 +200,12 @@ export default function App() {
         ? prev
         : { ...prev, drills: { ...(prev.drills ?? {}), [id]: true } }
     );
+  }
+
+  // ───────────── نسخ البكالوريا ─────────────
+
+  function onCopie(): void {
+    setEtat((prev) => ({ ...prev, copies: (prev.copies ?? 0) + 1 }));
   }
 
   // ───────────── موافقة المزامنة ─────────────
@@ -373,6 +382,7 @@ export default function App() {
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
         />
       )}
+      {pret && onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
       {pret && onglet === 'ana' && (
         <Ana
           etat={etat}
