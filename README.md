@@ -70,6 +70,16 @@ culpabilisation.
   `modeInitial="niveaux"` (nouvelle prop optionnelle `'accueil' | 'niveaux'`) via le mode
   `methodoExos` d'`App.tsx` ; la fermeture (`setMode(null)`) **retourne à تدريبات** — l'onglet
   منهجية, lui, continue d'ouvrir l'accueil 🔑.
+- **الوحدة 1 · تركيب البروتين** : écran dédié (bouton « الوحدة 1 · تركيب البروتين · 10 تمارين » au
+  bas des مستويات) avec **10 exercices interactifs** (مثّل, قارن, فسّر, حلّل, استنتج, استخرج,
+  علّل, ركّب…) construits sur la clé فعل ← دليل ← جواب ← فحص, chacun avec **un schéma SVG** aux
+  couleurs de l'app (port du commit arena `48afe8b`). Corrections du port : état `sourceExo`
+  (collision d'index entre `methodes` et `exercicesUnite1` — les 6 مسارات ouvrent de nouveau le
+  tamrin classique), feedback **rouge au faux** (`bg-clay-soft`, `sonFaux()`) au lieu du vert
+  systématique d'arena, **retry sans révélation** (le « خطأ شائع » n'apparaît qu'après le bon
+  choix), bonne réponse en **position variable** (rotation déterministe), schémas n°8
+  (« graphique » → مسار الإفراز, il était vide) et n°6 (« استخراج ARNm » réutilisait le schéma de
+  mutation) corrigés.
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -378,7 +388,7 @@ app-svt-bac/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات الخرائط الذهنية/تمارين المنهجية (3 icônes) + 49 axes verrouillés + journées de 10
-│       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين
+│       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين + الوحدة 1 (10 exercices, schémas SVG)
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -524,6 +534,13 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   **aucun 6ᵉ onglet** : la barre du bas reste à 5 onglets pour ne pas opposer تمارين à تدريبات.
   Ordre de la barre : **اليوم / مساري / منهجية / تدريبات / أنا** (تدريبات déplacé après منهجية,
   avant أنا).
+- **v0.5.8** — **10 exercices interactifs sur la synthèse protéique** dans منهجية (port du commit
+  arena `48afe8b`, corrigé) : écran « الوحدة 1 · تركيب البروتين » accessible depuis les مستويات
+  (bouton au bas de la 3ᵉ porte), 10 exercices verbes+objectif structurés فعل ← دليل ← جواب ← فحص
+  (bonne réponse en position variable), 10 schémas SVG inline ; conventions maison : sons
+  `sonJuste`/`sonFaux`, vert au juste / rouge au faux, retry sans révélation (« خطأ شائع » révélé
+  après le bon choix seulement) ; bug de collision d'index corrigé par l'état `sourceExo` (les 6
+  مسارات mènent de nouveau au tamrin classique) ; schémas n°8 et n°6 réécrits.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).
