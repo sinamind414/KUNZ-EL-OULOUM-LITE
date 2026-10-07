@@ -175,10 +175,10 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
                   لا تحفظ الإجابة. تعلّم كيف تبنيها من التعليمة والوثيقة.
                 </p>
                 <button
-                  onClick={startDiagnostic}
+                  onClick={() => setEcran('cle')}
                   className="btn mt-5 w-full bg-paper text-forest-deep hover:bg-sage"
                 >
-                  ابدأ التشخيص · 3 دقائق
+                  شرح المفتاح خطوة بخطوة
                 </button>
               </div>
             </div>
@@ -203,8 +203,8 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
                   </button>
                 ))}
               </div>
-              <button onClick={() => setEcran('cle')} className="btn btn-ghost mt-4 w-full">
-                شرح المفتاح خطوة بخطوة
+              <button onClick={startDiagnostic} className="btn btn-ghost mt-4 w-full">
+                ابدأ التشخيص · 3 دقائق
               </button>
             </div>
 

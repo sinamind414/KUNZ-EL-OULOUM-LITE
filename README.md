@@ -49,8 +49,10 @@ méthode clé ») et branchée sur les conventions de l'app : sons `sonJuste()`/
 culpabilisation.
 
 - **Accueil 🔑 — la méthode-clé « فعل ← دليل ← جواب ← فحص »** : hero dégradé (« لا تحفظ الإجابة »)
-  → diagnostic ; carte **النواة** (les 4 mouvements numérotés) ; 2 portes (**أصف · أفسّر · أحكم** /
-  **أفعال التعليمة**) ; bouton doré **مستويات التدريب الأربعة**. Badge « المفتاح » dans l'en-tête.
+  dont le bouton ouvre d'abord **شرح المفتاح خطوة بخطوة** — l'élève comprend la méthode avant de
+  pratiquer ; carte **النواة** (les 4 mouvements numérotés → المفتاح) + porte **ابدأ التشخيص** ;
+  2 portes (**أصف · أفسّر · أحكم** / **أفعال التعليمة**) ; bouton doré **مستويات التدريب الأربعة**.
+  Badge « المفتاح » dans l'en-tête.
 - **المفتاح (4 حركات)** : فعل → دليل → جواب → فحص, chacun avec son texte et son **علامة الأمان**
   (le garde-fou), puis enchaînement vers العمليات.
 - **العمليات الثلاث** : أصف / أفسّر / أحكم (question + لغة مفيدة + مثال combiné), sélection active.
