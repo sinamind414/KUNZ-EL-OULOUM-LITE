@@ -21,6 +21,7 @@ import AtelierDomaine1 from './components/AtelierDomaine1';
 import AtelierImmunite from './components/AtelierImmunite';
 import AtelierOrogenese from './components/AtelierOrogenese';
 import AtelierStructureTerre from './components/AtelierStructureTerre';
+import Methodologie from './components/Methodologie';
 import EcranDemarrage from './components/EcranDemarrage';
 import {
   IcoCarnet,
@@ -31,6 +32,7 @@ import {
 
 type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
 type Mode =
+  | { type: 'methodologie' }
   | { type: 'structureTerre' }
   | { type: 'orogenese' }
   | { type: 'immunite' }
@@ -163,6 +165,9 @@ export default function App() {
   // ───────────── الأوضاع كاملة الشاشة ─────────────
 
   if (mode) {
+    if (mode.type === 'methodologie') {
+      return <Methodologie onFermer={() => setMode(null)} />;
+    }
     if (mode.type === 'structureTerre') {
       return <AtelierStructureTerre onFermer={() => setMode(null)} onTerminer={() => setMode(null)} />;
     }
@@ -256,7 +261,7 @@ export default function App() {
           onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
         />
       )}
-      {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
+      {onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} onOuvrirMethodologie={() => setMode({ type: 'methodologie' })} />}
       {onglet === 'ana' && (
         <Ana
           etat={etat}

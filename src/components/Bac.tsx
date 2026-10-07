@@ -9,9 +9,10 @@ import { Morceau } from './Communs';
 interface Props {
   etat: Etat;
   onCopie: () => void;
+  onOuvrirMethodologie: () => void;
 }
 
-export default function Bac({ etat, onCopie }: Props) {
+export default function Bac({ etat, onCopie, onOuvrirMethodologie }: Props) {
   const dateBac = etat.dateBac ?? '2027-06-10';
   const restant = differenceJours(new Date().toISOString().slice(0, 10), dateBac);
   const copies = etat.copies ?? 0;
@@ -25,6 +26,15 @@ export default function Bac({ etat, onCopie }: Props) {
         <p className="eyebrow">الهدف</p>
         <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">البكالوريا</h1>
       </header>
+
+      <section className="card mb-5 overflow-hidden border-forest/30">
+        <div className="bg-gradient-to-l from-forest to-forest-deep p-5 text-paper">
+          <p className="text-[11px] font-bold text-sage">مهارة الامتحان</p>
+          <h2 className="font-naskh mt-1 text-xl font-bold">منهجية حل التمرين</h2>
+          <p className="mt-2 text-sm leading-relaxed text-paper/80">تعلم قراءة التعليمة، استغلال الوثيقة، بناء الاستدلال وكتابة الاستنتاج العلمي.</p>
+          <button onClick={onOuvrirMethodologie} className="btn mt-4 w-full bg-paper text-forest-deep hover:bg-sage">ابدأ التشخيص والمنهجية</button>
+        </div>
+      </section>
 
       {/* العدّ التنازلي — بالحروف، بدون قلق */}
       <section className="card overflow-hidden p-6">
