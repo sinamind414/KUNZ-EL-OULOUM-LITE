@@ -37,7 +37,7 @@ marcher.
 | **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
 | **منهجية** | La rubrique du but : **منهجية حل التمرين** — la **méthode-clé « فعل ← دليل ← جواب ← فحص »** (accueil 🔑, écran des 4 حركات avec علامات الأمان, les 3 عمليات **أصف · أفسّر · أحكم**), **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels), **6 مسارات المنهجية**, les **4 مستويات التدريب** et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. Icône de l'onglet : la clé (مفتاح). |
-| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **trois portes (icônes) — أسئلة QCM, الورشات** (les 4 ateliers) **et تمارين المنهجية** (ouvre `Methodologie` directement sur les 4 مستويات de تدريب, fermeture → retour à تدريبات). |
+| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **trois portes (icônes) — أسئلة QCM, ورشات الخرائط الذهنية** (les 4 ateliers) **et تمارين المنهجية** (ouvre `Methodologie` directement sur les 4 مستويات de تدريب, fermeture → retour à تدريبات). |
 | **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
 
 ### 🧭 La rubrique منهجية (`Methodologie.tsx`)
@@ -101,9 +101,10 @@ Le pont validé → l'unité suivante se déverrouille.
 ### 🧩 Les 4 ateliers de synthèse (`AtelierDomaine1.tsx`, `AtelierImmunite.tsx`, `AtelierOrogenese.tsx`, `AtelierStructureTerre.tsx`)
 
 Après le pont, une **ورشة** (atelier) se débloque dans l'onglet تدريبات. L'écran d'entrée de تدريبات
-propose **deux choix (icônes)** : **أسئلة QCM** (les 620 items sur 49 axes) ou **الورشات التطبيقية**
-(les 4 ateliers, chacun affiché avec sa condition de déblocage et un cadenas explicite tant qu'il n'est
-pas atteint) ; à chaque retour sur l'onglet, le choix se re-présente. مساري reste réservé aux leçons.
+propose **trois portes (icônes)** : **أسئلة QCM** (les 620 items sur 49 axes), **ورشات الخرائط
+الذهنية** (les 4 ateliers, chacun affiché avec sa condition de déblocage et un cadenas explicite tant
+qu'il n'est pas atteint) et **تمارين المنهجية** ; à chaque retour sur l'onglet, le choix se
+re-présente. مساري reste réservé aux leçons.
 L'atelier transforme le cours lu en
 manipulation : **ordonner des cartes, relier des notions, comparer** — puis **استرجاع نشط** (rappel
 actif) et une « جملة من نوع البكالوريا » avant de valider.
@@ -374,7 +375,7 @@ app-svt-bac/
 │   └── components/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
-│       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات/تمارين المنهجية (3 icônes) + 49 axes verrouillés + journées de 10
+│       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات الخرائط الذهنية/تمارين المنهجية (3 icônes) + 49 axes verrouillés + journées de 10
 │       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)

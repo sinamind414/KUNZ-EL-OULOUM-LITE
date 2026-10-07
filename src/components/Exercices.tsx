@@ -122,7 +122,7 @@ export default function Exercices({
             <span className="block h-10 w-10 text-gold">
               <IcoOutils />
             </span>
-            <h2 className="font-naskh mt-3 text-lg font-bold">الورشات التطبيقية</h2>
+            <h2 className="font-naskh mt-3 text-lg font-bold">ورشات الخرائط الذهنية</h2>
             <p className="mt-1 text-sm leading-relaxed text-mute">
               {nb(4)} ورشات: المجال الأول، المناعة، التكتونية، بنية الأرض — ترتيب، ربط، استرجاع
               نشط.
@@ -174,7 +174,7 @@ export default function Exercices({
 
         <header className="mb-6">
           <p className="eyebrow">التدريبات</p>
-          <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">الورشات التطبيقية</h1>
+          <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">ورشات الخرائط الذهنية</h1>
           <p className="mt-2 text-sm leading-relaxed text-mute">
             {nb(4)} ورشات: ترتيب البطاقات وربط المفاهيم ثم استرجاع نشط — بلا كتابة، وبلا خطأ
             يُعاقَب عليه.
