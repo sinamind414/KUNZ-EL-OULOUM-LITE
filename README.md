@@ -79,7 +79,9 @@ culpabilisation.
   systématique d'arena, **retry sans révélation** (le « خطأ شائع » n'apparaît qu'après le bon
   choix), bonne réponse en **position variable** (rotation déterministe), schémas n°8
   (« graphique » → مسار الإفراز, il était vide) et n°6 (« استخراج ARNm » réutilisait le schéma de
-  mutation) corrigés.
+  mutation) corrigés. **Variété des formats** (port `a79905c`) : un `format` d'exercice style Bac
+  (مخطط تركيبي, تحليل وثيقة, منحنى تجريبي…) et un « السند » numéroté par exercice, affichés sur la
+  carte et dans l'en-tête du tamrin.
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -540,7 +542,11 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   (bonne réponse en position variable), 10 schémas SVG inline ; conventions maison : sons
   `sonJuste`/`sonFaux`, vert au juste / rouge au faux, retry sans révélation (« خطأ شائع » révélé
   après le bon choix seulement) ; bug de collision d'index corrigé par l'état `sourceExo` (les 6
-  مسارات mènent de nouveau au tamrin classique) ; schémas n°8 et n°6 réécrits.
+  مسارات mènent de nouveau au tamrin classique) ; schémas n°8 et n°6 réécrits. **Variété des
+  formats** (port du commit arena `a79905c`) : chaque exercice porte un `format` d'exercice style
+  Bac (مخطط تركيبي, تحليل وثيقة, منحنى تجريبي, مقالة تركيبية…) et un `document` « السند 1 … 10 » —
+  affichés sur la carte de la liste (`format · verbe` + السند, l'objectif restant dans l'écran
+  exercice) et dans l'en-tête de l'exercice.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).
