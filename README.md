@@ -70,7 +70,11 @@ Le pont validé → l'unité suivante se déverrouille.
 
 ### 🧩 Les 3 ateliers de synthèse (`AtelierDomaine1.tsx`, `AtelierImmunite.tsx`, `AtelierOrogenese.tsx`)
 
-Après le pont, une **ورشة** (atelier) se débloque dans l'onglet مساري. Elle transforme le cours lu en
+Après le pont, une **ورشة** (atelier) se débloque dans l'onglet تدريبات. L'écran d'entrée de تدريبات
+propose **deux choix (icônes)** : **أسئلة QCM** (les 620 items sur 49 axes) ou **الورشات التطبيقية**
+(les 3 ateliers, chacun affiché avec sa condition de déblocage et un cadenas explicite tant qu'il n'est
+pas atteint) ; à chaque retour sur l'onglet, le choix se re-présente. مساري reste réservé aux leçons.
+L'atelier transforme le cours lu en
 manipulation : **ordonner des cartes, relier des notions, comparer** — puis **استرجاع نشط** (rappel
 actif) et une « جملة من نوع البكالوريا » avant de valider.
 
@@ -339,7 +343,7 @@ app-svt-bac/
 │   └── components/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
-│       ├── Exercices.tsx          # ⭐ تدريبات : 49 axes à verrouillage linéaire + journées de 10
+│       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات (2 icônes) + 49 axes verrouillés + journées de 10
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -455,6 +459,11 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   réponses (sans jamais révéler la bonne avant le bon choix), sons distincts juste/faux + applaudissements
   synthétisés (Web Audio, zéro fichier), écran de célébration à chaque phase de fin : personnification
   كنز العلوم qui salue, feux d'artifice canvas, et résumé d'or imprimable seul via `@media print`.
+- **v0.5.3** — **ateliers déplacés de مساري vers تدريبات** : l'écran d'entrée de تدريبات présente
+  deux choix (icônes) — **أسئلة QCM** ou **الورشات التطبيقية** — et se re-présente à chaque retour sur
+  l'onglet ; les 3 ateliers y sont listés avec leurs conditions de déblocage (جسور du domaine 1, u4,
+  u11) et un cadenas explicite s'ils ne sont pas encore atteints. مساري ne contient plus que le chemin
+  des leçons.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

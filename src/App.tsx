@@ -362,12 +362,17 @@ export default function App() {
           etat={etat}
           onOuvrirItem={ouvrirItem}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
+        />
+      )}
+      {pret && onglet === 'exercices' && (
+        <Exercices
+          etat={etat}
+          onItemReussi={onItemReussi}
           onOuvrirAtelier={() => setMode({ type: 'atelier', domaineId: 'd1' })}
           onOuvrirImmunite={() => setMode({ type: 'immunite' })}
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
         />
       )}
-      {pret && onglet === 'exercices' && <Exercices etat={etat} onItemReussi={onItemReussi} />}
       {pret && onglet === 'ana' && (
         <Ana
           etat={etat}
