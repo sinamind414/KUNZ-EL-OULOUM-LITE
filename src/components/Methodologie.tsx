@@ -9,6 +9,8 @@ import { sonFaux, sonJuste } from '../utils/son';
 
 interface Props {
   onFermer: () => void;
+  /** Écran d'ouverture : accueil (onglet منهجية) ou niveaux (3e porte تمارين dans تدريبات). */
+  modeInitial?: 'accueil' | 'niveaux';
 }
 
 type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'exercice' | 'resultat';
@@ -67,8 +69,8 @@ const diagnostic: readonly [string, readonly string[], number][] = [
 
 const REFAIRE = 'ليس الجواب الصحيح — أعد المحاولة. خذ وقتك، لا عجلة.';
 
-export default function Methodologie({ onFermer }: Props) {
-  const [ecran, setEcran] = useState<Ecran>('accueil');
+export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Props) {
+  const [ecran, setEcran] = useState<Ecran>(modeInitial);
   const [q, setQ] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);

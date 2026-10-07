@@ -38,6 +38,7 @@ import {
 
 type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'methodo' | 'ana';
 type Mode =
+  | { type: 'methodoExos' }
   | { type: 'structureTerre' }
   | { type: 'orogenese' }
   | { type: 'immunite' }
@@ -50,8 +51,8 @@ type Mode =
 const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
-  { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
   { id: 'methodo', label: 'منهجية', icone: IcoCle },
+  { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -245,6 +246,11 @@ export default function App() {
       </div>
     ) : null;
 
+    // تمارين المنهجية: 3e porte de تدريبات — ouverte directement sur مستويات التدريب,
+    // la fermeture (setMode(null)) retourne à l'onglet تدريبات.
+    if (mode.type === 'methodoExos') {
+      return <Methodologie modeInitial="niveaux" onFermer={() => setMode(null)} />;
+    }
     if (mode.type === 'structureTerre') {
       return (
         <AtelierStructureTerre
@@ -385,6 +391,7 @@ export default function App() {
           onOuvrirImmunite={() => setMode({ type: 'immunite' })}
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
           onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
+          onOuvrirMethodo={() => setMode({ type: 'methodoExos' })}
         />
       )}
       {pret && onglet === 'methodo' && (

@@ -16,7 +16,7 @@ import {
   composerJoueur,
 } from '../utils/drills';
 import { ChoixUnique } from './Communs';
-import { IcoCible, IcoOutils, IcoRetour, IcoVerrou } from './Icones';
+import { IcoCible, IcoOutils, IcoRetour, IcoTamrin, IcoVerrou } from './Icones';
 
 interface Props {
   etat: Etat;
@@ -25,6 +25,7 @@ interface Props {
   onOuvrirImmunite: () => void;
   onOuvrirOrogenese: () => void;
   onOuvrirStructureTerre: () => void;
+  onOuvrirMethodo: () => void;
 }
 
 type Portee = { kind: 'axe'; axe: AxeDrill };
@@ -43,6 +44,7 @@ export default function Exercices({
   onOuvrirImmunite,
   onOuvrirOrogenese,
   onOuvrirStructureTerre,
+  onOuvrirMethodo,
 }: Props) {
   const [vue, setVue] = useState<Vue>({ type: 'choix' });
   const [enCharge, setEnCharge] = useState(false);
@@ -90,12 +92,12 @@ export default function Exercices({
             ماذا تريد أن تدرّب اليوم؟
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-mute">
-            مساران للتدريب: أسئلة QCM من البرنامج الرسمي، أو ورشات تركيبية تبني فيها المعلومة
-            بيدك ثم تسترجعها من الذاكرة.
+            ثلاثة مسارات للتدريب: أسئلة QCM من البرنامج الرسمي، ورشات تركيبية تبني فيها المعلومة
+            بيدك ثم تسترجعها من الذاكرة، أو تمارين المنهجية التي تدرّبك على طريقة الإجابة.
           </p>
         </header>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-3">
           <button
             type="button"
             onClick={() => setVue({ type: 'liste' })}
@@ -124,6 +126,22 @@ export default function Exercices({
             <p className="mt-1 text-sm leading-relaxed text-mute">
               {nb(4)} ورشات: المجال الأول، المناعة، التكتونية، بنية الأرض — ترتيب، ربط، استرجاع
               نشط.
+            </p>
+            <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={onOuvrirMethodo}
+            className="card p-5 text-right transition-colors hover:border-forest"
+          >
+            <span className="block h-10 w-10 text-forest">
+              <IcoTamrin />
+            </span>
+            <h2 className="font-naskh mt-3 text-lg font-bold">تمارين المنهجية</h2>
+            <p className="mt-1 text-sm leading-relaxed text-mute">
+              المفتاح فعل ← دليل ← جواب ← فحص و{nb(4)} مستويات: القدوة، التمرين الموجه، المستقل،
+              تشخيص الخطأ.
             </p>
             <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
           </button>
