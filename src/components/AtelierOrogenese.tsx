@@ -3,6 +3,7 @@ import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
 import { noterReponse } from '../utils/stats';
+import { sonFaux, sonJuste } from '../utils/son';
 
 interface Props {
   onFermer: () => void;
@@ -48,7 +49,7 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
   const [placees, setPlacees] = useState<string[]>([]);
   const [ordre, setOrdre] = useState<string[]>(() => melange(ETAPES.map((e) => e.id)));
   const [choisie, setChoisie] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ texte: string; ok: boolean } | null>(null);
   const [souvenirs, setSouvenirs] = useState<boolean[]>(() => SOUVENIRS.map(() => false));
 
   const complete = placees.length === ETAPES.length;
@@ -64,15 +65,17 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
     if (choisie !== attendue.id) {
       // رسالة لطيفة + مزج جديد: لا نسمح بحفظ الترتيب بالموقع
       noterReponse('atelier', false);
-      setMessage('ليست هذه المرحلة التالية. أعِد ترتيب البطاقات ثم حاول من جديد.');
+      sonFaux();
+      setMessage({ texte: 'ليست هذه المرحلة التالية. أعِد ترتيب البطاقات ثم حاول من جديد.', ok: false });
       setChoisie(null);
       setOrdre(melange(ETAPES.map((e) => e.id)));
       return;
     }
     noterReponse('atelier', true);
+    sonJuste();
     setPlacees((old) => [...old, choisie]);
     setChoisie(null);
-    setMessage(null);
+    setMessage({ texte: 'صحيح — المرحلة مثبّتة.', ok: true });
   }
 
   const parId = new Map(ETAPES.map((e) => [e.id, e]));
@@ -141,8 +144,14 @@ export default function AtelierOrogenese({ onFermer, onTerminer, onVoirLecon }: 
               })}
           </div>
           {message && (
-            <p className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/50 p-3 text-sm font-bold text-[#6b5320]">
-              {message}
+            <p
+              className={`mt-3 rounded-2xl border p-3 text-sm font-bold ${
+                message.ok
+                  ? 'border-forest bg-sage text-forest-deep'
+                  : 'border-clay-soft bg-clay-soft/50 text-clay'
+              }`}
+            >
+              {message.texte}
             </p>
           )}
           <button onClick={valider} disabled={!choisie} className="btn btn-primary mt-4 w-full">

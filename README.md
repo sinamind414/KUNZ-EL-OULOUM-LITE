@@ -112,6 +112,34 @@ Toutes les coques sont factorisées dans `AtelierCadre.tsx` (en-tête + rangs + 
 **2 échecs à une porte QCM** → révélation de la réponse + la phase est marquée **هشّة** (fragile) et
 reprogrammée à **J+1** au lieu de J+3. L'échec n'est pas puni, il est *utilisé*.
 
+### 🔊 Couleurs et sons des réponses
+
+- **Réponse correcte** → l'option prend le **vert** (`border-forest bg-sage`) + bloc « إجابة صحيحة »
+  + petit carillon ascendant (`sonJuste()`).
+- **Réponse fausse** → **l'option choisie passe en rouge** (`border-clay bg-clay-soft`) + message doux
+  (« أعد المحاولة. خذ وقتك ») + un **son différent** et plus grave (`sonFaux()`), puis remélange des
+  options. **La bonne réponse n'est jamais révélée avant le bon choix.**
+- Les sons sont **synthétisés en Web Audio** dans `src/utils/son.ts` : aucun fichier audio, aucun poids
+  ajouté, tout fonctionne hors ligne. Les 3 ateliers et les 2 portes QCM du protocole suivent la même
+  règle vert/rouge.
+
+### 🎉 La célébration de fin de phase (`Fetes.tsx`)
+
+À la fin de **chaque** phase (bouton « انتهيت من هذه المرحلة »), l'écran de célébration s'ouvre :
+
+- **la personnification كنز العلوم** sort et salue : mascotte dessinée en SVG interne (aucun asset
+  externe) — bras qui ondule, respiration, bulle de encouragement sans culpabilisation ;
+- **un son d'applaudissements** (`sonApplaudissement()`) : faux-bruit filtré + lardon vainqueur,
+  générés en Web Audio — toujours offline, toujours doux ;
+- **des feux d'artifice** sur canvas léger (~5 s puis s'arrêtent, `prefers-reduced-motion` respecté,
+  aucune bibliothèque) ;
+- **le résumé d'or imprimable** (`#zone-impression`) : إشكالية، السلسلة السببية، الدليل الوثائقي،
+  بنية الإجابة في البكالوريا، الخطأ الشائع، سؤال الاسترجاع، الكلمات المفتاح — le bouton
+  « 🖨️ اطبع الملخّص الذهبي » appelle `window.print()` avec une CSS `@media print` qui n'imprime
+  **que** ce bloc (l'élève l'imprime pour le mémoriser) ;
+- le bouton « متابعة ← المرحلة N » enchaîne sur la phase suivante ; après la phase 6, il mène à
+  l'écran de clôture. L'ancien écran « مكافأة المرحلة 1 » est absorbé par cette célébration.
+
 ### 🔁 Retour libre aux phases (bouton ←)
 
 L'en-tête de **chaque phase (1 → 6)** porte une flèche **←** qui n'**éjecte pas** du protocole :
@@ -422,6 +450,10 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
 - **v0.5.1** — **synchronisation** : couche additive offline-first (Supabase) permettant à l'éditeur
   de récupérer un résumé de progression par élève — **activée dès l'inscription**, désactivable dans
   أنا (voir section ☁️).
+- **v0.5.2** — **retour sensoriel des QCM + célébration de fin de phase** : vert/rouge sur les
+  réponses (sans jamais révéler la bonne avant le bon choix), sons distincts juste/faux + applaudissements
+  synthétisés (Web Audio, zéro fichier), écran de célébration à chaque phase de fin : personnification
+  كنز العلوم qui salue, feux d'artifice canvas, et résumé d'or imprimable seul via `@media print`.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

@@ -149,3 +149,78 @@ body {
 .animate-pop-in {
   animation: pop-in 0.28s ease-out both;
 }
+
+/* ───────────── شخصية كنز العلوم: تخرج وتلوّح عند إنهاء مرحلة ───────────── */
+@keyframes salue {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1.5deg);
+  }
+}
+
+.animate-salue {
+  animation: salue 1.8s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes ondule-bras {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+.bras-salue {
+  transform-box: view-box;
+  transform-origin: 164px 190px;
+  animation: ondule-bras 0.7s ease-in-out infinite;
+}
+
+/* ───────────── الطباعة: الملخّص الذهبي وحده ───────────── */
+@media print {
+  html,
+  body {
+    height: auto;
+    background: #fff;
+  }
+
+  .ecran-fete {
+    position: static !important;
+    overflow: visible !important;
+    background: #fff !important;
+    height: auto !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #zone-impression,
+  #zone-impression * {
+    visibility: visible;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #zone-impression {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: none;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .animate-salue,
+  .bras-salue {
+    animation: none !important;
+  }
+}

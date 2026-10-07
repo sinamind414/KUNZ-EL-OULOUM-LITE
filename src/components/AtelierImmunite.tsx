@@ -3,6 +3,7 @@ import { CadreAtelier } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
 import { noterReponse } from '../utils/stats';
+import { sonFaux, sonJuste } from '../utils/son';
 
 interface Props {
   onFermer: () => void;
@@ -48,7 +49,7 @@ export default function AtelierImmunite({ onFermer, onTerminer, onVoirLecon }: P
   const [placees, setPlacees] = useState<Record<string, string[]>>({});
   const [ordres, setOrdres] = useState<Record<string, string[]>>(ordreInitial);
   const [choisie, setChoisie] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ texte: string; ok: boolean } | null>(null);
   const [souvenirs, setSouvenirs] = useState<boolean[]>(() => SOUVENIRS.map(() => false));
 
   const ligne = LIGNES.find((l) => l.id === ligneId) ?? LIGNES[0];
@@ -67,15 +68,17 @@ export default function AtelierImmunite({ onFermer, onTerminer, onVoirLecon }: P
     if (choisie !== attendue) {
       // رسالة لطيفة + مزج جديد: لا كشف للجواب قبل الاختيار الصحيح
       noterReponse('atelier', false);
-      setMessage('ليست هذه البطاقة. أعِد ترتيب البطاقات ثم حاول من جديد.');
+      sonFaux();
+      setMessage({ texte: 'ليست هذه البطاقة. أعِد ترتيب البطاقات ثم حاول من جديد.', ok: false });
       setChoisie(null);
       setOrdres((old) => ({ ...old, [ligne.id]: melange(ligne.etapes) }));
       return;
     }
     noterReponse('atelier', true);
+    sonJuste();
     setPlacees((old) => ({ ...old, [ligne.id]: [...seq, choisie] }));
     setChoisie(null);
-    setMessage(null);
+    setMessage({ texte: 'صحيح — البطاقة في مكانها.', ok: true });
   }
 
   const toutesComplete = LIGNES.every((l) => (placees[l.id] ?? []).length === l.etapes.length);
@@ -154,8 +157,14 @@ export default function AtelierImmunite({ onFermer, onTerminer, onVoirLecon }: P
       </div>
 
       {message && (
-        <p className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/50 p-3 text-sm font-bold text-[#6b5320]">
-          {message}
+        <p
+          className={`mt-3 rounded-2xl border p-3 text-sm font-bold ${
+            message.ok
+              ? 'border-forest bg-sage text-forest-deep'
+              : 'border-clay-soft bg-clay-soft/50 text-clay'
+          }`}
+        >
+          {message.texte}
         </p>
       )}
 

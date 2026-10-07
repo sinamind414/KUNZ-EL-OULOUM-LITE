@@ -3,6 +3,7 @@ import { CadreAtelier, PointsEtape } from './AtelierCadre';
 import { melange } from '../utils/melange';
 import { nb } from '../utils/dates';
 import { noterReponse } from '../utils/stats';
+import { sonFaux, sonJuste } from '../utils/son';
 
 interface Props {
   fait: boolean;
@@ -80,7 +81,7 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer, onVoirLeco
   const [valide, setValide] = useState(false);
   const [comparaison, setComparaison] = useState<Record<string, boolean>>(fait ? { proc: true, euc: true } : {});
   const [recall, setRecall] = useState<Record<string, boolean>>(fait ? Object.fromEntries(RECALL.map((q) => [q.id, true])) : {});
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ texte: string; ok: boolean } | null>(null);
 
   const sequence = etape === 1 ? TRANSCRIPTION : TRADUCTION;
   const currentSequence = etape === 1 ? transcription : traduction;
@@ -97,17 +98,19 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer, onVoirLeco
     const attendue = sequence[currentSequence.length];
     if (choisie !== attendue.id) {
       noterReponse('atelier', false);
-      setMessage('ليست هذه المرحلة. أعِد ترتيب البطاقات ثم حاول من جديد.');
+      sonFaux();
+      setMessage({ texte: 'ليست هذه المرحلة. أعِد ترتيب البطاقات ثم حاول من جديد.', ok: false });
       setChoisie(null);
       // remélange : on ne donne jamais la réponse avant le bon choix
       setOrdre(melange(sequence.map((c) => c.id)));
       return;
     }
     noterReponse('atelier', true);
+    sonJuste();
     if (etape === 1) setTranscription((items) => [...items, choisie]);
     else setTraduction((items) => [...items, choisie]);
     setChoisie(null);
-    setMessage('صحيح — واصل بناء التسلسل.');
+    setMessage({ texte: 'صحيح — واصل بناء التسلسل.', ok: true });
   }
 
   function continuerPlacement() {
@@ -136,14 +139,16 @@ export default function AtelierDomaine1({ fait, onTerminer, onFermer, onVoirLeco
     }
     if (choixLien !== currentLien.answer) {
       noterReponse('atelier', false);
-      setMessage('راجع العلاقة بين المعطى والنتيجة ثم أعد المحاولة.');
+      sonFaux();
+      setMessage({ texte: 'راجع العلاقة بين المعطى والنتيجة ثم أعد المحاولة.', ok: false });
       setChoixLien(null);
       setOrdreLien(melange(currentLien.options));
       return;
     }
     noterReponse('atelier', true);
+    sonJuste();
     setValide(true);
-    setMessage('رابط علمي صحيح ✓');
+    setMessage({ texte: 'رابط علمي صحيح ✓', ok: true });
   }
 
   function terminer() {
@@ -397,10 +402,16 @@ function Cards({
   );
 }
 
-function Feedback({ message }: { message: string }) {
+function Feedback({ message }: { message: { texte: string; ok: boolean } }) {
   return (
-    <div className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/50 p-3 text-sm leading-relaxed">
-      <p className="font-bold text-[#6b5320]">{message}</p>
+    <div
+      className={`mt-3 rounded-2xl border p-3 text-sm leading-relaxed ${
+        message.ok ? 'border-forest bg-sage' : 'border-clay-soft bg-clay-soft/50'
+      }`}
+    >
+      <p className={`font-bold ${message.ok ? 'text-forest-deep' : 'text-clay'}`}>
+        {message.texte}
+      </p>
     </div>
   );
 }

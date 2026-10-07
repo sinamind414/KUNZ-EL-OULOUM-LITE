@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from 'react';
 import type { QcmLecon } from '../data/qcmLecons';
 import { noterReponse, type SourceReponse } from '../utils/stats';
+import { sonFaux, sonJuste } from '../utils/son';
 import { IcoAide } from './Icones';
 
 // ───────────── كلام المُرشد (لحظات محددة فقط) ─────────────
@@ -20,23 +21,33 @@ export function Morceau({ children, ton = 'sage' }: { children: ReactNode; ton?:
 }
 
 // ───────────── خيارات الاختيار (radio group) ─────────────
+// cleFaux / cleJuste: تُلوّنان خيارًا بعينه بعد التحقّق (أحمر للخاطئ، أخضر للصحيح).
 export function OptionsMcq({
   options,
   value,
   onChange,
   nom,
   disabled,
+  cleFaux,
+  cleJuste,
 }: {
   options: { key: string; label: string }[];
   value: string | null;
   onChange: (key: string) => void;
   nom: string;
   disabled?: boolean;
+  cleFaux?: string | null;
+  cleJuste?: string | null;
 }) {
   return (
     <div className="mt-3 grid gap-2" role="radiogroup" aria-label={nom}>
       {options.map((o) => {
         const choisi = value === o.key;
+        const faux = cleFaux === o.key;
+        const juste = cleJuste === o.key;
+        let style = 'border-line bg-paper text-ink-soft hover:border-sage';
+        if (faux) style = 'border-clay bg-clay-soft text-clay';
+        else if (juste || choisi) style = 'border-forest bg-sage text-forest-deep';
         return (
           <button
             key={o.key}
@@ -45,11 +56,7 @@ export function OptionsMcq({
             aria-checked={choisi}
             disabled={disabled}
             onClick={() => onChange(o.key)}
-            className={`rounded-2xl border px-4 py-3 text-right text-sm font-semibold transition-colors disabled:opacity-50 ${
-              choisi
-                ? 'border-forest bg-sage text-forest-deep'
-                : 'border-line bg-paper text-ink-soft hover:border-sage'
-            }`}
+            className={`rounded-2xl border px-4 py-3 text-right text-sm font-semibold transition-colors disabled:opacity-50 ${style}`}
           >
             {o.label}
           </button>
@@ -86,6 +93,8 @@ export function ChoixUnique({
   const [choix, setChoix] = useState<number | null>(null);
   const [erreur, setErreur] = useState(false);
   const [juste, setJuste] = useState(Boolean(fait));
+  // معرّف الخيار الخاطئ الأخير (لا موقعه — الموقع يتبدّل بعد المزج) ليبقى أحمر حتى المحاولة التالية
+  const [dernierFaux, setDernierFaux] = useState<number | null>(null);
 
   if (juste) {
     return (
@@ -107,6 +116,10 @@ export function ChoixUnique({
       <div className="grid gap-2" role="radiogroup" aria-label="اختر الجواب الصحيح">
         {ordre.map((idx, pos) => {
           const choisi = choix === pos;
+          const faux = dernierFaux === idx;
+          let style = 'border-line bg-paper text-ink-soft hover:border-sage';
+          if (faux) style = 'border-clay bg-clay-soft text-clay';
+          else if (choisi) style = 'border-forest bg-sage text-forest-deep';
           return (
             <button
               key={idx}
@@ -116,12 +129,9 @@ export function ChoixUnique({
               onClick={() => {
                 setChoix(pos);
                 setErreur(false);
+                setDernierFaux(null);
               }}
-              className={`rounded-2xl border px-4 py-3.5 text-right text-sm font-semibold transition-colors ${
-                choisi
-                  ? 'border-forest bg-sage text-forest-deep'
-                  : 'border-line bg-paper text-ink-soft hover:border-sage'
-              }`}
+              className={`rounded-2xl border px-4 py-3.5 text-right text-sm font-semibold transition-colors ${style}`}
             >
               {qcm.options[idx]}
             </button>
@@ -135,13 +145,17 @@ export function ChoixUnique({
         onClick={() => {
           if (choix === null) return;
           if (choix === ordre.indexOf(0)) {
+            sonJuste();
             noterReponse(source, true);
             setJuste(true);
             setErreur(false);
+            setDernierFaux(null);
             onValide();
           } else {
+            sonFaux();
             noterReponse(source, false);
             setErreur(true);
+            setDernierFaux(ordre[choix]);
             setOrdre(melanger(qcm.options.length));
             setChoix(null);
           }

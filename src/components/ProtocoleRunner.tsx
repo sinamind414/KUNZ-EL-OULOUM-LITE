@@ -10,8 +10,10 @@ import { aContenuLecon, questionLecon } from '../data/leconsPassives';
 import { ajouterJours, aujourdhui, nb, formatJourAr, minutesNb } from '../utils/dates';
 import { premiereRevision } from '../utils/srs';
 import { noterReponse } from '../utils/stats';
+import { sonFaux, sonJuste } from '../utils/son';
 import type { ProgressionLecon } from '../types';
 import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
+import EcranCelebration from './Fetes';
 import { IcoRetour, IcoVerifie } from './Icones';
 import { qcmPourLecon } from '../utils/qcm';
 
@@ -68,7 +70,8 @@ export default function ProtocoleRunner({
   const [secondes, setSecondes] = useState(phase.dureeMin * 60);
   const [enMarche, setEnMarche] = useState(false);
   const [cloture, setCloture] = useState(false);
-  const [recompense, setRecompense] = useState(false);
+  // شاشة الاحتفال: رقم المرحلة المنتهية (شخصية + تصفيق + ألعاب نارية + الملخّص الذهبي)
+  const [fete, setFete] = useState<number | null>(null);
 
   // حالات البوّابات
   const [revele, setRevele] = useState(false);
@@ -184,23 +187,14 @@ export default function ProtocoleRunner({
     };
 
     if (index === PROTOCOLE.length - 1) {
-      const frag = fragile();
-      const minutes = maj.minutes;
-      setCloture(true);
-      onProgresse({ ...maj, fragile: frag });
-      void minutes;
+      onProgresse({ ...maj, fragile: fragile() });
+      setFete(phase.id);
       return;
     }
 
-    // مكافأة المرحلة 1: الملخّص الذهبي يُفتح بعد القراءة الكاملة
-    if (phase.id === 1) {
-      onProgresse(maj);
-      setRecompense(true);
-      return;
-    }
-
+    // كل مرحلة تنتهي → احتفال: الشخصية، التصفيق، الألعاب النارية، ثم الملخّص الذهبي للطبع
     onProgresse(maj);
-    setIndex(index + 1);
+    setFete(phase.id);
   }
 
   if (!lecon) {
@@ -280,82 +274,23 @@ export default function ProtocoleRunner({
     );
   }
 
-  // ───────────── شاشة المكافأة: الملخّص الذهبي (بعد المرحلة 1) ─────────────
+  // ───────────── شاشة الاحتفال: بعد كل مرحلة (شخصية + تصفيق + ألعاب نارية) ─────────────
 
-  if (recompense && lecon) {
+  if (fete !== null && lecon) {
+    const derniere = index === PROTOCOLE.length - 1;
     return (
-      <div className="mx-auto flex min-h-dvh max-w-2xl flex-col justify-center px-4 py-10">
-        <div className="card animate-pop-in overflow-hidden p-0">
-          <div className="bg-gradient-to-b from-forest to-forest-deep px-6 py-8 text-center text-paper">
-            <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gold-soft text-3xl shadow-lg">
-              🏅
-            </span>
-            <p className="mt-3 text-[11px] font-bold tracking-wide text-gold-soft">
-              مكافأة إتمام المرحلة 1
-            </p>
-            <h2 className="font-naskh mt-1 text-2xl font-bold">الملخّص الذهبي</h2>
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-paper/80">
-              أنهيتَ قراءة الدرس كاملةً، فانفتح لك قلب الدرس. هذا الملخّص هو ثروتك نحو البكالوريا —
-              اقرأه مرّتين ثم تابع.
-            </p>
-          </div>
-
-          <div className="space-y-5 p-6">
-            <section>
-              <p className="eyebrow">إشكالية الدرس</p>
-              <p className="mt-1.5 text-sm font-bold leading-relaxed text-ink">{lecon.missionAr}</p>
-            </section>
-
-            <section>
-              <p className="eyebrow">السلسلة السببية للدرس</p>
-              <ol className="mt-2 space-y-2">
-                {lecon.mechanismAr.map((etape, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 rounded-2xl border border-line bg-cream/60 p-3"
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-forest text-[11px] font-bold text-paper">
-                      {nb(i + 1)}
-                    </span>
-                    <span className="text-sm leading-relaxed text-ink-soft">{etape}</span>
-                  </li>
-                ))}
-              </ol>
-            </section>
-
-            <section>
-              <p className="eyebrow">الدليل الوثائقي</p>
-              <p className="mt-1.5 rounded-2xl border border-sage bg-sage-soft p-3 text-sm leading-relaxed text-forest-deep">
-                {lecon.evidenceAr}
-              </p>
-            </section>
-
-            <section>
-              <p className="eyebrow">الكلمات المفتاحية</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {lecon.vocabulary.map((v) => (
-                  <span
-                    key={v}
-                    className="rounded-full border border-gold-soft bg-gold-soft/50 px-3 py-1 text-xs font-bold text-[#6b5320]"
-                  >
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </section>
-
-            <button
-              onClick={() => {
-                setRecompense(false);
-                setIndex(index + 1);
-              }}
-              className="btn btn-primary w-full text-base"
-            >
-              متابعة إلى المرحلة ٢ ←
-            </button>
-          </div>
-        </div>
-      </div>
+      <EcranCelebration
+        lecon={lecon}
+        titre={titreLecon(lessonId)}
+        numero={fete}
+        total={PROTOCOLE.length}
+        derniere={derniere}
+        onContinuer={() => {
+          setFete(null);
+          if (derniere) setCloture(true);
+          else setIndex(index + 1);
+        }}
+      />
     );
   }
 
@@ -593,11 +528,16 @@ export default function ProtocoleRunner({
                   nom="عدد الخطوات السببية"
                   options={qEtapes.options}
                   value={mcq}
+                  cleFaux={mcq && mcq !== String(qEtapes.n) ? mcq : null}
+                  cleJuste={echecMax ? String(qEtapes.n) : null}
                   onChange={(k) => {
                     if (k === mcq) return; // نقرة مكرّرة على الخيار نفسه — لا تُحتسب مرتين
                     setMcq(k);
-                    noterReponse('phase', k === String(qEtapes.n));
-                    if (k !== String(qEtapes.n)) {
+                    const ok = k === String(qEtapes.n);
+                    if (ok) sonJuste();
+                    else sonFaux();
+                    noterReponse('phase', ok);
+                    if (!ok) {
                       const e = echecs + 1;
                       setEchecs(e);
                       if (e >= 2) setEchecMax(true);
@@ -742,11 +682,16 @@ export default function ProtocoleRunner({
                 nom="الخطوة التالية"
                 options={qSequence.options}
                 value={mcq}
+                cleFaux={mcq && mcq !== qSequence.reponse ? mcq : null}
+                cleJuste={echecMax ? qSequence.reponse : null}
                 onChange={(k) => {
                   if (k === mcq) return; // نقرة مكرّرة — لا تُحتسب مرتين
                   setMcq(k);
-                  noterReponse('phase', k === qSequence.reponse);
-                  if (k !== qSequence.reponse) {
+                  const ok = k === qSequence.reponse;
+                  if (ok) sonJuste();
+                  else sonFaux();
+                  noterReponse('phase', ok);
+                  if (!ok) {
                     const e = echecs + 1;
                     setEchecs(e);
                     if (e >= 2) setEchecMax(true);
