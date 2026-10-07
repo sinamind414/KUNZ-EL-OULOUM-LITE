@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IcoRetour } from './Icones';
 
-interface Props { onFermer: () => void; }
+interface Props { onFermer: () => void; modeInitial?: 'accueil' | 'niveaux'; }
 type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'exercice' | 'resultat';
 
 const cle = [
@@ -42,8 +42,8 @@ const diagnostic = [
   ['ما الذي يجب أن تتضمنه الخلاصة؟', ['بيانات + علاقة علمية', 'رأي شخصي فقط', 'نسخ عنوان الوثيقة'], 0],
 ] as const;
 
-export default function Methodologie({ onFermer }: Props) {
-  const [ecran, setEcran] = useState<Ecran>('accueil');
+export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Props) {
+  const [ecran, setEcran] = useState<Ecran>(modeInitial);
   const [q, setQ] = useState(0); const [score, setScore] = useState(0); const [selected, setSelected] = useState<number | null>(null);
   const [operation, setOperation] = useState(0); const [methode, setMethode] = useState(0); const [reponse, setReponse] = useState<number | null>(null); const [feedback, setFeedback] = useState('');
   function startDiagnostic() { setQ(0); setScore(0); setSelected(null); setEcran('diagnostic'); }

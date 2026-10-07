@@ -27,9 +27,10 @@ import {
   IcoDiplome,
   IcoRoute,
   IcoSoleil,
+  IcoTamrin,
 } from './components/Icones';
 
-type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'ana';
+type Onglet = 'aujourdhui' | 'masari' | 'bac' | 'tamarine' | 'ana';
 type Mode =
   | { type: 'methodologie' }
   | { type: 'structureTerre' }
@@ -45,6 +46,7 @@ const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
   { id: 'bac', label: 'منهجية', icone: IcoDiplome },
+  { id: 'tamarine', label: 'تمارين', icone: IcoTamrin },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -261,6 +263,7 @@ export default function App() {
         />
       )}
       {onglet === 'bac' && <Methodologie onFermer={() => setOnglet('aujourdhui')} />}
+      {onglet === 'tamarine' && <Methodologie modeInitial="niveaux" onFermer={() => setOnglet('aujourdhui')} />}
       {onglet === 'ana' && (
         <Ana
           etat={etat}
