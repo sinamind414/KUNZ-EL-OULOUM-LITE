@@ -36,23 +36,25 @@ marcher.
 |---|---|
 | **اليوم** | L'écran d'accueil. Une seule carte : la *prochaine action* (Next Best Action), le rythme de la semaine, la position par rapport à la classe, les statistiques du Mُرشد. |
 | **مساري** | Le chemin complet : 11 unités verrouillées séquentiellement, chacune se terminant par un **جسر** (pont-jalon). |
-| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **deux choix (icônes) — أسئلة QCM ou الورشات** (les 3 ateliers). |
-| **البكالوريا** | La rubrique du but : date de l'écran + jours restants (messages doux, sans anxiété), **الامتحان التجريبي** qui s'ouvre à J-56 avec compteur de **نسخ** (copies du Bac), le **poids relatif des 11 unités** (poidsBac 1–5 + progrès des leçons) et l'**archive des جسور écrites** (synthèses datées de l'élève). Chiffres latins (`nb()`), zéro pourcentage. |
+| **تدريبات** | Le banc d'entraînement : 620 items (500 QCM + 120 définitions converties en QCM 4 options) répartis sur 49 axes du programme officiel. **Même verrouillage linéaire que مساري** : les axes d'une unité ne s'ouvrent qu'une fois le جسر de l'unité précédente franchi. À l'entrée : **deux choix (icônes) — أسئلة QCM ou الورشات** (les 4 ateliers). |
+| **منهجية** | La rubrique du but : **منهجية حل التمرين** — accueil « لا تحفظ الإجابة، تعلّم كيف تبنيها », **تشخيص** de 3 QCM (erreur → message doux + vert/rouge + son, la bonne réponse jamais révélée), **دليل أفعال التعليمة** (les 11 verbes officiels avec définition/conseil/exemple), **6 مسارات المنهجية** (chaînes de résolution) et un **تمرين تطبيقي**. Zéro pourcentage, chiffres latins, messages non culpabilisants. |
 | **أنا** | Le journal, les notes, les statistiques, le bouton de réinitialisation. |
 
-### 🎓 La rubrique البكالوريا (`Bac.tsx`)
+### 🧭 La rubrique منهجية (`Methodologie.tsx`)
 
-Restaurée depuis la branche arena (`arena/7a3f2e84-kunz-el-ouloum-lite`, supprimée dans `12db8ff`)
-et modernisée : `enArabe()` → `nb()` (chiffres latins), état `etat.copies` réintroduit
-(`types.ts`, `etatVierge()`), icône `IcoDiplome` recréée.
+La 5ᵉ rubrique, **remplaçante de l'ancien onglet البكالوريا** — portée depuis la branche arena
+(`arena/7a3f2e84-kunz-el-ouloum-lite`, commits `5b3fe47` → `6a206d2`, état final `db7a65c`) et
+branchée sur les conventions de l'app : sons `sonJuste()`/`sonFaux()`, vert/rouge, **la bonne
+réponse jamais révélée avant le bon choix**, chiffres latins, zéro %, zéro culpabilisation.
 
-- **Le compte des jours** reste **doux et en mots** (« الوقت طويل — لكنه يُهدر دقيقة دقيقة… ») —
-  jamais un compte à rebours angoissant ; à J-56, la carte الامتحان التجريبي s'entoure d'un anneau
-  vert et propose « سجّل كنسخة بكالوريا ».
-- **الوزن النسبي للوحدات** : les 11 barres `poidsBac` (1–5) avec le progrès `faites/total` de chaque
-  unité — « أين تُصنع النقاط », l'ordre de priorité du استرجاع.
-- **L'archive des جسور** : chaque synthèse écrite au moment du جسر est listée ici, datée
-  (`formatCourteAr`) — « مرجعك الأخير قبل الامتحان ».
+- **Accueil** : « لا تحفظ الإجابة، تعلّم كيف تبنيها » → 3 portes : تشخيص · دليل الأفعال · المسارات.
+- **تشخيص (3 QCM)** : erreur → rouge + `sonFaux()` + message doux (« خذ وقتك، لا عجلة ») et
+  **on réessaie sans afficher la réponse** ; succès → `sonJuste()`, score compté **au premier
+  essai**, résultat « حصلت على X / 3 » — rejouable à volonté.
+- **دليل أفعال التعليمة** : les 11 verbes officiels des commandes du Bac (حدّد, استخرج, صف, قارن,
+  حلّل, فسّر, علّل, استنتج, أثبت, اقترح فرضية, مثّل) — définition + conseil + exemple.
+- **6 مسارات المنهجية** : chaînes de résolution (ملاحظة → معلومة → تفسير → استنتاج, …) puis un
+  **تمرين تطبيقي** QCM avec feedback vert/rouge après le choix.
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -83,11 +85,11 @@ possibilité de sauter une unité. C'est la garantie anti-accumulation des lacun
 
 Le pont validé → l'unité suivante se déverrouille.
 
-### 🧩 Les 3 ateliers de synthèse (`AtelierDomaine1.tsx`, `AtelierImmunite.tsx`, `AtelierOrogenese.tsx`)
+### 🧩 Les 4 ateliers de synthèse (`AtelierDomaine1.tsx`, `AtelierImmunite.tsx`, `AtelierOrogenese.tsx`, `AtelierStructureTerre.tsx`)
 
 Après le pont, une **ورشة** (atelier) se débloque dans l'onglet تدريبات. L'écran d'entrée de تدريبات
 propose **deux choix (icônes)** : **أسئلة QCM** (les 620 items sur 49 axes) ou **الورشات التطبيقية**
-(les 3 ateliers, chacun affiché avec sa condition de déblocage et un cadenas explicite tant qu'il n'est
+(les 4 ateliers, chacun affiché avec sa condition de déblocage et un cadenas explicite tant qu'il n'est
 pas atteint) ; à chaque retour sur l'onglet, le choix se re-présente. مساري reste réservé aux leçons.
 L'atelier transforme le cours lu en
 manipulation : **ordonner des cartes, relier des notions, comparer** — puis **استرجاع نشط** (rappel
@@ -98,6 +100,7 @@ actif) et une « جملة من نوع البكالوريا » avant de valider.
 | **ورشة تركيب المجال الأول** | les 5 unités du domaine 1 terminées | ordonner transcription puis traduction, comparer procaryotes/eucaryotes, 4 liens scientifiques, rappel actif |
 | **ورشة المناعة** | جسر de l'unité « الدفاع عن الذات » | 3 lignes LB / LT4 / LT8, de la reconnaissance au résultat immunitaire |
 | **ورشة الأوروجينيز** | جسر de l'unité « البنيات الجيولوجية… » | les 5 étapes du cycle orogénique, de l'extension à la collision |
+| **ورشة بنية الأرض** | جسر de l'unité « بنية الكرة الأرضية » (u10) | ordonner les 5 enveloppes par profondeur (الليثوسفير → النواة الداخلية), lier état physique et preuve sismique, puis 3 questions de استرجاع نشط |
 
 **Règles appliquées (identiques au protocole) :**
 
@@ -110,7 +113,7 @@ actif) et une « جملة من نوع البكالوريا » avant de valider.
   s'affichent qu'**après** la reconstruction complète, jamais avant ;
 - le bouton **📖 (افتح الدرس)** ouvre la leçon liée **au-dessus** de l'atelier (état conservé) :
   `lecon_transcription`, `phase7_chapitres_13_14_2`, `phase21_chapitres_41_42_2` ;
-- la clé `etat.ateliers[d1|immunite|orogenese]` mémorise la fin de l'atelier → le bouton affiche
+- la clé `etat.ateliers[d1|immunite|orogenese|structure]` mémorise la fin de l'atelier → le bouton affiche
   « إعادة الفتح ✓ ». L'atelier reste rejouable à volonté.
 
 Toutes les coques sont factorisées dans `AtelierCadre.tsx` (en-tête + rangs + bouton leçon).
@@ -139,8 +142,8 @@ reprogrammée à **J+1** au lieu de J+3. L'échec n'est pas puni, il est *utilis
   (« أعد المحاولة. خذ وقتك ») + un **son différent** et plus grave (`sonFaux()`), puis remélange des
   options. **La bonne réponse n'est jamais révélée avant le bon choix.**
 - Les sons sont **synthétisés en Web Audio** dans `src/utils/son.ts` : aucun fichier audio, aucun poids
-  ajouté, tout fonctionne hors ligne. Les 3 ateliers et les 2 portes QCM du protocole suivent la même
-  règle vert/rouge.
+  ajouté, tout fonctionne hors ligne. Les 4 ateliers, le diagnostic de منهجية et les 2 portes QCM du
+  protocole suivent la même règle vert/rouge.
 
 ### 🎉 La célébration de fin de phase (`Fetes.tsx`)
 
@@ -336,7 +339,7 @@ app-svt-bac/
 ├── src/
 │   ├── main.tsx                  # racine + enregistrement du SW
 │   ├── index.css                 # Tailwind + base RTL
-│   ├── App.tsx                   # 5 onglets : اليوم / مساري / تدريبات / البكالوريا / أنا
+│   ├── App.tsx                   # 5 onglets : اليوم / مساري / تدريبات / منهجية / أنا
 │   ├── types.ts                  # État (jalons, notes, journal, séances, bonus, drills)
 │   ├── data/
 │   │   ├── lessonGoldSummaries.ts # 58 résumés d'or (source de vérité du contenu)
@@ -359,7 +362,7 @@ app-svt-bac/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات (2 icônes) + 49 axes verrouillés + journées de 10
-│       ├── Bac.tsx                # ⭐ البكالوريا : date + jours doux + نسخ + poidsBac + archive des جسور
+│       ├── Methodologie.tsx       # ⭐ منهجية : تشخيص 3 QCM + 11 verbes + 6 مسارات + تمرين
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -485,6 +488,13 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   jours restants en messages doux, الامتحان التجريبي à J-56, compteur de نسخ (`etat.copies`
   réintroduit), aperçu du poids des 11 unités (`poidsBac` + progrès), archive datée des جسور
   écrites ; chiffres latins `nb()`, icône `IcoDiplome` recréée, barre du bas à 5 onglets.
+- **v0.5.5** — **rubrique منهجية (5e onglet) remplace البكالوريا** : port de `Methodologie.tsx`
+  depuis la branche arena (état final `db7a65c`) — accueil « لا تحفظ الإجابة » + تشخيص de 3 QCM
+  (vert/rouge + `sonJuste`/`sonFaux`, on réessaie sans révéler la bonne réponse, score au 1er
+  essai), guide des 11 verbes des commandes, 6 مسارات المنهجية et un تمرين تطبيقي ; `Bac.tsx` et
+  `etat.copies` retirés. **4e atelier « بنية الأرض »** (`AtelierStructureTerre.tsx`) : porté,
+  intégralement traduit en arabe (il était en français), sons ajoutés, marqué dans
+  `etat.ateliers.structure`, listé dans تدريبات avec cadenas جسر u10.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

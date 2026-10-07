@@ -1,4 +1,4 @@
-// التطبيق — 5 تبويبات (اليوم / مساري / تدريبات / البكالوريا / أنا) + أوضاع جلسة كاملة الشاشة.
+// التطبيق — 5 تبويبات (اليوم / مساري / تدريبات / منهجية / أنا) + أوضاع جلسة كاملة الشاشة.
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
 import { useEffect, useRef, useState } from 'react';
@@ -13,7 +13,7 @@ import { mettreAJourSrs } from './utils/srs';
 import Aujourdhui from './components/Aujourdhui';
 import Masari from './components/Masari';
 import Exercices from './components/Exercices';
-import Bac from './components/Bac';
+import Methodologie from './components/Methodologie';
 import Ana from './components/Ana';
 import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
@@ -22,6 +22,7 @@ import LecteurLecon from './components/LecteurLecon';
 import AtelierDomaine1 from './components/AtelierDomaine1';
 import AtelierImmunite from './components/AtelierImmunite';
 import AtelierOrogenese from './components/AtelierOrogenese';
+import AtelierStructureTerre from './components/AtelierStructureTerre';
 import EcranDemarrage from './components/EcranDemarrage';
 import Inscription from './components/Inscription';
 import BaguetteXp from './components/BaguetteXp';
@@ -35,8 +36,9 @@ import {
   IcoSoleil,
 } from './components/Icones';
 
-type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'bac' | 'ana';
+type Onglet = 'aujourdhui' | 'masari' | 'exercices' | 'methodo' | 'ana';
 type Mode =
+  | { type: 'structureTerre' }
   | { type: 'orogenese' }
   | { type: 'immunite' }
   | { type: 'atelier'; domaineId: string }
@@ -49,7 +51,7 @@ const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
   { id: 'masari', label: 'مساري', icone: IcoRoute },
   { id: 'exercices', label: 'تدريبات', icone: IcoDumbbell },
-  { id: 'bac', label: 'البكالوريا', icone: IcoDiplome },
+  { id: 'methodo', label: 'منهجية', icone: IcoDiplome },
   { id: 'ana', label: 'أنا', icone: IcoCarnet },
 ];
 
@@ -202,12 +204,6 @@ export default function App() {
     );
   }
 
-  // ───────────── نسخ البكالوريا ─────────────
-
-  function onCopie(): void {
-    setEtat((prev) => ({ ...prev, copies: (prev.copies ?? 0) + 1 }));
-  }
-
   // ───────────── موافقة المزامنة ─────────────
 
   function onConsentementSync(ok: boolean): void {
@@ -249,6 +245,14 @@ export default function App() {
       </div>
     ) : null;
 
+    if (mode.type === 'structureTerre') {
+      return (
+        <AtelierStructureTerre
+          onFermer={() => setMode(null)}
+          onTerminer={() => onTerminerAtelier('structure')}
+        />
+      );
+    }
     if (mode.type === 'orogenese') {
       return (
         <>
@@ -380,9 +384,12 @@ export default function App() {
           onOuvrirAtelier={() => setMode({ type: 'atelier', domaineId: 'd1' })}
           onOuvrirImmunite={() => setMode({ type: 'immunite' })}
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
+          onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
         />
       )}
-      {pret && onglet === 'bac' && <Bac etat={etat} onCopie={onCopie} />}
+      {pret && onglet === 'methodo' && (
+        <Methodologie onFermer={() => setOnglet('aujourdhui')} />
+      )}
       {pret && onglet === 'ana' && (
         <Ana
           etat={etat}

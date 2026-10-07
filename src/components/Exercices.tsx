@@ -24,6 +24,7 @@ interface Props {
   onOuvrirAtelier: () => void;
   onOuvrirImmunite: () => void;
   onOuvrirOrogenese: () => void;
+  onOuvrirStructureTerre: () => void;
 }
 
 type Portee = { kind: 'axe'; axe: AxeDrill };
@@ -41,6 +42,7 @@ export default function Exercices({
   onOuvrirAtelier,
   onOuvrirImmunite,
   onOuvrirOrogenese,
+  onOuvrirStructureTerre,
 }: Props) {
   const [vue, setVue] = useState<Vue>({ type: 'choix' });
   const [enCharge, setEnCharge] = useState(false);
@@ -120,7 +122,8 @@ export default function Exercices({
             </span>
             <h2 className="font-naskh mt-3 text-lg font-bold">الورشات التطبيقية</h2>
             <p className="mt-1 text-sm leading-relaxed text-mute">
-              {nb(3)} ورشات: المجال الأول، المناعة، التكتونية — ترتيب، ربط، استرجاع نشط.
+              {nb(4)} ورشات: المجال الأول، المناعة، التكتونية، بنية الأرض — ترتيب، ربط، استرجاع
+              نشط.
             </p>
             <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
           </button>
@@ -129,13 +132,14 @@ export default function Exercices({
     );
   }
 
-  // ───────────── الورشات الثلاث ─────────────
+  // ───────────── الورشات الأربع ─────────────
   if (vue.type === 'ateliers') {
     const domaine1Pret = DOMAINES[0].unites.every((uid) =>
       itemFait(etat, { type: 'jalon', uniteId: uid })
     );
     const immunitePret = itemFait(etat, { type: 'jalon', uniteId: 'u4' });
     const orogenesePret = itemFait(etat, { type: 'jalon', uniteId: 'u11' });
+    const structurePret = itemFait(etat, { type: 'jalon', uniteId: 'u10' });
 
     return (
       <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
@@ -154,7 +158,7 @@ export default function Exercices({
           <p className="eyebrow">التدريبات</p>
           <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">الورشات التطبيقية</h1>
           <p className="mt-2 text-sm leading-relaxed text-mute">
-            {nb(3)} ورشات: ترتيب البطاقات وربط المفاهيم ثم استرجاع نشط — بلا كتابة، وبلا خطأ
+            {nb(4)} ورشات: ترتيب البطاقات وربط المفاهيم ثم استرجاع نشط — بلا كتابة، وبلا خطأ
             يُعاقَب عليه.
           </p>
         </header>
@@ -237,6 +241,34 @@ export default function Exercices({
                   <IcoVerrou />
                 </span>
                 {`تُفتح بعد إنهاء جسر الوحدة ${nb(11)} (البنيات الجيولوجية).`}
+              </p>
+            )}
+          </div>
+        </section>
+
+        <section className="card mt-4 overflow-hidden border-sage/50">
+          <div className="bg-paper p-5">
+            <p className="text-[11px] font-bold text-forest">ورشة موجهة · بنية الأرض</p>
+            <h2 className="font-naskh mt-1 text-xl font-bold">بناء مقطع الكرة الأرضية</h2>
+            <p className="mt-2 text-sm leading-relaxed text-mute">
+              رتّب الأغلفة حسب العمق، ثم اربط كل غلاف بحالته الفيزيائية والدليل الزلزالي المناسب.
+            </p>
+            {structurePret ? (
+              <button
+                type="button"
+                onClick={onOuvrirStructureTerre}
+                className="btn btn-primary mt-4 w-full"
+              >
+                {etat.ateliers?.structure
+                  ? 'إعادة فتح ورشة بنية الأرض ✓'
+                  : 'ابدأ ورشة بنية الأرض'}
+              </button>
+            ) : (
+              <p className="mt-3 flex items-start gap-1.5 text-[12px] leading-relaxed text-mute">
+                <span className="mt-0.5 block h-4 w-4 shrink-0">
+                  <IcoVerrou />
+                </span>
+                {`تُفتح بعد إنهاء جسر الوحدة ${nb(10)} (بنية الكرة الأرضية).`}
               </p>
             )}
           </div>
