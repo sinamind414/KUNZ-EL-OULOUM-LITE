@@ -86,15 +86,22 @@ export default function Exercices({
   if (vue.type === 'choix') {
     return (
       <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
-        <header className="mb-6">
-          <p className="eyebrow">التدريبات</p>
-          <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">
-            ماذا تريد أن تدرّب اليوم؟
-          </h1>
-          <p className="mt-2 text-sm leading-relaxed text-mute">
-            ثلاثة مسارات للتدريب: أسئلة QCM من البرنامج الرسمي، ورشات تركيبية تبني فيها المعلومة
-            بيدك ثم تسترجعها من الذاكرة، أو تمارين المنهجية التي تدرّبك على طريقة الإجابة.
-          </p>
+        <header className="mb-6 flex items-start gap-3">
+          <img
+            src="/personnage-pirate.png"
+            alt="مستكشف كنز العلوم"
+            className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="eyebrow">التدريبات</p>
+            <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">
+              ماذا تريد أن تدرّب اليوم؟
+            </h1>
+            <p className="mt-2 text-sm leading-relaxed text-mute">
+              ثلاثة مسارات للتدريب: أسئلة QCM من البرنامج الرسمي، ورشات تركيبية تبني فيها المعلومة
+              بيدك ثم تسترجعها من الذاكرة، أو تمارين المنهجية التي تدرّبك على طريقة الإجابة.
+            </p>
+          </div>
         </header>
 
         <div className="grid gap-4 sm:grid-cols-3">
