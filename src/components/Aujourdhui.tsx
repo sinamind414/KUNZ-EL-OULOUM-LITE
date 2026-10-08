@@ -78,7 +78,7 @@ export default function Aujourdhui({
         <img
           src="/personnage-pirate.png"
           alt="مستكشف كنز العلوم"
-          className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24"
+          className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
         />
         <div className="min-w-0 flex-1">
           <p className="eyebrow">{formatJourAr(aujourdhui())}</p>
