@@ -5,6 +5,7 @@ import { leconsUniteFaites, uniteTerminee } from '../utils/moteur';
 import { differenceJours, enArabe, formatCourteAr } from '../utils/dates';
 import type { Etat } from '../types';
 import { Morceau } from './Communs';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   etat: Etat;
@@ -26,6 +27,16 @@ export default function Bac({ etat, onCopie, onOuvrirMethodologie }: Props) {
         <p className="eyebrow">الهدف</p>
         <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">البكالوريا</h1>
       </header>
+      <MascotteKunz compact tone="gold" message="الامتحان ليس جزيرة مجهولة. خذ معك مفتاحك: افهم الفعل، استخرج الدليل، ثم افحص جوابك." />
+
+      <section className="card mb-5 overflow-hidden border-forest/30">
+        <div className="bg-gradient-to-l from-forest to-forest-deep p-5 text-paper">
+          <p className="text-[11px] font-bold text-sage">مهارة الامتحان</p>
+          <h2 className="font-naskh mt-1 text-xl font-bold">منهجية حل التمرين</h2>
+          <p className="mt-2 text-sm leading-relaxed text-paper/80">تعلم قراءة التعليمة، استغلال الوثيقة، بناء الاستدلال وكتابة الاستنتاج العلمي.</p>
+          <button onClick={onOuvrirMethodologie} className="btn mt-4 w-full bg-paper text-forest-deep hover:bg-sage">ابدأ التشخيص والمنهجية</button>
+        </div>
+      </section>
 
       <section className="card mb-5 overflow-hidden border-forest/30">
         <div className="bg-gradient-to-l from-forest to-forest-deep p-5 text-paper">
