@@ -592,6 +592,16 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   s'affiche quand une carte est due : « أتقنتها » ou « كافحت قليلًا » re-programme la SM-2,
   « أتدرّب على التمرين ← » ouvre منهجية — au plus **2 revues par semaine** (`kafaaHebdo`), sans
   bloquer la tâche unique du jour.
+- **v0.5.12** — **سلّم المساعدة (audit pédagogique)** : chaque exercice الوحدة 1 porte un
+  escalier d'indices à **3 barreaux** demandés par l'élève (bouton « 💡 التلميح · n/3 ») ou
+  proposés doucement après la **2ᵉ erreur** : 1 · relance « أين تنظر ؟ » (السند), 2 · procédure
+  « أي عملية ؟ » (أصف/أفسّر/أحكم selon le verbe), 3 · micro-leçon « القاعدة العامة » (jamais la
+  réponse), avec **المفتاح en surimpression** au 3ᵉ barreau sans perdre l'état de l'exercice.
+  Chaque distracteur porte un **code d'erreur** (`erreurCible`) → message ciblé au moment de
+  l'échec (ex. confusion d'échelle, inversion de règle) au lieu du message générique. La réussite
+  avec aide affiche la trace factuelle « نجحت بدرجة/تين/ثلاث درجات من المساعدة » (zéro
+  pourcentage, zéro malus) et programme la carte كفاءة en **J+1** (au lieu de J+3) — conformément
+  à l'audit « réussi avec indices → J+1 ».
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

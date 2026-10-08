@@ -112,19 +112,22 @@ type ExerciceUnite1 = {
   choices: string[];
   /** Index de la bonne réponse dans choices (la rotation maison varie sa position). */
   correctChoice: number;
+  /** سلّم المساعدة · diagnostic typé : pour chaque distracteur, un message ciblé
+   *  affiché au moment de l'erreur (jamais la bonne réponse). Audit « code d'erreur ». */
+  erreurCible?: Record<string, string>;
 };
 
 const exercicesUnite1: ExerciceUnite1[] = [
-  { titre: 'من المورثة إلى البروتين', verbe: 'مثّل', objectif: 'بناء مخطط التعبير المورثي', consigne: 'مثّل مراحل انتقال المعلومة الوراثية من ADN إلى بروتين وظيفي.', preuve: 'ADN → ARNm → ريبوزوم → سلسلة ببتيدية', reponse: 'تنتقل المعلومة من ADN بالاستنساخ إلى ARNm، ثم تُترجم في الريبوزوم إلى سلسلة ببتيدية تنطوي لتصبح بروتينًا وظيفيًا.', erreur: 'الريبوزوم لا يصنع ARNm؛ إنزيم ARN polymérase هو المسؤول عن الاستنساخ.', diagramme: 'flux', format: 'مخطط تركيبي', document: 'السند 1 · مخطط التعبير المورثي', zones: ['ADN', 'ARNm', 'الريبوزوم', 'البروتين'], question: 'انقر على المنطقة التي تمثل الرسالة المنقولة من ADN إلى الريبوزوم.', choices: ['ADN', 'ARNm', 'البروتين الوظيفي'], correctChoice: 1 },
-  { titre: 'مقر الاستنساخ والترجمة', verbe: 'قارن', objectif: 'التمييز بين بدائيات وحقيقيات النوى', consigne: 'قارن بين مكان الاستنساخ ومكان الترجمة عند الخليتين.', preuve: 'النواة موجودة عند حقيقيات النوى وغير موجودة عند بدائيات النوى', reponse: 'عند حقيقيات النوى يتم الاستنساخ في النواة ثم تخرج ARNm إلى الهيولى للترجمة، أما عند بدائيات النوى فتتم العمليتان في الهيولى ويمكن أن تكونا متزامنتين.', erreur: 'لا تقل إن ADN يخرج من النواة؛ الذي ينتقل هو ARNm.', diagramme: 'cellules', format: 'مقارنة خلوية', document: 'السند 2 · خليتان مجهريتان', zones: ['النواة', 'ADN في الهيولى', 'الترجمة', 'الغشاء'], question: 'اختر المنطقة التي تميز الخلية حقيقية النوى عن بدائية النوى.', choices: ['النواة', 'الغشاء', 'الترجمة'], correctChoice: 0 },
-  { titre: 'نضج ARNm', verbe: 'فسّر', objectif: 'فهم معالجة الرسالة الوراثية', consigne: 'فسّر لماذا لا يغادر ARNm الأولي النواة مباشرة.', preuve: 'حذف الإنترونات وربط الإكسونات ينتج ARNm ناضجًا', reponse: 'يخضع ARNm الأولي للمعالجة؛ تحذف الإنترونات وتربط الإكسونات، فيتكون ARNm ناضج قابل للترجمة.', erreur: 'المعالجة لا تحدث في الريبوزوم، بل داخل النواة قبل خروج الرسالة.', diagramme: 'arn', format: 'تحليل وثيقة', document: 'السند 3 · معالجة ARNm', zones: ['الإكسونات', 'الإنترونات', 'ARNm الأولي', 'ARNm الناضج'], question: 'أي منطقة تُحذف أثناء نضج ARNm؟', choices: ['الإكسونات', 'الإنترونات', 'ARNm الناضج'], correctChoice: 1 },
-  { titre: 'قراءة الرامزة', verbe: 'حلّل', objectif: 'ربط الرامزة بمضاد الرامزة', consigne: 'حلّل الوثيقة وبيّن كيف يضمن ARNt إضافة الحمض الأميني المناسب.', preuve: 'تكامل الرامزة مع مضاد الرامزة', reponse: 'يتثبت ARNt في الرامزة الموافقة على ARNm بواسطة التكامل، ويحمل الحمض الأميني المحدد، ثم تتشكل الرابطة الببتيدية.', erreur: 'الرامزة توجد على ARNm، أما مضاد الرامزة فعلى ARNt.', diagramme: 'ribosome', format: 'تجربة الترجمة', document: 'السند 4 · آلية الترجمة', zones: ['الرامزة', 'مضاد الرامزة', 'ARNt', 'الريبوزوم'], question: 'ما العنصر الذي يحمل الحمض الأميني إلى الريبوزوم؟', choices: ['ARNm', 'ARNt', 'ADN'], correctChoice: 1 },
-  { titre: 'طفرة واستبدال حمض أميني', verbe: 'استنتج', objectif: 'ربط تغير ADN بتغير البروتين', consigne: 'استنتج أثر استبدال رامزة واحدة في تسلسل مورثة.', preuve: 'اختلاف رامزة واحدة يقابله اختلاف حمض أميني واحد', reponse: 'قد يؤدي تغير قاعدة إلى رامزة جديدة، فتتغير هوية حمض أميني، وقد تتغير بنية البروتين ووظيفته.', erreur: 'لا نحكم دائمًا بفقدان الوظيفة؛ يجب مقارنة التسلسل والوظيفة أولًا.', diagramme: 'mutation', format: 'دراسة طفرة', document: 'السند 5 · مقارنة تسلسلين', zones: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'التسلسل الطافر', 'البروتين'], question: 'انقر على المنطقة التي تمثل سبب اختلاف التسلسلين.', choices: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'البروتين'], correctChoice: 1 },
-  { titre: 'استخراج ARNm', verbe: 'استخرج', objectif: 'تطبيق التكامل القاعدي', consigne: 'استخرج تسلسل ARNm انطلاقًا من السلسلة المستنسخة المعطاة.', preuve: 'A↔U و T↔A و C↔G و G↔C حسب السلسلة المستنسخة', reponse: 'أحدد أولًا نوع السلسلة واتجاهها، ثم أطبق التكامل القاعدي وأكتب ARNm في الاتجاه 5’→3’.', erreur: 'في ARNm نستعمل U بدل T، ولا نخلط بين السلسلة المستنسخة وغير المستنسخة.', diagramme: 'sequence', format: 'تمرين وراثي', document: 'السند 6 · جدول التكامل القاعدي', zones: ['السلسلة المستنسخة', 'ARNm', 'الرامزة', 'اتجاه 5’→3’'], question: 'ما الجزيء الذي يجب استخراجه من السلسلة المستنسخة؟', choices: ['ARNm', 'ADN جديد', 'بروتين'], correctChoice: 0 },
-  { titre: 'كمية ARNm والبروتين', verbe: 'حلّل', objectif: 'فهم العلاقة الزمنية بين الرسالة والبروتين', consigne: 'حلّل تغير كمية ARNm وكمية البروتين بعد إضافة ARNm.', preuve: 'ترتفع كمية البروتين بعد ارتفاع ARNm وتتأخر عنه', reponse: 'تظهر الرسالة أولًا ثم تُقرأ في الريبوزومات؛ لذلك يتأخر ارتفاع البروتين عن ارتفاع ARNm.', erreur: 'التأخر الزمني لا يعني أن البروتين يصنع الرسالة.', diagramme: 'expression', format: 'منحنى تجريبي', document: 'السند 7 · تغير الكمية مع الزمن', zones: ['منحنى ARNm', 'منحنى البروتين', 'لحظة الإضافة', 'محور الزمن'], question: 'أي منحنى يظهر أولًا بعد إضافة ARNm؟', choices: ['منحنى ARNm', 'منحنى البروتين', 'كلاهما في الوقت نفسه'], correctChoice: 0 },
-  { titre: 'تحديد مقر بروتين', verbe: 'علّل', objectif: 'ربط البنية بالوجهة', consigne: 'علّل وجود بروتين مُفرز خارج الخلية في الشبكة الهيولية المحببة.', preuve: 'وجود ببتيد إشارة والريبوزومات المرتبطة بالشبكة', reponse: 'يوجه ببتيد الإشارة الريبوزوم نحو الشبكة الهيولية المحببة، حيث يدخل البروتين مسار الإفراز ثم ينقل إلى خارج الخلية.', erreur: 'الريبوزوم الحر لا يفسر وحده إفراز البروتين.', diagramme: 'graphique', format: 'تجربة التوجيه', document: 'السند 8 · مسار بروتين مفرز', zones: ['النواة', 'الشبكة الهيولية', 'جهاز غولجي', 'خارج الخلية'], question: 'ما أول محطة توجه البروتين نحو الإفراز بعد خروجه من النواة؟', choices: ['الشبكة الهيولية المحببة', 'خارج الخلية', 'النواة'], correctChoice: 0 },
-  { titre: 'مقارنة بروتينين', verbe: 'قارن', objectif: 'إثبات خصوصية التعبير المورثي', consigne: 'قارن جزءًا من تسلسل بروتينين وحدد ما يمكن استنتاجه.', preuve: 'تشابه أجزاء واختلاف أجزاء من التسلسل', reponse: 'التشابه يدل على أصل أو وظيفة مشتركة محتملة، والاختلاف قد يفسر اختلاف البنية أو الوظيفة.', erreur: 'التشابه في جزء قصير لا يثبت وحده تطابق الوظيفة.', diagramme: 'comparaison', format: 'مقارنة جزيئية', document: 'السند 9 · تسلسل بروتينين', zones: ['البروتين أ', 'موضع الاختلاف', 'البروتين ب', 'الوظيفة'], question: 'ما الدليل المباشر على اختلاف البروتينين؟', choices: ['اختلاف حمض أميني في التسلسل', 'اختلاف لون الوثيقة', 'اختلاف عنوان السند'], correctChoice: 0 },
-  { titre: 'المعلومة والبنية والوظيفة', verbe: 'ركّب', objectif: 'إنجاز خلاصة علمية', consigne: 'أنجز خلاصة تربط بين تسلسل ADN وبنية البروتين ووظيفته.', preuve: 'تسلسل النكليوتيدات يحدد تسلسل الأحماض الأمينية ثم البنية الفراغية', reponse: 'يحدد تسلسل ADN تسلسل ARNm، وهذا يحدد ترتيب الأحماض الأمينية؛ ويحدد الترتيب البنية الفراغية التي تمنح البروتين وظيفته.', erreur: 'لا تنتقل مباشرة من ADN إلى الوظيفة دون ذكر الترجمة والبنية الفراغية.', diagramme: 'synthese', format: 'مقالة تركيبية', document: 'السند 10 · من المعلومة إلى الوظيفة', zones: ['تسلسل ADN', 'الأحماض الأمينية', 'البنية الفراغية', 'الوظيفة'], question: 'ما العلاقة الصحيحة بين تسلسل ADN ووظيفة البروتين؟', choices: ['ADN يحدد التسلسل ثم البنية فالوظيفة', 'البروتين يصنع ADN', 'الوظيفة لا علاقة لها بالبنية'], correctChoice: 0 },
+  { titre: 'من المورثة إلى البروتين', verbe: 'مثّل', objectif: 'بناء مخطط التعبير المورثي', consigne: 'مثّل مراحل انتقال المعلومة الوراثية من ADN إلى بروتين وظيفي.', preuve: 'ADN → ARNm → ريبوزوم → سلسلة ببتيدية', reponse: 'تنتقل المعلومة من ADN بالاستنساخ إلى ARNm، ثم تُترجم في الريبوزوم إلى سلسلة ببتيدية تنطوي لتصبح بروتينًا وظيفيًا.', erreur: 'الريبوزوم لا يصنع ARNm؛ إنزيم ARN polymérase هو المسؤول عن الاستنساخ.', diagramme: 'flux', format: 'مخطط تركيبي', document: 'السند 1 · مخطط التعبير المورثي', zones: ['ADN', 'ARNm', 'الريبوزوم', 'البروتين'], question: 'انقر على المنطقة التي تمثل الرسالة المنقولة من ADN إلى الريبوزوم.', choices: ['ADN', 'ARNm', 'البروتين الوظيفي'], correctChoice: 1, erreurCible: { 'ADN': 'ADN هو المخزون، والرسالة المنقولة إلى الريبوزوم هي ARNm. لا تخلط بين السند والرسالة.', 'البروتين الوظيفي': 'البروتين هو ناتج الترجمة، وليس الرسالة المنقولة. راجع اتجاه الأسهم في المخطط.' } },
+  { titre: 'مقر الاستنساخ والترجمة', verbe: 'قارن', objectif: 'التمييز بين بدائيات وحقيقيات النوى', consigne: 'قارن بين مكان الاستنساخ ومكان الترجمة عند الخليتين.', preuve: 'النواة موجودة عند حقيقيات النوى وغير موجودة عند بدائيات النوى', reponse: 'عند حقيقيات النوى يتم الاستنساخ في النواة ثم تخرج ARNm إلى الهيولى للترجمة، أما عند بدائيات النوى فتتم العمليتان في الهيولى ويمكن أن تكونا متزامنتين.', erreur: 'لا تقل إن ADN يخرج من النواة؛ الذي ينتقل هو ARNm.', diagramme: 'cellules', format: 'مقارنة خلوية', document: 'السند 2 · خليتان مجهريتان', zones: ['النواة', 'ADN في الهيولى', 'الترجمة', 'الغشاء'], question: 'اختر المنطقة التي تميز الخلية حقيقية النوى عن بدائية النوى.', choices: ['النواة', 'الغشاء', 'الترجمة'], correctChoice: 0, erreurCible: { 'الغشاء': 'الغشاء موجود في الخليتين؛ العنصر المميز لحقيقيات النوى هو وجود نواة حقيقية.', 'الترجمة': 'الترجمة تتم عند النوعين؛ الفرق الحقيقي هو مقر الاستنساخ (نواة أم هيولى).' } },
+  { titre: 'نضج ARNm', verbe: 'فسّر', objectif: 'فهم معالجة الرسالة الوراثية', consigne: 'فسّر لماذا لا يغادر ARNm الأولي النواة مباشرة.', preuve: 'حذف الإنترونات وربط الإكسونات ينتج ARNm ناضجًا', reponse: 'يخضع ARNm الأولي للمعالجة؛ تحذف الإنترونات وتربط الإكسونات، فيتكون ARNm ناضج قابل للترجمة.', erreur: 'المعالجة لا تحدث في الريبوزوم، بل داخل النواة قبل خروج الرسالة.', diagramme: 'arn', format: 'تحليل وثيقة', document: 'السند 3 · معالجة ARNm', zones: ['الإكسونات', 'الإنترونات', 'ARNm الأولي', 'ARNm الناضج'], question: 'أي منطقة تُحذف أثناء نضج ARNm؟', choices: ['الإكسونات', 'الإنترونات', 'ARNm الناضج'], correctChoice: 1, erreurCible: { 'الإكسونات': 'تعليمة مقلوبة: الإكسونات تُحفظ وتُربط، والتي تُحذف هي الإنترونات.', 'ARNm الناضج': 'ARNm الناضج هو ناتج المعالجة، وليس الجزء المحذوف.' } },
+  { titre: 'قراءة الرامزة', verbe: 'حلّل', objectif: 'ربط الرامزة بمضاد الرامزة', consigne: 'حلّل الوثيقة وبيّن كيف يضمن ARNt إضافة الحمض الأميني المناسب.', preuve: 'تكامل الرامزة مع مضاد الرامزة', reponse: 'يتثبت ARNt في الرامزة الموافقة على ARNm بواسطة التكامل، ويحمل الحمض الأميني المحدد، ثم تتشكل الرابطة الببتيدية.', erreur: 'الرامزة توجد على ARNm، أما مضاد الرامزة فعلى ARNt.', diagramme: 'ribosome', format: 'تجربة الترجمة', document: 'السند 4 · آلية الترجمة', zones: ['الرامزة', 'مضاد الرامزة', 'ARNt', 'الريبوزوم'], question: 'ما العنصر الذي يحمل الحمض الأميني إلى الريبوزوم؟', choices: ['ARNm', 'ARNt', 'ADN'], correctChoice: 1, erreurCible: { 'ARNm': 'ARNm يحمل التعليمات، لكن حامل الحمض الأميني نحو الريبوزوم هو ARNt.', 'ADN': 'ADN يبقى في النواة ولا ينقل الحمض الأميني؛ اقرأ دور كل عنصر في الترجمة.' } },
+  { titre: 'طفرة واستبدال حمض أميني', verbe: 'استنتج', objectif: 'ربط تغير ADN بتغير البروتين', consigne: 'استنتج أثر استبدال رامزة واحدة في تسلسل مورثة.', preuve: 'اختلاف رامزة واحدة يقابله اختلاف حمض أميني واحد', reponse: 'قد يؤدي تغير قاعدة إلى رامزة جديدة، فتتغير هوية حمض أميني، وقد تتغير بنية البروتين ووظيفته.', erreur: 'لا نحكم دائمًا بفقدان الوظيفة؛ يجب مقارنة التسلسل والوظيفة أولًا.', diagramme: 'mutation', format: 'دراسة طفرة', document: 'السند 5 · مقارنة تسلسلين', zones: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'التسلسل الطافر', 'البروتين'], question: 'انقر على المنطقة التي تمثل سبب اختلاف التسلسلين.', choices: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'البروتين'], correctChoice: 1, erreurCible: { 'التسلسل الأصلي': 'التسلسل الأصلي هو المرجع للمقارنة؛ المسبب للاختلاف هو القاعدة المستبدلة.', 'البروتين': 'البروتين عاقبة محتملة، والسبب المباشر لتغير التسلسل هو القاعدة المستبدلة.' } },
+  { titre: 'استخراج ARNm', verbe: 'استخرج', objectif: 'تطبيق التكامل القاعدي', consigne: 'استخرج تسلسل ARNm انطلاقًا من السلسلة المستنسخة المعطاة.', preuve: 'A↔U و T↔A و C↔G و G↔C حسب السلسلة المستنسخة', reponse: 'أحدد أولًا نوع السلسلة واتجاهها، ثم أطبق التكامل القاعدي وأكتب ARNm في الاتجاه 5’→3’.', erreur: 'في ARNm نستعمل U بدل T، ولا نخلط بين السلسلة المستنسخة وغير المستنسخة.', diagramme: 'sequence', format: 'تمرين وراثي', document: 'السند 6 · جدول التكامل القاعدي', zones: ['السلسلة المستنسخة', 'ARNm', 'الرامزة', 'اتجاه 5’→3’'], question: 'ما الجزيء الذي يجب استخراجه من السلسلة المستنسخة؟', choices: ['ARNm', 'ADN جديد', 'بروتين'], correctChoice: 0, erreurCible: { 'ADN جديد': 'الاستنساخ ينتج ARNm وليس نسخة ADN ثانية؛ طبق التكامل القاعدي A↔U.', 'بروتين': 'البروتين ناتج الترجمة، ولا ينتج بالتكامل القاعدي مباشرة.' } },
+  { titre: 'كمية ARNm والبروتين', verbe: 'حلّل', objectif: 'فهم العلاقة الزمنية بين الرسالة والبروتين', consigne: 'حلّل تغير كمية ARNm وكمية البروتين بعد إضافة ARNm.', preuve: 'ترتفع كمية البروتين بعد ارتفاع ARNm وتتأخر عنه', reponse: 'تظهر الرسالة أولًا ثم تُقرأ في الريبوزومات؛ لذلك يتأخر ارتفاع البروتين عن ارتفاع ARNm.', erreur: 'التأخر الزمني لا يعني أن البروتين يصنع الرسالة.', diagramme: 'expression', format: 'منحنى تجريبي', document: 'السند 7 · تغير الكمية مع الزمن', zones: ['منحنى ARNm', 'منحنى البروتين', 'لحظة الإضافة', 'محور الزمن'], question: 'أي منحنى يظهر أولًا بعد إضافة ARNm؟', choices: ['منحنى ARNm', 'منحنى البروتين', 'كلاهما في الوقت نفسه'], correctChoice: 0, erreurCible: { 'منحنى البروتين': 'البروتين يتأخر عن الرسالة (يُقرأ بعدها)؛ الذي يظهر أولًا هو منحنى ARNm.', 'كلاهما في الوقت نفسه': 'لولا التأخر لما وجدت علاقة سببية؛ انظر إلى ترتيب المنحنيين بعد لحظة الإضافة.' } },
+  { titre: 'تحديد مقر بروتين', verbe: 'علّل', objectif: 'ربط البنية بالوجهة', consigne: 'علّل وجود بروتين مُفرز خارج الخلية في الشبكة الهيولية المحببة.', preuve: 'وجود ببتيد إشارة والريبوزومات المرتبطة بالشبكة', reponse: 'يوجه ببتيد الإشارة الريبوزوم نحو الشبكة الهيولية المحببة، حيث يدخل البروتين مسار الإفراز ثم ينقل إلى خارج الخلية.', erreur: 'الريبوزوم الحر لا يفسر وحده إفراز البروتين.', diagramme: 'graphique', format: 'تجربة التوجيه', document: 'السند 8 · مسار بروتين مفرز', zones: ['النواة', 'الشبكة الهيولية', 'جهاز غولجي', 'خارج الخلية'], question: 'ما أول محطة توجه البروتين نحو الإفراز بعد خروجه من النواة؟', choices: ['الشبكة الهيولية المحببة', 'خارج الخلية', 'النواة'], correctChoice: 0, erreurCible: { 'خارج الخلية': 'خارج الخلية هو الوجهة النهائية للإفراز، وليس المحطة الأولى.', 'النواة': 'النواة مقر الاستنساخ؛ الوجهة الأولى للبروتين المفرز هي الشبكة الهيولية المحببة.' } },
+  { titre: 'مقارنة بروتينين', verbe: 'قارن', objectif: 'إثبات خصوصية التعبير المورثي', consigne: 'قارن جزءًا من تسلسل بروتينين وحدد ما يمكن استنتاجه.', preuve: 'تشابه أجزاء واختلاف أجزاء من التسلسل', reponse: 'التشابه يدل على أصل أو وظيفة مشتركة محتملة، والاختلاف قد يفسر اختلاف البنية أو الوظيفة.', erreur: 'التشابه في جزء قصير لا يثبت وحده تطابق الوظيفة.', diagramme: 'comparaison', format: 'مقارنة جزيئية', document: 'السند 9 · تسلسل بروتينين', zones: ['البروتين أ', 'موضع الاختلاف', 'البروتين ب', 'الوظيفة'], question: 'ما الدليل المباشر على اختلاف البروتينين؟', choices: ['اختلاف حمض أميني في التسلسل', 'اختلاف لون الوثيقة', 'اختلاف عنوان السند'], correctChoice: 0, erreurCible: { 'اختلاف لون الوثيقة': 'لون الوثيقة أو شكلها ليس بيّنة؛ الدليل في تسلسل الأحماض الأمينية نفسه.', 'اختلاف عنوان السند': 'العنوان لا يحدد الخلاصة؛ قارن الأحماض في التسلسلين.' } },
+  { titre: 'المعلومة والبنية والوظيفة', verbe: 'ركّب', objectif: 'إنجاز خلاصة علمية', consigne: 'أنجز خلاصة تربط بين تسلسل ADN وبنية البروتين ووظيفته.', preuve: 'تسلسل النكليوتيدات يحدد تسلسل الأحماض الأمينية ثم البنية الفراغية', reponse: 'يحدد تسلسل ADN تسلسل ARNm، وهذا يحدد ترتيب الأحماض الأمينية؛ ويحدد الترتيب البنية الفراغية التي تمنح البروتين وظيفته.', erreur: 'لا تنتقل مباشرة من ADN إلى الوظيفة دون ذكر الترجمة والبنية الفراغية.', diagramme: 'synthese', format: 'مقالة تركيبية', document: 'السند 10 · من المعلومة إلى الوظيفة', zones: ['تسلسل ADN', 'الأحماض الأمينية', 'البنية الفراغية', 'الوظيفة'], question: 'ما العلاقة الصحيحة بين تسلسل ADN ووظيفة البروتين؟', choices: ['ADN يحدد التسلسل ثم البنية فالوظيفة', 'البروتين يصنع ADN', 'الوظيفة لا علاقة لها بالبنية'], correctChoice: 0, erreurCible: { 'البروتين يصنع ADN': 'اتجاه مقلوب: المعلومة تتدفق من ADN → ARNm → بروتين، والبروتين لا يصنع ADN.', 'الوظيفة لا علاقة لها بالبنية': 'البنية الفراغية هي التي تمنح الوظيفة؛ لا يمكن فصلهما في الخلاصة.' } },
 ];
 
 // Les 3 propositions, en rotation déterministe : la bonne réponse n'est pas toujours en 1re position.
@@ -173,6 +176,35 @@ function tuilesEmplacement(i: number, k: number): { options: string[]; bonne: nu
   const decalage = (i + k) % 3;
   const options = base.map((_, x) => base[(x + decalage) % 3]);
   return { options, bonne: (3 - decalage) % 3 };
+}
+
+// ───────────── سلّم المساعدة — escalier d'indices à 3 barreaux (audit) ─────────────
+// Barreau 1 « أين تنظر ؟ » (relance), barreau 2 « أي عملية ؟ » (procédure),
+// Barreau 3 « القاعدة العامة » (micro-leçon) — jamais la réponse, zéro pourcentage,
+// demandé par l'élève ou proposé après la 2ᵉ erreur.
+const VERBE_OPERATION: Record<string, number> = {
+  'حدّد / عيّن': 0, 'استخرج': 0, 'صف': 0, 'قارن': 0, 'مثّل / أنجز مخططًا': 0,
+  'حلّل': 1, 'فسّر': 1, 'علّل / برّر': 1,
+  'استنتج / استخلص': 2, 'أثبت / برهن': 2, 'اقترح فرضية': 2, 'ركّب': 2,
+};
+
+/** Définition + exemple du verbe affiché (ركّب est hors des 11 verbes du vocabulaire). */
+function infosVerbe(v: string): [string, string, string] {
+  if (v === 'ركّب')
+    return ['ركّب', 'ربط عناصر المعلومة في نصّ سببي منظم يجيب عن السؤال.', 'أنجز خلاصة تربط الملاحظة بالتفسير والخلاصة.'];
+  const trouve = verbes.find(([nom]) => nom.startsWith(v));
+  return trouve ? trouve : [v, 'تطبيق الإجراء على السند بالترتيب المناسب.', 'طبّق الفعل بترتيب خطوات منهجية.'];
+}
+
+/** Les 3 barreaux d'un exercice — la preuve n'y figure jamais. */
+function barreauxAide(item: ExerciceUnite1): [string, string, string] {
+  const [vn, vdef, vex] = infosVerbe(item.verbe);
+  const op = operations[VERBE_OPERATION[vn] ?? 1];
+  return [
+    `أين تنظر؟ ركّز على «${item.document}». أعد قراءة مناطق المخطط واحدة واحدة، واسأل: أيّها يحمل المعطى النافع الذي يجيب عن السؤال؟`,
+    `أي عملية الآن؟ اسأل: ${op[1]} — وفرّق بين ${operations[0][0]} (${operations[0][2]}) · ${operations[1][0]} (${operations[1][2]}) · ${operations[2][0]} (${operations[2][2]}). الفعل «${item.verbe}» هنا معناه: ${vdef} — اربطه بالسند قبل أن تختار.`,
+    `قاعدة منهجية عامة — «${vn}»: ${vdef} (مثال واسع: ${vex}). القاعدة تبقى صحيحة حتى لو غيّرنا السند؛ اطبقها ثم تحقق.`,
+  ];
 }
 
 /**
@@ -419,6 +451,11 @@ export default function Methodologie({
   const [tuilesChoisies, setTuilesChoisies] = useState<string[]>([]);
   const [tuileFausse, setTuileFausse] = useState<number | null>(null);
   const [redactionFin, setRedactionFin] = useState(false);
+  // سلّم المساعدة (audit) : barreaux ouverts (0-3), erreurs validées sur l'exo courant,
+  // surimpression du المفتاح sans perte de l'état de l'exercice.
+  const [barreaux, setBarreaux] = useState(0);
+  const [fauxExo, setFauxExo] = useState(0);
+  const [cleOuverte, setCleOuverte] = useState(false);
 
   function startDiagnostic(): void {
     setQ(0);
@@ -467,11 +504,19 @@ export default function Methodologie({
     setMethode(i);
     setSourceExo('unite1');
     setEcran('exercice');
+    reinitialiserExercice();
+  }
+
+  /** Retour à zéro complet de l'exercice courant (réponses, zones, échelle d'aide). */
+  function reinitialiserExercice(): void {
     setReponse(null);
-    setZoneActive(null); // jamais la zone de l'exercice précédent (fix maison du port).
+    setZoneActive(null);
     setFeedback('');
     setDernierFauxExo(null);
     setJusteExo(false);
+    setBarreaux(0);
+    setFauxExo(0);
+    setCleOuverte(false);
   }
 
   // ───────────── محرّر الجواب — assemblage de tuiles ─────────────
@@ -511,22 +556,29 @@ export default function Methodologie({
         sonJuste();
         setJusteExo(true);
         setFeedbackTon('juste');
+        // Trace non-jugeante du سلّم المساعدة (fait, pas note). Aucun pourcentage.
+        const kit =
+          ['', ' نجحت بدرجة واحدة من المساعدة — أعده لاحقًا بلا تلميح لتثبيتها.', ' نجحت بدرجتين من المساعدة — أعده لاحقًا بلا تلميح لتثبيتها.', ' نجحت بثلاث درجات من المساعدة — أعده لاحقًا بلا تلميح لتثبيتها.'][barreaux];
         setFeedback(
-          `إجابة سليمة. الدليل يطابق الفعل «${exoU1.verbe}»: ${exoU1.preuve}. الآن افحص: هل ذكرت المعطى والعلاقة والخلاصة؟`,
+          `إجابة سليمة. الدليل يطابق الفعل «${exoU1.verbe}»: ${exoU1.preuve}.` +
+            kit +
+            ` الآن افحص: هل ذكرت المعطى والعلاقة والخلاصة؟`,
         );
-        // بطاقة الكفاءة (audit) : réussite directe → J+3، réussite après erreur → J+1 (même SM-2).
-        onResultatKafaa?.(`methodo${methode}`, rate ? 3 : 5, {
+        // بطاقة الكفاءة (audit) : réussite directe → J+3، réussite avec erreurs ou aide → J+1 (même SM-2).
+        onResultatKafaa?.(`methodo${methode}`, rate || barreaux > 0 ? 3 : 5, {
           verbe: exoU1.verbe,
           exercice: exoU1.titre,
           erreur: exoU1.erreur,
         });
       } else {
-        // خطأ: أحمر + نغمة هادئة + إعادة المحاولة بلا كشف الجواب.
+        // خطأ: أحمر + نغمة هادئة + إعادة المحاولة بلا كشف الجواب، مع تشخيص Typé du distracteur choisi.
         sonFaux();
         setDernierFauxExo(reponse);
+        setFauxExo((n) => n + 1);
+        const reproche = exoU1.erreurCible?.[optionsU1[reponse]] ?? REFAIRE;
         setReponse(null);
         setFeedbackTon('refaire');
-        setFeedback(REFAIRE);
+        setFeedback(reproche);
       }
       return;
     }
@@ -548,6 +600,7 @@ export default function Methodologie({
   const exoU1 = exercicesUnite1[methode] ?? exercicesUnite1[0];
   const { options: optionsU1, bonne: idxJusteU1 } = optionsExercice(methode);
   const segmentsU1 = segmentsReponse(exoU1.reponse);
+  const aide = barreauxAide(exoU1);
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -969,6 +1022,52 @@ export default function Methodologie({
                 })}
               </div>
             </div>
+            {/* سلّم المساعدة — 3 barreaux demandés par l'élève, proposés après la 2ᵉ erreur (audit). */}
+            {!justeExo && (
+              <div className="mt-4 space-y-3">
+                {fauxExo >= 2 && barreaux === 0 && (
+                  <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-3 text-sm leading-relaxed">
+                    يبدو أن الجواب يدور حولك. جرّب «التلميح»: يريك أين تنظر في المخطط، ولا ينطق
+                    بالجواب أبدًا.
+                  </div>
+                )}
+                <div className="flex items-center justify-between gap-2">
+                  <button
+                    onClick={() => setBarreaux((p) => Math.min(p + 1, 3))}
+                    disabled={barreaux >= 3}
+                    className={`btn btn-ghost !px-3 text-sm ${
+                      fauxExo >= 2 && barreaux === 0 ? '!border-gold !text-[#6b5320]' : ''
+                    }`}
+                  >
+                    💡 التلميح · {barreaux}/3
+                  </button>
+                  <span className="text-[11px] text-mute">
+                    المساعدة لا تُخفف رصيدًا ولا تُنقص شيئًا.
+                  </span>
+                </div>
+                {barreaux >= 1 && (
+                  <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                    <p className="text-[11px] font-bold text-[#6b5320]">تلميح 1 · أين تنظر؟</p>
+                    <p className="mt-1 text-sm leading-relaxed text-forest-deep">{aide[0]}</p>
+                  </div>
+                )}
+                {barreaux >= 2 && (
+                  <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                    <p className="text-[11px] font-bold text-[#6b5320]">تلميح 2 · أي عملية؟</p>
+                    <p className="mt-1 text-sm leading-relaxed text-forest-deep">{aide[1]}</p>
+                  </div>
+                )}
+                {barreaux >= 3 && (
+                  <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                    <p className="text-[11px] font-bold text-[#6b5320]">تلميح 3 · القاعدة العامة</p>
+                    <p className="mt-1 text-sm leading-relaxed text-forest-deep">{aide[2]}</p>
+                    <button onClick={() => setCleOuverte(true)} className="btn btn-ghost mt-3 w-full">
+                      راجع المفتاح · فعل ← دليل ← جواب ← فحص
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
             {feedback && (
               <div
                 className={`mt-3 rounded-2xl p-4 text-sm leading-relaxed ${
@@ -1000,10 +1099,7 @@ export default function Methodologie({
                 <button
                   onClick={() => {
                     setEcran('unite1');
-                    setReponse(null);
-                    setFeedback('');
-                    setDernierFauxExo(null);
-                    setJusteExo(false);
+                    reinitialiserExercice();
                   }}
                   className="btn btn-ghost"
                 >
@@ -1028,10 +1124,7 @@ export default function Methodologie({
                 <button
                   onClick={() => {
                     setEcran('unite1');
-                    setReponse(null);
-                    setFeedback('');
-                    setDernierFauxExo(null);
-                    setJusteExo(false);
+                    reinitialiserExercice();
                   }}
                   className="btn btn-ghost w-full"
                 >
@@ -1040,6 +1133,31 @@ export default function Methodologie({
               </div>
             )}
           </section>
+        )}
+
+        {/* المفتاح en surimpression — l'exercice reste ouvert derrière (audit : ne jamais perdre l'état). */}
+        {cleOuverte && (
+          <div className="fixed inset-0 z-50 flex items-end justify-center bg-forest-deep/60 p-4 sm:items-center">
+            <div className="w-full max-w-md rounded-3xl bg-paper p-6">
+              <p className="eyebrow">المفتاح · أربع حركات</p>
+              <div className="mt-3 space-y-3">
+                {cle.map(([t, q], i) => (
+                  <div key={t} className="flex items-start gap-3">
+                    <b className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-forest text-xs text-paper">
+                      {i + 1}
+                    </b>
+                    <div className="min-w-0">
+                      <b className="text-sm text-forest">{t}</b>
+                      <p className="mt-0.5 text-xs leading-relaxed text-mute">{q}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button onClick={() => setCleOuverte(false)} className="btn btn-primary mt-5 w-full">
+                عد إلى التمرين
+              </button>
+            </div>
+          </div>
         )}
 
         {ecran === 'redaction' && (
