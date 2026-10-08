@@ -602,6 +602,12 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   avec aide affiche la trace factuelle « نجحت بدرجة/تين/ثلاث درجات من المساعدة » (zéro
   pourcentage, zéro malus) et programme la carte كفاءة en **J+1** (au lieu de J+3) — conformément
   à l'audit « réussi avec indices → J+1 ».
+- **v0.5.13** — **6 parcours = 6 exercices réels (audit : tuer le QCM unique)** : le تمرين
+  التطبيقي ne renvoie plus TOUJOURS la même courbe enzymatique à 3 options. Chaque مسار (استغلال
+  وثيقة، تحليل منحنى، استغلال جدول، تحليل تجربة، المقارنة، نص علمي تركيبي) a maintenant son
+  **propre سند et sa propre question** sur l'ordre de la démarche, avec un **diagnostic typé** par
+  distracteur (jamais la réponse) et la **rotation déterministe** de la bonne proposition (elle
+  n'est plus figée en 1ʳᵉ position) — conforme au plan audit « un exercice réel par parcours ».
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

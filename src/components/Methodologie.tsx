@@ -64,6 +64,100 @@ const methodes: [string, string][] = [
   ['نص علمي تركيبي', 'سؤال → أفكار → ترتيب → روابط'],
 ];
 
+// ───────────── 6 مسارات — un exercice réel par méthode (audit : tuer le QCM unique) ─────────────
+// Chaque parcours entraîne sa propre procédure (et non LE même QCM enzymatique) :
+// سند authentique + question sur l'ordre de la démarche + diagnostic typé par distracteur.
+type ExerciceMethode = {
+  document: string;
+  question: string;
+  options: [string, string, string];
+  /** La bonne réponse est toujours à l'index 0 du tableau source ; la rotation d'affichage la déplace. */
+  cible: Record<string, string>;
+};
+
+const methodesExercices: ExerciceMethode[] = [
+  {
+    document:
+      'وثيقة: عند إنقاص الحصة اليومية من الملح لدى مريض، انخفض سجلّ الضغط الشرياني بعد أسبوعين.',
+    question: 'ما أول ما تكتبه أمام هذه الوثيقة؟',
+    options: [
+      'أصف التغيّر المسجّل: انخفاض الضغط بعد إنقاص الملح.',
+      'أستنتج أن الملح سبب ارتفاع الضغط دون وصف المعطى.',
+      'أفسّر دور الكليتين في التوازن المائي دون ذكر النتيجة.',
+    ],
+    cible: {
+      'أستنتج أن الملح سبب ارتفاع الضغط دون وصف المعطى.': 'الاستنتاج تاج الاستدلال وليس بدايته؛ ابدأ بما تُظهره الوثيقة فعليًا.',
+      'أفسّر دور الكليتين في التوازن المائي دون ذكر النتيجة.': 'لا تفسّر قبل أن تصف: ملاحظة الوثيقة تسبق دائمًا تفسيرها.',
+    },
+  },
+  {
+    document: 'منحنى: تتغير سرعة تفاعل إنزيمي مع الحرارة (20°C ثم 37°C ثم 60°C).',
+    question: 'أي خطوة تسبق تفسير انخفاض النشاط عند 60°C؟',
+    options: [
+      'أذكر تطور المنحنى: نشاط يرتفع حتى 37°C ثم ينخفض.',
+      'أستنتج أن الإنزيم تمسّخ بالحرارة دون قراءة المنحنى.',
+      'أعرّف الإنزيم من الدرس دون ذكر القيم والأرقام.',
+    ],
+    cible: {
+      'أستنتج أن الإنزيم تمسّخ بالحرارة دون قراءة المنحنى.': 'استنتاج بدون قراءة المنحنى؟ ذلك تجاوز للملاحظة بالدرس — ابدأ بالأرقام.',
+      'أعرّف الإنزيم من الدرس دون ذكر القيم والأرقام.': 'تعريف الدرس لا يغني عن قراءة تطور المنحنى؛ أين المعطى الملاحَظ؟',
+    },
+  },
+  {
+    document: 'جدول: نسب الخلايا B و T عند شخص سليم وعند مريض مرشّح لزرع كلية.',
+    question: 'كيف تبدأ استغلال هذا الجدول؟',
+    options: [
+      'أحدد المعيار والقيم ثم أقارن العمودين عمودًا بعمود.',
+      'أكتب خلاصة عامة عن المناعة دون تحديد معايير.',
+      'أقارن مباشرة دون تحديد ماذا يمثل الصف والعمود.',
+    ],
+    cible: {
+      'أكتب خلاصة عامة عن المناعة دون تحديد معايير.': 'الخلاصة تُبنى بعد المقارنة، والمقارنة بعد تحديد المعايير.',
+      'أقارن مباشرة دون تحديد ماذا يمثل الصف والعمود.': 'حدد أولًا ماذا يمثل كل صف وكل عمود؛ لا تقارن عشوائيًا.',
+    },
+  },
+  {
+    document:
+      'تجربة: مجموعة ضابطة وثلاث مجموعات تجريبية، مع قياس تركيز السكر بعد حقن هرمونات.',
+    question: 'أي خطوة تسبق قراءة النتائج؟',
+    options: [
+      'أحدد الفرضية التي تختبرها التجربة ثم الشروط الضابطة.',
+      'أقرأ النتائج مباشرة وأستنتج الهرمون الفعّال.',
+      'أبدأ بكتابة الاستنتاج النهائي دون ذكر التجربة.',
+    ],
+    cible: {
+      'أقرأ النتائج مباشرة وأستنتج الهرمون الفعّال.': 'النتائج لا معنى لها دون الفرضية والشروط؛ راجع تمهيد التجربة.',
+      'أبدأ بكتابة الاستنتاج النهائي دون ذكر التجربة.': 'الاستنتاج خاتمة الاستدلال التجريبي، لا بدايته.',
+    },
+  },
+  {
+    document: 'وثيقتان: مخطط بروتين مُفرز ومخطط بروتين هيولي.',
+    question: 'متى نملك الحق في صياغة الخلاصة؟',
+    options: [
+      'بعد تعداد أوجه التشابه ثم أوجه الاختلاف في البنية والوجهة.',
+      'بمجرد رؤية الشكلين دون تعداد الخصائص.',
+      'بعد ذكر أوجه التشابه فقط ثم خلاصة فورية.',
+    ],
+    cible: {
+      'بمجرد رؤية الشكلين دون تعداد الخصائص.': 'قارن الخصائص واحدة واحدة (البنية، الوجهة، المسار) قبل أي خلاصة.',
+      'بعد ذكر أوجه التشابه فقط ثم خلاصة فورية.': 'المقارنة توازن بين التشابه والاختلاف؛ نصف الجواب وحده لا يكفي.',
+    },
+  },
+  {
+    document: 'سؤال: بيّن مسار المعلومة الوراثية من النواة إلى البروتين الوظيفي.',
+    question: 'ما أول خطوة لكتابة النص التركيبي؟',
+    options: [
+      'أحلل السؤال إلى أفكار وأرتبها: معلومة → وسيط → ترجمة.',
+      'أكتب كل ما أعرفه عن البروتين دون خطة مسبقة.',
+      'أبدأ بالخلاصة ثم أبحث عن الأفكار المؤيّدة.',
+    ],
+    cible: {
+      'أكتب كل ما أعرفه عن البروتين دون خطة مسبقة.': 'النص التركيبي خطة قبل معرفة؛ لا تُفرغ الذاكرة عشوائيًا.',
+      'أبدأ بالخلاصة ثم أبحث عن الأفكار المؤيّدة.': 'الخلاصة تاج النص، لا أول جملة فيه؛ رتّب الأفكار أولًا.',
+    },
+  },
+];
+
 // أربع مستويات نحو الاستقلال.
 const niveaux: [string, string, string][] = [
   ['1', 'القدوة المشروحة', 'مثال كامل مع شرح سبب صحة كل جملة.'],
@@ -144,6 +238,14 @@ function optionsExercice(i: number): { options: string[]; bonne: number } {
 /** اختر المنطقة — étiquette A/B/C/D des zones du schéma (وثيقة تفاعلية). */
 function lettreZone(i: number): string {
   return String.fromCharCode(65 + i);
+}
+
+/** Les 3 propositions d'un مسار — rotation déterministe (la bonne n'est plus figée en 1ʳᵉ position). */
+function optionsMethode(i: number): { options: string[]; bonne: number } {
+  const item = methodesExercices[i] ?? methodesExercices[0];
+  const decalage = (i * 2 + 1) % 3;
+  const options = item.options.map((_, k) => item.options[(k + decalage) % 3]);
+  return { options, bonne: (0 - decalage + 3) % 3 };
 }
 
 // ───────────── محرّر الجواب — assemblage de tuiles, zéro clavier (audit) ─────────────
@@ -498,6 +600,9 @@ export default function Methodologie({
     setFeedback('');
     setDernierFauxExo(null);
     setJusteExo(false);
+    setBarreaux(0);
+    setFauxExo(0);
+    setCleOuverte(false);
   }
 
   function choisirExerciceUnite1(i: number): void {
@@ -582,17 +687,24 @@ export default function Methodologie({
       }
       return;
     }
-    if (reponse === 0) {
+    // Chemin المنهجية : LE QCM unique a été remplacé par un exercice réel par مسار (audit).
+    const { options: optsChemin, bonne: bonneChemin } = optionsMethode(methode);
+    if (reponse === bonneChemin) {
       sonJuste();
       setJusteExo(true);
       setFeedbackTon('juste');
-      setFeedback('صحيح. ابدأ بالملاحظة، ثم اربطها بالتفسير العلمي إذا طلبت التعليمة ذلك.');
+      setFeedback(
+        `صحيح. طبّقت «${methodes[methode][0]}» بالترتيب الصحيح: ${methodes[methode][1]}.`,
+      );
     } else {
       sonFaux();
       setDernierFauxExo(reponse);
+      setFauxExo((n) => n + 1);
+      const item = methodesExercices[methode] ?? methodesExercices[0];
+      const reproche = item.cible[optsChemin[reponse]] ?? REFAIRE;
       setReponse(null);
       setFeedbackTon('refaire');
-      setFeedback(REFAIRE);
+      setFeedback(reproche);
     }
   }
 
@@ -601,6 +713,9 @@ export default function Methodologie({
   const { options: optionsU1, bonne: idxJusteU1 } = optionsExercice(methode);
   const segmentsU1 = segmentsReponse(exoU1.reponse);
   const aide = barreauxAide(exoU1);
+  // Parcours المنهجية : l'exercice réel de la méthode sélectionnée (audit).
+  const exoMethode = methodesExercices[methode] ?? methodesExercices[0];
+  const { options: optionsChemin, bonne: idxJusteChemin } = optionsMethode(methode);
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -1266,27 +1381,25 @@ export default function Methodologie({
 
         {ecran === 'exercice' && sourceExo === 'chemin' && (
           <section className="card p-6">
-            <p className="eyebrow">{methodes[methode][0]}</p>
+            <p className="eyebrow">مسار · {methodes[methode][0]}</p>
             <h2 className="font-naskh mt-2 text-2xl font-bold">{methodes[methode][1]}</h2>
-            <div className="mt-5 rounded-2xl border border-sage bg-sage-soft p-4">
-              <p className="text-[11px] font-bold text-forest">قاعدة المفتاح</p>
-              <p className="mt-1.5 text-sm font-bold leading-relaxed">
-                لا تفسر قبل أن تصف. استخرج أولًا ما يظهر في الوثيقة، ثم ابحث عن العلاقة العلمية.
+            <MascotteKunz
+              compact
+              tone="gold"
+              message={`لا تفسّر قبل أن تصف؛ رتّب خطوات «${methodes[methode][0]}» بالترتيب الذي يعلّمه المفتاح.`}
+            />
+            <div className="mt-4 rounded-2xl border border-line bg-paper p-4">
+              <p className="text-[11px] font-bold text-forest">السند · تمرين هذا المسار</p>
+              <p className="mt-1.5 text-sm font-bold leading-relaxed text-forest-deep">
+                {exoMethode.document}
               </p>
             </div>
-            <p className="mt-5 text-sm font-bold">
-              تظهر سرعة تفاعل إنزيمي ضعيفة عند 20°C، قصوى عند 37°C، ثم ضعيفة عند 60°C. ماذا تكتب
-              أولًا؟
-            </p>
+            <p className="mt-4 text-sm font-bold">{exoMethode.question}</p>
             <div className="mt-3 grid gap-2">
-              {[
-                'ألاحظ أن النشاط يبلغ قيمة قصوى عند 37°C.',
-                'أستنتج أن الإنزيم دُمّر عند 60°C.',
-                'أكتب أن الحرارة هي السبب دون ذكر النتائج.',
-              ].map((option, i) => {
+              {optionsChemin.map((option, i) => {
                 let style = 'border-line bg-paper';
                 if (dernierFauxExo === i) style = 'border-clay bg-clay-soft text-clay';
-                else if (justeExo && i === 0) style = 'border-forest bg-sage text-forest-deep';
+                else if (justeExo && i === idxJusteChemin) style = 'border-forest bg-sage text-forest-deep';
                 else if (reponse === i) style = 'border-forest bg-sage text-forest-deep';
                 return (
                   <button
@@ -1305,15 +1418,16 @@ export default function Methodologie({
               })}
             </div>
             {feedback && (
-              <p
-                className={`mt-3 rounded-2xl p-3 text-sm font-bold ${
+              <div
+                className={`mt-3 rounded-2xl p-4 text-sm leading-relaxed ${
                   feedbackTon === 'juste'
                     ? 'bg-sage-soft text-forest-deep'
                     : 'bg-clay-soft text-clay'
                 }`}
               >
-                {feedback}
-              </p>
+                <b>{feedbackTon === 'juste' ? 'فحص · تصحيح تدريجي' : 'فحص'}</b>
+                <p className="mt-1">{feedback}</p>
+              </div>
             )}
             {!justeExo && (
               <button
@@ -1324,6 +1438,11 @@ export default function Methodologie({
                 تحقّق من طريقة التفكير
               </button>
             )}
+            {justeExo && (
+              <p className="mt-3 rounded-2xl bg-sage-soft p-3 text-center text-xs font-bold text-forest">
+                قاعدة دائمة: وصف ← تفسير ← استنتاج، بلا استعجال وبلا معلومة من الدرس بدل السند.
+              </p>
+            )}
             <button
               onClick={() => {
                 setEcran('methode');
@@ -1331,6 +1450,8 @@ export default function Methodologie({
                 setFeedback('');
                 setDernierFauxExo(null);
                 setJusteExo(false);
+                setBarreaux(0);
+                setFauxExo(0);
               }}
               className="btn btn-ghost mt-3 w-full"
             >
