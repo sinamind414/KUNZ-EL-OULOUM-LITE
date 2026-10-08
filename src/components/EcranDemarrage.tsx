@@ -99,15 +99,8 @@ export default function EcranDemarrage({ onTerminer }: Props) {
             className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/15 blur-3xl"
             style={{ width: '70vmin', height: '70vmin' }}
           />
-          <h1
-            className="relative text-center text-4xl font-extrabold tracking-tight text-gold-soft drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)] md:text-5xl kunz-entre"
-            style={{ textShadow: '0 4px 24px rgba(0,0,0,0.85)' }}
-          >
-            كنز العلوم
-            <span className="ms-2 align-middle text-2xl font-bold text-sage md:text-3xl">Lite</span>
-          </h1>
-
-          <p className="relative mt-2 text-sm font-medium text-sage/90 kunz-entre md:text-base">
+          <img src="/logo.png" alt="كنز العلوم Lite" className="relative h-64 w-64 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.55)] kunz-entre md:h-72 md:w-72" />
+          <p className="relative mt-1 text-sm font-medium text-sage/90 kunz-entre md:text-base">
             مراجعة البكالوريا — علوم الطبيعة والحياة
           </p>
 

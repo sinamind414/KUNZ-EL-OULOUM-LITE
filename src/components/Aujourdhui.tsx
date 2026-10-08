@@ -58,16 +58,19 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
   return (
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
       {/* ترحيب */}
-      <header className="mb-6">
-        <p className="eyebrow">{formatJourAr(aujourdhui())}</p>
-        <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">
-          {salue()}، {etat.nom}
-        </h1>
-        <p className="mt-2 text-sm leading-relaxed text-mute">
+      <header className="mb-6 flex items-start gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="eyebrow">{formatJourAr(aujourdhui())}</p>
+          <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">
+            {salue()}، {etat.nom}
+          </h1>
+          <p className="mt-2 text-sm leading-relaxed text-mute">
           {faits === 0
             ? 'كل شيء يبدأ بخطوة واحدة. مهمّة اليوم وحدها تكفي.'
             : `أنجزت ${enArabeMin(faits)} من ${enArabeMin(CHEMIN.length)} بنية في طريقك. مهمّة واحدة في كل مرة.`}
-        </p>
+          </p>
+        </div>
+        <img src="/logo.png" alt="مستكشف كنز العلوم" className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24" />
       </header>
 
       {/* بطاقة المهمّة الواحدة */}
