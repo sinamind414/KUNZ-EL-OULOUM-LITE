@@ -576,6 +576,14 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   pirate au-dessus du titre texte conservé (arena remplaçait le titre par une image, ce qui faisait
   disparaître le nom « كنز العلوم Lite » du premier écran) ; `Bac.tsx` (existant encore sur arena)
   ignoré ; retry sans révélation, sons et feedbackTon maison préservés partout.
+- **v0.5.10** — **la preuve n'est plus offerte + محرّر الجواب (audit pédagogique)** : (1) dans chaque
+  exercice, la formulation de la preuve reste masquée tant qu'aucune zone du schéma n'est cliquée
+  (consigne « استخرج الدليل بنفسك », puis encart « قارن اختيارك بالمرجع ») — l'extraction n'est plus
+  faite à la place de l'élève ; (2) nouveau mode **« ابنِ جوابك · بطاقات »** ouvert depuis un exercice
+  réussi : la réponse modèle est découpée en segments et l'élève reconstruit le paragraphe en
+  choisissant la bonne tuile à chaque emplacement (3 candidats, rotation déterministe, retry sans
+  révélation, `sonJuste`/`sonFaux`), zéro champ de saisie, puis جواب assemblé + grille de barème
+  (سند · تحليل · ربط · استنتاج) et خطأ شائع — sans pourcentage ni compte à rebours.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

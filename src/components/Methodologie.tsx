@@ -17,7 +17,7 @@ interface Props {
   modeInitial?: 'accueil' | 'niveaux';
 }
 
-type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'resultat';
+type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'resultat';
 
 // المفتاح — أربع حركات قبل أن أكتب.
 const cle: [string, string, string][] = [
@@ -134,6 +134,38 @@ function optionsExercice(i: number): { options: string[]; bonne: number } {
 /** اختر المنطقة — étiquette A/B/C/D des zones du schéma (وثيقة تفاعلية). */
 function lettreZone(i: number): string {
   return String.fromCharCode(65 + i);
+}
+
+// ───────────── محرّر الجواب — assemblage de tuiles, zéro clavier (audit) ─────────────
+// La réponse modèle de chaque exercice est découpée en segments (phrases/clauses). L'élève
+// remet les tuiles dans l'ordre : pour chaque emplacement il choisit la bonne continuation
+// parmi 3 candidats (1 bonne tuile + 2 leurres plausibles tirés de la rubrique). Zéro champ de
+// saisie, retry sans révélation, sons maison, aucune date ni pourcentage.
+function segmentsReponse(texte: string): string[] {
+  return texte
+    .replace(/([.،؛:])\s*/g, '$1|')
+    .split('|')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** Réserve de leurres : segments des autres réponses + erreurs fréquentes de la rubrique. */
+const RESERVE_TUILES: string[] = [
+  ...exercicesUnite1.flatMap((e) => segmentsReponse(e.reponse)),
+  ...exercicesUnite1.map((e) => e.erreur),
+];
+
+/** Candidats d'un emplacement : rotation déterministe, 1 bonne tuile + 2 leurres. */
+function tuilesEmplacement(i: number, k: number): { options: string[]; bonne: number } {
+  const bonne = segmentsReponse(exercicesUnite1[i].reponse)[k];
+  const leurres = RESERVE_TUILES.filter((s) => s !== bonne);
+  const a = leurres[(i * 7 + k * 3 + 1) % leurres.length];
+  let j = (i * 7 + k * 3 + 5) % leurres.length;
+  if (leurres[j] === a) j = (j + 1) % leurres.length;
+  const base = [bonne, a, leurres[j]];
+  const decalage = (i + k) % 3;
+  const options = base.map((_, x) => base[(x + decalage) % 3]);
+  return { options, bonne: (3 - decalage) % 3 };
 }
 
 /**
@@ -371,6 +403,11 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
   // Origine du tamrin affiché : unité 1 (0-9) ou méthode classique (0-5) — les index se
   // chevauchent, d'où un état dédié (correction du bug de collision du commit arena).
   const [sourceExo, setSourceExo] = useState<'unite1' | 'chemin'>('chemin');
+  // محرّر الجواب (audit) : assemblage des tuiles de la réponse modèle, sans clavier.
+  const [slotRedaction, setSlotRedaction] = useState(0);
+  const [tuilesChoisies, setTuilesChoisies] = useState<string[]>([]);
+  const [tuileFausse, setTuileFausse] = useState<number | null>(null);
+  const [redactionFin, setRedactionFin] = useState(false);
 
   function startDiagnostic(): void {
     setQ(0);
@@ -426,6 +463,35 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
     setJusteExo(false);
   }
 
+  // ───────────── محرّر الجواب — assemblage de tuiles ─────────────
+
+  function ouvrirRedaction(): void {
+    setSlotRedaction(0);
+    setTuilesChoisies([]);
+    setTuileFausse(null);
+    setRedactionFin(false);
+    setEcran('redaction');
+  }
+
+  function choisirTuile(idx: number): void {
+    const segments = segmentsReponse(exoU1.reponse);
+    const attendu = segments[slotRedaction];
+    if (attendu === undefined) return;
+    const { options } = tuilesEmplacement(methode, slotRedaction);
+    if (options[idx] === attendu) {
+      // Bonne tuile : verte + son montant, puis emplacement suivant (sf si dernier).
+      sonJuste();
+      setTuilesChoisies([...tuilesChoisies, attendu]);
+      setTuileFausse(null);
+      if (slotRedaction + 1 >= segments.length) setRedactionFin(true);
+      else setSlotRedaction(slotRedaction + 1);
+    } else {
+      // Mauvaise tuile : rouge + son doux, sans révéler la bonne (retry).
+      sonFaux();
+      setTuileFausse(idx);
+    }
+  }
+
   function validerExercice(): void {
     if (reponse === null) return;
     if (sourceExo === 'unite1') {
@@ -464,6 +530,7 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
   // Données de l'exercice unité 1 (précalculées pour l'affichage).
   const exoU1 = exercicesUnite1[methode] ?? exercicesUnite1[0];
   const { options: optionsU1, bonne: idxJusteU1 } = optionsExercice(methode);
+  const segmentsU1 = segmentsReponse(exoU1.reponse);
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -937,19 +1004,128 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
                 </button>
               </div>
             ) : (
+              <div className="mt-3 space-y-2">
+                <button onClick={ouvrirRedaction} className="btn btn-primary w-full">
+                  ابنِ جوابك الكامل · بطاقات ←
+                </button>
+                <button
+                  onClick={() => {
+                    setEcran('unite1');
+                    setReponse(null);
+                    setFeedback('');
+                    setDernierFauxExo(null);
+                    setJusteExo(false);
+                  }}
+                  className="btn btn-ghost w-full"
+                >
+                  قائمة التمارين
+                </button>
+              </div>
+            )}
+          </section>
+        )}
+
+        {ecran === 'redaction' && (
+          <section className="card p-6">
+            <p className="eyebrow">
+              {exoU1.format} · {exoU1.verbe}
+            </p>
+            <h2 className="font-naskh mt-2 text-2xl font-bold">ابنِ جوابك · بطاقات</h2>
+            <p className="mt-2 text-sm text-mute">
+              {exoU1.document} · رتّب البطاقات لِتُكوّن جوابًا علميًا كاملًا، دون كتابة ولا لوحة
+              مفاتيح.
+            </p>
+            <div className="mt-4 rounded-2xl border border-line bg-paper p-2">
+              <SchemaUnite1 type={exoU1.diagramme} />
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-line bg-paper p-4">
+              <p className="text-[11px] font-bold text-forest">
+                البطاقة {slotRedaction + 1} من {segmentsU1.length}
+              </p>
+              <div className="mt-3 space-y-2 text-sm leading-relaxed">
+                {segmentsU1.map((_, i) => {
+                  if (i < tuilesChoisies.length) {
+                    return (
+                      <p key={i} className="rounded-xl bg-sage-soft p-2 text-forest-deep">
+                        {tuilesChoisies[i]}
+                      </p>
+                    );
+                  }
+                  if (i === slotRedaction && !redactionFin) {
+                    return (
+                      <p
+                        key={i}
+                        className="rounded-xl border border-dashed border-forest p-2 font-bold text-forest"
+                      >
+                        ▸ اختر البطاقة المناسبة أدناه
+                      </p>
+                    );
+                  }
+                  return (
+                    <p key={i} className="rounded-xl border border-dashed border-line p-2 text-mute">
+                      …
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+
+            {!redactionFin && (
+              <div className="mt-3 grid gap-2">
+                {tuilesEmplacement(methode, slotRedaction).options.map((opt, idx) => (
+                  <button
+                    key={opt}
+                    onClick={() => choisirTuile(idx)}
+                    className={`rounded-2xl border p-3 text-right text-sm leading-relaxed ${
+                      tuileFausse === idx
+                        ? 'border-clay bg-clay-soft text-clay'
+                        : 'border-line bg-paper'
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+                {tuileFausse !== null && (
+                  <p className="rounded-2xl bg-clay-soft p-3 text-sm font-bold text-clay">
+                    ليست البطاقة المناسبة — أعد النظر في تسلسل الجواب. خذ وقتك، لا عجلة.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {redactionFin && (
+              <div className="mt-4 rounded-2xl border border-sage bg-sage-soft p-4">
+                <p className="text-[11px] font-bold text-forest">جوابك المُركّب</p>
+                <p className="mt-2 text-sm leading-relaxed">{tuilesChoisies.join(' ')}</p>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold text-forest">
+                  <span className="rounded-full bg-paper px-3 py-1">✓ سند</span>
+                  <span className="rounded-full bg-paper px-3 py-1">✓ تحليل</span>
+                  <span className="rounded-full bg-paper px-3 py-1">✓ ربط</span>
+                  <span className="rounded-full bg-paper px-3 py-1">✓ استنتاج</span>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-forest-deep">
+                  خطأ شائع: {exoU1.erreur}
+                </p>
+              </div>
+            )}
+
+            <div className="mt-4 grid grid-cols-2 gap-2">
               <button
                 onClick={() => {
-                  setEcran('unite1');
-                  setReponse(null);
-                  setFeedback('');
-                  setDernierFauxExo(null);
-                  setJusteExo(false);
+                  setSlotRedaction(0);
+                  setTuilesChoisies([]);
+                  setTuileFausse(null);
+                  setRedactionFin(false);
                 }}
-                className="btn btn-ghost mt-3 w-full"
+                className="btn btn-ghost"
               >
+                إعادة البناء
+              </button>
+              <button onClick={() => setEcran('unite1')} className="btn btn-ghost">
                 قائمة التمارين
               </button>
-            )}
+            </div>
           </section>
         )}
 
