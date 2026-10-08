@@ -60,6 +60,11 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
     <div className="mx-auto max-w-3xl px-4 pb-28 pt-8">
       {/* ترحيب */}
       <header className="mb-6 flex items-start gap-3">
+        <img
+          src="/personnage-pirate.png"
+          alt="مستكشف كنز العلوم"
+          className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24"
+        />
         <div className="min-w-0 flex-1">
           <p className="eyebrow">{formatJourAr(aujourdhui())}</p>
           <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">
@@ -71,11 +76,6 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
               : `أنجزت ${nbMin(faits)} من ${nbMin(CHEMIN.length)} بنية في طريقك. مهمّة واحدة في كل مرة.`}
           </p>
         </div>
-        <img
-          src="/personnage-pirate.png"
-          alt="مستكشف كنز العلوم"
-          className="h-20 w-20 shrink-0 object-contain sm:h-24 sm:w-24"
-        />
       </header>
 
       {/* بطاقة المهمّة الواحدة */}
