@@ -84,7 +84,10 @@ culpabilisation.
   carte et dans l'en-tête du tamrin. **وثيقة تفاعلية — preuve visuelle** (port `fa88370`) : chaque
   exercice propose une question et des **zones cliquables du schéma** (A/B/C/D) — il faut choisir la
   zone qui fait office de preuve **et** une proposition pour débloquer « افحص جوابي », la zone
-  retenue s'affichant en encart (« الدليل المحدد: المنطقة … ») ; les schémas viennent de la version
+  retenue s'affichant en encart (« الدليل المحدد: المنطقة … »). La **formulation de la preuve**
+  (`preuve`) n'est plus donnée d'emblée : elle reste masquée tant que l'élève n'a pas cliqué une zone
+  (avant : simple consigne « استخرج الدليل بنفسك »), puis s'affiche en encart « قارن اختيارك بالمرجع »
+  — la preuve n'est donc plus offerte avant le geste d'extraction ; les schémas viennent de la version
   clarifiée arena (port `7ac24a4` : flux à 4 étapes, `sequence` dédié avec les règles A↔U, `graphique`
   « مسار إفراز البروتين », `expression` avec axes étiquetés) avec corrections maison : le schéma
   `mutation` reste en ADN (T, pas U) et chaque flèche a un marker dédié (sur arena, `sequence` et
@@ -564,7 +567,8 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
 - **v0.5.9** — **preuve visuelle, schémas clarifiés et la mascotte guide** (ports des commits arena
   `7ac24a4`, `231b770`, `e73a484`, `41b5695`, `fa88370`, tous corrigés) : chaque tamrin de الوحدة 1
   devient une **وثيقة تفاعلية** — question + zones cliquables A/B/C/D sur le schéma, zone de preuve
-  obligatoire avant la validation ; les 10 schémas proviennent de la version clarifiée arena avec
+  obligatoire avant la validation ; la formulation de la preuve n'est plus affichée d'emblée (masquée
+  jusqu'au clic d'une zone, puis « قارن اختيارك بالمرجع ») ; les 10 schémas proviennent de la version clarifiée arena avec
   fix maison (schéma `mutation` en ADN — T, pas U — et markers fléchés dédiés par schéma, invisibles
   sur arena en écran solo) ; nouveau composant **`MascotteKunz.tsx`** (القبطان مفتاح) diffusé dans
   l'accueil منهجية, الوحدة 1, les tamrins, مساري, أنا et l'en-tête de اليوم — sur arena il utilise

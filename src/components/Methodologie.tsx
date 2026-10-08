@@ -843,10 +843,20 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
               <p className="text-[11px] font-bold text-forest">فعل</p>
               <p className="mt-1 text-sm font-bold leading-relaxed">{exoU1.consigne}</p>
             </div>
-            <div className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
-              <p className="text-[11px] font-bold text-[#6b5320]">دليل · قبل أن تجيب</p>
-              <p className="mt-1 text-sm leading-relaxed">استخرج من المخطط: {exoU1.preuve}</p>
-            </div>
+            {zoneActive === null ? (
+              <div className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                <p className="text-[11px] font-bold text-[#6b5320]">دليل · قبل أن تجيب</p>
+                <p className="mt-1 text-sm leading-relaxed">
+                  استخرج الدليل بنفسك: انقر أعلاه على المنطقة التي تمثّل المعطى النافع في المخطط،
+                  ثم اكتب جوابك.
+                </p>
+              </div>
+            ) : (
+              <div className="mt-3 rounded-2xl border border-sage bg-sage-soft p-4">
+                <p className="text-[11px] font-bold text-forest">دليل · قارن اختيارك بالمرجع</p>
+                <p className="mt-1 text-sm leading-relaxed">{exoU1.preuve}</p>
+              </div>
+            )}
             <div className="mt-3 rounded-2xl border border-line bg-paper p-4">
               <p className="text-[11px] font-bold text-forest">جواب</p>
               <p className="mt-2 text-sm leading-relaxed">
