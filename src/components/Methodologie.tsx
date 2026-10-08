@@ -9,6 +9,7 @@
 import { useState } from 'react';
 import { IcoRetour } from './Icones';
 import { sonFaux, sonJuste } from '../utils/son';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   onFermer: () => void;
@@ -96,33 +97,52 @@ type ExerciceUnite1 = {
   format: string;
   /** السند — le document support numéroté. */
   document: string;
+  /** Zones cliquables du schéma — وثيقة تفاعلية (port commit fa88370 « preuve visuelle »). */
+  zones: string[];
+  /** La question de la وثيقة تفاعلية (quelle zone identifier comme preuve). */
+  question: string;
+  /** Les 3 propositions du جواب (la bonne est à l'index correctChoice). */
+  choices: string[];
+  /** Index de la bonne réponse dans choices (la rotation maison varie sa position). */
+  correctChoice: number;
 };
 
 const exercicesUnite1: ExerciceUnite1[] = [
-  { titre: 'من المورثة إلى البروتين', verbe: 'مثّل', objectif: 'بناء مخطط التعبير المورثي', consigne: 'مثّل مراحل انتقال المعلومة الوراثية من ADN إلى بروتين وظيفي.', preuve: 'ADN → ARNm → ريبوزوم → سلسلة ببتيدية', reponse: 'تنتقل المعلومة من ADN بالاستنساخ إلى ARNm، ثم تُترجم في الريبوزوم إلى سلسلة ببتيدية تنطوي لتصبح بروتينًا وظيفيًا.', erreur: 'الريبوزوم لا يصنع ARNm؛ إنزيم ARN polymérase هو المسؤول عن الاستنساخ.', diagramme: 'flux', format: 'مخطط تركيبي', document: 'السند 1 · مخطط التعبير المورثي' },
-  { titre: 'مقر الاستنساخ والترجمة', verbe: 'قارن', objectif: 'التمييز بين بدائيات وحقيقيات النوى', consigne: 'قارن بين مكان الاستنساخ ومكان الترجمة عند الخليتين.', preuve: 'النواة موجودة عند حقيقيات النوى وغير موجودة عند بدائيات النوى', reponse: 'عند حقيقيات النوى يتم الاستنساخ في النواة ثم تخرج ARNm إلى الهيولى للترجمة، أما عند بدائيات النوى فتتم العمليتان في الهيولى ويمكن أن تكونا متزامنتين.', erreur: 'لا تقل إن ADN يخرج من النواة؛ الذي ينتقل هو ARNm.', diagramme: 'cellules', format: 'مقارنة خلوية', document: 'السند 2 · خليتان مجهريتان' },
-  { titre: 'نضج ARNm', verbe: 'فسّر', objectif: 'فهم معالجة الرسالة الوراثية', consigne: 'فسّر لماذا لا يغادر ARNm الأولي النواة مباشرة.', preuve: 'حذف الإنترونات وربط الإكسونات ينتج ARNm ناضجًا', reponse: 'يخضع ARNm الأولي للمعالجة؛ تحذف الإنترونات وتربط الإكسونات، فيتكون ARNm ناضج قابل للترجمة.', erreur: 'المعالجة لا تحدث في الريبوزوم، بل داخل النواة قبل خروج الرسالة.', diagramme: 'arn', format: 'تحليل وثيقة', document: 'السند 3 · معالجة ARNm' },
-  { titre: 'قراءة الرامزة', verbe: 'حلّل', objectif: 'ربط الرامزة بمضاد الرامزة', consigne: 'حلّل الوثيقة وبيّن كيف يضمن ARNt إضافة الحمض الأميني المناسب.', preuve: 'تكامل الرامزة مع مضاد الرامزة', reponse: 'يتثبت ARNt في الرامزة الموافقة على ARNm بواسطة التكامل، ويحمل الحمض الأميني المحدد، ثم تتشكل الرابطة الببتيدية.', erreur: 'الرامزة توجد على ARNm، أما مضاد الرامزة فعلى ARNt.', diagramme: 'ribosome', format: 'تجربة الترجمة', document: 'السند 4 · آلية الترجمة' },
-  { titre: 'طفرة واستبدال حمض أميني', verbe: 'استنتج', objectif: 'ربط تغير ADN بتغير البروتين', consigne: 'استنتج أثر استبدال رامزة واحدة في تسلسل مورثة.', preuve: 'اختلاف رامزة واحدة يقابله اختلاف حمض أميني واحد', reponse: 'قد يؤدي تغير قاعدة إلى رامزة جديدة، فتتغير هوية حمض أميني، وقد تتغير بنية البروتين ووظيفته.', erreur: 'لا نحكم دائمًا بفقدان الوظيفة؛ يجب مقارنة التسلسل والوظيفة أولًا.', diagramme: 'mutation', format: 'دراسة طفرة', document: 'السند 5 · مقارنة تسلسلين' },
-  { titre: 'استخراج ARNm', verbe: 'استخرج', objectif: 'تطبيق التكامل القاعدي', consigne: 'استخرج تسلسل ARNm انطلاقًا من السلسلة غير المستنسخة المعطاة.', preuve: 'A↔U و T↔A و C↔G و G↔C حسب السلسلة المستنسخة', reponse: 'أحدد أولًا نوع السلسلة واتجاهها، ثم أطبق التكامل القاعدي وأكتب ARNm في الاتجاه 5’→3’.', erreur: 'في ARNm نستعمل U بدل T، ولا نخلط بين السلسلة المستنسخة وغير المستنسخة.', diagramme: 'sequence', format: 'تمرين وراثي', document: 'السند 6 · جدول التكامل القاعدي' },
-  { titre: 'كمية ARNm والبروتين', verbe: 'حلّل', objectif: 'فهم العلاقة الزمنية بين الرسالة والبروتين', consigne: 'حلّل تغير كمية ARNm وكمية البروتين بعد إضافة ARNm.', preuve: 'ترتفع كمية البروتين بعد ارتفاع ARNm وتتأخر عنه', reponse: 'تظهر الرسالة أولًا ثم تُقرأ في الريبوزومات؛ لذلك يتأخر ارتفاع البروتين عن ارتفاع ARNm.', erreur: 'التأخر الزمني لا يعني أن البروتين يصنع الرسالة.', diagramme: 'expression', format: 'منحنى تجريبي', document: 'السند 7 · تغير الكمية مع الزمن' },
-  { titre: 'تحديد مقر بروتين', verbe: 'علّل', objectif: 'ربط البنية بالوجهة', consigne: 'علّل وجود بروتين مُفرز خارج الخلية في الشبكة الهيولية المحببة.', preuve: 'وجود ببتيد إشارة والريبوزومات المرتبطة بالشبكة', reponse: 'يوجه ببتيد الإشارة الريبوزوم نحو الشبكة الهيولية المحببة، حيث يدخل البروتين مسار الإفراز ثم ينقل إلى خارج الخلية.', erreur: 'الريبوزوم الحر لا يفسر وحده إفراز البروتين.', diagramme: 'graphique', format: 'تجربة التوجيه', document: 'السند 8 · مسار بروتين مفرز' },
-  { titre: 'مقارنة بروتينين', verbe: 'قارن', objectif: 'إثبات خصوصية التعبير المورثي', consigne: 'قارن جزءًا من تسلسل بروتينين وحدد ما يمكن استنتاجه.', preuve: 'تشابه أجزاء واختلاف أجزاء من التسلسل', reponse: 'التشابه يدل على أصل أو وظيفة مشتركة محتملة، والاختلاف قد يفسر اختلاف البنية أو الوظيفة.', erreur: 'التشابه في جزء قصير لا يثبت وحده تطابق الوظيفة.', diagramme: 'comparaison', format: 'مقارنة جزيئية', document: 'السند 9 · تسلسل بروتينين' },
-  { titre: 'المعلومة والبنية والوظيفة', verbe: 'ركّب', objectif: 'إنجاز خلاصة علمية', consigne: 'أنجز خلاصة تربط بين تسلسل ADN وبنية البروتين ووظيفته.', preuve: 'تسلسل النكليوتيدات يحدد تسلسل الأحماض الأمينية ثم البنية الفراغية', reponse: 'يحدد تسلسل ADN تسلسل ARNm، وهذا يحدد ترتيب الأحماض الأمينية؛ ويحدد الترتيب البنية الفراغية التي تمنح البروتين وظيفته.', erreur: 'لا تنتقل مباشرة من ADN إلى الوظيفة دون ذكر الترجمة والبنية الفراغية.', diagramme: 'synthese', format: 'مقالة تركيبية', document: 'السند 10 · من المعلومة إلى الوظيفة' },
+  { titre: 'من المورثة إلى البروتين', verbe: 'مثّل', objectif: 'بناء مخطط التعبير المورثي', consigne: 'مثّل مراحل انتقال المعلومة الوراثية من ADN إلى بروتين وظيفي.', preuve: 'ADN → ARNm → ريبوزوم → سلسلة ببتيدية', reponse: 'تنتقل المعلومة من ADN بالاستنساخ إلى ARNm، ثم تُترجم في الريبوزوم إلى سلسلة ببتيدية تنطوي لتصبح بروتينًا وظيفيًا.', erreur: 'الريبوزوم لا يصنع ARNm؛ إنزيم ARN polymérase هو المسؤول عن الاستنساخ.', diagramme: 'flux', format: 'مخطط تركيبي', document: 'السند 1 · مخطط التعبير المورثي', zones: ['ADN', 'ARNm', 'الريبوزوم', 'البروتين'], question: 'انقر على المنطقة التي تمثل الرسالة المنقولة من ADN إلى الريبوزوم.', choices: ['ADN', 'ARNm', 'البروتين الوظيفي'], correctChoice: 1 },
+  { titre: 'مقر الاستنساخ والترجمة', verbe: 'قارن', objectif: 'التمييز بين بدائيات وحقيقيات النوى', consigne: 'قارن بين مكان الاستنساخ ومكان الترجمة عند الخليتين.', preuve: 'النواة موجودة عند حقيقيات النوى وغير موجودة عند بدائيات النوى', reponse: 'عند حقيقيات النوى يتم الاستنساخ في النواة ثم تخرج ARNm إلى الهيولى للترجمة، أما عند بدائيات النوى فتتم العمليتان في الهيولى ويمكن أن تكونا متزامنتين.', erreur: 'لا تقل إن ADN يخرج من النواة؛ الذي ينتقل هو ARNm.', diagramme: 'cellules', format: 'مقارنة خلوية', document: 'السند 2 · خليتان مجهريتان', zones: ['النواة', 'ADN في الهيولى', 'الترجمة', 'الغشاء'], question: 'اختر المنطقة التي تميز الخلية حقيقية النوى عن بدائية النوى.', choices: ['النواة', 'الغشاء', 'الترجمة'], correctChoice: 0 },
+  { titre: 'نضج ARNm', verbe: 'فسّر', objectif: 'فهم معالجة الرسالة الوراثية', consigne: 'فسّر لماذا لا يغادر ARNm الأولي النواة مباشرة.', preuve: 'حذف الإنترونات وربط الإكسونات ينتج ARNm ناضجًا', reponse: 'يخضع ARNm الأولي للمعالجة؛ تحذف الإنترونات وتربط الإكسونات، فيتكون ARNm ناضج قابل للترجمة.', erreur: 'المعالجة لا تحدث في الريبوزوم، بل داخل النواة قبل خروج الرسالة.', diagramme: 'arn', format: 'تحليل وثيقة', document: 'السند 3 · معالجة ARNm', zones: ['الإكسونات', 'الإنترونات', 'ARNm الأولي', 'ARNm الناضج'], question: 'أي منطقة تُحذف أثناء نضج ARNm؟', choices: ['الإكسونات', 'الإنترونات', 'ARNm الناضج'], correctChoice: 1 },
+  { titre: 'قراءة الرامزة', verbe: 'حلّل', objectif: 'ربط الرامزة بمضاد الرامزة', consigne: 'حلّل الوثيقة وبيّن كيف يضمن ARNt إضافة الحمض الأميني المناسب.', preuve: 'تكامل الرامزة مع مضاد الرامزة', reponse: 'يتثبت ARNt في الرامزة الموافقة على ARNm بواسطة التكامل، ويحمل الحمض الأميني المحدد، ثم تتشكل الرابطة الببتيدية.', erreur: 'الرامزة توجد على ARNm، أما مضاد الرامزة فعلى ARNt.', diagramme: 'ribosome', format: 'تجربة الترجمة', document: 'السند 4 · آلية الترجمة', zones: ['الرامزة', 'مضاد الرامزة', 'ARNt', 'الريبوزوم'], question: 'ما العنصر الذي يحمل الحمض الأميني إلى الريبوزوم؟', choices: ['ARNm', 'ARNt', 'ADN'], correctChoice: 1 },
+  { titre: 'طفرة واستبدال حمض أميني', verbe: 'استنتج', objectif: 'ربط تغير ADN بتغير البروتين', consigne: 'استنتج أثر استبدال رامزة واحدة في تسلسل مورثة.', preuve: 'اختلاف رامزة واحدة يقابله اختلاف حمض أميني واحد', reponse: 'قد يؤدي تغير قاعدة إلى رامزة جديدة، فتتغير هوية حمض أميني، وقد تتغير بنية البروتين ووظيفته.', erreur: 'لا نحكم دائمًا بفقدان الوظيفة؛ يجب مقارنة التسلسل والوظيفة أولًا.', diagramme: 'mutation', format: 'دراسة طفرة', document: 'السند 5 · مقارنة تسلسلين', zones: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'التسلسل الطافر', 'البروتين'], question: 'انقر على المنطقة التي تمثل سبب اختلاف التسلسلين.', choices: ['التسلسل الأصلي', 'القاعدة المستبدلة', 'البروتين'], correctChoice: 1 },
+  { titre: 'استخراج ARNm', verbe: 'استخرج', objectif: 'تطبيق التكامل القاعدي', consigne: 'استخرج تسلسل ARNm انطلاقًا من السلسلة المستنسخة المعطاة.', preuve: 'A↔U و T↔A و C↔G و G↔C حسب السلسلة المستنسخة', reponse: 'أحدد أولًا نوع السلسلة واتجاهها، ثم أطبق التكامل القاعدي وأكتب ARNm في الاتجاه 5’→3’.', erreur: 'في ARNm نستعمل U بدل T، ولا نخلط بين السلسلة المستنسخة وغير المستنسخة.', diagramme: 'sequence', format: 'تمرين وراثي', document: 'السند 6 · جدول التكامل القاعدي', zones: ['السلسلة المستنسخة', 'ARNm', 'الرامزة', 'اتجاه 5’→3’'], question: 'ما الجزيء الذي يجب استخراجه من السلسلة المستنسخة؟', choices: ['ARNm', 'ADN جديد', 'بروتين'], correctChoice: 0 },
+  { titre: 'كمية ARNm والبروتين', verbe: 'حلّل', objectif: 'فهم العلاقة الزمنية بين الرسالة والبروتين', consigne: 'حلّل تغير كمية ARNm وكمية البروتين بعد إضافة ARNm.', preuve: 'ترتفع كمية البروتين بعد ارتفاع ARNm وتتأخر عنه', reponse: 'تظهر الرسالة أولًا ثم تُقرأ في الريبوزومات؛ لذلك يتأخر ارتفاع البروتين عن ارتفاع ARNm.', erreur: 'التأخر الزمني لا يعني أن البروتين يصنع الرسالة.', diagramme: 'expression', format: 'منحنى تجريبي', document: 'السند 7 · تغير الكمية مع الزمن', zones: ['منحنى ARNm', 'منحنى البروتين', 'لحظة الإضافة', 'محور الزمن'], question: 'أي منحنى يظهر أولًا بعد إضافة ARNm؟', choices: ['منحنى ARNm', 'منحنى البروتين', 'كلاهما في الوقت نفسه'], correctChoice: 0 },
+  { titre: 'تحديد مقر بروتين', verbe: 'علّل', objectif: 'ربط البنية بالوجهة', consigne: 'علّل وجود بروتين مُفرز خارج الخلية في الشبكة الهيولية المحببة.', preuve: 'وجود ببتيد إشارة والريبوزومات المرتبطة بالشبكة', reponse: 'يوجه ببتيد الإشارة الريبوزوم نحو الشبكة الهيولية المحببة، حيث يدخل البروتين مسار الإفراز ثم ينقل إلى خارج الخلية.', erreur: 'الريبوزوم الحر لا يفسر وحده إفراز البروتين.', diagramme: 'graphique', format: 'تجربة التوجيه', document: 'السند 8 · مسار بروتين مفرز', zones: ['النواة', 'الشبكة الهيولية', 'جهاز غولجي', 'خارج الخلية'], question: 'ما أول محطة توجه البروتين نحو الإفراز بعد خروجه من النواة؟', choices: ['الشبكة الهيولية المحببة', 'خارج الخلية', 'النواة'], correctChoice: 0 },
+  { titre: 'مقارنة بروتينين', verbe: 'قارن', objectif: 'إثبات خصوصية التعبير المورثي', consigne: 'قارن جزءًا من تسلسل بروتينين وحدد ما يمكن استنتاجه.', preuve: 'تشابه أجزاء واختلاف أجزاء من التسلسل', reponse: 'التشابه يدل على أصل أو وظيفة مشتركة محتملة، والاختلاف قد يفسر اختلاف البنية أو الوظيفة.', erreur: 'التشابه في جزء قصير لا يثبت وحده تطابق الوظيفة.', diagramme: 'comparaison', format: 'مقارنة جزيئية', document: 'السند 9 · تسلسل بروتينين', zones: ['البروتين أ', 'موضع الاختلاف', 'البروتين ب', 'الوظيفة'], question: 'ما الدليل المباشر على اختلاف البروتينين؟', choices: ['اختلاف حمض أميني في التسلسل', 'اختلاف لون الوثيقة', 'اختلاف عنوان السند'], correctChoice: 0 },
+  { titre: 'المعلومة والبنية والوظيفة', verbe: 'ركّب', objectif: 'إنجاز خلاصة علمية', consigne: 'أنجز خلاصة تربط بين تسلسل ADN وبنية البروتين ووظيفته.', preuve: 'تسلسل النكليوتيدات يحدد تسلسل الأحماض الأمينية ثم البنية الفراغية', reponse: 'يحدد تسلسل ADN تسلسل ARNm، وهذا يحدد ترتيب الأحماض الأمينية؛ ويحدد الترتيب البنية الفراغية التي تمنح البروتين وظيفته.', erreur: 'لا تنتقل مباشرة من ADN إلى الوظيفة دون ذكر الترجمة والبنية الفراغية.', diagramme: 'synthese', format: 'مقالة تركيبية', document: 'السند 10 · من المعلومة إلى الوظيفة', zones: ['تسلسل ADN', 'الأحماض الأمينية', 'البنية الفراغية', 'الوظيفة'], question: 'ما العلاقة الصحيحة بين تسلسل ADN ووظيفة البروتين؟', choices: ['ADN يحدد التسلسل ثم البنية فالوظيفة', 'البروتين يصنع ADN', 'الوظيفة لا علاقة لها بالبنية'], correctChoice: 0 },
 ];
 
 // Les 3 propositions, en rotation déterministe : la bonne réponse n'est pas toujours en 1re position.
-function optionsExercice(i: number): string[] {
+// Port du commit arena fa88370 (choices + correctChoice) : la rotation maison s'applique sur les
+// 3 propositions fournies et recalcule l'index de la bonne réponse.
+function optionsExercice(i: number): { options: string[]; bonne: number } {
   const item = exercicesUnite1[i];
-  const trio = [item.reponse, item.erreur, 'أنقل عنوان الوثيقة فقط دون بناء علاقة.'];
   const decalage = (i * 2 + 1) % 3;
-  return [...trio.slice(decalage), ...trio.slice(0, decalage)];
+  const options = item.choices.map((_, k) => item.choices[(k + decalage) % 3]);
+  // La bonne réponse choices[correctChoice] se retrouve à l'index (correctChoice - décalage).
+  return { options, bonne: (item.correctChoice - decalage + 3) % 3 };
+}
+
+/** اختر المنطقة — étiquette A/B/C/D des zones du schéma (وثيقة تفاعلية). */
+function lettreZone(i: number): string {
+  return String.fromCharCode(65 + i);
 }
 
 /**
  * مخططات الوحدة 1 — SVG inline aux couleurs de l'app (forêt / or / bleu).
- * Corrections du port : 'graphique' retournait null (boîte vide au n°8 alors que le badge
- * promet « مخطط لكل تمرين ») et 'sequence' réutilisait le schéma de mutation (contenu faux).
+ * Schémas de la version clarifiée arena (commit 7ac24a4) avec corrections maison :
+ * - 'mutation' reste en ADN (T) car l'arena présentait une séquence à U comme « السلسلة الأصلية » ;
+ * - les markers fléchés ont un id dédié par schéma (arrow-u1/arrow-seq/arrow-gq/arrow-synth) —
+ *   sur arena, 'sequence' et 'graphique' pointaient vers un marker défini dans un autre SVG
+ *   (flèche invisible quand le schéma s'affiche seul).
  */
 function SchemaUnite1({ type }: { type: ExerciceUnite1['diagramme'] }) {
   const common = {
@@ -135,142 +155,200 @@ function SchemaUnite1({ type }: { type: ExerciceUnite1['diagramme'] }) {
       <svg {...common}>
         <defs>
           <marker id="arrow-u1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 z" fill="#315b45" />
+            <path d="M0,0 L0,6 L7,3 z" fill="#315b45" />
           </marker>
         </defs>
-        <rect x="15" y="60" width="150" height="60" rx="10" fill="#eef4e8" stroke="#315b45" />
-        <text x="90" y="87" textAnchor="middle" fontSize="14" fill="#315b45">ADN</text>
-        <text x="90" y="107" textAnchor="middle" fontSize="11">المورثة</text>
-        <path d="M165 90 H225" stroke="#315b45" strokeWidth="2" markerEnd="url(#arrow-u1)" />
-        <text x="195" y="80" textAnchor="middle" fontSize="11" fill="#6b7e70">استنساخ</text>
-        <rect x="230" y="60" width="150" height="60" rx="10" fill="#d9eddf" stroke="#315b45" />
-        <text x="305" y="87" textAnchor="middle" fontSize="14" fill="#315b45">ARNm</text>
-        <text x="305" y="107" textAnchor="middle" fontSize="11">الرسالة</text>
-        <path d="M380 90 H440" stroke="#315b45" strokeWidth="2" markerEnd="url(#arrow-u1)" />
-        <text x="410" y="80" textAnchor="middle" fontSize="11" fill="#6b7e70">ترجمة</text>
-        <circle cx="470" cy="90" r="26" fill="#e4bc71" stroke="#315b45" />
-        <text x="470" y="94" textAnchor="middle" fontSize="11">بروتين</text>
+        <text x="260" y="24" textAnchor="middle" fontSize="16" fontWeight="700" fill="#315b45">
+          تعبير المعلومة الوراثية
+        </text>
+        {['ADN', 'ARNm', 'سلسلة ببتيدية', 'بروتين وظيفي'].map((t, i) => (
+          <g key={t}>
+            <rect
+              x={18 + i * 128}
+              y="70"
+              width="104"
+              height="42"
+              rx="14"
+              fill={i === 3 ? '#d8ead7' : '#eef4e8'}
+              stroke="#315b45"
+            />
+            <text x={70 + i * 128} y="96" textAnchor="middle" fontSize="14" fill="#244634">
+              {t}
+            </text>
+            {i < 3 && (
+              <line
+                x1={124 + i * 128}
+                y1="91"
+                x2={142 + i * 128}
+                y2="91"
+                stroke="#315b45"
+                strokeWidth="2"
+                markerEnd="url(#arrow-u1)"
+              />
+            )}
+          </g>
+        ))}
+        <text x="135" y="137" textAnchor="middle" fontSize="11" fill="#6b7e70">استنساخ</text>
+        <text x="265" y="137" textAnchor="middle" fontSize="11" fill="#6b7e70">ترجمة</text>
+        <text x="395" y="137" textAnchor="middle" fontSize="11" fill="#6b7e70">انطواء</text>
       </svg>
     );
   if (type === 'cellules')
     return (
       <svg {...common}>
-        <rect x="15" y="25" width="240" height="130" rx="16" fill="#eef4e8" stroke="#315b45" />
-        <text x="135" y="47" textAnchor="middle" fontSize="13" fill="#315b45">حقيقيات النوى</text>
-        <circle cx="135" cy="105" r="34" fill="#d9eddf" stroke="#315b45" />
-        <text x="135" y="109" textAnchor="middle" fontSize="11">نواة</text>
-        <text x="135" y="168" textAnchor="middle" fontSize="11" fill="#6b7e70">استنساخ داخل النواة</text>
-        <rect x="265" y="25" width="240" height="130" rx="16" fill="#f7f3e6" stroke="#d19552" />
-        <text x="385" y="47" textAnchor="middle" fontSize="13" fill="#6b5320">بدائيات النوى</text>
-        <ellipse cx="385" cy="100" rx="70" ry="34" fill="none" stroke="#d19552" strokeDasharray="5 4" />
-        <text x="385" y="104" textAnchor="middle" fontSize="11" fill="#6b5320">حلقة ADN</text>
-        <text x="385" y="168" textAnchor="middle" fontSize="11" fill="#6b7e70">استنساخ وترجمة في الهيولى</text>
+        <rect x="15" y="28" width="230" height="120" rx="22" fill="#d9eddf" stroke="#315b45" />
+        <circle cx="130" cy="88" r="34" fill="#f8f4e9" stroke="#315b45" strokeWidth="2" />
+        <text x="130" y="93" textAnchor="middle" fontSize="12">النواة</text>
+        <text x="130" y="168" textAnchor="middle" fontSize="13" fill="#315b45">حقيقية النوى</text>
+        <rect x="275" y="28" width="230" height="120" rx="22" fill="#f3ead5" stroke="#315b45" />
+        <path d="M315 83 Q350 55 385 83 T455 83" fill="none" stroke="#315b45" strokeWidth="3" />
+        <text x="390" y="120" textAnchor="middle" fontSize="12">ADN في الهيولى</text>
+        <text x="390" y="168" textAnchor="middle" fontSize="13" fill="#315b45">بدائية النوى</text>
       </svg>
     );
   if (type === 'arn')
     return (
       <svg {...common}>
-        <defs>
-          <marker id="arrow-u2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 z" fill="#315b45" />
-          </marker>
-        </defs>
-        <rect x="15" y="45" width="200" height="90" rx="12" fill="#eef4e8" stroke="#315b45" />
-        <text x="115" y="70" textAnchor="middle" fontSize="12" fill="#315b45">ARNm الأولي</text>
-        <text x="115" y="92" textAnchor="middle" fontSize="12" fontFamily="monospace">■إنترون■إكسون■إنترون■</text>
-        <text x="115" y="120" textAnchor="middle" fontSize="11" fill="#6b7e70">قبل المعالجة</text>
-        <path d="M220 90 H275" stroke="#315b45" strokeWidth="2" markerEnd="url(#arrow-u2)" />
-        <rect x="285" y="45" width="220" height="90" rx="12" fill="#d9eddf" stroke="#315b45" />
-        <text x="395" y="70" textAnchor="middle" fontSize="12" fill="#315b45">ARNm الناضج</text>
-        <text x="395" y="92" textAnchor="middle" fontSize="12" fontFamily="monospace">■إكسون■إكسون■</text>
-        <text x="395" y="120" textAnchor="middle" fontSize="11" fill="#6b7e70">حذف الإنترونات وربط الإكسونات</text>
+        <path d="M35 55 H485" stroke="#315b45" strokeWidth="8" />
+        <text x="260" y="43" textAnchor="middle" fontSize="13">إكسون</text>
+        <path d="M35 105 H485" stroke="#d19552" strokeWidth="8" />
+        <text x="260" y="95" textAnchor="middle" fontSize="13">إنترون يُحذف</text>
+        <path d="M35 145 H180 M235 145 H485" stroke="#315b45" strokeWidth="8" />
+        <text x="260" y="172" textAnchor="middle" fontSize="13" fill="#315b45">
+          ARNm ناضج = إكسونات مرتبطة
+        </text>
       </svg>
     );
   if (type === 'ribosome')
     return (
       <svg {...common}>
-        <path d="M40 60 H480" stroke="#3475aa" strokeWidth="2" strokeDasharray="6 4" />
-        <text x="60" y="48" fontSize="12" fill="#3475aa">ARNm 5’→3’</text>
-        <rect x="180" y="70" width="160" height="52" rx="22" fill="#d9eddf" stroke="#315b45" />
-        <text x="260" y="101" textAnchor="middle" fontSize="13" fill="#315b45">ريبوزوم</text>
-        <path d="M120 130 L180 105" stroke="#d19552" strokeWidth="2" />
-        <text x="60" y="146" fontSize="12" fill="#6b5320">ARNt</text>
-        <circle cx="120" cy="130" r="10" fill="#f1dca9" stroke="#d19552" />
-        <text x="330" y="146" fontSize="11" fill="#6b7e70">مضاد الرامزة ← رامزة على ARNm</text>
+        <path d="M55 120 H465" stroke="#315b45" strokeWidth="5" />
+        <ellipse cx="260" cy="80" rx="90" ry="45" fill="#d9eddf" stroke="#315b45" strokeWidth="2" />
+        <circle cx="195" cy="45" r="15" fill="#e4bc71" />
+        <circle cx="260" cy="35" r="15" fill="#e4bc71" />
+        <circle cx="325" cy="45" r="15" fill="#e4bc71" />
+        <text x="260" y="86" textAnchor="middle" fontSize="15">الريبوزوم</text>
+        <text x="260" y="150" textAnchor="middle" fontSize="13" fill="#315b45">
+          ARNm · رامزة · ARNt · أحماض أمينية
+        </text>
       </svg>
     );
-  if (type === 'mutation' || type === 'sequence')
+  if (type === 'mutation')
     return (
       <svg {...common}>
-        <text x="30" y="40" fontSize="13" fill="#315b45">
-          {type === 'mutation' ? 'السلسلة الأصلية' : 'سلسلة ADN المعطاة'}
+        <text x="35" y="38" fontSize="14" fill="#315b45">السلسلة الأصلية</text>
+        <text x="35" y="67" fontSize="18" fontFamily="monospace">ATG · TTT · GGC · TAA</text>
+        <text x="35" y="105" fontSize="14" fill="#315b45">بعد الطفرة</text>
+        <text x="35" y="134" fontSize="18" fontFamily="monospace" fill="#a45d43">
+          ATG · TTA · GGC · TAA
         </text>
-        <text x="30" y="66" fontSize="16" fontFamily="monospace">ATG · GCT · TTT · TGA</text>
-        <text x="30" y="112" fontSize="13" fill="#b0653f">
-          {type === 'mutation' ? 'بعد الطفرة' : 'ARNm المطلوب'}
+        <line x1="128" y1="73" x2="128" y2="111" stroke="#d19552" strokeWidth="3" />
+        <text x="155" y="95" fontSize="13" fill="#6b7e70">استبدال قاعدة</text>
+      </svg>
+    );
+  if (type === 'sequence')
+    return (
+      <svg {...common}>
+        <defs>
+          <marker id="arrow-seq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3 z" fill="#315b45" />
+          </marker>
+        </defs>
+        <text x="260" y="24" textAnchor="middle" fontSize="15" fontWeight="700" fill="#315b45">
+          استخراج ARNm بالتكامل القاعدي
         </text>
-        <text x="30" y="138" fontSize="16" fontFamily="monospace">
-          {type === 'mutation' ? 'ATG · GCT · TTC · TGA' : 'AUG · GCC · UUU · UGA'}
+        <text x="40" y="62" fontSize="14" fill="#315b45">ADN المستنسخة 3’</text>
+        <text x="185" y="62" fontSize="18" fontFamily="monospace">TAC · GGA · CTT</text>
+        <text x="40" y="108" fontSize="14" fill="#315b45">ARNm 5’</text>
+        <text x="185" y="108" fontSize="18" fontFamily="monospace" fill="#3475aa">
+          AUG · CCU · GAA
         </text>
-        <rect x="330" y="46" width="165" height="34" rx="8" fill="#f1dca9" />
-        <text x="412" y="68" textAnchor="middle" fontSize="12" fill="#6b5320">
-          {type === 'mutation' ? 'رامزة واحدة تتغير' : 'U بدل T في ARNm'}
+        <path d="M185 72 L185 95" stroke="#d19552" strokeWidth="3" markerEnd="url(#arrow-seq)" />
+        <text x="260" y="145" textAnchor="middle" fontSize="13" fill="#6b7e70">
+          A↔U · T↔A · C↔G · G↔C
         </text>
       </svg>
     );
   if (type === 'expression')
     return (
       <svg {...common}>
-        <path d="M50 150 H490" stroke="#315b45" strokeWidth="1.5" />
-        <path d="M50 150 V20" stroke="#315b45" strokeWidth="1.5" />
-        <text x="14" y="30" fontSize="11" fill="#315b45">كمية</text>
-        <text x="460" y="172" fontSize="11" fill="#315b45">زمن</text>
-        <path d="M60 145 C150 145 170 60 260 55 C340 52 380 45 480 45" stroke="#3475aa" strokeWidth="3" fill="none" />
-        <path d="M60 147 C170 147 220 110 300 95 C370 82 410 75 480 72" stroke="#d19552" strokeWidth="3" fill="none" />
-        <text x="330" y="40" fontSize="12" fill="#3475aa">ARNm</text>
-        <text x="400" y="100" fontSize="12" fill="#6b5320">بروتين (متأخر)</text>
+        <line x1="45" y1="145" x2="480" y2="145" stroke="#315b45" />
+        <line x1="45" y1="25" x2="45" y2="145" stroke="#315b45" />
+        <path d="M50 130 Q130 95 220 105 T470 52" fill="none" stroke="#3475aa" strokeWidth="4" />
+        <path d="M50 135 Q150 132 230 126 T470 82" fill="none" stroke="#b36b55" strokeWidth="4" />
+        <text x="400" y="45" fontSize="13" fill="#3475aa">ARNm</text>
+        <text x="400" y="78" fontSize="13" fill="#b36b55">بروتين</text>
+        <text x="260" y="170" textAnchor="middle" fontSize="12">الزمن (دقائق)</text>
+        <text x="20" y="40" fontSize="11" fill="#6b7e70">الكمية</text>
       </svg>
     );
-  if (type === 'graphique') {
-    // مسار البروتين المُفرز — schéma du n°8 (absent du commit arena : il retournait null).
+  if (type === 'graphique')
     return (
       <svg {...common}>
-        <rect x="12" y="24" width="376" height="132" rx="24" fill="#eef4e8" stroke="#315b45" />
-        <text x="26" y="172" fontSize="12" fill="#315b45">داخل الخلية</text>
-        <rect x="34" y="52" width="130" height="62" rx="12" fill="#d9eddf" stroke="#315b45" />
-        <text x="99" y="76" textAnchor="middle" fontSize="11">الشبكة الهيولية</text>
-        <text x="99" y="94" textAnchor="middle" fontSize="11">المحببة</text>
-        <path d="M164 83 H214" stroke="#315b45" strokeWidth="2" />
-        <polygon points="214,78 224,83 214,88" fill="#315b45" />
-        <circle cx="262" cy="83" r="26" fill="#e4bc71" stroke="#315b45" />
-        <text x="262" y="87" textAnchor="middle" fontSize="10">حويصلة</text>
-        <path d="M288 83 H436" stroke="#315b45" strokeWidth="2" />
-        <polygon points="436,78 446,83 436,88" fill="#315b45" />
-        <text x="452" y="72" fontSize="11" fill="#315b45">خارج الخلية</text>
-        <text x="30" y="140" fontSize="11" fill="#6b7e70">ببتيد الإشارة يوجّه الريبوزوم نحو الشبكة</text>
+        <defs>
+          <marker id="arrow-gq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3 z" fill="#315b45" />
+          </marker>
+        </defs>
+        <text x="260" y="20" textAnchor="middle" fontSize="15" fontWeight="700" fill="#315b45">
+          مسار إفراز البروتين
+        </text>
+        <ellipse cx="100" cy="88" rx="68" ry="48" fill="#eef4e8" stroke="#315b45" strokeWidth="2" />
+        <text x="100" y="93" textAnchor="middle" fontSize="13">النواة</text>
+        <path d="M170 88 H235" stroke="#315b45" strokeWidth="3" markerEnd="url(#arrow-gq)" />
+        <path
+          d="M240 55 Q285 35 330 55 M240 82 Q285 62 330 82 M240 109 Q285 89 330 109"
+          fill="none"
+          stroke="#a45d43"
+          strokeWidth="5"
+        />
+        <text x="285" y="140" textAnchor="middle" fontSize="12">شبكة هيولية محببة</text>
+        <path d="M340 82 H425" stroke="#315b45" strokeWidth="3" markerEnd="url(#arrow-gq)" />
+        <path d="M435 54 Q475 82 435 110 Q410 82 435 54" fill="#d8ead7" stroke="#315b45" strokeWidth="2" />
+        <text x="470" y="143" textAnchor="middle" fontSize="12">خارج الخلية</text>
       </svg>
     );
-  }
   if (type === 'comparaison')
     return (
       <svg {...common}>
-        <text x="40" y="40" fontSize="13" fill="#315b45">بروتين أ</text>
-        <text x="40" y="66" fontSize="15" fontFamily="monospace">—Met—Val—Glu—Leu—</text>
-        <text x="40" y="118" fontSize="13" fill="#315b45">بروتين ب</text>
-        <text x="40" y="144" fontSize="15" fontFamily="monospace">—Met—Val—Asp—Leu—</text>
-        <rect x="330" y="60" width="165" height="60" rx="10" fill="#f1dca9" />
-        <text x="412" y="86" textAnchor="middle" fontSize="12" fill="#6b5320">تشابه في جزء</text>
-        <text x="412" y="106" textAnchor="middle" fontSize="12" fill="#6b5320">واختلاف في جزء</text>
+        <text x="35" y="35" fontSize="14" fill="#315b45">بروتين أ</text>
+        <text x="35" y="63" fontSize="18" fontFamily="monospace">Ala · Gly · Lys · Val · Ser</text>
+        <text x="35" y="105" fontSize="14" fill="#315b45">بروتين ب</text>
+        <text x="35" y="133" fontSize="18" fontFamily="monospace">Ala · Gly · Arg · Val · Ser</text>
+        <rect x="190" y="42" width="45" height="30" rx="5" fill="#f1dca9" />
+        <rect x="190" y="112" width="45" height="30" rx="5" fill="#f1dca9" />
+        <text x="300" y="93" fontSize="13" fill="#6b7e70">موضع الاختلاف</text>
       </svg>
     );
-  return (
-    <svg {...common}>
-      <rect x="15" y="30" width="490" height="120" rx="16" fill="#eef4e8" stroke="#315b45" />
-      <text x="260" y="60" textAnchor="middle" fontSize="13" fill="#315b45">ADN ← ARNm ← ببتيد ملتف</text>
-      <text x="260" y="92" textAnchor="middle" fontSize="13" fill="#3475aa">بنية فراغية</text>
-      <text x="260" y="124" textAnchor="middle" fontSize="13" fill="#b0653f">وظيفة البروتين</text>
-    </svg>
-  );
+  if (type === 'synthese')
+    return (
+      <svg {...common}>
+        <defs>
+          <marker id="arrow-synth" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3 z" fill="#315b45" />
+          </marker>
+        </defs>
+        <text x="260" y="22" textAnchor="middle" fontSize="15" fontWeight="700" fill="#315b45">
+          العلاقة بين البنية والوظيفة
+        </text>
+        <path d="M50 70 H470" stroke="#315b45" strokeWidth="3" markerEnd="url(#arrow-synth)" />
+        <path d="M50 125 H470" stroke="#315b45" strokeWidth="3" markerEnd="url(#arrow-synth)" />
+        <circle cx="95" cy="70" r="22" fill="#e9d59d" />
+        <circle cx="205" cy="70" r="22" fill="#e9d59d" />
+        <circle cx="315" cy="70" r="22" fill="#e9d59d" />
+        <circle cx="425" cy="70" r="22" fill="#e9d59d" />
+        <text x="260" y="76" textAnchor="middle" fontSize="13">تسلسل الأحماض الأمينية</text>
+        <path
+          d="M85 125 Q120 92 155 125 T225 125 T295 125 T365 125 T435 125"
+          fill="none"
+          stroke="#a45d43"
+          strokeWidth="5"
+        />
+        <text x="260" y="115" textAnchor="middle" fontSize="13">بنية فراغية</text>
+        <text x="260" y="161" textAnchor="middle" fontSize="13" fill="#315b45">وظيفة البروتين</text>
+      </svg>
+    );
+  return null;
 }
 
 export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Props) {
@@ -284,6 +362,8 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
   const [operation, setOperation] = useState(0);
   const [methode, setMethode] = useState(0);
   const [reponse, setReponse] = useState<number | null>(null);
+  // وثيقة تفاعلية : la zone du schéma choisie comme preuve (port fa88370 — null = pas encore choisie).
+  const [zoneActive, setZoneActive] = useState<number | null>(null);
   const [dernierFauxExo, setDernierFauxExo] = useState<number | null>(null);
   const [justeExo, setJusteExo] = useState(false);
   const [feedback, setFeedback] = useState('');
@@ -340,6 +420,7 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
     setSourceExo('unite1');
     setEcran('exercice');
     setReponse(null);
+    setZoneActive(null); // jamais la zone de l'exercice précédent (fix maison du port).
     setFeedback('');
     setDernierFauxExo(null);
     setJusteExo(false);
@@ -382,8 +463,7 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
 
   // Données de l'exercice unité 1 (précalculées pour l'affichage).
   const exoU1 = exercicesUnite1[methode] ?? exercicesUnite1[0];
-  const optionsU1 = optionsExercice(methode);
-  const idxJusteU1 = optionsU1.indexOf(exoU1.reponse);
+  const { options: optionsU1, bonne: idxJusteU1 } = optionsExercice(methode);
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -409,6 +489,7 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
       <main className="mx-auto mt-5 max-w-3xl">
         {ecran === 'accueil' && (
           <section className="space-y-4">
+            <MascotteKunz message="مرحبًا أيها المستكشف! لا تبحث عن الجواب مباشرة؛ ابحث أولًا عن الدليل الذي يفتح لك كنز الوثيقة." />
             <div className="card overflow-hidden">
               <div className="bg-gradient-to-l from-forest to-forest-deep p-6 text-paper">
                 <p className="text-4xl">🔑</p>
@@ -681,6 +762,11 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
                 </div>
               </div>
             </div>
+            <MascotteKunz
+              compact
+              tone="gold"
+              message="كل تمرين جزيرة جديدة. اقرأ التعليمة، حدّد الفعل، ثم اجمع الأدلة قبل أن تبني جوابك."
+            />
             <div className="space-y-3">
               {exercicesUnite1.map((item, i) => (
                 <article key={item.titre} className="card overflow-hidden">
@@ -721,8 +807,37 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
             <p className="mt-2 text-sm text-mute">
               {exoU1.document} · الهدف: {exoU1.objectif}
             </p>
+            <MascotteKunz
+              compact
+              tone="gold"
+              message="قبل أن تكتب: ما هو الفعل؟ أين الدليل؟ وهل جوابك يجيب عن السؤال نفسه؟"
+            />
             <div className="mt-4 rounded-2xl border border-line bg-paper p-2">
               <SchemaUnite1 type={exoU1.diagramme} />
+            </div>
+            <div className="mt-3 rounded-2xl border border-sage bg-sage-soft p-4">
+              <p className="text-[11px] font-bold text-forest">وثيقة تفاعلية · اختر المنطقة</p>
+              <p className="mt-1 text-sm font-bold leading-relaxed">{exoU1.question}</p>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                {exoU1.zones.map((zone, i) => (
+                  <button
+                    key={zone}
+                    onClick={() => setZoneActive(i)}
+                    className={`rounded-xl border p-2 text-xs font-bold transition ${
+                      zoneActive === i
+                        ? 'border-forest bg-forest text-paper'
+                        : 'border-line bg-paper text-forest-deep'
+                    }`}
+                  >
+                    {lettreZone(i)} · {zone}
+                  </button>
+                ))}
+              </div>
+              {zoneActive !== null && (
+                <p className="mt-3 rounded-xl bg-paper p-2 text-xs font-bold text-forest">
+                  الدليل المحدد: المنطقة {lettreZone(zoneActive)} · {exoU1.zones[zoneActive]}
+                </p>
+              )}
             </div>
             <div className="mt-4 rounded-2xl border border-sage bg-sage-soft p-4">
               <p className="text-[11px] font-bold text-forest">فعل</p>
@@ -780,7 +895,7 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
             {!justeExo && (
               <button
                 onClick={validerExercice}
-                disabled={reponse === null}
+                disabled={reponse === null || zoneActive === null}
                 className="btn btn-primary mt-4 w-full"
               >
                 افحص جوابي

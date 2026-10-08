@@ -14,6 +14,7 @@ import { nb, compteLecons } from '../utils/dates';
 import type { Etat } from '../types';
 import { ACCENTS } from '../utils/accents';
 import { IcoVerifie, IcoVerrou } from './Icones';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   etat: Etat;
@@ -41,6 +42,10 @@ export default function Masari({ etat, onOuvrirItem, onVoirUnite }: Props) {
           تراكم الثغرات.
         </p>
       </header>
+      <MascotteKunz
+        compact
+        message="أهلاً أيها المستكشف! افتح الوحدات بالتدريج: كل درس تنهيه يفتح لك جزءًا جديدًا من خريطة كنز العلوم."
+      />
 
       <div className="space-y-8">
         {DOMAINES.map((d) => {

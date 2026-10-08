@@ -81,7 +81,20 @@ culpabilisation.
   (« graphique » → مسار الإفراز, il était vide) et n°6 (« استخراج ARNm » réutilisait le schéma de
   mutation) corrigés. **Variété des formats** (port `a79905c`) : un `format` d'exercice style Bac
   (مخطط تركيبي, تحليل وثيقة, منحنى تجريبي…) et un « السند » numéroté par exercice, affichés sur la
-  carte et dans l'en-tête du tamrin.
+  carte et dans l'en-tête du tamrin. **وثيقة تفاعلية — preuve visuelle** (port `fa88370`) : chaque
+  exercice propose une question et des **zones cliquables du schéma** (A/B/C/D) — il faut choisir la
+  zone qui fait office de preuve **et** une proposition pour débloquer « افحص جوابي », la zone
+  retenue s'affichant en encart (« الدليل المحدد: المنطقة … ») ; les schémas viennent de la version
+  clarifiée arena (port `7ac24a4` : flux à 4 étapes, `sequence` dédié avec les règles A↔U, `graphique`
+  « مسار إفراز البروتين », `expression` avec axes étiquetés) avec corrections maison : le schéma
+  `mutation` reste en ADN (T, pas U) et chaque flèche a un marker dédié (sur arena, `sequence` et
+  `graphique` pointaient un marker defined dans un autre SVG → flèche invisible en écran solo).
+- **القبطان مفتاح — la mascotte guide** (nouveau composant `MascotteKunz.tsx`, ports `e73a484` +
+  `41b5695`) : `personnage-pirate.png` (la mascotte de la maison, pas le logo d'arena) avec un mot
+  de méthode dans 7 endroits — l'accueil de منهجية, la liste de الوحدة 1, l'en-tête de chaque
+  tamrin (« ما هو الفعل؟ أين الدليل؟ »), مساري, أنا, et l'en-tête de اليوم ; l'écran de démarrage
+  gagne le pirate au-dessus du **titre texte « كنز العلوم Lite »** (conservé — convention « le nom
+  partout », là où arena remplaçait le titre par une image).
 
 ### 🔮 Le moteur Next Best Action (`src/utils/moteur.ts`)
 
@@ -390,7 +403,8 @@ app-svt-bac/
 │       ├── Aujourdhui.tsx         # ⭐ اليوم : NBA + rythme + position classe + stats + invitation sync
 │       ├── Masari.tsx             # ⭐ مساري : chemin verrouillé
 │       ├── Exercices.tsx          # ⭐ تدريبات : choix QCM/ورشات الخرائط الذهنية/تمارين المنهجية (3 icônes) + 49 axes verrouillés + journées de 10
-│       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين + الوحدة 1 (10 exercices, schémas SVG)
+│       ├── Methodologie.tsx       # ⭐ منهجية : المفتاح فعل←دليل←جواب←فحص + تشخيص 3 QCM + 11 verbes + 6 مسارات + 4 niveaux + تمرين + الوحدة 1 (10 exercices, schémas SVG, وثيقة تفاعلية A/B/C/D)
+│       ├── MascotteKunz.tsx       # القبطان مفتاح — la mascotte guide (personnage-pirate.png, 7 emplacements)
 │       ├── Ana.tsx                # ⭐ أنا : journal + notes + stats complètes + réglage sync
 │       ├── CarteStats.tsx         # compteurs du Mُرشد (versions compacte Aujourdhui / complète Ana)
 │       ├── CarteSync.tsx          # invitation une fois (اليوم) + réglage permanent (أنا)
@@ -547,6 +561,17 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   Bac (مخطط تركيبي, تحليل وثيقة, منحنى تجريبي, مقالة تركيبية…) et un `document` « السند 1 … 10 » —
   affichés sur la carte de la liste (`format · verbe` + السند, l'objectif restant dans l'écran
   exercice) et dans l'en-tête de l'exercice.
+- **v0.5.9** — **preuve visuelle, schémas clarifiés et la mascotte guide** (ports des commits arena
+  `7ac24a4`, `231b770`, `e73a484`, `41b5695`, `fa88370`, tous corrigés) : chaque tamrin de الوحدة 1
+  devient une **وثيقة تفاعلية** — question + zones cliquables A/B/C/D sur le schéma, zone de preuve
+  obligatoire avant la validation ; les 10 schémas proviennent de la version clarifiée arena avec
+  fix maison (schéma `mutation` en ADN — T, pas U — et markers fléchés dédiés par schéma, invisibles
+  sur arena en écran solo) ; nouveau composant **`MascotteKunz.tsx`** (القبطان مفتاح) diffusé dans
+  l'accueil منهجية, الوحدة 1, les tamrins, مساري, أنا et l'en-tête de اليوم — sur arena il utilise
+  `/logo.png`, ici **`personnage-pirate.png`** (convention maison) ; l'écran démarrage affiche le
+  pirate au-dessus du titre texte conservé (arena remplaçait le titre par une image, ce qui faisait
+  disparaître le nom « كنز العلوم Lite » du premier écran) ; `Bac.tsx` (existant encore sur arena)
+  ignoré ; retry sans révélation, sons et feedbackTon maison préservés partout.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

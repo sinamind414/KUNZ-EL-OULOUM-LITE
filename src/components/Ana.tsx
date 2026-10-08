@@ -10,6 +10,7 @@ import { CHEMIN } from '../data/programme';
 import { Morceau } from './Communs';
 import CarteStats from './CarteStats';
 import { ReglageSync } from './CarteSync';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   etat: Etat;
@@ -48,6 +49,11 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
         <p className="eyebrow">الكرّاسة</p>
         <h1 className="font-naskh mt-1 text-3xl font-bold leading-tight">أنا</h1>
       </header>
+      <MascotteKunz
+        compact
+        tone="paper"
+        message="هذه كراستك يا مستكشف. سجّل تقدمك، راجع أخطاءك، وابنِ عادتك العلمية خطوة بعد خطوة."
+      />
 
       {/* الهوية */}
       <section className="card p-5">

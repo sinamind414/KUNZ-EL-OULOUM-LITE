@@ -99,6 +99,11 @@ export default function EcranDemarrage({ onTerminer }: Props) {
             className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/15 blur-3xl"
             style={{ width: '70vmin', height: '70vmin' }}
           />
+          <img
+            src="/personnage-pirate.png"
+            alt=""
+            className="relative mx-auto h-48 w-48 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.55)] kunz-entre md:h-56 md:w-56"
+          />
           <h1
             className="relative text-center text-4xl font-extrabold tracking-tight text-gold-soft drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)] md:text-5xl kunz-entre"
             style={{ textShadow: '0 4px 24px rgba(0,0,0,0.85)' }}
