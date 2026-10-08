@@ -49,6 +49,19 @@ export interface ProgressionLecon {
   note?: number; // آخر تقييم ذاتي 0..10
 }
 
+// بطاقة كفاءة المنهجية — مراجعة قصيرة programmée par la même SM-2 des leçons.
+// Clé dans etat.kafaa : `methodo{index}` (index du تمرين في exercicesUnite1).
+export interface CarteKafaa {
+  verbe: string; // الإجراء (فكّك، استنتج، استخرج…)
+  exercice: string; // عنوان التمرين
+  erreur: string; // الفخّ (خطأ شائع) — à réécarter à chaque revue
+  repetitions: number;
+  intervalle: number;
+  facilite: number;
+  prochaineRevision?: string;
+  fragile?: boolean;
+}
+
 // مربّط الوحدة (جسر) — كتابة تركيبية من الذاكرة
 export interface JalonUnite {
   fait: boolean;
@@ -93,6 +106,8 @@ export interface Etat {
   bonusJour?: string; // تاريخ استعمال الحصّة الإضافية
   drills?: Record<string, true>; // عناصر التدريبات المُجاب عنها correctly (المعرّف → true)
   ateliers?: Record<string, { fait: boolean; ts: string }>;
+  kafaa?: Record<string, CarteKafaa>; // بطاقات كفاءة المنهجية (مفتاح: methodo{index})
+  kafaaHebdo?: { debut: string; n: number }; // مراجعات الكفاءة هذا الأسبوع (الأحد → samedi): ≤ 2
   consentementSync?: boolean; // موافقة التلميذ على إرسال ملخّص تقدّمه للمطوّر (انظر utils/sync.ts)
 }
 

@@ -18,6 +18,9 @@ export function chargerEtat(): Etat {
       jalons: { ...analyse.jalons },
       notes: analyse.notes ?? [],
       journal: analyse.journal ?? [],
+      kafaa: analyse.kafaa ?? {},
+      drills: analyse.drills ?? {},
+      ateliers: analyse.ateliers ?? {},
     };
   } catch {
     return etatVierge();

@@ -1,22 +1,37 @@
 // اليوم — مهمّة واحدة فقط. أولوية: استئناف → استرجاع مستحق → حصّة جديدة → راحة.
 
-import { prochaineAction, positionClasse, rythmeSemaine, itemsFaits } from '../utils/moteur';
+import { competenceDue, prochaineAction, positionClasse, rythmeSemaine, itemsFaits } from '../utils/moteur';
 import { CHEMIN, UNITE_PAR_ID, titreItem, uniteDeItem } from '../data/programme';
 import { aujourdhui, compteLeconsAdj, nb, nbMin, formatJourAr, salue } from '../utils/dates';
 import { DUREE_TOTALE_MIN } from '../data/protocole';
 import CarteStats from './CarteStats';
 import type { Etat } from '../types';
 import type { ItemChemin } from '../data/programme';
+import type { Qualite } from '../utils/srs';
 
 interface Props {
   etat: Etat;
   onOuvrirItem: (item: ItemChemin) => void;
   onDemarrerRevision: (lessonIds: string[]) => void;
   onVoirUnite: (uniteId: string) => void;
+  onResultatKafaa: (
+    key: string,
+    qualite: Qualite,
+    meta: { verbe: string; exercice: string; erreur: string }
+  ) => void;
+  onOuvrirMethodologie: () => void;
 }
 
-export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onVoirUnite }: Props) {
+export default function Aujourdhui({
+  etat,
+  onOuvrirItem,
+  onDemarrerRevision,
+  onVoirUnite,
+  onResultatKafaa,
+  onOuvrirMethodologie,
+}: Props) {
   const action = prochaineAction(etat);
+  const competence = competenceDue(etat);
   const rythme = rythmeSemaine(etat);
   const position = positionClasse(etat);
   const faits = itemsFaits(etat);
@@ -184,6 +199,51 @@ export default function Aujourdhui({ etat, onOuvrirItem, onDemarrerRevision, onV
           </p>
         )}
       </section>
+
+      {/* بطاقة كفاءة — مراجعة منهجية قصيرة (audit) : 1 à 2 fois par semaine */}
+      {competence && (
+        <section className="card mt-5 border-2 border-sage bg-sage-soft/40 p-5">
+          <div className="flex items-center gap-3">
+            <img
+              src="/personnage-pirate.png"
+              alt=""
+              className="h-14 w-14 shrink-0 object-contain"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="eyebrow">بطاقة كفاءة · مراجعة منهجية</p>
+              <p className="font-naskh mt-1 text-lg font-bold leading-snug text-forest-deep">
+                «{competence.carte.verbe}» — {competence.carte.exercice}
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-mute">
+                فخّ يجب تجنّبه: {competence.carte.erreur}
+              </p>
+            </div>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <button
+              onClick={() => onResultatKafaa(competence.key, 5, competence.carte)}
+              className="btn btn-primary"
+            >
+              أتقنتها — أراجعها لاحقًا
+            </button>
+            <button
+              onClick={() => onResultatKafaa(competence.key, 3, competence.carte)}
+              className="btn btn-ghost"
+            >
+              كافحت قليلًا — أراجعها غدًا
+            </button>
+          </div>
+          <button
+            onClick={onOuvrirMethodologie}
+            className="mt-2 w-full text-center text-xs font-black text-forest"
+          >
+            أتدرّب على التمرين في تبويب المنهجية ←
+          </button>
+          <p className="mt-2 text-center text-[11px] text-mute">
+            دقيقتان، لا أكثر. الاسترجاع القصير يثبّت الإجراء في الذاكرة — بلا نسبة مئوية وبلا عدوّ.
+          </p>
+        </section>
+      )}
 
       {/* إيقاع الأسبوع — لا سلسلة قابلة للكسر */}
       <section className="card mt-5 p-5">

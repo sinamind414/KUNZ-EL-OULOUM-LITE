@@ -17,7 +17,7 @@ import {
   uniteDeItem,
   type ItemChemin,
 } from '../data/programme';
-import type { Etat } from '../types';
+import type { CarteKafaa, Etat } from '../types';
 import { ajouterJours, aujourdhui, differenceJours } from './dates';
 import { aReviserAujourdhui } from './srs';
 
@@ -208,6 +208,34 @@ export function prochaineAction(etat: Etat): ActionJour {
     bonusDispo: bonusDispoAujourdhui(etat),
     prochaineItem: prochainItem(etat),
   };
+}
+
+// ───────────── بطاقة الكفاءة (منهجية) — مراجعة قصيرة ─────────────
+
+/** ISO du lundi qui commence la semaine de `iso` (la semaine commence un samedi dans le calendrier scolaire algérien : dim → sam, on part du dimanche). */
+export function debutSemaine(iso: string): string {
+  const d = new Date(iso + 'T12:00:00');
+  if (Number.isNaN(d.getTime())) return iso;
+  const recul = d.getDay(); // 0 = dimanche
+  d.setDate(d.getDate() - recul);
+  const a = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const j = String(d.getDate()).padStart(2, '0');
+  return `${a}-${m}-${j}`;
+}
+
+/** Première carte كفاءة due aujourd'hui, ou null (aucune, ou 2 revues déjà faites cette semaine). */
+export function competenceDue(etat: Etat): { key: string; carte: CarteKafaa } | null {
+  if (!etat.kafaa) return null;
+  const auj = aujourdhui();
+  const hebdo =
+    etat.kafaaHebdo?.debut === debutSemaine(aujourdhui()) ? etat.kafaaHebdo.n : 0;
+  if (hebdo >= 2) return null;
+  const dues = Object.entries(etat.kafaa)
+    .filter(([, c]) => c.prochaineRevision !== undefined && c.prochaineRevision <= auj)
+    .sort((a, b) => (a[1].prochaineRevision ?? '').localeCompare(b[1].prochaineRevision ?? ''));
+  if (!dues.length) return null;
+  return { key: dues[0][0], carte: dues[0][1] };
 }
 
 // ───────────── مساعدات الوحدة ─────────────

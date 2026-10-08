@@ -584,6 +584,14 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   choisissant la bonne tuile à chaque emplacement (3 candidats, rotation déterministe, retry sans
   révélation, `sonJuste`/`sonFaux`), zéro champ de saisie, puis جواب assemblé + grille de barème
   (سند · تحليل · ربط · استنتاج) et خطأ شائع — sans pourcentage ni compte à rebours.
+- **v0.5.11** — **cartes « كفاءة » SM-2 (audit pédagogique)** : chaque réussite d'un exercice من
+  الوحدة 1 crée une **بطاقة كفاءة** (`etat.kafaa`, clé `methodo{index}`) programmée par la **même
+  `mettreAJourSrs`** que les leçons — réussite directe → J+3 (qualité 5), réussite après erreurs →
+  J+1 (qualité 3), puis l'échelle 3→7→14→28 jours ; la carte retient verbe, titre et « fiche »
+  (خطأ شائع) à réécarter. Sur اليوم, une **revue courte** (2 minutes, mascotte, zéro pourcentage)
+  s'affiche quand une carte est due : « أتقنتها » ou « كافحت قليلًا » re-programme la SM-2,
+  « أتدرّب على التمرين ← » ouvre منهجية — au plus **2 revues par semaine** (`kafaaHebdo`), sans
+  bloquer la tâche unique du jour.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

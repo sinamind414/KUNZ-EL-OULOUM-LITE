@@ -10,11 +10,18 @@ import { useState } from 'react';
 import { IcoRetour } from './Icones';
 import { sonFaux, sonJuste } from '../utils/son';
 import MascotteKunz from './MascotteKunz';
+import type { Qualite } from '../utils/srs';
 
 interface Props {
   onFermer: () => void;
   /** Écran d'ouverture : accueil (onglet منهجية) ou niveaux (3e porte تمارين dans تدريبات). */
   modeInitial?: 'accueil' | 'niveaux';
+  /** Bataille de كفاءة : enregistre la réussite d'un exercice dans la file SM-2 (audit). */
+  onResultatKafaa?: (
+    key: string,
+    qualite: Qualite,
+    meta: { verbe: string; exercice: string; erreur: string }
+  ) => void;
 }
 
 type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'resultat';
@@ -383,7 +390,11 @@ function SchemaUnite1({ type }: { type: ExerciceUnite1['diagramme'] }) {
   return null;
 }
 
-export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Props) {
+export default function Methodologie({
+  onFermer,
+  modeInitial = 'accueil',
+  onResultatKafaa,
+}: Props) {
   const [ecran, setEcran] = useState<Ecran>(modeInitial);
   const [q, setQ] = useState(0);
   const [score, setScore] = useState(0);
@@ -503,6 +514,12 @@ export default function Methodologie({ onFermer, modeInitial = 'accueil' }: Prop
         setFeedback(
           `إجابة سليمة. الدليل يطابق الفعل «${exoU1.verbe}»: ${exoU1.preuve}. الآن افحص: هل ذكرت المعطى والعلاقة والخلاصة؟`,
         );
+        // بطاقة الكفاءة (audit) : réussite directe → J+3، réussite après erreur → J+1 (même SM-2).
+        onResultatKafaa?.(`methodo${methode}`, rate ? 3 : 5, {
+          verbe: exoU1.verbe,
+          exercice: exoU1.titre,
+          erreur: exoU1.erreur,
+        });
       } else {
         // خطأ: أحمر + نغمة هادئة + إعادة المحاولة بلا كشف الجواب.
         sonFaux();

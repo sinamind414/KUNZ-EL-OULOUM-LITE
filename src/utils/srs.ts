@@ -7,8 +7,17 @@ import { ajouterJours, aujourdhui, differenceJours } from './dates';
 
 export type Qualite = 0 | 1 | 2 | 3 | 4 | 5;
 
+// نواة تكرار سباقات — مشتركة بين دروس وبطاقات الكفاءة (منهجية)
+export interface Srs {
+  repetitions: number;
+  intervalle: number;
+  facilite: number;
+  prochaineRevision?: string;
+  fragile?: boolean;
+}
+
 // نتيجة واحدة ← تحديث معاملات الدرس
-export function mettreAJourSrs(p: ProgressionLecon, qualite: Qualite): ProgressionLecon {
+export function mettreAJourSrs<T extends Srs>(p: T, qualite: Qualite): T {
   let { repetitions, intervalle, facilite } = p;
 
   if (qualite < 3) {
@@ -44,7 +53,7 @@ export function premiereRevision(p: ProgressionLecon, fragile: boolean): Progres
   };
 }
 
-export function aReviserAujourdhui(p: ProgressionLecon | undefined): boolean {
+export function aReviserAujourdhui(p: Srs | undefined): boolean {
   if (!p || !p.prochaineRevision) return false;
   return differenceJours(aujourdhui(), p.prochaineRevision) <= 0;
 }

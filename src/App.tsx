@@ -2,10 +2,10 @@
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
 import { useEffect, useRef, useState } from 'react';
-import type { Etat } from './types';
+import type { Etat, CarteKafaa } from './types';
 import { chargerEtat, sauvegarderEtat, viderStockage } from './utils/storage';
-import { aujourdhui } from './utils/dates';
-import { enregistrerSeance } from './utils/moteur';
+import { ajouterJours, aujourdhui } from './utils/dates';
+import { debutSemaine, enregistrerSeance } from './utils/moteur';
 import { envoyerSnapshot, syncActive } from './utils/sync';
 import type { ItemChemin } from './data/programme';
 import type { Qualite } from './utils/srs';
@@ -205,6 +205,44 @@ export default function App() {
     );
   }
 
+  // ───────────── بطاقات الكفاءة (منهجية) — même SM-2 que les leçons ─────────────
+
+  /** Réussite d'un exercice de منهجية ou auto-évaluation d'une revue : la carte كفاءة
+   *  est programmée par mettreAJourSrs (réussite directe → J+3, réussite après erreurs → J+1). */
+  function onResultatKafaa(
+    key: string,
+    qualite: Qualite,
+    meta: { verbe: string; exercice: string; erreur: string }
+  ): void {
+    setEtat((prev) => {
+      const existante = prev.kafaa?.[key];
+      const auj = aujourdhui();
+      // Déjà programmée pour plus tard : pas d'accélération le même jour.
+      if (existante?.prochaineRevision && existante.prochaineRevision > auj) return prev;
+      const base: CarteKafaa = existante ?? {
+        verbe: meta.verbe,
+        exercice: meta.exercice,
+        erreur: meta.erreur,
+        repetitions: 0,
+        intervalle: 0,
+        facilite: 2.5,
+      };
+      const maj = mettreAJourSrs(base, qualite);
+      // Réussite directe : premier palier J+3 (audit) ; réussite avec erreurs : J+1.
+      if (maj.repetitions === 1 && qualite === 5) {
+        maj.intervalle = 3;
+        maj.prochaineRevision = ajouterJours(aujourdhui(), 3);
+      }
+      const debut = debutSemaine(aujourdhui());
+      const hebdo = prev.kafaaHebdo?.debut === debut ? prev.kafaaHebdo.n : 0;
+      return {
+        ...prev,
+        kafaa: { ...(prev.kafaa ?? {}), [key]: maj },
+        kafaaHebdo: { debut, n: hebdo + 1 },
+      };
+    });
+  }
+
   // ───────────── موافقة المزامنة ─────────────
 
   function onConsentementSync(ok: boolean): void {
@@ -249,7 +287,13 @@ export default function App() {
     // تمارين المنهجية: 3e porte de تدريبات — ouverte directement sur مستويات التدريب,
     // la fermeture (setMode(null)) retourne à l'onglet تدريبات.
     if (mode.type === 'methodoExos') {
-      return <Methodologie modeInitial="niveaux" onFermer={() => setMode(null)} />;
+      return (
+        <Methodologie
+          modeInitial="niveaux"
+          onFermer={() => setMode(null)}
+          onResultatKafaa={onResultatKafaa}
+        />
+      );
     }
     if (mode.type === 'structureTerre') {
       return (
@@ -374,6 +418,8 @@ export default function App() {
           onOuvrirItem={ouvrirItem}
           onDemarrerRevision={(lessonIds) => setMode({ type: 'revision', lessonIds })}
           onVoirUnite={(uniteId) => setMode({ type: 'jalon', uniteId })}
+          onResultatKafaa={onResultatKafaa}
+          onOuvrirMethodologie={() => setOnglet('methodo')}
         />
       )}
       {pret && onglet === 'masari' && (
@@ -395,7 +441,10 @@ export default function App() {
         />
       )}
       {pret && onglet === 'methodo' && (
-        <Methodologie onFermer={() => setOnglet('aujourdhui')} />
+        <Methodologie
+          onFermer={() => setOnglet('aujourdhui')}
+          onResultatKafaa={onResultatKafaa}
+        />
       )}
       {pret && onglet === 'ana' && (
         <Ana
