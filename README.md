@@ -618,6 +618,18 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   خطأ شائع) — jamais la bonne réponse avant le bon choix. Réussite complète → carte كفاءة SM-2
   **J+3** (directe) ou **J+1** (avec erreurs ou aide). Portes d'entrée : carte « استقصاء · وثيقتان »
   sur l'accueil منهجية + bouton dans مستويات التدريب.
+- **v0.5.15** — **محرّر الجواب aligné sur le gabarit 5 tuiles (audit : le barème était
+  décoratif, +1,1)** : le محرّر de l'enquête (exercices 2-3 du Bac) construit la réponse par
+  **5 emplacements nominatifs** — المقدمة (problématique) → الوثيقة 1 (سند) → الوثيقة 2 (تحليل) →
+  العلاقة (ربط) → الخلاصة (استنتاج) — chacun avec **3 tuiles calibrées** (1 bonne + 2 leurres
+  typés : affirmation de cours non documentée / interprétation prématurée), diagnostics **typés**
+  par leurre et **remélange** après erreur (jamais la bonne), **porte dure** (un emplacement actif
+  à la fois, les suivants grisés). La **grille de barème « سند · تحليل · ربط · استنتاج » se coche
+  à la pose** de chaque tuile (fini les badges décoratifs) et le jواب recomposé est **imprimable**
+  (🖨️ via la zone d'impression existante). La **production entre enfin dans la boucle SM-2**
+  (vérification 11 de l'audit) : carte `redactionEnquête` **J+3 directe / J+1 avec erreurs** — tout
+  comme le محرّر الوحدة 1 (carte `redaction`). Les documents restent affichés en bande supérieure
+  pendant toute l'assemblée (mémoire de travail préservée).
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

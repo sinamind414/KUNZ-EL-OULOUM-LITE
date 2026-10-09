@@ -180,6 +180,14 @@ type ExerciceEnquete = {
   etapes: EtapeEnquete[];
   conclusion: string;
   erreur: string;
+  /** محرّر الجواب (audit, +1,1) : la réponse finale en 5 tuiles calibrables
+   *  (المقدمة → doc 1 → doc 2 → العلاقة → الخلاصة), chacune avec 2 leurres typés :
+   *  un cours non documenté + une interprétation prématurée (jamais la bonne avant le choix). */
+  modele: {
+    tuiles: [string, string, string, string, string];
+    leurres: [[string, string], [string, string], [string, string], [string, string], [string, string]];
+    diagno: [[string, string], [string, string], [string, string], [string, string], [string, string]];
+  };
 };
 
 const ETAPES_ENQUETE = [
@@ -187,6 +195,22 @@ const ETAPES_ENQUETE = [
   'استخراج من الوثيقة 2',
   'العلاقة بين الوثيقتين',
   'الاستنتاج المبرّر',
+];
+
+// Barème du محرّر : 5 emplacements nominatifs + grille cochée à la pose (audit : « grille de barème
+// cochée automatiquement, pas des badges décoratifs »).
+const TUILES_BAREME: { label: string; note: string }[] = [
+  { label: 'المقدمة', note: 'أعد صياغة المشكلة المطروحة في السؤال.' },
+  { label: 'الوثيقة 1 · سند', note: 'انقل معطى الوثيقة 1 كما هو، قبل أي حكم.' },
+  { label: 'الوثيقة 2 · تحليل', note: 'انقل معطى الوثيقة 2 وقرأته الدقيقة.' },
+  { label: 'العلاقة · ربط', note: 'اربط منجَز الوثيقة الأولى بمنجَز الثانية.' },
+  { label: 'الخلاصة · استنتاج', note: 'أجب عن السؤال المطروح بلا تعميم متسرّع.' },
+];
+const GRILLE_BAREME: { code: string; depuisSlot: number }[] = [
+  { code: 'سند', depuisSlot: 1 },
+  { code: 'تحليل', depuisSlot: 2 },
+  { code: 'ربط', depuisSlot: 3 },
+  { code: 'استنتاج', depuisSlot: 4 },
 ];
 
 const exercicesEnquete: ExerciceEnquete[] = [
@@ -273,6 +297,29 @@ const exercicesEnquete: ExerciceEnquete[] = [
     conclusion:
       'إذن، رفض الطعم استجابة مناعية نوعية مكتسبة تقودها اللمفاويات T، وهو ما يفسّر وجوب مطابقة المتبرع والمستقبل وتثبيط المناعة بعد الزرع.',
     erreur: 'الخلط بين الاستجابة النوعية وغير النوعية، أو إهمال دور اللمفاويات T في الخلاصة.',
+    modele: {
+      tuiles: [
+        'عند زرع طعم لا يطابق جسم المستقبل يُلاحظ رفضه؛ فما دور الخلايا اللمفاوية في هذا الرفض؟',
+        'تُظهر الوثيقة 1 ارتفاعًا ملحوظًا في نسبة اللمفاويات T عند المزروع (60 من 100 مقابل 25) مع ثبات نسبي للـ B (12 و11).',
+        'تكشف الوثيقة 2 ذاكرة مناعية: رفض ثانٍ أسرع (5 أيام) لنفس الطعم، مع بقاء خصوصية الطعم (طعم Z رُفض في زمنه المعتاد نحو 12 يومًا).',
+        'تتكامل الوثيقتان: الأولى تحدد المكوّن المرتفع (اللمفاويات T)، والثانية تثبت أن الاستجابة مكتسبة وخصوصية — فالـ T هي الفاعل في رفض سريع وموجّه.',
+        'إذن، رفض الطعم استجابة مناعية نوعية مكتسبة تقودها اللمفاويات T، ما يفسّر ضرورة تطابق المتبرع والمستقبل وتثبيط المناعة بعد الزرع.',
+      ],
+      leurres: [
+        ['الأجسام المضادة وحدها تهاجم الطعم دائمًا، كما هو مذكور في الدرس.', 'أستنتج منذ الآن أن الرفض سببه غياب التوافق الدموي.'],
+        ['تُظهر الوثيقة 1 أن الـ B هي التي ترتفع عند المزروع وأن الـ T تبقى ثابتة.', 'الوثيقة 1 تثبت أن الرفض استجابة غير نوعية.'],
+        ['تُبيّن الوثيقة 2 أن الجسم يعتاد الطعم فيرفضه أبطأ في كل مرة.', 'تُثبت الوثيقة 2 أن كل الطعوم تُرفض بالمدة نفسها.'],
+        ['تتناقض الوثيقتان: الأولى تثبت قبولًا والثانية تثبت رفضًا.', 'لا رابط بين الوثيقتين؛ الأولى إحصائية والثانية تجريبية.'],
+        ['إذن، رفض الطعم استجابة غير نوعية لا تخضع لأي ذاكرة.', 'إذن، اللمفاويات B هي المسؤولة عن رفض الطعم.'],
+      ],
+      diagno: [
+        ['هذه معلومة من الدرس عامة، لا جواب عن سؤال هذه الوثيقتين — عُد إلى المعطيات.', 'استنتاج قبل العرض: لا تحكم على الرفض قبل نقل معطى الوثيقتين.'],
+        ['اقرأ جدول الوثيقة 1 بنفس المعيار: من ارتفع فعلًا عند المزروع، T أم B؟', 'حكم مبكر: الجدول معطى لا نتيجة — انقل أرقامه أولًا.'],
+        ['ليست هذه قراءة الوثيقة 2: قارن الأيام 5 و10 و12 قبل الاستنتاج.', 'خلاصة عامة من تجربة واحدة: لا تعمّم قبل الربط بالوثيقة 1.'],
+        ['الجدول والتجربة يصفان الرفض نفسه من زاويتين — أين التقاء النتيجتين؟', 'ابحث عن الرابط بين الخلية (T) والآلية (الذاكرة) بدل الفصل.'],
+        ['الوثائق تُظهر نوعية وذاكرة وتدخل الـ T — راجع خلاصتك لتشملها.', 'من ارتفع في الوثيقة 1 عند المزروع: B أم T؟ عدّل خلاصتك.'],
+      ],
+    },
   },
   {
     titre: 'لماذا تُعالَج النسخة قبل الترجمة؟',
@@ -357,6 +404,29 @@ const exercicesEnquete: ExerciceEnquete[] = [
     conclusion:
       'إذن، عند حقيقيات النوى تشكّل معالجة الـ ARNm (حذف الـ Introns) مرحلة إلزامية قبل الترجمة، في حين تسمح الجينات الخالية من الـ Introns (بدائيات النوى، الميتوكوندري) بترجمة مباشرة.',
     erreur: 'تعميم ضرورة المعالجة على كل الكائنات، أو الخلط بين المعالجة والترجمة.',
+    modele: {
+      tuiles: [
+        'تحوي النسخة الأولى من الـ ARNm مقاطع غير مشفّرة؛ فما مصيرها قبل الترجمة ليُنتَج بروتين وظيفي؟',
+        'تُظهر الوثيقة 1 أنه في النواة تُحذف الـ Introns من النسخة الأولية فيصدر الـ ARNm ناضج أقصر ينتقل إلى الهيولى.',
+        'تكشف الوثيقة 2 أن الجينات الخالية من الـ Introns (بدائيات النوى، الميتوكوندري) تُترجم مباشرة دون معالجة.',
+        'تكتمل الوثيقتان: وجود الـ Introns يستدعي معالجة، وغيابها يسمح بترجمة مباشرة — فتصبح المعالجة شرط التعبير عند حقيقيات النوى.',
+        'إذن، عند حقيقيات النوى تشكّل معالجة الـ ARNm (حذف الـ Introns) مرحلة إلزامية قبل الترجمة، بينما تسمح الجينات الخالية منها بترجمة مباشرة.',
+      ],
+      leurres: [
+        ['البروتين يُبنى مباشرة داخل النواة من النسخة الأولى دون أي تغيير.', 'المعالجة خيارية ولا أثر لها على إنتاج البروتين.'],
+        ['الوثيقة 1 تثبت أن المعالجة تضيف مقاطع مشفّرة جديدة إلى النسخة.', 'الوثيقة 1 تثبت أن الـ Introns هي التي تُترجم إلى بروتين.'],
+        ['الوثيقة 2 تثبت أن الميتوكوندري تعالج أرنماتها معالجة أطول من النواة.', 'الوثيقة 2 تثبت أن المعالجة مطلوبة عند جميع الكائنات بلا استثناء.'],
+        ['تتناقض الوثيقتان لأن الثانية تنفي المعالجة كلية.', 'المعالجة والترجمة عمليتان منفصلتان لا رابط بينهما.'],
+        ['إذن، المعالجة ضرورية عند جميع الكائنات دون استثناء.', 'إذن، البروتين يُبنى داخل النواة ثم يُرسَل جاهزًا إلى الهيولى.'],
+      ],
+      diagno: [
+        ['معلومة من الدرس لا من الوثيقتين: أين تُبنى النسخة وماذا يسبق الترجمة؟', 'حكم مبكر: لا تحكم على دور المعالجة قبل نقل معطى الوثيقة 1.'],
+        ['قارن بين «أولي» و«ناضج» في الوثيقة 1: هل أضافت المعالجة أم حذفت؟', 'من يُترجم هو ما بقي بعد الحذف، لا ما حُذف — راجع الوثيقة 1.'],
+        ['ماذا تقول الوثيقة 2 عن الميتوكوندري تحديدًا: معالجة أطول أم غياب لها؟', 'لا تعمّم: الوثيقة 2 تُظهر حالة تُترجم مباشرة — أين؟'],
+        ['الوثيقة 2 تتحدث عن جينات دون Introns والوثيقة 1 عن جينات تحويها — أين يتكامل الشرطان؟', 'رتّب زمنيًا: هل تُترجم النسخة قبل أن تُعالج في النواة؟'],
+        ['الوثيقة 2 أظهرت ترجمة مباشرة دون معالجة — عمّم بحذر.', 'الترجمة تحدث في الهيولى ولاحقًا — أين موقع الترجمة؟'],
+      ],
+    },
   },
   {
     titre: 'من السلسلة المستنسخة إلى البروتين',
@@ -441,6 +511,29 @@ const exercicesEnquete: ExerciceEnquete[] = [
     conclusion:
       'إذن، يحمل ترتيب قواعد السلسلة المستنسخة معلومة خطية تُترجم كودونًا كودونًا إلى تسلسل الأحماض الأمينية للبروتين الوظيفي.',
     erreur: 'الخلط بين الشريط المستنسخ وغيره، أو اعتبار البروتين محددًا دون التسلسل.',
+    modele: {
+      tuiles: [
+        'يُبنى الـ ARNm من السلسلة المستنسخة بمقابلة القواعد؛ فكيف يتحكم ترتيب هذه القواعد في تسلسل الأحماض الأمينية للبروتين؟',
+        'تُظهر الوثيقة 1 أن الـ ARNm يُبنى بمقابلة قواعد السلسلة المستنسخة (A↔U، T↔A، C↔G)، وأن تتابع القواعد ثلاثيةً ثلاثية هو الذي يحدد الكودونات.',
+        'تظهر الوثيقة 2 أن تبديل قاعدة واحدة في موضع محدد غيّر حمضًا أمينيًا واحدًا فقط — فكل ثلاثة قواعد (كودون) تحدد حمضًا واحدًا.',
+        'تتكامل الوثيقتان: الأولى تشرح قاعدة المقابلة التي تبني الـ ARNm، والثانية تُظهر الأثر الموضعي لكل كودون — علاقة خطية بين التسلسلين.',
+        'إذن، يحمل ترتيب قواعد السلسلة المستنسخة معلومة خطية تُترجم كودونًا كودونًا إلى تسلسل الأحماض الأمينية للبروتين الوظيفي.',
+      ],
+      leurres: [
+        ['البروتين ناتج مباشرة عن السلسلة غير المستنسخة كما هي دون مقابلة.', 'ترتيب القواعد لا يؤثر البتة في بنية البروتين الناتج.'],
+        ['الوثيقة 1 تثبت أن الـ ARNm نسخة طبق الأصل من السلسلة المستنسخة دون مقابلة.', 'الوثيقة 1 تثبت أن ترتيب القواعد لا أثر له على الكودونات.'],
+        ['الوثيقة 2 تثبت أن أي تبديل مهما صغر يغيّر البروتين بأكمله.', 'الوثيقة 2 تثبت أن تبديل القاعدة لا يترك أي أثر على البروتين.'],
+        ['تتناقض الوثيقتان لأن الثانية تصف تغيّرًا في البروتين.', 'لا رابط بينهما؛ الأولى تحضّر والثانية أمر صدفة.'],
+        ['إذن، أي تغيّر في السلسلة المستنسخة يُفقد البروتين وظيفته كاملًا.', 'إذن، البروتين مستقل عن ترتيب القواعد ولا يتأثر بالتبديل.'],
+      ],
+      diagno: [
+        ['معلومة من الدرس لا من الوثيقتين: كيف يُبنى الـ ARNm فعلًا؟', 'حكم مبكر: لا تحكم على أثر الترتيب قبل نقل معطى الوثيقتين.'],
+        ['قارن: هل تُقابل القاعدة بقاعدتها أم تُطابق؟ مع ماذا تقابل A في الـ ARNm؟', 'إذا تغيّر الترتيب تغيّرت الثلاثيات — أين تظهر هذه الحساسية في الوثيقة 1؟'],
+        ['ماذا كانت نتيجة التبديل الواحد في الوثيقة: البروتين كله أم حمض واحد؟', 'لو لم يترك التبديل أثرًا لما تغيّر البروتين أصلًا — راجع الوثيقة 2.'],
+        ['التغير في البروتين دليل التكامل لا التناقض: إنه أثر الترتيب على الترجمة.', 'إذا كان الترتيب يحدد الكودونات والكودون يحدد الحمض، أين تنقطع السلسلة؟'],
+        ['الوثيقة 2 أظهرت أثر تسلسل محدد — هل كان للأثر معنى دون التسلسل؟', 'من أين استلم الريبوزوم المعلومة: من السلسلة المستنسخة أم من غيره؟'],
+      ],
+    },
   },
 ];
 
@@ -570,6 +663,20 @@ function tuilesEmplacement(i: number, k: number): { options: string[]; bonne: nu
   if (leurres[j] === a) j = (j + 1) % leurres.length;
   const base = [bonne, a, leurres[j]];
   const decalage = (i + k) % 3;
+  const options = base.map((_, x) => base[(x + decalage) % 3]);
+  return { options, bonne: (3 - decalage) % 3 };
+}
+
+/** Candidats d'un emplacement du محرّر 5 tuiles : la bonne + ses 2 leurres calibrés.
+ *  La variante (incrémentée à chaque erreur) remélange l'affichage sans jamais révéler la bonne. */
+function tuilesEmplacementEnquete(
+  exo: number,
+  k: number,
+  variante: number,
+): { options: string[]; bonne: number } {
+  const m = exercicesEnquete[exo]?.modele ?? exercicesEnquete[0].modele;
+  const base = [m.tuiles[k], m.leurres[k][0], m.leurres[k][1]];
+  const decalage = (exo + k + variante + 1) % 3;
   const options = base.map((_, x) => base[(x + decalage) % 3]);
   return { options, bonne: (3 - decalage) % 3 };
 }
@@ -847,6 +954,11 @@ export default function Methodologie({
   const [tuilesChoisies, setTuilesChoisies] = useState<string[]>([]);
   const [tuileFausse, setTuileFausse] = useState<number | null>(null);
   const [redactionFin, setRedactionFin] = useState(false);
+  // محرّر 5 tuiles (audit, +1,1) : source, erreurs (→ J+1), remélange après erreur, diagnostic typé.
+  const [redactionSource, setRedactionSource] = useState<'unite1' | 'enquete'>('unite1');
+  const [fauxRedaction, setFauxRedaction] = useState(0);
+  const [varianteRedaction, setVarianteRedaction] = useState(0);
+  const [diagnoRedaction, setDiagnoRedaction] = useState('');
   // سلّم المساعدة (audit) : barreaux ouverts (0-3), erreurs validées sur l'exo courant,
   // surimpression du المفتاح sans perte de l'état de l'exercice.
   const [barreaux, setBarreaux] = useState(0);
@@ -1001,14 +1113,65 @@ export default function Methodologie({
   // ───────────── محرّر الجواب — assemblage de tuiles ─────────────
 
   function ouvrirRedaction(): void {
+    setRedactionSource('unite1');
     setSlotRedaction(0);
     setTuilesChoisies([]);
     setTuileFausse(null);
     setRedactionFin(false);
+    setFauxRedaction(0);
+    setVarianteRedaction(0);
+    setDiagnoRedaction('');
+    setEcran('redaction');
+  }
+
+  /** Ouverture du محرّر 5 tuiles avec l'enquête courante (exercice 2/3 du Bac). */
+  function ouvrirRedactionEnquete(): void {
+    setRedactionSource('enquete');
+    setSlotRedaction(0);
+    setTuilesChoisies([]);
+    setTuileFausse(null);
+    setRedactionFin(false);
+    setFauxRedaction(0);
+    setVarianteRedaction(0);
+    setDiagnoRedaction('');
     setEcran('redaction');
   }
 
   function choisirTuile(idx: number): void {
+    if (redactionSource === 'enquete') {
+      const m = exercicesEnquete[enqueteId]?.modele ?? exercicesEnquete[0].modele;
+      const attendu = m.tuiles[slotRedaction];
+      if (attendu === undefined) return;
+      const { options } = tuilesEmplacementEnquete(enqueteId, slotRedaction, varianteRedaction);
+      if (options[idx] === attendu) {
+        // Bonne tuile : verte + son montant, emplacement suivant (porte dure interne).
+        sonJuste();
+        setTuilesChoisies([...tuilesChoisies, attendu]);
+        setTuileFausse(null);
+        setDiagnoRedaction('');
+        if (slotRedaction + 1 >= m.tuiles.length) {
+          setRedactionFin(true);
+          // La production entre enfin dans la boucle mémoire (audit, vérif. 11) :
+          // réussite directe → J+3، erreurs → J+1.
+          onResultatKafaa?.(`redactionEnquete${enqueteId}`, fauxRedaction > 0 ? 3 : 5, {
+            verbe: 'قارن ثم استنتج',
+            exercice: exoEnquete.titre,
+            erreur: exercicesEnquete[enqueteId]?.erreur ?? '',
+          });
+        } else {
+          setSlotRedaction(slotRedaction + 1);
+        }
+      } else {
+        // Mauvaise tuile : rouge + son doux + diagnostic typé + remélange, sans révélation.
+        sonFaux();
+        setTuileFausse(idx);
+        setFauxRedaction((n) => n + 1);
+        const k = options[idx] === m.leurres[slotRedaction][0] ? 0 : 1;
+        setDiagnoRedaction(m.diagno[slotRedaction][k]);
+        setVarianteRedaction((v) => v + 1);
+      }
+      return;
+    }
     const segments = segmentsReponse(exoU1.reponse);
     const attendu = segments[slotRedaction];
     if (attendu === undefined) return;
@@ -1018,12 +1181,22 @@ export default function Methodologie({
       sonJuste();
       setTuilesChoisies([...tuilesChoisies, attendu]);
       setTuileFausse(null);
-      if (slotRedaction + 1 >= segments.length) setRedactionFin(true);
-      else setSlotRedaction(slotRedaction + 1);
+      if (slotRedaction + 1 >= segments.length) {
+        setRedactionFin(true);
+        // La production entre dans la boucle mémoire (audit, vérif. 11) : J+3 directe, J+1 sinon.
+        onResultatKafaa?.(`redaction${methode}`, fauxRedaction > 0 ? 3 : 5, {
+          verbe: exoU1.verbe,
+          exercice: exoU1.titre,
+          erreur: exoU1.erreur,
+        });
+      } else {
+        setSlotRedaction(slotRedaction + 1);
+      }
     } else {
       // Mauvaise tuile : rouge + son doux, sans révéler la bonne (retry).
       sonFaux();
       setTuileFausse(idx);
+      setFauxRedaction((n) => n + 1);
     }
   }
 
@@ -1669,7 +1842,158 @@ export default function Methodologie({
           </div>
         )}
 
-        {ecran === 'redaction' && (
+        {ecran === 'redaction' && redactionSource === 'enquete' && (
+          <section className="card p-6">
+            <p className="eyebrow">
+              استقصاء · وثيقتان · تمرين {enqueteId + 1} من {exercicesEnquete.length} · محرّر 5 بطاقات
+            </p>
+            <h2 className="font-naskh mt-2 text-2xl font-bold">ابنِ جوابك النهائي · بطاقات</h2>
+            <p className="mt-2 text-sm text-mute">
+              {exoEnquete.situation} — ابنِ الجواب كاملًا: المقدمة، ثم الوثيقة 1، ثم الوثيقة 2، ثم
+              العلاقة، ثم الخلاصة. دون كتابة ولا لوحة مفاتيح.
+            </p>
+            <div className="mt-4 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+              <p className="text-[11px] font-bold text-[#6b5320]">سؤال البكالوريا</p>
+              <p className="mt-1 text-sm font-bold leading-relaxed">{exoEnquete.question}</p>
+            </div>
+            {/* Bande supérieure : les deux documents restent visibles (mémoire de travail préservée). */}
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-line bg-paper p-4">
+                <p className="text-[11px] font-bold text-forest">{exoEnquete.doc1.titre}</p>
+                <p className="mt-1.5 text-sm font-bold leading-relaxed text-forest-deep">
+                  {exoEnquete.doc1.contenu}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-paper p-4">
+                <p className="text-[11px] font-bold text-forest">{exoEnquete.doc2.titre}</p>
+                <p className="mt-1.5 text-sm font-bold leading-relaxed text-forest-deep">
+                  {exoEnquete.doc2.contenu}
+                </p>
+              </div>
+            </div>
+            {/* Grille de barème cochée à la pose de chaque tuile (audit : barème réel, pas décoratif). */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {GRILLE_BAREME.map((g) => {
+                const coche = tuilesChoisies.length > g.depuisSlot;
+                return (
+                  <span
+                    key={g.code}
+                    className={`rounded-full px-3 py-1.5 text-xs font-bold ${
+                      coche ? 'bg-sage text-forest-deep' : 'border border-line bg-paper text-mute'
+                    }`}
+                  >
+                    {coche ? '✓' : '·'} {g.code}
+                  </span>
+                );
+              })}
+            </div>
+            {/* Les 5 emplacements du barème : un seul actif à la fois (porte dure interne). */}
+            <div className="mt-4 space-y-2">
+              {TUILES_BAREME.map((t, i) => {
+                const rempli = i < tuilesChoisies.length;
+                const actif = !redactionFin && i === slotRedaction;
+                return (
+                  <div
+                    key={t.label}
+                    className={`rounded-2xl border p-3 text-sm leading-relaxed ${
+                      rempli
+                        ? 'border-forest bg-sage-soft text-forest-deep'
+                        : actif
+                          ? 'border-dashed border-forest bg-paper font-bold text-forest'
+                          : 'border-dashed border-line bg-paper text-mute'
+                    }`}
+                  >
+                    <p className="text-[11px] font-bold">
+                      {i + 1} · {t.label} — {t.note}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed">
+                      {rempli
+                        ? tuilesChoisies[i]
+                        : actif
+                          ? '▸ اختر البطاقة المناسبة أدناه'
+                          : 'مسودة مغلقة — أتمّ ما قبله أولًا.'}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {!redactionFin && (
+              <div className="mt-3 grid gap-2">
+                {tuilesEmplacementEnquete(enqueteId, slotRedaction, varianteRedaction).options.map(
+                  (opt, idx) => (
+                    <button
+                      key={opt}
+                      onClick={() => choisirTuile(idx)}
+                      className={`rounded-2xl border p-3 text-right text-sm leading-relaxed ${
+                        tuileFausse === idx
+                          ? 'border-clay bg-clay-soft text-clay'
+                          : 'border-line bg-paper'
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ),
+                )}
+                {diagnoRedaction && tuileFausse !== null && (
+                  <p className="rounded-2xl bg-clay-soft p-3 text-sm font-bold leading-relaxed text-clay">
+                    {diagnoRedaction} — أعد النظر، ثم جرّب بطاقة أخرى.
+                  </p>
+                )}
+                {tuileFausse !== null && !diagnoRedaction && (
+                  <p className="rounded-2xl bg-clay-soft p-3 text-sm font-bold text-clay">
+                    ليست البطاقة المناسبة — أعد النظر في مكانها في الجواب. خذ وقتك، لا عجلة.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {redactionFin && (
+              <div className="mt-4 rounded-2xl border border-sage bg-sage-soft p-4">
+                <div id="zone-impression">
+                  <p className="text-[11px] font-bold text-forest">جوابك المُركّب · للطباعة</p>
+                  <p className="mt-2 text-sm leading-relaxed text-forest-deep">
+                    {tuilesChoisies.join(' ')}
+                  </p>
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <button onClick={() => window.print()} className="btn btn-ghost !px-3 text-sm">
+                    🖨️ اطبع الجواب
+                  </button>
+                  <span className="text-[11px] text-mute">علامات كاملة لدى بناء البطاقات الخمس.</span>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-forest-deep">
+                  خطأ شائع: {exoEnquete.erreur}
+                </p>
+              </div>
+            )}
+
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <button
+                onClick={() => {
+                  setSlotRedaction(0);
+                  setTuilesChoisies([]);
+                  setTuileFausse(null);
+                  setRedactionFin(false);
+                  setFauxRedaction(0);
+                  setVarianteRedaction(0);
+                  setDiagnoRedaction('');
+                }}
+                className="btn btn-ghost"
+              >
+                إعادة البناء
+              </button>
+              <button
+                onClick={() => setEcran('enquete')}
+                className="btn btn-ghost"
+              >
+                العودة إلى الاستقصاء
+              </button>
+            </div>
+          </section>
+        )}
+
+        {ecran === 'redaction' && redactionSource !== 'enquete' && (
           <section className="card p-6">
             <p className="eyebrow">
               {exoU1.format} · {exoU1.verbe}
@@ -2043,9 +2367,12 @@ export default function Methodologie({
             )}
             {enqueteFin && (
               <div className="mt-4 space-y-2">
+                <button onClick={ouvrirRedactionEnquete} className="btn btn-primary w-full">
+                  ابنِ جوابك النهائي · بطاقات ←
+                </button>
                 <button
                   onClick={() => choisirEnquete(enqueteId + 1)}
-                  className="btn btn-primary w-full"
+                  className="btn btn-ghost w-full"
                 >
                   تمرين آخر
                 </button>
