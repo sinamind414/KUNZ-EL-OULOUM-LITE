@@ -6,7 +6,7 @@
 // (collision d'index avec methodes), feedback rouge au faux, schémas #8 et n°6, positions
 // variées de la bonne réponse.
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { IcoRetour } from './Icones';
 import { sonFaux, sonJuste } from '../utils/son';
 import MascotteKunz from './MascotteKunz';
@@ -171,6 +171,23 @@ type EtapeEnquete = {
   regle: string;
 };
 
+/** Cloze (audit7, mesure n°1 : briser le plafond « clic-only ») : un blank = une lexie à choisir
+ *  dans un lexique contraint (3 candidats rotés, 2 leurres typés — jamais la bonne réponse). */
+type ClozeBlanc = {
+  /** La lexie correcte — incrustée dans le gabarit quand elle est posée. */
+  correct: string;
+  /** [correct, leurre1, leurre2] — la rotation d'affichage déplace la bonne position. */
+  options: [string, string, string];
+  /** Diagnostics typés des 2 leurres (explication du critère ministériel violé). */
+  diagno: [string, string];
+};
+
+/** Un slot du محرّر en mode « canevas à blancs » : gabarit ponctué de placeholders {b0},{b1}… */
+type ClozeSlot = {
+  gabarit: string;
+  blancs: ClozeBlanc[];
+};
+
 type ExerciceEnquete = {
   titre: string;
   situation: string;
@@ -182,11 +199,15 @@ type ExerciceEnquete = {
   erreur: string;
   /** محرّر الجواب (audit, +1,1) : la réponse finale en 5 tuiles calibrables
    *  (المقدمة → doc 1 → doc 2 → العلاقة → الخلاصة), chacune avec 2 leurres typés :
-   *  un cours non documenté + une interprétation prématurée (jamais la bonne avant le choix). */
+   *  un cours non documenté + une interprétation prématurée (jamais la bonne avant le choix).
+   *  Si `cloze` est présent, le محرّر fonctionne en « canevas à blancs » (mesure n°1, +1,1) :
+   *  l'élève complète chaque gabarit avec un lexique contraint au lieu de reconnaître un
+   *  paragraphe tout fait. */
   modele: {
     tuiles: [string, string, string, string, string];
     leurres: [[string, string], [string, string], [string, string], [string, string], [string, string]];
     diagno: [[string, string], [string, string], [string, string], [string, string], [string, string]];
+    cloze?: ClozeSlot[];
   };
 };
 
@@ -318,6 +339,137 @@ const exercicesEnquete: ExerciceEnquete[] = [
         ['ليست هذه قراءة الوثيقة 2: قارن الأيام 5 و10 و12 قبل الاستنتاج.', 'خلاصة عامة من تجربة واحدة: لا تعمّم قبل الربط بالوثيقة 1.'],
         ['الجدول والتجربة يصفان الرفض نفسه من زاويتين — أين التقاء النتيجتين؟', 'ابحث عن الرابط بين الخلية (T) والآلية (الذاكرة) بدل الفصل.'],
         ['الوثائق تُظهر نوعية وذاكرة وتدخل الـ T — راجع خلاصتك لتشملها.', 'من ارتفع في الوثيقة 1 عند المزروع: B أم T؟ عدّل خلاصتك.'],
+      ],
+      // Cloze (audit7, mesure n°1) : chaque gabarit complété restitue exactement la tuile modèle —
+      // l'élève produit (choix d'une lexie dans un vocabulaire contraint) au lieu de reconnaître un
+      // paragraphe tout fait. Chaque blank : 1 correcte + 2 leurres typés, rotation déterministe.
+      cloze: [
+        {
+          gabarit:
+            'عند زرع طعم {b0} جسم المستقبل يُلاحظ رفضه؛ فما دور {b1} في هذا الرفض؟',
+          blancs: [
+            {
+              correct: 'لا يطابق',
+              options: ['لا يطابق', 'يطابق', 'يشبه'],
+              diagno: [
+                'لو كان الطعم متوافقًا لما ميّزه الجهاز المناعي عن الذات: الرفض هو بالضبط ردّ الفعل على عدم التوافق.',
+                'التوافق بين المتبرع والمستقبل نسيجي (جزيئات CMH)، لا تشابه عام: «يشبه» ليس حالة توافق.',
+              ],
+            },
+            {
+              correct: 'الخلايا اللمفاوية',
+              options: ['الخلايا اللمفاوية', 'الأجسام المضادة', 'كريات الدم الحمر'],
+              diagno: [
+                'الوثيقة 1 تعدّ خلايا (لمفاويات T و B) ولا تقيس أجسامًا مضادة: المكوّن المعني خلوي.',
+                'الكريات الحمر لا تقوم هنا بأي دور في تمييز «الذات» عن «اللا ذات»: خارج موضوع الوثيقتين.',
+              ],
+            },
+          ],
+        },
+        {
+          gabarit:
+            'تُظهر الوثيقة 1 {b0} في نسبة {b1} عند المزروع ({b2}) مع ثبات نسبي للـ B (12 و11).',
+          blancs: [
+            {
+              correct: 'ارتفاعًا ملحوظًا',
+              options: ['ارتفاعًا ملحوظًا', 'انخفاضًا ملحوظًا', 'استقرارًا واضحًا'],
+              diagno: [
+                'أعد قراءة الجدول: 60 بعد الزرع مقابل 25 عند السليم — قيمة T ترتفع عند المزروع.',
+                'الثابت هنا هو عمود B (12 و11)؛ عمود T هو الذي يتحرك بشدة.',
+              ],
+            },
+            {
+              correct: 'اللمفاويات T',
+              options: ['اللمفاويات T', 'اللمفاويات B', 'الأجسام المضادة'],
+              diagno: [
+                'B ثابتة (12 و11)؛ القيمة التي تنفجر هي T (25 ← 60).',
+                'الوثيقة تعدّ لمفاويات ولا تجري أي اختبار للأجسام المضادة.',
+              ],
+            },
+            {
+              correct: '60 من 100 مقابل 25',
+              options: ['60 من 100 مقابل 25', '25 من 100 مقابل 60', '12 من 100 مقابل 11'],
+              diagno: [
+                'قلب القراءة: 25 قيمة السليم و60 قيمة المزروع.',
+                'هذا الزوج هو عمود B شبه الثابت — ليس هو الفرق المفسّر للرفض.',
+              ],
+            },
+          ],
+        },
+        {
+          gabarit:
+            'تكشف الوثيقة 2 {b0}: رفض ثانٍ أسرع ({b1}) لنفس الطعم، مع بقاء خصوصية الطعم (طعم Z رُفض في زمنه المعتاد نحو 12 يومًا).',
+          blancs: [
+            {
+              correct: 'ذاكرة مناعية',
+              options: ['ذاكرة مناعية', 'سبات مناعي', 'استجابة أبطأ'],
+              diagno: [
+                'مصطلح خارج البرنامج: الرفض الثاني أسرع، أي ذاكرة، لا خمود.',
+                'عكس المعطى: الرفض الثاني للطعم X ينتقل من 10 إلى 5 أيام — يتسارع.',
+              ],
+            },
+            {
+              correct: '5 أيام',
+              options: ['5 أيام', '10 أيام', '12 يومًا'],
+              diagno: [
+                '10 أيام هو زمن الرفض الأول للطعم X؛ الثاني أقصر.',
+                '12 يومًا هو زمن طعم Z الغريب (لم يسبق لقاؤه) — لا يخصّ الرفض الثاني.',
+              ],
+            },
+          ],
+        },
+        {
+          gabarit:
+            '{b0} الوثيقتان: الأولى تحدد المكوّن المرتفع ({b1})، والثانية تثبت أن الاستجابة مكتسبة وخصوصية — فالـ T هي الفاعل في رفض سريع وموجّه.',
+          blancs: [
+            {
+              correct: 'تتكامل',
+              options: ['تتكامل', 'تتناقض', 'تستقل'],
+              diagno: [
+                'لا تناقض: الأولى تعطي المكوّن (T) والثانية ذاكرته — النتيجتان تلتقيان.',
+                'علاقة تمرين 2 تُبنى دائمًا بربط الوثيقتين؛ هنا الخلية (T) والفعل (الذاكرة) يتلاقيان.',
+              ],
+            },
+            {
+              correct: 'اللمفاويات T',
+              options: ['اللمفاويات T', 'اللمفاويات B', 'الأجسام المضادة'],
+              diagno: [
+                'المكوّن المرتفع في الجدول هو T (60) وليس B (ثابتة).',
+                'الوثائق تعدّ لمفاويات؛ لا شيء فيها يقيس أجسامًا مضادة.',
+              ],
+            },
+          ],
+        },
+        {
+          gabarit:
+            'إذن، رفض الطعم استجابة {b0} تقودها {b1}، {b2} ضرورة تطابق المتبرع والمستقبل وتثبيط المناعة بعد الزرع.',
+          blancs: [
+            {
+              correct: 'مناعية نوعية مكتسبة',
+              options: ['مناعية نوعية مكتسبة', 'مناعية غير نوعية', 'وراثية لا تتغير'],
+              diagno: [
+                'استجابة غير نوعية لا تتسارع عند لقاء ثانٍ بنفس الطعم: النوعية مثبتة (Z بقي 12 يومًا).',
+                'الزرعة الثانية تثبت ذاكرة مكتسبة: لا علاقة لها بخاصية وراثية جامدة.',
+              ],
+            },
+            {
+              correct: 'اللمفاويات T',
+              options: ['اللمفاويات T', 'اللمفاويات B', 'خلايا الدم الحمر'],
+              diagno: [
+                'المكوّن الذي تورّطت فيه الوثيقتان هو T (25 ← 60 والذاكرة).',
+                'لا دور مناعي للكريات الحمر يظهر في الوثيقتين.',
+              ],
+            },
+            {
+              correct: 'ما يفسّر',
+              options: ['ما يفسّر', 'بالرغم من', 'ولهذا ننفي'],
+              diagno: [
+                'اللاحق نتيجة منطقية للاستنتاج (من هنا ضرورة التوافق): نحتاج رابطًا للنتيجة لا للتعارض.',
+                'الخلاصة لا تنفي وجوب التوافق: هي تعلّله وتبرّره.',
+              ],
+            },
+          ],
+        },
       ],
     },
   },
@@ -742,6 +894,61 @@ function tuilesEmplacementEnquete(
   return { options, bonne: (3 - decalage) % 3 };
 }
 
+/** Candidats du blank courant du mode cloze : 1 lexie correcte + 2 leurres typés.
+ *  La variante (incrémentée à chaque erreur) fait tourner la position sans jamais révéler la bonne. */
+function tuilesClozeEmplacement(
+  exo: number,
+  k: number,
+  b: number,
+  variante: number,
+): { options: string[]; bonne: number } {
+  const m = exercicesEnquete[exo]?.modele ?? exercicesEnquete[0].modele;
+  const base = m.cloze?.[k]?.blancs[b]?.options ?? ['', '', ''];
+  const decalage = (exo + k + b + variante + 1) % 3;
+  const options = base.map((_, x) => base[(x + decalage) % 3]);
+  return { options, bonne: (3 - decalage) % 3 };
+}
+
+/** Aperçu du gabarit du slot actif (mode cloze) : les lexies déjà posées s'incrustent en gras,
+ *  le blank courant est matérialisé « …؟ », les blanks suivants restent muets. */
+function gabaritCloze(modele: ExerciceEnquete['modele'], k: number, remplis: number): ReactNode[] {
+  const slot = modele.cloze?.[k];
+  if (!slot) return [];
+  const morceaux = slot.gabarit.split(/(\{b\d+\})/g);
+  const pieces: ReactNode[] = [];
+  morceaux.forEach((morceau, i) => {
+    const bRe = /^\{b(\d+)\}$/.exec(morceau);
+    if (!bRe) {
+      pieces.push(morceau);
+      return;
+    }
+    const n = Number(bRe[1]);
+    if (n < remplis) {
+      pieces.push(
+        <b key={`p${i}`} className="text-forest">
+          {slot.blancs[n].correct}
+        </b>,
+      );
+    } else if (n === remplis) {
+      pieces.push(
+        <span
+          key={`p${i}`}
+          className="rounded border border-dashed border-gold bg-gold-soft/50 px-1.5 font-bold text-[#6b5320]"
+        >
+          …؟
+        </span>,
+      );
+    } else {
+      pieces.push(
+        <span key={`p${i}`} className="text-mute">
+          …
+        </span>,
+      );
+    }
+  });
+  return pieces;
+}
+
 // ───────────── سلّم المساعدة — escalier d'indices à 3 barreaux (audit) ─────────────
 // Barreau 1 « أين تنظر ؟ » (relance), barreau 2 « أي عملية ؟ » (procédure),
 // Barreau 3 « القاعدة العامة » (micro-leçon) — jamais la réponse, zéro pourcentage,
@@ -1022,6 +1229,8 @@ export default function Methodologie({
   const [fauxRedaction, setFauxRedaction] = useState(0);
   const [varianteRedaction, setVarianteRedaction] = useState(0);
   const [diagnoRedaction, setDiagnoRedaction] = useState('');
+  /** Blank courant dans le slot actif du محرّر — mode « canevas à blancs » (cloze). */
+  const [blancRedaction, setBlancRedaction] = useState(0);
   // سلّم المساعدة (audit) : barreaux ouverts (0-3), erreurs validées sur l'exo courant,
   // surimpression du المفتاح sans perte de l'état de l'exercice.
   const [barreaux, setBarreaux] = useState(0);
@@ -1211,12 +1420,56 @@ export default function Methodologie({
     setFauxRedaction(0);
     setVarianteRedaction(0);
     setDiagnoRedaction('');
+    setBlancRedaction(0);
     setEcran('redaction');
   }
 
   function choisirTuile(idx: number): void {
     if (redactionSource === 'enquete') {
       const m = exercicesEnquete[enqueteId]?.modele ?? exercicesEnquete[0].modele;
+      // ── Mode « canevas à blancs » (cloze) : l'élève produit une lexie par blank au lieu de
+      //    reconnaître un paragraphe tout fait (audit7, mesure n°1 — briser le plafond clic-only).
+      const slotCloze = m.cloze?.[slotRedaction];
+      if (slotCloze) {
+        const blanc = slotCloze.blancs[blancRedaction];
+        if (!blanc) return;
+        const { options } = tuilesClozeEmplacement(enqueteId, slotRedaction, blancRedaction, varianteRedaction);
+        if (options[idx] === blanc.correct) {
+          // Bonne lexie : incrustée dans le gabarit, puis blank suivant / slot suivant.
+          sonJuste();
+          setTuileFausse(null);
+          setDiagnoRedaction('');
+          if (blancRedaction + 1 >= slotCloze.blancs.length) {
+            // Slot complété : on pose la tuile modèle reconstruite (porte dure interne).
+            const attendu = m.tuiles[slotRedaction];
+            setTuilesChoisies([...tuilesChoisies, attendu]);
+            setBlancRedaction(0);
+            if (slotRedaction + 1 >= m.tuiles.length) {
+              setRedactionFin(true);
+              // La production entre dans la boucle mémoire (audit, vérif. 11) :
+              // réussite directe → J+3، erreurs → J+1.
+              onResultatKafaa?.(`redactionEnquete${enqueteId}`, fauxRedaction > 0 ? 3 : 5, {
+                verbe: 'قارن ثم استنتج',
+                exercice: exoEnquete.titre,
+                erreur: exercicesEnquete[enqueteId]?.erreur ?? '',
+              });
+            } else {
+              setSlotRedaction(slotRedaction + 1);
+            }
+          } else {
+            setBlancRedaction(blancRedaction + 1);
+          }
+        } else {
+          // Mauvaise lexie : rouge + son doux + diagnostic typé + rotation, sans révélation.
+          sonFaux();
+          setTuileFausse(idx);
+          setFauxRedaction((n) => n + 1);
+          const k = options[idx] === blanc.options[1] ? 0 : 1;
+          setDiagnoRedaction(blanc.diagno[k]);
+          setVarianteRedaction((v) => v + 1);
+        }
+        return;
+      }
       const attendu = m.tuiles[slotRedaction];
       if (attendu === undefined) return;
       const { options } = tuilesEmplacementEnquete(enqueteId, slotRedaction, varianteRedaction);
@@ -1344,6 +1597,9 @@ export default function Methodologie({
   const exoEnquete = exercicesEnquete[enqueteId] ?? exercicesEnquete[0];
   const etapeActuelle = exoEnquete.etapes[etapeEnq];
   const { options: optionsEnq, bonne: idxJusteEnq } = optionsEnquete(enqueteId, etapeEnq);
+  // محرّر d'enquête : modèle 5 tuiles + mode « canevas à blancs » (cloze) éventuel du slot actif.
+  const modeleEnquete = exercicesEnquete[enqueteId]?.modele ?? exercicesEnquete[0].modele;
+  const slotClozeActif = modeleEnquete.cloze?.[slotRedaction];
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -1948,12 +2204,19 @@ export default function Methodologie({
         {ecran === 'redaction' && redactionSource === 'enquete' && (
           <section className="card p-6">
             <p className="eyebrow">
-              استقصاء · وثيقتان · تمرين {enqueteId + 1} من {exercicesEnquete.length} · محرّر 5 بطاقات
+              استقصاء · وثيقتان · تمرين {enqueteId + 1} من {exercicesEnquete.length} ·{' '}
+              {modeleEnquete.cloze ? 'محرّر فراغات' : 'محرّر 5 بطاقات'}
             </p>
-            <h2 className="font-naskh mt-2 text-2xl font-bold">ابنِ جوابك النهائي · بطاقات</h2>
+            <h2 className="font-naskh mt-2 text-2xl font-bold">
+              {modeleEnquete.cloze
+                ? 'ابنِ جوابك النهائي · أكمل الفراغات'
+                : 'ابنِ جوابك النهائي · بطاقات'}
+            </h2>
             <p className="mt-2 text-sm text-mute">
-              {exoEnquete.situation} — ابنِ الجواب كاملًا: المقدمة، ثم الوثيقة 1، ثم الوثيقة 2، ثم
-              العلاقة، ثم الخلاصة. دون كتابة ولا لوحة مفاتيح.
+              {exoEnquete.situation} —{' '}
+              {modeleEnquete.cloze
+                ? 'أكمل كل فراغ بالكلمة المناسبة من الاختيار الثلاثي: أنت تنتج الجواب كلمةً كلمة، لا تختار جملة جاهزة.'
+                : 'ابنِ الجواب كاملًا: المقدمة، ثم الوثيقة 1، ثم الوثيقة 2، ثم العلاقة، ثم الخلاصة. دون كتابة ولا لوحة مفاتيح.'}
             </p>
             <div className="mt-4 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
               <p className="text-[11px] font-bold text-[#6b5320]">سؤال البكالوريا</p>
@@ -2013,7 +2276,9 @@ export default function Methodologie({
                       {rempli
                         ? tuilesChoisies[i]
                         : actif
-                          ? '▸ اختر البطاقة المناسبة أدناه'
+                          ? slotClozeActif
+                            ? gabaritCloze(modeleEnquete, i, blancRedaction)
+                            : '▸ اختر البطاقة المناسبة أدناه'
                           : 'مسودة مغلقة — أتمّ ما قبله أولًا.'}
                     </p>
                   </div>
@@ -2023,8 +2288,16 @@ export default function Methodologie({
 
             {!redactionFin && (
               <div className="mt-3 grid gap-2">
-                {tuilesEmplacementEnquete(enqueteId, slotRedaction, varianteRedaction).options.map(
-                  (opt, idx) => (
+                {slotClozeActif && (
+                  <p className="text-[11px] font-bold text-forest">
+                    الفراغ {blancRedaction + 1} من {slotClozeActif.blancs.length} — اختر الكلمة المناسبة
+                  </p>
+                )}
+                {(slotClozeActif
+                  ? tuilesClozeEmplacement(enqueteId, slotRedaction, blancRedaction, varianteRedaction)
+                      .options
+                  : tuilesEmplacementEnquete(enqueteId, slotRedaction, varianteRedaction).options
+                ).map((opt, idx) => (
                     <button
                       key={opt}
                       onClick={() => choisirTuile(idx)}
@@ -2036,16 +2309,17 @@ export default function Methodologie({
                     >
                       {opt}
                     </button>
-                  ),
-                )}
+                  ))}
                 {diagnoRedaction && tuileFausse !== null && (
                   <p className="rounded-2xl bg-clay-soft p-3 text-sm font-bold leading-relaxed text-clay">
-                    {diagnoRedaction} — أعد النظر، ثم جرّب بطاقة أخرى.
+                    {diagnoRedaction} — أعد النظر، ثم جرّب {slotClozeActif ? 'كلمة أخرى' : 'بطاقة أخرى'}.
                   </p>
                 )}
                 {tuileFausse !== null && !diagnoRedaction && (
                   <p className="rounded-2xl bg-clay-soft p-3 text-sm font-bold text-clay">
-                    ليست البطاقة المناسبة — أعد النظر في مكانها في الجواب. خذ وقتك، لا عجلة.
+                    {slotClozeActif
+                      ? 'ليست الكلمة المناسبة — استثمر المعطيات واستنتج قبل اختيار بديل.'
+                      : 'ليست البطاقة المناسبة — أعد النظر في مكانها في الجواب. خذ وقتك، لا عجلة.'}
                   </p>
                 )}
               </div>
@@ -2081,6 +2355,7 @@ export default function Methodologie({
                   setFauxRedaction(0);
                   setVarianteRedaction(0);
                   setDiagnoRedaction('');
+                  setBlancRedaction(0);
                 }}
                 className="btn btn-ghost"
               >

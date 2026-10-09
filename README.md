@@ -651,7 +651,7 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   est rotée** (rotation déterministe, jamais de « position 0 » systématique), et chaque erreur
   affiche un **diagnostic typé expliquant pourquoi ce verbe ne convient pas à la consigne**
   (jamais la réponse) — fini le message générique « ليس الجواب الصحيح ».
-- **v0.6 (actuelle = ré-audit)** — **ordre U1-L1 corrigé + les 12 vérifications de l'audit-5
+- **v0.6 (ré-audit)** — **ordre U1-L1 corrigé + les 12 vérifications de l'audit-5
   rejouées à la hausse : 18/18 tests verts** : (1) le `mechanismAr` de la leçon 1 de l'unité 1 suit
   enfin l'ordre pédagogique transcription → ARN → traduction — unique changement de code, build vert
   (`tsc -b && vite build`, ~730 ms), QCM P5 cohérent (généré dynamiquement depuis le tableau) ;
@@ -667,9 +667,22 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   une évaluation), V5 (les 4 niveaux restent décoratifs), V10-unite1 (badges décoratifs du محرّر
   الوحدة 1, seul le flow enquête coche réellement), V12 (pas de persistance locale de l'exercice en
   cours).
-- **v0.7** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
+- **v0.7 (actuelle = Cloze)** — **le محرّر d'enquête brise le plafond « clic-only » (audit7,
+  mesure n°1, +1,1 pt)** : l'enquête 1 (rejet de greffe, le cas documenté) passe en **canevas à
+  blancs** — chaque tuile du barème devient un gabarit où l'élève **produit une lexie par blank**
+  (12 lexies : mots-clés biologiques, valeurs chiffrées, connecteurs « ما يفسّر »…) choisies dans
+  un **lexique contraint** (3 candidats rotés : 1 correcte + 2 leurres typés, jamais la bonne aux
+  mêmes positions, erreur → rouge + son doux + **diagnostic typé** du leurre + rotation sans
+  révélation). La pose complète restitue mot pour mot les 5 tuiles du modèle, la **grille de barème
+  est toujours cochée à la pose** (slot complet = tuile posée) et la **carte kafaa
+  `redactionEnquete0`** (J+3 directe / J+1 avec erreurs) est conservée. Enquêtes 2-3 et محرّر
+  الوحدة 1 : mode tuiles inchangé (champ `modele.cloze` optionnel). Build vert ; banc étendu à
+  **21/21 tests**, dont 3 dédiés à la spec Cloze (gabarit + compteur, refus d'une mauvaise lexie
+  avec diagnostic sans révélation, restauration exacte du modèle). Autopsie de copie (mesure n°2,
+  +0,8 pt) : prévue en chantier suivant.
+- **v0.8** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
-  (suppression du scaffolding).
+  (suppression du scaffolding) ; autopsie de copie.
 
 ---
 
