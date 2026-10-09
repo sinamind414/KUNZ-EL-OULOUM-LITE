@@ -639,6 +639,16 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   réussites d'exercice continuent de **programmer la carte** dans la file SM-2 (J+3 directe /
   J+1 avec erreurs) sans jamais réduire le nombre de revues disponibles cette semaine — le
   « دقيقتان، لا أكثر » reste garanti 2 fois par semaine même après grosse session de travail.
+- **v0.5.17** — **tri contrasté des 11 verbes + diagnostic typé (audit F6/F12 : verbes non
+  discriminés, distracteurs caricaturaux, position figée, message binaire)** : l'écran « أفعال
+  التعليمة » affiche désormais les **paires d'opposition** (« لا تخلط بين الأفعال المتقاربة » :
+  حلّل ≠ فسّر، استخرج ≠ حدّد، قارن ≠ استنتج، علّل ≠ فسّر، صف ≠ مثّل، استنتج ≠ أثبت، اقترح
+  فرضية ≠ أثبت) avant la liste de référence. Le « اختبر نفسك » n'est plus un QCM de 3 questions
+  caricaturales (« نسخ عنوان الوثيقة ») : c'est un **tri contrasté de 10 consignes réelles de
+  Bac** où chaque distracteur est un **verbe proche** (jamais de caricature), la **bonne réponse
+  est rotée** (rotation déterministe, jamais de « position 0 » systématique), et chaque erreur
+  affiche un **diagnostic typé expliquant pourquoi ce verbe ne convient pas à la consigne**
+  (jamais la réponse) — fini le message générique « ليس الجواب الصحيح ».
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

@@ -545,10 +545,71 @@ const niveaux: [string, string, string][] = [
   ['4', 'تشخيص الخطأ', 'حلل إجابة تبدو صحيحة واكتشف ما سقط منها.'],
 ];
 
-const diagnostic: readonly [string, readonly string[], number][] = [
-  ['ماذا تفعل عندما تقرأ «قارن»؟', ['أعطي تعريفًا فقط', 'أذكر التشابهات والاختلافات', 'أكتب خلاصة دون وثيقة'], 1],
-  ['«تزداد السرعة عند 37°C» هي:', ['ملاحظة', 'فرضية', 'تفسير'], 0],
-  ['ما الذي يجب أن تتضمنه الخلاصة؟', ['بيانات + علاقة علمية', 'رأي شخصي فقط', 'نسخ عنوان الوثيقة'], 0],
+// ───────────── التشخيص — tri contrasté des 11 verbes (audit F6/F12 : verbes non discriminés,
+// distracteurs caricaturaux, bonne réponse en position figée, message binaire).
+// Chaque item oppose un vrai couple d'action (حلّل ≠ فسّر ≠ استنتج…) : la consigne est celle
+// d'un exercice réel de Bac, les 3 propositions sont des verbes proches (jamais de caricature
+// comme « نسخ عنوان الوثيقة »), et chaque distracteur porte son diagnostic typé (jamais la bonne).
+type ItemDiagnostic = readonly [
+  consigne: string,
+  options: readonly [string, string, string],
+  correct: number,
+  /** Diagnostic typé par distracteur (clé = texte du verbo fautif) — jamais la bonne réponse. */
+  cible: Record<string, string>
+];
+
+const diagnostic: ItemDiagnostic[] = [
+  ['حلّل نتائج التجربة عند درجتي 20°C و40°C.', ['حلّل', 'فسّر', 'استنتج'], 0, {
+    'فسّر': 'فسّر يبحث عن السبب. هنا المطلوب أولًا فكّ المعطيات وإبراز العلاقة بين درجتي الحرارة — وذلك هو التفكيك.',
+    'استنتج': 'استنتج تصوغ الخلاصة في النهاية. قبل الخلاصة، المطلوب هنا تفكيك النتائج وإبراز علاقاتها.',
+  }],
+  ['فسّر انخفاض نشاط الإنزيم عند 60°C.', ['علّل', 'فسّر', 'حلّل'], 1, {
+    'علّل': 'علّل يبرّر النتيجة بحجة بعد وقوعها. فسّر هنا يشرح الآلية الكامنة — لماذا ينخفض النشاط؟',
+    'حلّل': 'حلّل يُفكّك مجموعة معطيات. هنا ظاهرة واحدة تُطلب فيها شرح آلية السببية، لا تفكيك نتائج.',
+  }],
+  ['قارن بين الاستجابة الخلطية والخلوية.', ['استنتج', 'قارن', 'صف'], 1, {
+    'استنتج': 'استنتج خلاصة بعد الجهد. المقارنة تسبقها: أوجه التشابه والاختلاف بين عنصرين.',
+    'صف': 'صف يذكر ما نرى بعزلة. المقارنة تقتضي وضع عنصرين جنبًا إلى جنب وتبيين علاقتهما.',
+  }],
+  ['استخرج من المنحنى قيمة سرعة التفاعل عند 37°C.', ['استخرج', 'حدّد', 'صف'], 0, {
+    'حدّد': 'حدّد يسمّي عنصرًا دون إخراج قيمة. هنا المطلوب قراءة قيمة دقيقة على السند — استخراج مباشر.',
+    'صف': 'صف يرصد الاتجاه العام للمنحنى. الاستخراج يأخذ قيمة موضعية دقيقة.',
+  }],
+  ['استنتج مصير الطاقة المحررة أثناء التنفس.', ['فسّر', 'استنتج', 'علّل'], 1, {
+    'فسّر': 'فسّر يشرح الآلية. هنا المعطيات تسمح بصياغة خلاصة عامة تتجاوز الوصف.',
+    'علّل': 'علّل يبرّر سببًا محددًا بحجة. الاستنتاج يصوغ نتيجة مبنية على مجمل المعطيات.',
+  }],
+  ['علّل ضرورة تنظيم نسبة الغلوكوز في الدم.', ['فسّر', 'علّل', 'استنتج'], 1, {
+    'فسّر': 'فسّر يشرح الآلية التي تتحقق بها الظاهرة. علّل يقدّم الحجة التي تبرّر حكمًا — لماذا يجب ذلك؟',
+    'استنتج': 'استنتج يخرج الخلاصة بعد الإثبات. التعليل يأتي قبلها: الحجج أولًا.',
+  }],
+  ['مثّل بمخطط مراحل تركيب البروتين.', ['حلّل', 'مثّل', 'صف'], 1, {
+    'حلّل': 'حلّل يفكّ وثيقة معطاة إلى علاقات. مثّل يرسم المعطيات في مخطط منسّق يعيد بناء الترتيب.',
+    'صف': 'صف يكتب بالكلمات ما نرى. المطلوب تمثيل بصري منظم — مخطط — لا فقرة وصفية.',
+  }],
+  ['اقترح فرضية تفسّر انخفاض النشاط.', ['فسّر', 'اقترح فرضية', 'استنتج'], 1, {
+    'فسّر': 'فسّر يؤكد آلية ثابتة. الفرضية تفسير مؤقت قابل للاختبار — ليست تأكيدًا بعد.',
+    'استنتج': 'استنتج حكم بعد تحقق. الفرضية تأتي قبل التحقق وتنتظر التجربة.',
+  }],
+  ['أثبت أن البنية الفراغية تحدد الوظيفة.', ['أثبت', 'استنتج', 'فسّر'], 0, {
+    'استنتج': 'استنتج خلاصة سريعة. أثبت يبني دليلًا واضحًا يقنع القارئ بالعلاقة.',
+    'فسّر': 'فسّر يشرح السبب. الإثبات يقدّم حجة مرتبطة بمعطى محدد وبرهان.',
+  }],
+  ['حدّد مقر تركيب البروتين.', ['صف', 'حدّد', 'استخرج'], 1, {
+    'صف': 'صف يرصد الظاهرة. حدّد يسمّي العنصر المطلوب بدقة — المقر.',
+    'استخرج': 'استخرج ينقل معطى مذكورًا في وثيقة. هنا المطلوب تسمية العنصر — المقر — لا نقله.',
+  }],
+];
+
+// أزواج متقاربة للعرض في صفحة الأفعال (الفارق في سطر واحد) — le tri contrasté visuel.
+const contrastesVerbes: readonly [string, string, string, string][] = [
+  ['حلّل', 'يفكّك المعطيات ويبرز العلاقات', 'فسّر', 'يشرح السبب أو الآلية'],
+  ['استخرج', 'ينقل معطى أو قيمة من السند', 'حدّد', 'يسمّي عنصرًا'],
+  ['قارن', 'أوجه التشابه والاختلاف', 'استنتج', 'خلاصة مبنية على المعطيات'],
+  ['علّل', 'يبرّر بحجة تدعم الحكم', 'فسّر', 'يشرح الآلية الكامنة'],
+  ['صف', 'يرصد ما نرى دون تفسير', 'مثّل', 'يرسم مخططًا منسّقًا'],
+  ['استنتج', 'خلاصة بعد الإثبات', 'أثبت', 'دليل واضح يقنع القارئ'],
+  ['اقترح فرضية', 'تفسير مؤقت قابل للاختبار', 'أثبت', 'تأكيد نهائي مبني على البيانات'],
 ];
 
 const REFAIRE = 'ليس الجواب الصحيح — أعد المحاولة. خذ وقتك، لا عجلة.';
@@ -936,6 +997,8 @@ export default function Methodologie({
   const [selected, setSelected] = useState<number | null>(null);
   const [dernierFaux, setDernierFaux] = useState<number | null>(null);
   const [erreur, setErreur] = useState(false);
+  // Message de диагностика typée : texte du distracteur choisi (افعل/faux) — jamais la bonne.
+  const [diagMsg, setDiagMsg] = useState('');
   const [rate, setRate] = useState(false); // échec au 1er essai sur la question en cours (persiste pendant les réessais)
   const [operation, setOperation] = useState(0);
   const [methode, setMethode] = useState(0);
@@ -978,25 +1041,39 @@ export default function Methodologie({
     setRate(false);
     setDernierFaux(null);
     setSelected(null);
+    setDiagMsg('');
     setEcran('diagnostic');
   }
 
-  // تشخيص: خطأ = أحمر + نغمة هادئة + إعادة المحاولة (بلا كشف الجواب)؛ صواب = أخضر + نغمة صاعدة.
+  // تشخيص: خطأ = أحمر + نغمة هادئة + رسالة مُصنّفة حسب الفعل المختار (بلا كشف الجواب)؛
+  // صواب = أخضر + نغمة صاعدة. Rotation déterministe : la bonne réponse n'est jamais à la
+  // même position d'un item à l'autre (jamais de « position 0 » systématique).
+  const rotationDiagnostic = (i: number): number => (i + 1) % 3;
+
   function validerDiagnostic(): void {
     if (selected === null) return;
-    if (selected === diagnostic[q][2]) {
+    const decal = rotationDiagnostic(q);
+    const sourceBonne = diagnostic[q][2];
+    // index affiché de la bonne réponse : source décalée de `decal`.
+    const afficheBon = (sourceBonne + decal) % 3;
+    if (selected === afficheBon) {
       sonJuste();
       if (!rate) setScore((s) => s + 1);
       setErreur(false);
       setRate(false);
       setDernierFaux(null);
       setSelected(null);
+      setDiagMsg('');
       if (q === diagnostic.length - 1) setEcran('resultat');
       else {
         setQ(q + 1);
       }
     } else {
       sonFaux();
+      // index d'origine (dans le tableau source) de l'option affichée « selected ».
+      const sourceFaux = (selected - decal + 3) % 3;
+      const msg = diagnostic[q][3][diagnostic[q][1][sourceFaux]];
+      setDiagMsg(msg ?? REFAIRE);
       setErreur(true);
       setRate(true);
       setDernierFaux(selected);
@@ -1432,6 +1509,25 @@ export default function Methodologie({
           <section className="card p-5">
             <p className="eyebrow">دليل قراءة التعليمة</p>
             <h2 className="font-naskh mt-2 text-2xl font-bold">ماذا يطلب منك الفعل؟</h2>
+            {/* Tri contrasté — الأفعال المتقاربة جنبًا إلى جنب، لئلّا يخلط التلميذ بينها (audit F6). */}
+            <div className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/40 p-3">
+              <p className="text-[11px] font-black text-[#6b5320]">لا تخلط بين الأفعال المتقاربة</p>
+              <div className="mt-2 divide-y divide-[#e6c98a]">
+                {contrastesVerbes.map(([a, defA, b, defB]) => (
+                  <div key={`${a}-${b}`} className="grid grid-cols-[1fr_auto_1fr] items-start gap-2 py-2 text-xs leading-snug">
+                    <div className="text-right">
+                      <b className="block text-forest">{a}</b>
+                      <span className="mt-0.5 block text-mute">{defA}</span>
+                    </div>
+                    <span className="pt-1 font-black text-[#6b5320]">≠</span>
+                    <div className="text-right">
+                      <b className="block text-forest">{b}</b>
+                      <span className="mt-0.5 block text-mute">{defB}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="mt-4 space-y-2">
               {verbes.map(([verbe, definition, exemple]) => (
                 <article key={verbe} className="rounded-2xl border border-line bg-paper p-4">
@@ -1444,7 +1540,7 @@ export default function Methodologie({
               ))}
             </div>
             <button onClick={startDiagnostic} className="btn btn-primary mt-5 w-full">
-              اختبر نفسك
+              اختبر نفسك — أيّ فعلٍ تقرأ؟
             </button>
           </section>
         )}
@@ -1457,14 +1553,17 @@ export default function Methodologie({
             <h2 className="font-naskh mt-2 text-xl font-bold">{diagnostic[q][0]}</h2>
             <div className="mt-5 grid gap-2">
               {diagnostic[q][1].map((option, i) => {
+                // Rotation déterministe : le distrayant affiché n'est jamais le même index
+                // d'une question à l'autre — la bonne réponse bouge (anti « position 0 »).
+                const affiche = (i + rotationDiagnostic(q)) % 3;
                 let style = 'border-line bg-paper';
-                if (dernierFaux === i) style = 'border-clay bg-clay-soft text-clay';
-                else if (selected === i) style = 'border-forest bg-sage text-forest-deep';
+                if (dernierFaux === affiche) style = 'border-clay bg-clay-soft text-clay';
+                else if (selected === affiche) style = 'border-forest bg-sage text-forest-deep';
                 return (
                   <button
                     key={option}
                     onClick={() => {
-                      setSelected(i);
+                      setSelected(affiche);
                       setErreur(false);
                       setDernierFaux(null);
                     }}
@@ -1475,7 +1574,11 @@ export default function Methodologie({
                 );
               })}
             </div>
-            {erreur && <p className="mt-3 text-sm font-bold text-clay">{REFAIRE}</p>}
+            {erreur && (
+              <p className="mt-3 rounded-xl bg-clay-soft px-3 py-2 text-sm font-bold leading-relaxed text-clay">
+                {diagMsg || REFAIRE}
+              </p>
+            )}
             <button
               onClick={validerDiagnostic}
               disabled={selected === null}
