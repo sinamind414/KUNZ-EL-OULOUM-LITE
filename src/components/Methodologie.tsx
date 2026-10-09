@@ -24,7 +24,7 @@ interface Props {
   ) => void;
 }
 
-type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'enquete' | 'resultat';
+type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'enquete' | 'autopsie' | 'resultat';
 
 // المفتاح — أربع حركات قبل أن أكتب.
 const cle: [string, string, string][] = [
@@ -233,6 +233,94 @@ const GRILLE_BAREME: { code: string; depuisSlot: number }[] = [
   { code: 'ربط', depuisSlot: 3 },
   { code: 'استنتاج', depuisSlot: 4 },
 ];
+
+// ───────────── تشريح نسخة · عين المصحّح (audit7, mesure n°2, +0,8) ─────────────
+// Copie fictive d'un élève répondant à l'exercice 2 (refus de greffe) : les 4 fautes-types du jury
+// (paraphrase sans chiffres, cours parachuté, anthropomorphisme, conclusion hors-échelle) + 2
+// phrases saines — le faux positif forme l'œil du correcteur. Un tic sur une faute révèle le
+// critère violé ; jamais le modèle avant la découverte complète (anti-stress de l'app).
+type ClauseCopie = {
+  id: string;
+  texte: string;
+  fautive: boolean;
+  type?: 'paraphrase' | 'parachutage' | 'anthropomorphisme' | 'echelle';
+  critere?: string;
+  diagnostic?: string;
+  raisonSaine?: string;
+};
+
+const LIBELLE_FAUTE: Record<string, string> = {
+  paraphrase: 'حشو بلا معطى',
+  parachutage: 'درس منقوص',
+  anthropomorphisme: 'لغة عاطفية',
+  echelle: 'خلاصة خارجة',
+};
+
+const COPIE_AUTOPSIE: {
+  consigne: string;
+  snd: string;
+  clauses: ClauseCopie[];
+  modeleComplet: string;
+  erreur: string;
+} = {
+  consigne: 'قارن بين الوثيقتين ثم استنتج الدور المناعي للخلايا اللمفاوية في رفض الطعم.',
+  snd: 'الوثيقة 1 (جدول): اللمفاويات T نحو 25 من كل 100 عند السليم و 60 من كل 100 عند المزروع، واللمفاويات B نحو 12 و 11. الوثيقة 2 (تجربة): زرع جلد X على الفأرة Y فمات بعد 10 أيام، وبالتكرار رُفض بعد 5 أيام فقط، بينما طعم Z لم يُرفض إلا بعد نحو 12 يومًا.',
+  clauses: [
+    {
+      id: 'a1',
+      texte: 'حسب الوثيقتين، نلاحظ أن الخلايا اللمفاوية تعمل جيدًا عند المزروع ثم يتغير نشاطها.',
+      fautive: true,
+      type: 'paraphrase',
+      critere: 'الاستعمال السليم لأدوات المادة',
+      diagnostic:
+        'حشو بلا معطى: لا توجد أي قيمة (25، 60، 5 أيام، 12 يومًا) ولا مقارنة بالشاهد. « تعمل جيدًا ثم يتغير » ليس تحليلًا؛ «حلّل» يقتضي نقل الأرقام قبل أي حكم.',
+    },
+    {
+      id: 'a2',
+      texte: 'الخلايا اللمفاوية خلايا دفاعية توجد في الدم وتنتج الأجسام المضادة لحماية الجسم من الأمراض.',
+      fautive: true,
+      type: 'parachutage',
+      critere: 'الوجاهة',
+      diagnostic:
+        'درس منقوص: التعليمة تطلب « قارن ثم استنتج » انطلاقًا من الوثيقتين، لا إعادة درس؛ جملة بلا سند لا تُحسب في الوجاهة (الوثيقة 1 تعدّ خلايا، لا أجسامًا مضادة).',
+    },
+    {
+      id: 'a3',
+      texte: 'تنتقم الخلايا اللمفاوية T من الطعم الغريب لأنها غاضبة منه فترفضه بسرعة.',
+      fautive: true,
+      type: 'anthropomorphisme',
+      critere: 'الاستعمال السليم لأدوات المادة',
+      diagnostic:
+        'وصف بالعواطف (« تنتقم، غاضبة ») لغة غير علمية. المطلوب لغة آلية: تعرّف اللمفاويات T على مكوّنات الطعم كـ« لا ذات »، تكاثرها النوعي، وذاكرة الاستجابة الأسرع عند اللقاء الثاني.',
+    },
+    {
+      id: 'a4',
+      texte: 'إذن يجب تجنّب زرع الأعضاء نهائيًا، فالجسم يرفض كل ما هو غريب.',
+      fautive: true,
+      type: 'echelle',
+      critere: 'الانسجام',
+      diagnostic:
+        'خلاصة مطلقة وقفزة في المستوى: من رفض طعم عند الخلايا اللمفاوية تنتقل إلى « تجنب الزرع دائمًا ». الخلاصة تجيب عن السؤال: دور T في رفض نوعي مكتسب يستدعي توافقًا بين المتبرع والمستقبل.',
+    },
+    {
+      id: 's1',
+      texte: 'تُظهر الوثيقة 1 ارتفاع اللمفاويات T من 25 إلى 60 من كل 100 عند المزروع مع ثبات نسبي للـ B (12 و 11).',
+      fautive: false,
+      raisonSaine:
+        'عبارة سليمة: تنقل قيم الجدول الدقيقة (25 نحو 60) وتلاحظ ثبات B — هذا هو نقل السند المطلوب قبل أي حكم.',
+    },
+    {
+      id: 's2',
+      texte: 'رُفض طعم X بعد 10 أيام، ثم بعد التكرار رُفض بعد 5 أيام فقط، بينما بقي طعم Z نحو 12 يومًا — ما يدل على ذاكرة نوعية تجاه X.',
+      fautive: false,
+      raisonSaine:
+        'عبارة سليمة: تلخّص التجربة بأيامها الدقيقة وتستنتج منها الذاكرة النوعية بلا تعميم على أي طعم آخر.',
+    },
+  ],
+  modeleComplet:
+    'تشير الوثيقة 1 إلى ارتفاع اللمفاويات T من 25 إلى 60 من كل 100 عند المزروع (مع ثبات نسبي للـ B: 12 و 11)، وتُظهر الوثيقة 2 ذاكرة نوعية: رفض ثانٍ أسرع (5 أيام) لطعم X بينما يبقى طعم Z نحو 12 يومًا. بما أن الخلايا اللمفاوية T هي التي ترتفع وتتذكر، فهي تقود رفضًا نوعيًا مكتسبًا للطعم. نستنتج أن رفض الطعم استجابة مناعية نوعية مكتسبة تقودها اللمفاويات T، ما يفسّر ضرورة تطابق المتبرع والمستقبل وتثبيط المناعة بعد الزرع.',
+  erreur: 'الخلط بين نقل المعطى وتحليله، أو إطلاق خلاصة عامة من وثيقتين خاصتين.',
+};
 
 const exercicesEnquete: ExerciceEnquete[] = [
   {
@@ -1243,6 +1331,13 @@ export default function Methodologie({
   const [fauxTotalEnquete, setFauxTotalEnquete] = useState(0);
   const [aideEnquete, setAideEnquete] = useState(false);
 
+  // ───────────── تشريح نسخة · عين المصحّح (audit7, mesure n°2) ─────────────
+  const [autopsieTiques, setAutopsieTiques] = useState<string[]>([]);
+  const [autopsieFaux, setAutopsieFaux] = useState(0);
+  const [autopsieRevele, setAutopsieRevele] = useState<string | null>(null);
+  const [autopsieFin, setAutopsieFin] = useState(false);
+  const [autopsieKafaa, setAutopsieKafaa] = useState(false);
+
   function startDiagnostic(): void {
     setQ(0);
     setScore(0);
@@ -1346,6 +1441,51 @@ export default function Methodologie({
     setFeedback('');
     setBarreaux(0);
     setFauxExo(0);
+  }
+
+  /** Ouverture de l'autopsie : l'élève joue le correcteur d'une copie fictive (mesure n°2). */
+  function demarrerAutopsie(): void {
+    setAutopsieTiques([]);
+    setAutopsieFaux(0);
+    setAutopsieRevele(null);
+    setAutopsieFin(false);
+    setAutopsieKafaa(false);
+    setEcran('autopsie');
+  }
+
+  /** Tic sur une clause : faute réelle → marquée + critère violé révélé ; clause saine → faux
+   *  positif (compté, expliqué, jamais le modèle) ; découvre tout → modèle + carte كفاءة
+   *  (J+3 sans faux positif, J+1 dès qu'il y en a — même convention que les autres flows). */
+  function tiquerClause(id: string): void {
+    if (autopsieFin) return;
+    const clause = COPIE_AUTOPSIE.clauses.find((c) => c.id === id);
+    if (!clause) return;
+    if (autopsieTiques.includes(id)) {
+      setAutopsieRevele(id);
+      return;
+    }
+    if (!clause.fautive) {
+      sonFaux();
+      setAutopsieFaux((n) => n + 1);
+      setAutopsieRevele(id);
+      return;
+    }
+    sonJuste();
+    const suit = [...autopsieTiques, id];
+    setAutopsieTiques(suit);
+    setAutopsieRevele(id);
+    const nbFautes = COPIE_AUTOPSIE.clauses.filter((c) => c.fautive).length;
+    if (suit.length === nbFautes) {
+      setAutopsieFin(true);
+      if (!autopsieKafaa) {
+        setAutopsieKafaa(true);
+        onResultatKafaa?.('autopsie0', autopsieFaux > 0 ? 3 : 5, {
+          verbe: 'صحّح ثم دلّل',
+          exercice: 'تشريح نسخة · رفض الطعم',
+          erreur: COPIE_AUTOPSIE.erreur,
+        });
+      }
+    }
   }
 
   /** Validation de l'étape courante : bonne réponse → succès + étape suivante ; erreur → diagnostic typé. */
@@ -1600,6 +1740,9 @@ export default function Methodologie({
   // محرّر d'enquête : modèle 5 tuiles + mode « canevas à blancs » (cloze) éventuel du slot actif.
   const modeleEnquete = exercicesEnquete[enqueteId]?.modele ?? exercicesEnquete[0].modele;
   const slotClozeActif = modeleEnquete.cloze?.[slotRedaction];
+  // تشريح نسخة : clause révélée au verdict + nombre de fautes du jury.
+  const clauseAutopsieRevelee = COPIE_AUTOPSIE.clauses.find((c) => c.id === autopsieRevele);
+  const nbFautesAutopsie = COPIE_AUTOPSIE.clauses.filter((c) => c.fautive).length;
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -1692,6 +1835,20 @@ export default function Methodologie({
                 <b className="text-sm text-forest">استقصاء · وثيقتان</b>
                 <span className="mt-1 block text-xs text-mute">
                   تمرينا البكالوريا 2 و 3: قارن وثيقتين، اربط بينهما، ثم استنتج بلا تعميم.
+                </span>
+              </span>
+              <span className="text-mute">←</span>
+            </button>
+
+            <button
+              onClick={demarrerAutopsie}
+              className="card flex w-full items-center justify-between p-4 text-right hover:border-forest"
+            >
+              <span>
+                <b className="text-sm text-forest">تشريح نسخة · عين المصحّح</b>
+                <span className="mt-1 block text-xs text-mute">
+                  اكشف الأخطاء الأربعة في نسخة تلميذ: حشو بلا معطى، درس منقوص، لغة عاطفية، خلاصة
+                  خارجة.
                 </span>
               </span>
               <span className="text-mute">←</span>
@@ -2746,7 +2903,9 @@ export default function Methodologie({
             {enqueteFin && (
               <div className="mt-4 space-y-2">
                 <button onClick={ouvrirRedactionEnquete} className="btn btn-primary w-full">
-                  ابنِ جوابك النهائي · بطاقات ←
+                  {modeleEnquete.cloze
+                    ? 'ابنِ جوابك النهائي · أكمل الفراغات ←'
+                    : 'ابنِ جوابك النهائي · بطاقات ←'}
                 </button>
                 <button
                   onClick={() => choisirEnquete(enqueteId + 1)}
@@ -2765,6 +2924,118 @@ export default function Methodologie({
                 </button>
               </div>
             )}
+          </section>
+        )}
+
+        {ecran === 'autopsie' && (
+          <section className="card p-5">
+            <p className="eyebrow">تشريح نسخة · عين المصحّح · تمرين 2 من 3</p>
+            <h2 className="font-naskh mt-2 text-2xl font-bold">ابحث عن الأخطاء الأربعة</h2>
+            <p className="mt-2 text-sm text-mute">
+              نسخة تلميذ يجيب عن سؤال البكالوريا. انقر كل عبارة تراها مخالفة لطريقة «السند ← دليل ←
+              جواب»: كل اكتشاف صائب يكشف المعيار الذي خالفته العبارة؛ وسمٌ لعبارة سليمة يُحتسب خطأ،
+              والمصحّح يتعلم أيضًا.
+            </p>
+
+            {/* La copie du candidat, style papier crème. */}
+            <div className="mt-4 rounded-2xl border border-gold-soft bg-cream p-4">
+              <div className="flex items-center justify-between border-b border-gold-soft pb-2">
+                <p className="text-[11px] font-bold text-[#6b5320]">
+                  نسخة تلميذ · بكالوريا علوم تجريبية · تمرين 2 (4 نقاط)
+                </p>
+                <span aria-hidden>🖋</span>
+              </div>
+              <p className="mt-3 rounded-xl bg-paper p-3 text-sm font-bold leading-relaxed">
+                <span className="text-[11px] font-bold text-forest">التعليمة: </span>
+                {COPIE_AUTOPSIE.consigne}
+              </p>
+              <p className="mt-2 text-[11px] leading-relaxed text-mute">
+                سند: {COPIE_AUTOPSIE.snd}
+              </p>
+              <div className="mt-3 space-y-2">
+                {COPIE_AUTOPSIE.clauses.map((c) => {
+                  const trouvee = autopsieTiques.includes(c.id);
+                  const revelee = autopsieRevele === c.id;
+                  return (
+                    <button
+                      key={c.id}
+                      onClick={() => tiquerClause(c.id)}
+                      className={`w-full rounded-xl border p-3 text-right text-sm leading-relaxed transition-colors ${
+                        trouvee
+                          ? 'border-clay bg-clay-soft text-clay line-through decoration-clay'
+                          : revelee && !c.fautive
+                            ? 'border-gold-soft bg-gold-soft/40'
+                            : 'border-line bg-paper hover:border-forest'
+                      }`}
+                    >
+                      {c.texte}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Compteur de l'inspecteur : fautes découvertes / faux positifs. */}
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-sage px-3 py-1 text-xs font-bold text-forest-deep">
+                أخطاء مكتشفة {autopsieTiques.length} من {nbFautesAutopsie}
+              </span>
+              <span className="rounded-full border border-line bg-paper px-3 py-1 text-xs font-bold text-mute">
+                وسوم خاطئة {autopsieFaux}
+              </span>
+            </div>
+
+            {clauseAutopsieRevelee && !autopsieFin && (
+              <>
+                {clauseAutopsieRevelee.fautive ? (
+                  <div className="mt-3 rounded-2xl border border-clay bg-clay-soft p-4">
+                    <p className="text-[11px] font-bold text-clay">
+                      معيار مخالف:{' '}
+                      {clauseAutopsieRevelee.type ? LIBELLE_FAUTE[clauseAutopsieRevelee.type] : ''}
+                      {' · '}
+                      {clauseAutopsieRevelee.critere}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-clay">
+                      {clauseAutopsieRevelee.diagnostic}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mt-3 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                    <p className="text-[11px] font-bold text-[#6b5320]">
+                      وسم خاطئ · العبارة سليمة
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-[#6b5320]">
+                      {clauseAutopsieRevelee.raisonSaine}
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+
+            {autopsieFin && (
+              <div className="mt-4 rounded-2xl border border-sage bg-sage-soft p-4">
+                <div id="zone-autopsie-modele">
+                  <p className="text-[11px] font-bold text-forest">الجواب النموذجي بعد التشريح</p>
+                  <p className="mt-2 text-sm leading-relaxed text-forest-deep">
+                    {COPIE_AUTOPSIE.modeleComplet}
+                  </p>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-forest-deep">
+                  {autopsieFaux > 0
+                    ? `كشفت الأخطاء الأربعة مع ${autopsieFaux} وسم خاطئ — أعد قراءة الأعداد قبل الحكم، وعين المصحّح تتشكل.`
+                    : 'اكتشفت الأخطاء الأربعة من أول مرة بلا وسم خاطئ: عين مصحّح مشرّفة.'}
+                </p>
+              </div>
+            )}
+
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <button onClick={demarrerAutopsie} className="btn btn-ghost">
+                إعادة التشريح
+              </button>
+              <button onClick={() => setEcran('accueil')} className="btn btn-ghost">
+                العودة إلى البداية
+              </button>
+            </div>
           </section>
         )}
       </main>

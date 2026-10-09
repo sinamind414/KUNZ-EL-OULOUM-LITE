@@ -667,22 +667,29 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   une évaluation), V5 (les 4 niveaux restent décoratifs), V10-unite1 (badges décoratifs du محرّر
   الوحدة 1, seul le flow enquête coche réellement), V12 (pas de persistance locale de l'exercice en
   cours).
-- **v0.7 (actuelle = Cloze)** — **le محرّر d'enquête brise le plafond « clic-only » (audit7,
-  mesure n°1, +1,1 pt)** : l'enquête 1 (rejet de greffe, le cas documenté) passe en **canevas à
-  blancs** — chaque tuile du barème devient un gabarit où l'élève **produit une lexie par blank**
-  (12 lexies : mots-clés biologiques, valeurs chiffrées, connecteurs « ما يفسّر »…) choisies dans
-  un **lexique contraint** (3 candidats rotés : 1 correcte + 2 leurres typés, jamais la bonne aux
-  mêmes positions, erreur → rouge + son doux + **diagnostic typé** du leurre + rotation sans
-  révélation). La pose complète restitue mot pour mot les 5 tuiles du modèle, la **grille de barème
-  est toujours cochée à la pose** (slot complet = tuile posée) et la **carte kafaa
+- **v0.7 (actuelle = Cloze + Autopsie)** — **le محرّر d'enquête brise le plafond « clic-only »
+  (audit7, mesures n°1 et n°2, +1,9 pt)** :
+  1. **Cloze (mesure n°1, +1,1 pt)** : l'enquête 1 (rejet de greffe, le cas documenté) passe en
+  **canevas à blancs** — chaque tuile du barème devient un gabarit où l'élève **produit une lexie
+  par blank** (12 lexies : mots-clés biologiques, valeurs chiffrées, connecteurs « ما يفسّر »…)
+  choisies dans un **lexique contraint** (3 candidats rotés : 1 correcte + 2 leurres typés, jamais la
+  bonne aux mêmes positions, erreur → rouge + son doux + **diagnostic typé** du leurre + rotation
+  sans révélation). La pose complète restitue mot pour mot les 5 tuiles du modèle, la **grille de
+  barème est toujours cochée à la pose** (slot complet = tuile posée) et la **carte kafaa
   `redactionEnquete0`** (J+3 directe / J+1 avec erreurs) est conservée. Enquêtes 2-3 et محرّر
-  الوحدة 1 : mode tuiles inchangé (champ `modele.cloze` optionnel). Build vert ; banc étendu à
-  **21/21 tests**, dont 3 dédiés à la spec Cloze (gabarit + compteur, refus d'une mauvaise lexie
-  avec diagnostic sans révélation, restauration exacte du modèle). Autopsie de copie (mesure n°2,
-  +0,8 pt) : prévue en chantier suivant.
+  الوحدة 1 : mode tuiles inchangé (champ `modele.cloze` optionnel).
+  2. **Autopsie de copie (mesure n°2, +0,8 pt)** : nouvelle entrée « تشريح نسخة · عين المصحّح » —
+  l'élève joue le **correcteur** d'une copie fictive (exercice 2, refus de greffe) contenant les
+  **4 fautes-types du jury** (حشو بلا معطى / درس منقوص / لغة عاطفية / خلاصة خارجة) + 2 phrases
+  **saines**. Un tic sur une faute la marque et révèle le **critère violé** (الوجاهة، الاستعمال
+  السليم لأدوات المادة، الانسجام) + **diagnostic typé** ; un tic sur une clause saine = **faux
+  positif** compté et expliqué (l'œil du correcteur se forme) ; le **modèle n'est révélé qu'à la
+  découverte complète** (anti-stress) avec la **carte `autopsie0`** (J+3 zéro faux positif / J+1 dès
+  le premier). Build vert ; banc étendu à **26/26 tests** (5 dédiés à l'autopsie : affichage,
+  faute → critère sans révélation, faux positif sans avance, achèvement J+3, J+1 rétrogradé).
 - **v0.8** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
-  (suppression du scaffolding) ; autopsie de copie.
+  (suppression du scaffolding).
 
 ---
 
