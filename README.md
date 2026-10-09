@@ -630,6 +630,15 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   (vérification 11 de l'audit) : carte `redactionEnquête` **J+3 directe / J+1 avec erreurs** — tout
   comme le محرّر الوحدة 1 (carte `redaction`). Les documents restent affichés en bande supérieure
   pendant toute l'assemblée (mémoire de travail préservée).
+- **v0.5.16** — **kafaaHebdo ne compte que les REVUES, plus les réussites (audit : la file
+  kafaa était en écriture seule, +0,3)** : avant, chaque réussite d'exercice de منهجية
+  (parcours, enquête, محرّر) incrémentait le compteur hebdomadaire — plus l'élève s'entraînait,
+  plus vite le planificateur se désactivait (2 revues « consommées » sans même en faire). Depuis,
+  `onResultatKafaa` reçoit un drapeau `estRevue`, réservé à la **revue réelle de l'écran اليوم**
+  (« أتقنتها » / « كافحت قليلًا ») : seule elle épuise le quota hebdomadaire (≤ 2). Les
+  réussites d'exercice continuent de **programmer la carte** dans la file SM-2 (J+3 directe /
+  J+1 avec erreurs) sans jamais réduire le nombre de revues disponibles cette semaine — le
+  « دقيقتان، لا أكثر » reste garanti 2 fois par semaine même après grosse session de travail.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

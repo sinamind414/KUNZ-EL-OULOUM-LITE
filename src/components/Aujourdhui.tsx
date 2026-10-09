@@ -17,7 +17,8 @@ interface Props {
   onResultatKafaa: (
     key: string,
     qualite: Qualite,
-    meta: { verbe: string; exercice: string; erreur: string }
+    meta: { verbe: string; exercice: string; erreur: string },
+    estRevue?: boolean
   ) => void;
   onOuvrirMethodologie: () => void;
 }
@@ -221,13 +222,13 @@ export default function Aujourdhui({
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2">
             <button
-              onClick={() => onResultatKafaa(competence.key, 5, competence.carte)}
+              onClick={() => onResultatKafaa(competence.key, 5, competence.carte, true)}
               className="btn btn-primary"
             >
               أتقنتها — أراجعها لاحقًا
             </button>
             <button
-              onClick={() => onResultatKafaa(competence.key, 3, competence.carte)}
+              onClick={() => onResultatKafaa(competence.key, 3, competence.carte, true)}
               className="btn btn-ghost"
             >
               كافحت قليلًا — أراجعها غدًا

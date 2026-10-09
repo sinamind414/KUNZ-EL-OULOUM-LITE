@@ -208,11 +208,16 @@ export default function App() {
   // ───────────── بطاقات الكفاءة (منهجية) — même SM-2 que les leçons ─────────────
 
   /** Réussite d'un exercice de منهجية ou auto-évaluation d'une revue : la carte كفاءة
-   *  est programmée par mettreAJourSrs (réussite directe → J+3, réussite après erreurs → J+1). */
+   *  est programmée par mettreAJourSrs (réussite directe → J+3, réussite après erreurs → J+1).
+   *  `estRevue` est réservé à la revue hebdomadaire de l'écran اليوم : seule une REVUE
+   *  consomme le quota kafaaHebdo (≤ 2 par semaine). Une réussite d'exercice crée ou
+   *  programme la carte SANS épuiser le quota (audit : sinon, plus on s'entraîne,
+   *  plus vite le planificateur se désactive). */
   function onResultatKafaa(
     key: string,
     qualite: Qualite,
-    meta: { verbe: string; exercice: string; erreur: string }
+    meta: { verbe: string; exercice: string; erreur: string },
+    estRevue = false
   ): void {
     setEtat((prev) => {
       const existante = prev.kafaa?.[key];
@@ -238,7 +243,9 @@ export default function App() {
       return {
         ...prev,
         kafaa: { ...(prev.kafaa ?? {}), [key]: maj },
-        kafaaHebdo: { debut, n: hebdo + 1 },
+        // Seule une REVUE (écran اليوم) consomme le quota hebdomadaire (≤ 2) ;
+        // une réussite d'exercice programme la carte sans l'épuiser.
+        ...(estRevue ? { kafaaHebdo: { debut, n: hebdo + 1 } } : {}),
       };
     });
   }
