@@ -608,6 +608,16 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   **propre سند et sa propre question** sur l'ordre de la démarche, avec un **diagnostic typé** par
   distracteur (jamais la réponse) et la **rotation déterministe** de la bonne proposition (elle
   n'est plus figée en 1ʳᵉ position) — conforme au plan audit « un exercice réel par parcours ».
+- **v0.5.14** — **وثيقتان · استقصاء (audit : exos 2 et 3 du Bac, gain +1,0)** : nouveau gabarit
+  couvrant enfin le « raisonnement sur deux documents » et la mise en relation — le bien le plus
+  noté de l'exercice 2 — avec 3 enquêtes réelles (رفض الطعم، معالجة ARNm، السلسلة المستنسخة).
+  Démarche guidée en **4 خطوات** (استخراج doc1 → doc2 → العلاقة → استنتاج مبرّر), documents
+  **toujours affichés** pendant la résolution (zéro charge de mémorisation), **rotation
+  déterministe** des propositions, **diagnostic typé** par distracteur, **سلّم المساعدة** à
+  3 barreaux par étape (jamais la réponse), et à la fin le **جواب نموذجي** (الخلاصة المبرّرة +
+  خطأ شائع) — jamais la bonne réponse avant le bon choix. Réussite complète → carte كفاءة SM-2
+  **J+3** (directe) ou **J+1** (avec erreurs ou aide). Portes d'entrée : carte « استقصاء · وثيقتان »
+  sur l'accueil منهجية + bouton dans مستويات التدريب.
 - **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).

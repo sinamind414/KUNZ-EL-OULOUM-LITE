@@ -24,7 +24,7 @@ interface Props {
   ) => void;
 }
 
-type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'resultat';
+type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'enquete' | 'resultat';
 
 // المفتاح — أربع حركات قبل أن أكتب.
 const cle: [string, string, string][] = [
@@ -158,6 +158,292 @@ const methodesExercices: ExerciceMethode[] = [
   },
 ];
 
+// ───────────── استقصاء · وثيقتان — gabarit des exercices 2 et 3 du Bac (audit : jamais entraînés) ─────────────
+// Démarche guidée en 4 خطوات : استخراج الوثيقة 1 → الوثيقة 2 → العلاقة → استنتاج مبرّر.
+// La bonne proposition est toujours à l'index 0 ; la rotation d'affichage la déplace.
+type EtapeEnquete = {
+  question: string;
+  options: [string, string, string];
+  cible: Record<string, string>;
+  succes: string;
+  regard: string;
+  operation: string;
+  regle: string;
+};
+
+type ExerciceEnquete = {
+  titre: string;
+  situation: string;
+  question: string;
+  doc1: { titre: string; contenu: string };
+  doc2: { titre: string; contenu: string };
+  etapes: EtapeEnquete[];
+  conclusion: string;
+  erreur: string;
+};
+
+const ETAPES_ENQUETE = [
+  'استخراج من الوثيقة 1',
+  'استخراج من الوثيقة 2',
+  'العلاقة بين الوثيقتين',
+  'الاستنتاج المبرّر',
+];
+
+const exercicesEnquete: ExerciceEnquete[] = [
+  {
+    titre: 'لماذا يُرفض الطعم؟',
+    situation: 'استقصاء حول مصير طعم يُزرع في جسم لا يطابقه.',
+    question: 'قارن بين الوثيقتين ثم استنتج الدور المناعي للخلايا اللمفاوية في رفض الطعم.',
+    doc1: {
+      titre: 'وثيقة 1 · جدول',
+      contenu:
+        'جدول يبيّن نسب الخلايا اللمفاوية عند شخص سليم وعند شخص خضع لزرع كلية بعد 10 أيام: اللمفاويات T نحو 25 من كل 100 عند السليم و60 من كل 100 عند المزروع، بينما اللمفاويات B نحو 12 و11.',
+    },
+    doc2: {
+      titre: 'وثيقة 2 · تجربة',
+      contenu:
+        'زرع جلد من فأر (X) على فأر (Y) فمات الطعم بعد 10 أيام؛ وبتكرار زرع جلد (X) على (Y) رُفض بعد 5 أيام فقط، بينما طعم من فأر ثالث (Z) لم يُرفض إلا بعد نحو 12 يومًا كأول مرة.',
+    },
+    etapes: [
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 1؟',
+        options: [
+          'أستخرج ارتفاعًا ملحوظًا لللمفاويات T عند المزروع (60 مقابل 25) مع ثبات نسبي للـ B (12 و11).',
+          'أستخرج أن اللمفاويات B هي الأكثر ارتفاعًا عند المزروع.',
+          'أستنتج فورًا سبب رفض الطعم دون ذكر أي رقم.',
+        ],
+        cible: {
+          'أستخرج أن اللمفاويات B هي الأكثر ارتفاعًا عند المزروع.': 'قارن الرقمين: ماذا ارتفع فعلًا عند المزروع؟ T أم B؟',
+          'أستنتج فورًا سبب رفض الطعم دون ذكر أي رقم.': 'خطوة الاستخراج تنقل القيم كما هي قبل أي استنتاج.',
+        },
+        succes: 'أحسنت: الاستخراج نقل القيم كما هي — ارتفاع T مقابل ثبات نسبي لـ B.',
+        regard: 'أعد قراءة الوثيقة 1 وانقل ما يُلاحظ فعلًا من الأرقام، دون استنتاج. أيهما ارتفع؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 2؟',
+        options: [
+          'أستخرج ذاكرة مناعية: الرفض الثاني أسرع (5 أيام) من الأول (10 أيام) مع بقاء الخصوصية (طعم Z رُفض في زمنه العادي).',
+          'أستخرج أن الرفض الثاني أبطأ لأن الجسم تعوّد على الطعم.',
+          'أستنتج أن كل الطعوم تُرفض بالوتيرة نفسها بلا فرق.',
+        ],
+        cible: {
+          'أستخرج أن الرفض الثاني أبطأ لأن الجسم تعوّد على الطعم.': 'اقرأ اليومين: هل سجّل التجربة تسارعًا أم تباطؤًا؟',
+          'أستنتج أن كل الطعوم تُرفض بالوتيرة نفسها بلا فرق.': 'قابل 5 و10 و12: ثلاثة أزمنة مختلفة — أين تكمن الخصوصية؟',
+        },
+        succes: 'ممتاز: القراءة الدقيقة كشفت الذاكرة (5 قبل 10) والخصوصية (Z لم يتسارع).',
+        regard: 'أعد قراءة الوثيقة 2: قارن الأيام الثلاثة للمرة الأولى والثانية ولطعم آخر.',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما العلاقة بين الوثيقتين؟',
+        options: [
+          'الوثيقتان متكاملتان: الأولى تسجّل نوعية الاستجابة (ارتفاع T)، والثانية تثبت اكتسابها وخصوصيتها (ذاكرة).',
+          'الوثيقتان متناقضتان: الأولى تثبت رفضًا والثانية تثبت قبولًا.',
+          'لا علاقة بين الوثيقتين؛ الجدول خاص والتجربة عامة.',
+        ],
+        cible: {
+          'الوثيقتان متناقضتان: الأولى تثبت رفضًا والثانية تثبت قبولًا.': 'كلتاهما تتحدثان عن رفض الطعم؛ الفرق بين رقم من جدول ودليل من تجربة — أين التكامل؟',
+          'لا علاقة بين الوثيقتين؛ الجدول خاص والتجربة عامة.': 'اربط بين من يؤدّي الاستجابة (T) وكيف تُظهر التجربة خصوصيتها؛ أين الرابط؟',
+        },
+        succes: 'أحسنت: منجَز الأولى (الخلية) ومنجَز الثانية (الآلية) يتكاملان.',
+        regard: 'أعد قراءة الوثيقتين معًا: ماذا أثبتت كل واحدة منهما، ثم أين تلتقي النتيجتان؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: العلاقة تُبنى بربط منجَز الوثيقة الأولى بمنجَز الثانية لا بالتناقض أو بالصدفة.',
+      },
+      {
+        question: 'ما الاستنتاج المبرَّر؟',
+        options: [
+          'أستنتج أن رفض الطعم استجابة مناعية نوعية مكتسبة تقودها اللمفاويات T.',
+          'أستنتج أن رفض الطعم استجابة غير نوعية لا تخضع للذاكرة.',
+          'أستنتج أن اللمفاويات B هي مصدر رفض الطعم أساسًا.',
+        ],
+        cible: {
+          'أستنتج أن رفض الطعم استجابة غير نوعية لا تخضع للذاكرة.': 'هل تصير استجابة غير نوعية أسرع في المرة الثانية فقط لنفس الطعم؟',
+          'أستنتج أن اللمفاويات B هي مصدر رفض الطعم أساسًا.': 'من ارتفع في الوثيقة 1 عند المزروع: B أم T؟ عدّل خلاصتك.',
+        },
+        succes: 'خلاصة مبرَّرة: نوعية (خصوصية طعم X) + مكتسبة (ذاكرة) + مكوّن تنفيذي (T).',
+        regard: 'راجع خلاصتك: هل تتجاوز المعطيات؟ هل تذكر المكوّن الذي أثبتته الوثيقتان؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: الاستنتاج يحترم حدود المعطيات ولا يجري وراء التعميم المتسرّع.',
+      },
+    ],
+    conclusion:
+      'إذن، رفض الطعم استجابة مناعية نوعية مكتسبة تقودها اللمفاويات T، وهو ما يفسّر وجوب مطابقة المتبرع والمستقبل وتثبيط المناعة بعد الزرع.',
+    erreur: 'الخلط بين الاستجابة النوعية وغير النوعية، أو إهمال دور اللمفاويات T في الخلاصة.',
+  },
+  {
+    titre: 'لماذا تُعالَج النسخة قبل الترجمة؟',
+    situation: 'استقصاء حول مصير الـ ARNm داخل النواة قبل الترجمة في الهيولى.',
+    question: 'قارن بين الوثيقتين ثم استنتج دور معالجة الـ ARNm في إنتاج البروتين الوظيفي.',
+    doc1: {
+      titre: 'وثيقة 1 · في النواة',
+      contenu:
+        'في النواة عند حقيقيات النوى، تشتمل النسخة الأولى من الـ ARNm (أولي) على مقاطع مشفّرة Exons ومقاطع غير مشفّرة Introns؛ وبعد معالجة تُحذف الـ Introns فيخرج الـ ARNm ناضج أقصر إلى الهيولى.',
+    },
+    doc2: {
+      titre: 'وثيقة 2 · حالات خاصة',
+      contenu:
+        'عند بدائيات النوى وفي الـ ميتوكوندري، تتوفر جينات دون Introns؛ فتُترجم أرنماتها مباشرة دون معالجة، بينما تتطلب جينات النواة عند حقيقيات النوى كلها معالجة بالحذف.',
+    },
+    etapes: [
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 1؟',
+        options: [
+          'أستخرج أن الـ ARNm الأولي يُعالج بحذف الـ Introns ليصبح ناضجًا أقصر ينتقل إلى الهيولى.',
+          'أستخرج أن الـ ARNm الناضج أطول لأن المعالجة تضيف مقاطع جديدة.',
+          'أستنتج أن الـ Introns هي التي تُترجم إلى البروتين.',
+        ],
+        cible: {
+          'أستخرج أن الـ ARNm الناضج أطول لأن المعالجة تضيف مقاطع جديدة.': 'هل المعالجة تضيف أم تحذف؟ قارن بين «أولي» و«ناضج».',
+          'أستنتج أن الـ Introns هي التي تُترجم إلى البروتين.': 'انظر ما بقي بعد المعالجة: ما يُترجم هو ما لم يُحذف، لا ما حُذف.',
+        },
+        succes: 'أحسنت: الحذف، لا الإضافة، هو جوهر المعالجة.',
+        regard: 'أعد قراءة الوثيقة 1 وقارن بين النسخة الأولى والنسخة الناضجة: ماذا حُذف وماذا بقي؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 2؟',
+        options: [
+          'أستخرج أن غياب الـ Introns (بدائيات النوى والميتوكوندري) يجعل الترجمة مباشرة دون معالجة.',
+          'أستخرج أن الـ ميتوكوندري تعالج أرنماتها معالجة أطول من النواة.',
+          'أستنتج أن شكل الريبوزوم وحده يفسّر الفرق بين الكائنات.',
+        ],
+        cible: {
+          'أستخرج أن الـ ميتوكوندري تعالج أرنماتها معالجة أطول من النواة.': 'ماذا تقول الوثيقة تحديدًا عن الميتوكوندري: معالجة أطول أم غياب لها؟',
+          'أستنتج أن شكل الريبوزوم وحده يفسّر الفرق بين الكائنات.': 'الوثيقة تُركّز على جينات مع أو دون Introns، لا على الريبوزوم.',
+        },
+        succes: 'ممتاز: المتغيّر الوحيد هو وجود/غياب الـ Introns.',
+        regard: 'أعد قراءة الوثيقة 2: ما المتغيّر بين الحالتين المذكورتين؟ أين توجد الـ Introns؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما العلاقة بين الوثيقتين؟',
+        options: [
+          'الوثيقتان متكاملتان: وجود الـ Introns يستدعي معالجة، وغيابها يسمح بترجمة مباشرة — فتصبح المعالجة شرط التعبير عند حقيقيات النوى.',
+          'الوثيقتان متناقضتان لأن إحداهما تنفي المعالجة كلية.',
+          'المعالجة والترجمة عملان منفصلان لا رابط بينهما.',
+        ],
+        cible: {
+          'الوثيقتان متناقضتان لأن إحداهما تنفي المعالجة كلية.': 'الوثيقة 2 تتحدث عن حالة لا تحوي Introns، والوثيقة 1 عن حالة تحويها — أين يتكامل الشرطان؟',
+          'المعالجة والترجمة عملان منفصلان لا رابط بينهما.': 'رتّب زمنيًا: هل تُترجم النسخة قبل أن تُعالج في النواة؟ ما الذي يجب أن يسبق ماذا؟',
+        },
+        succes: 'أحسنت: السبب (وجود الـ Introns) هو الذي يحدد الحاجة إلى المعالجة.',
+        regard: 'أعد قراءة الوثيقتين معًا وعقد مقارنة على المعيار نفسه: وجود أو غياب الـ Introns.',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: العلاقة تُبنى بربط منجَز الوثيقة الأولى بمنجَز الثانية لا بالتناقض أو بالصدفة.',
+      },
+      {
+        question: 'ما الاستنتاج المبرَّر؟',
+        options: [
+          'أستنتج أن معالجة الـ ARNm (حذف الـ Introns) شرط إلزامي لإنتاج ARNm ناضج وبروتين وظيفي عند حقيقيات النوى.',
+          'أستنتج أن المعالجة ضرورية عند جميع الكائنات دون استثناء.',
+          'أستنتج أن البروتين يُبنى داخل النواة قبل المعالجة.',
+        ],
+        cible: {
+          'أستنتج أن المعالجة ضرورية عند جميع الكائنات دون استثناء.': 'الوثيقة 2 أظهرت ترجمة مباشرة دون معالجة؛ عمّم بحذر لا على كل الكائنات.',
+          'أستنتج أن البروتين يُبنى داخل النواة قبل المعالجة.': 'الترجمة تحدث في الهيولى ولاحقًا — أين موقع الترجمة؟ عدّل خلاصتك.',
+        },
+        succes: 'خلاصة مضبوطة: حذف الـ Introns = ARNm ناضج = ترجمة صحيحة.',
+        regard: 'راجع خلاصتك: هل تعمّمت على كائنات أثبتت الوثيقة خلافها؟ هل رتّبت المعالجة قبل الترجمة؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: الاستنتاج يحترم حدود المعطيات ولا يجري وراء التعميم المتسرّع.',
+      },
+    ],
+    conclusion:
+      'إذن، عند حقيقيات النوى تشكّل معالجة الـ ARNm (حذف الـ Introns) مرحلة إلزامية قبل الترجمة، في حين تسمح الجينات الخالية من الـ Introns (بدائيات النوى، الميتوكوندري) بترجمة مباشرة.',
+    erreur: 'تعميم ضرورة المعالجة على كل الكائنات، أو الخلط بين المعالجة والترجمة.',
+  },
+  {
+    titre: 'من السلسلة المستنسخة إلى البروتين',
+    situation: 'استقصاء حول العلاقة بين ترتيب قواعد الـ ADN وتسلسل الأحماض الأمينية.',
+    question: 'قارن بين الوثيقتين ثم استنتج كيف يحدد ترتيب قواعد السلسلة المستنسخة تسلسل الأحماض الأمينية للبروتين.',
+    doc1: {
+      titre: 'وثيقة 1 · نسخ ومقابلة',
+      contenu:
+        'تُبنى القطعة المكملة من الـ ARNm بمقابلة قواعد السلسلة المستنسخة: A مع U، وT مع A، وC مع G؛ وتتابع هذه القواعد (ثلاثية ثلاثية) هو الذي يحدد الكودونات عند الترجمة.',
+    },
+    doc2: {
+      titre: 'وثيقة 2 · أثر تبديل',
+      contenu:
+        'عند استبدال قاعدة واحدة في موقع محدد على السلسلة المستنسخة، تبدّل حمض أميني واحد في البروتين الناتج، بينما بقي بقية التسلسل كما هو.',
+    },
+    etapes: [
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 1؟',
+        options: [
+          'أستخرج أن الـ ARNm يُبنى بمقابلة قواعد السلسلة المستنسخة (A↔U، T↔A، C↔G) وأن التتابع هو الذي يحدد الكودونات.',
+          'أستخرج أن الـ ARNm نسخة طبق الأصل من السلسلة المستنسخة دون أي مقابلة.',
+          'أستخرج أن ترتيب القواعد لا أثر له على الكودونات.',
+        ],
+        cible: {
+          'أستخرج أن الـ ARNm نسخة طبق الأصل من السلسلة المستنسخة دون أي مقابلة.': 'قارن: هل تُقابل القاعدة بقاعدتها أم تُطابق؟ مع ماذا تقابل A في الـ ARNm؟',
+          'أستخرج أن ترتيب القواعد لا أثر له على الكودونات.': 'إذا تغيّر الترتيب تغيّرت الثلاثيات — أين تظهر هذه الحساسية في الوثيقة 1؟',
+        },
+        succes: 'أحسنت: المقابلة والترتيب هما منجَز الوثيقة 1.',
+        regard: 'أعد قراءة الوثيقة 1: كيف يُبنى الـ ARNm؟ بمقابلة أم بنسخ؟ وماذا ينبني على التتابع؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما المعلومة التي تستخرجها من الوثيقة 2؟',
+        options: [
+          'أستخرج أن تبديل قاعدة واحدة غيّر حمضًا أمينيًا واحدًا — فكل ثلاثة قواعد (كودون) تحدد حمضًا واحدًا.',
+          'أستخرج أن أي تبديل مهما صغر يغيّر البروتين بأكمله.',
+          'أستنتج أن تبديل القاعدة لا يترك أي أثر على البروتين.',
+        ],
+        cible: {
+          'أستخرج أن أي تبديل مهما صغر يغيّر البروتين بأكمله.': 'ماذا كانت نتيجة التبديل الواحد في الوثيقة: البروتين كله أم حمض واحد؟',
+          'أستنتج أن تبديل القاعدة لا يترك أي أثر على البروتين.': 'لو صار ذلك لما تغير البروتين أصلًا — راجع أثر التبديل المذكور في الوثيقة 2.',
+        },
+        succes: 'ممتاز: أثر موضعي دقيق — كودون ↔ حمض أميني.',
+        regard: 'أعد قراءة الوثيقة 2: ما المدى الفعلي لأثر التبديل على البروتين؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: المعلومة من الوثيقة تُنقل قبل أي حكم، والمقارنة تتم بنفس المعيار.',
+      },
+      {
+        question: 'ما العلاقة بين الوثيقتين؟',
+        options: [
+          'الوثيقتان متكاملتان: الأولى تشرح قاعدة بناء الـ ARNm من السلسلة المستنسخة، والثانية تُظهر أن كل كودون يحدد حمضًا — علاقة خطية بين التسلسلين.',
+          'الوثيقة 2 تناقض الوثيقة 1 لأنها تصف تغيرًا في البروتين.',
+          'لا رابط بينهما؛ الأولى تحضّر والثانية أمر صدفة.',
+        ],
+        cible: {
+          'الوثيقة 2 تناقض الوثيقة 1 لأنها تصف تغيرًا في البروتين.': 'التغير في البروتين دليل التكامل لا التناقض: إنه أثر الترتيب على الترجمة.',
+          'لا رابط بينهما؛ الأولى تحضّر والثانية أمر صدفة.': 'إذا كان الترتيب يحدد الكودونات والكودون يحدد الحمض، أين تنقطع السلسلة؟',
+        },
+        succes: 'أحسنت: من قاعدة المقابلة إلى أثر التبديل، السلسلة متصلة.',
+        regard: 'أعد قراءة الوثيقتين معًا: ماذا تثبت الأولى، وماذا يكشف تبديل الثانية؟ أين التقاء المنحى؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: العلاقة تُبنى بربط منجَز الوثيقة الأولى بمنجَز الثانية لا بالتناقض أو بالصدفة.',
+      },
+      {
+        question: 'ما الاستنتاج المبرَّر؟',
+        options: [
+          'أستنتج أن ترتيب قواعد السلسلة المستنسخة يحدد، عبر الـ ARNm والكودونات، تسلسل الأحماض الأمينية للبروتين (علاقة كولينارية).',
+          'أستنتج أن البروتين يتحدد بالخلية والزمن ولا علاقة له بالتسلسل.',
+          'أستنتج أن المعلومة كلها في الريبوزوم لا في السلسلة المستنسخة.',
+        ],
+        cible: {
+          'أستنتج أن البروتين يتحدد بالخلية والزمن ولا علاقة له بالتسلسل.': 'الوثيقة 2 أظهرت أثر تسلسل محدد؛ هل كان للأثر معنى لو لم يكن التسلسل هو الحامل؟',
+          'أستنتج أن المعلومة كلها في الريبوزوم لا في السلسلة المستنسخة.': 'الريبوزوم يترجم ما استلمه — من أين استلمه؟ عدّل خلاصتك.',
+        },
+        succes: 'خلاصة مبرَّرة: تسلسل القواعد ← كودونات ← تسلسل الأحماض.',
+        regard: 'راجع خلاصتك: هل ربطت التسلسل بالكودون ثم بالحمض؟ هل نسب المعلومات إلى مصدرها الصحيح؟',
+        operation: 'أي عملية تطلبها الخطوة: استخراج معلومة، مقارنة، أم استنتاج؟ استعمل لغة العملية: أستخرج / أقارن / أستنتج.',
+        regle: 'القاعدة العامة: الاستنتاج يحترم حدود المعطيات ولا يجري وراء التعميم المتسرّع.',
+      },
+    ],
+    conclusion:
+      'إذن، يحمل ترتيب قواعد السلسلة المستنسخة معلومة خطية تُترجم كودونًا كودونًا إلى تسلسل الأحماض الأمينية للبروتين الوظيفي.',
+    erreur: 'الخلط بين الشريط المستنسخ وغيره، أو اعتبار البروتين محددًا دون التسلسل.',
+  },
+];
+
 // أربع مستويات نحو الاستقلال.
 const niveaux: [string, string, string][] = [
   ['1', 'القدوة المشروحة', 'مثال كامل مع شرح سبب صحة كل جملة.'],
@@ -244,6 +530,14 @@ function lettreZone(i: number): string {
 function optionsMethode(i: number): { options: string[]; bonne: number } {
   const item = methodesExercices[i] ?? methodesExercices[0];
   const decalage = (i * 2 + 1) % 3;
+  const options = item.options.map((_, k) => item.options[(k + decalage) % 3]);
+  return { options, bonne: (0 - decalage + 3) % 3 };
+}
+
+/** Les 3 propositions d'une étape d'enquête — rotation déterministe (même règle que les مسارات). */
+function optionsEnquete(exo: number, etape: number): { options: string[]; bonne: number } {
+  const item = exercicesEnquete[exo]?.etapes[etape] ?? exercicesEnquete[0].etapes[0];
+  const decalage = (exo * 2 + etape + 1) % 3;
   const options = item.options.map((_, k) => item.options[(k + decalage) % 3]);
   return { options, bonne: (0 - decalage + 3) % 3 };
 }
@@ -558,6 +852,12 @@ export default function Methodologie({
   const [barreaux, setBarreaux] = useState(0);
   const [fauxExo, setFauxExo] = useState(0);
   const [cleOuverte, setCleOuverte] = useState(false);
+  // استقصاء · وثيقتان (exos 2-3 du Bac) : enquête en 4 خطوات, une par exercice.
+  const [enqueteId, setEnqueteId] = useState(0);
+  const [etapeEnq, setEtapeEnq] = useState(0);
+  const [enqueteFin, setEnqueteFin] = useState(false);
+  const [fauxTotalEnquete, setFauxTotalEnquete] = useState(0);
+  const [aideEnquete, setAideEnquete] = useState(false);
 
   function startDiagnostic(): void {
     setQ(0);
@@ -622,6 +922,80 @@ export default function Methodologie({
     setBarreaux(0);
     setFauxExo(0);
     setCleOuverte(false);
+  }
+
+  // ───────────── استقصاء · وثيقتان — démarche guidée (exos 2 et 3 du Bac) ─────────────
+
+  function demarrerEnquete(): void {
+    setEcran('enquete');
+    reinitialiserEnquete();
+  }
+
+  function choisirEnquete(i: number): void {
+    const n = exercicesEnquete.length;
+    setEnqueteId(((i % n) + n) % n);
+    reinitialiserEnquete();
+  }
+
+  function reinitialiserEnquete(): void {
+    setEtapeEnq(0);
+    setEnqueteFin(false);
+    setFauxTotalEnquete(0);
+    setAideEnquete(false);
+    setReponse(null);
+    setDernierFauxExo(null);
+    setJusteExo(false);
+    setFeedback('');
+    setBarreaux(0);
+    setFauxExo(0);
+  }
+
+  /** Validation de l'étape courante : bonne réponse → succès + étape suivante ; erreur → diagnostic typé. */
+  function validerEnquete(): void {
+    if (reponse === null || enqueteFin) return;
+    const exo = exercicesEnquete[enqueteId] ?? exercicesEnquete[0];
+    const etapeAct = exo.etapes[etapeEnq];
+    const { options, bonne } = optionsEnquete(enqueteId, etapeEnq);
+    if (reponse === bonne) {
+      sonJuste();
+      setJusteExo(true);
+      setFeedbackTon('juste');
+      setFeedback(etapeAct.succes);
+      if (etapeEnq >= exo.etapes.length - 1) {
+        setEnqueteFin(true);
+        // Carte كفاءة (audit) : réussite directe → J+3، erreurs ou aide → J+1، sur l'ensemble du parcours.
+        onResultatKafaa?.(`enquete${enqueteId}`, fauxTotalEnquete > 0 || aideEnquete ? 3 : 5, {
+          verbe: 'قارن ثم استنتج',
+          exercice: exo.titre,
+          erreur: exo.erreur,
+        });
+      }
+    } else {
+      sonFaux();
+      setDernierFauxExo(reponse);
+      setFauxExo((n) => n + 1);
+      setFauxTotalEnquete((n) => n + 1);
+      setReponse(null);
+      setFeedbackTon('refaire');
+      setFeedback(etapeAct.cible[options[reponse]] ?? REFAIRE);
+    }
+  }
+
+  function passerEtapeEnquete(): void {
+    setEtapeEnq((e) => e + 1);
+    setReponse(null);
+    setJusteExo(false);
+    setFeedback('');
+    setDernierFauxExo(null);
+    setFauxExo(0);
+    setBarreaux(0);
+  }
+
+  /** Réessai de l'étape en cours : on garde les barreaux déjà ouverts (même étape, même loyauté). */
+  function retryEtapeEnquete(): void {
+    setReponse(null);
+    setDernierFauxExo(null);
+    setFeedback('');
   }
 
   // ───────────── محرّر الجواب — assemblage de tuiles ─────────────
@@ -716,6 +1090,10 @@ export default function Methodologie({
   // Parcours المنهجية : l'exercice réel de la méthode sélectionnée (audit).
   const exoMethode = methodesExercices[methode] ?? methodesExercices[0];
   const { options: optionsChemin, bonne: idxJusteChemin } = optionsMethode(methode);
+  // استقصاء · وثيقتان : exercice, étape courante et propositions (rotées).
+  const exoEnquete = exercicesEnquete[enqueteId] ?? exercicesEnquete[0];
+  const etapeActuelle = exoEnquete.etapes[etapeEnq];
+  const { options: optionsEnq, bonne: idxJusteEnq } = optionsEnquete(enqueteId, etapeEnq);
 
   return (
     <div className="min-h-dvh bg-cream px-4 pb-10 pt-5" dir="rtl">
@@ -799,6 +1177,19 @@ export default function Methodologie({
                 <p className="mt-1 text-xs text-mute">افهم المطلوب قبل أن تبدأ.</p>
               </button>
             </div>
+
+            <button
+              onClick={demarrerEnquete}
+              className="card flex w-full items-center justify-between p-4 text-right hover:border-forest"
+            >
+              <span>
+                <b className="text-sm text-forest">استقصاء · وثيقتان</b>
+                <span className="mt-1 block text-xs text-mute">
+                  تمرينا البكالوريا 2 و 3: قارن وثيقتين، اربط بينهما، ثم استنتج بلا تعميم.
+                </span>
+              </span>
+              <span className="text-mute">←</span>
+            </button>
 
             <button onClick={() => setEcran('niveaux')} className="btn btn-gold w-full">
               مستويات التدريب الأربعة
@@ -993,6 +1384,9 @@ export default function Methodologie({
               className="btn btn-primary mt-4 w-full"
             >
               الوحدة 1 · تركيب البروتين · 10 تمارين
+            </button>
+            <button onClick={demarrerEnquete} className="btn btn-gold mt-2 w-full">
+              استقصاء · وثيقتان — تمرينا البكالوريا 2 و 3
             </button>
           </section>
         )}
@@ -1457,6 +1851,215 @@ export default function Methodologie({
             >
               اختيار طريقة أخرى
             </button>
+          </section>
+        )}
+
+        {ecran === 'enquete' && (
+          <section className="card p-6">
+            <p className="eyebrow">
+              استقصاء · وثيقتان · تمرين {enqueteId + 1} من {exercicesEnquete.length}
+            </p>
+            <h2 className="font-naskh mt-2 text-2xl font-bold">{exoEnquete.titre}</h2>
+            <p className="mt-2 text-sm text-mute">{exoEnquete.situation}</p>
+            <MascotteKunz
+              compact
+              tone="gold"
+              message="الحكاية قبل الجواب: اقرأ الوثيقتين، قارن بنفس المعيار، ثم استنتج بلا تعميم متسرّع."
+            />
+            <div className="mt-4 rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+              <p className="text-[11px] font-bold text-[#6b5320]">سؤال البكالوريا</p>
+              <p className="mt-1 text-sm font-bold leading-relaxed">{exoEnquete.question}</p>
+            </div>
+            {/* Les deux documents restent affichés pendant toute la résolution (mémoire de travail). */}
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-line bg-paper p-4">
+                <p className="text-[11px] font-bold text-forest">{exoEnquete.doc1.titre}</p>
+                <p className="mt-1.5 text-sm font-bold leading-relaxed text-forest-deep">
+                  {exoEnquete.doc1.contenu}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-paper p-4">
+                <p className="text-[11px] font-bold text-forest">{exoEnquete.doc2.titre}</p>
+                <p className="mt-1.5 text-sm font-bold leading-relaxed text-forest-deep">
+                  {exoEnquete.doc2.contenu}
+                </p>
+              </div>
+            </div>
+            {/* Déroulé des 4 خطوات */}
+            <div className="mt-4 flex flex-col gap-1.5 sm:flex-row sm:flex-wrap">
+              {ETAPES_ENQUETE.map((label, i) => {
+                const passe = i < etapeEnq || enqueteFin;
+                const actif = !enqueteFin && i === etapeEnq;
+                return (
+                  <span
+                    key={label}
+                    className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-bold ${
+                      passe
+                        ? 'bg-sage text-forest-deep'
+                        : actif
+                          ? 'border border-forest bg-paper text-forest'
+                          : 'border border-line bg-paper text-mute'
+                    }`}
+                  >
+                    {passe || actif ? '✓' : i + 1} · {label}
+                  </span>
+                );
+              })}
+            </div>
+            {!enqueteFin ? (
+              <>
+                <p className="mt-4 text-sm font-bold">{etapeActuelle.question}</p>
+                <div className="mt-3 grid gap-2">
+                  {optionsEnq.map((option, i) => {
+                    let style = 'border-line bg-paper';
+                    if (dernierFauxExo === i) style = 'border-clay bg-clay-soft text-clay';
+                    else if (justeExo && i === idxJusteEnq)
+                      style = 'border-forest bg-sage text-forest-deep';
+                    else if (reponse === i) style = 'border-forest bg-sage text-forest-deep';
+                    return (
+                      <button
+                        key={option}
+                        onClick={() => {
+                          if (justeExo) return;
+                          setReponse(i);
+                          setDernierFauxExo(null);
+                          setFeedback('');
+                        }}
+                        className={`rounded-2xl border p-3 text-right text-sm leading-relaxed ${style}`}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
+                </div>
+                {/* سلّم المساعدة — 3 barreaux par étape, proposés après la 2ᵉ erreur. */}
+                {!justeExo && (
+                  <div className="mt-4 space-y-3">
+                    {fauxExo >= 2 && barreaux === 0 && (
+                      <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-3 text-sm leading-relaxed">
+                        يبدو أنك عالق. جرّب «التلميح»: يريك أين تنظر في الوثيقة، ولا ينطق بالجواب
+                        أبدًا.
+                      </div>
+                    )}
+                    <div className="flex items-center justify-between gap-2">
+                      <button
+                        onClick={() => {
+                          setBarreaux((p) => Math.min(p + 1, 3));
+                          setAideEnquete(true);
+                        }}
+                        disabled={barreaux >= 3}
+                        className={`btn btn-ghost !px-3 text-sm ${
+                          fauxExo >= 2 && barreaux === 0 ? '!border-gold !text-[#6b5320]' : ''
+                        }`}
+                      >
+                        💡 التلميح · {barreaux}/3
+                      </button>
+                      <span className="text-[11px] text-mute">
+                        المساعدة لا تُخفف رصيدًا ولا تُنقص شيئًا.
+                      </span>
+                    </div>
+                    {barreaux >= 1 && (
+                      <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                        <p className="text-[11px] font-bold text-[#6b5320]">تلميح 1 · أين تنظر؟</p>
+                        <p className="mt-1 text-sm leading-relaxed text-forest-deep">
+                          {etapeActuelle.regard}
+                        </p>
+                      </div>
+                    )}
+                    {barreaux >= 2 && (
+                      <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                        <p className="text-[11px] font-bold text-[#6b5320]">تلميح 2 · أي عملية؟</p>
+                        <p className="mt-1 text-sm leading-relaxed text-forest-deep">
+                          {etapeActuelle.operation}
+                        </p>
+                      </div>
+                    )}
+                    {barreaux >= 3 && (
+                      <div className="rounded-2xl border border-gold-soft bg-gold-soft/40 p-4">
+                        <p className="text-[11px] font-bold text-[#6b5320]">
+                          تلميح 3 · القاعدة العامة
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-forest-deep">
+                          {etapeActuelle.regle}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {feedback && (
+                  <div
+                    className={`mt-3 rounded-2xl p-4 text-sm leading-relaxed ${
+                      feedbackTon === 'juste'
+                        ? 'bg-sage-soft text-forest-deep'
+                        : 'bg-clay-soft text-clay'
+                    }`}
+                  >
+                    <b>{feedbackTon === 'juste' ? 'فحص · تصحيح تدريجي' : 'فحص'}</b>
+                    <p className="mt-1">{feedback}</p>
+                  </div>
+                )}
+                {!justeExo ? (
+                  <>
+                    <button
+                      onClick={validerEnquete}
+                      disabled={reponse === null}
+                      className="btn btn-primary mt-5 w-full"
+                    >
+                      افحص هذه الخطوة
+                    </button>
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      <button onClick={retryEtapeEnquete} className="btn btn-ghost">
+                        إعادة المحاولة
+                      </button>
+                      <button
+                        onClick={() => choisirEnquete(enqueteId + 1)}
+                        className="btn btn-ghost"
+                      >
+                        تمرين آخر
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <button
+                    onClick={passerEtapeEnquete}
+                    className="btn btn-primary mt-5 w-full"
+                  >
+                    الخطوة التالية ←
+                  </button>
+                )}
+              </>
+            ) : (
+              <div className="mt-5 rounded-2xl border border-sage bg-sage-soft p-4">
+                <p className="text-[11px] font-bold text-forest">
+                  استنتاج مبرّر · الجواب النموذجي
+                </p>
+                <p className="mt-2 text-sm font-bold leading-relaxed text-forest-deep">
+                  {exoEnquete.conclusion}
+                </p>
+                <p className="mt-3 text-xs leading-relaxed text-forest-deep">
+                  خطأ شائع: {exoEnquete.erreur}
+                </p>
+              </div>
+            )}
+            {enqueteFin && (
+              <div className="mt-4 space-y-2">
+                <button
+                  onClick={() => choisirEnquete(enqueteId + 1)}
+                  className="btn btn-primary w-full"
+                >
+                  تمرين آخر
+                </button>
+                <button
+                  onClick={() => {
+                    setEcran('accueil');
+                    reinitialiserEnquete();
+                  }}
+                  className="btn btn-ghost w-full"
+                >
+                  العودة إلى البداية
+                </button>
+              </div>
+            )}
           </section>
         )}
       </main>
