@@ -474,9 +474,11 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
 
 - **0/58 leçon relue** (`review.reviewed: false`). Toutes sont en `adaptation_pedagogique`.
   → Prévoir une relecture professeur et passer `status` à `manuel_officiel_verifie`.
-- **Ordre des étapes à revoir** : U1 leçon 1, l'étape 4 (transcription) est logiquement antérieure à
-  l'étape 3 (synthèse sur les ribosomes). Le QCM de séquence en P5 reste cohérent avec l'ordre déclaré,
-  mais l'ordre du résumé n'est pas pédagogique.
+- ✅ **Ordre des étapes U1-L1 corrigé (v0.6)** : le `mechanismAr` de la leçon 1 de l'unité 1 suit
+  maintenant l'ordre pédagogique transcription → ARN → traduction (تُنسخ المعلومة الوراثية … داخل
+  النواة avant يتم تركيب البروتين … الريبوزومات). Le QCM de séquence en **P5 est généré
+  dynamiquement depuis ce tableau** (`ProtocoleRunner.tsx` : `juste = mechanismAr[i+1]`) : il suit
+  automatiquement l'ordre corrigé — aucune incohérence introduite.
 - **`bacSentenceFrameAr` manquant** sur la première leçon (le cadre P6 s'affiche vide).
 - Convention d'IDs non uniforme (`phaseN_chapitres_X_Y` vs `dN-uM-lK-*`) — fonctionnel, mais à
   normaliser si vous éditez le fichier à la main.
@@ -649,7 +651,23 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   est rotée** (rotation déterministe, jamais de « position 0 » systématique), et chaque erreur
   affiche un **diagnostic typé expliquant pourquoi ce verbe ne convient pas à la consigne**
   (jamais la réponse) — fini le message générique « ليس الجواب الصحيح ».
-- **v0.6** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
+- **v0.6 (actuelle = ré-audit)** — **ordre U1-L1 corrigé + les 12 vérifications de l'audit-5
+  rejouées à la hausse : 18/18 tests verts** : (1) le `mechanismAr` de la leçon 1 de l'unité 1 suit
+  enfin l'ordre pédagogique transcription → ARN → traduction — unique changement de code, build vert
+  (`tsc -b && vite build`, ~730 ms), QCM P5 cohérent (généré dynamiquement depuis le tableau) ;
+  (2) le banc autonome `audit-5` (vitest 5 + jsdom, sans Next) **rejoue les 12 vérifications de
+  `kunz-manhadjia-v059` (5,9/10 sur la v0.5.9) contre la v0.5.17 réelle** et affirme les corrections
+  par des tests réécrits : **V4** (les 6 parcours = 6 exercices réels, données + questions
+  distinctes), **V6** (tri contrasté de 10 consignes réelles : distracteurs = verbes proches,
+  diagnostic typé par erreur, bonne position variable), **V10-enquête** (grille `GRILLE_BAREME`
+  réelle : aucun ✓ au départ, les 4 ✓ se posent à la pose des tuiles), **V11** (la production entre
+  enfin dans SM-2 : cartes `methodo*`, `redaction*`, `redactionEnquête` — J+3 directe / J+1 avec
+  erreurs — et `kafaaHebdo` ne compte que les revues réelles) ; V7-9 (محرّر الجواب) conservés
+  verts. Réserves **documentées en tests-constats** : V1-3 (la zone du schéma reste une porte, non
+  une évaluation), V5 (les 4 niveaux restent décoratifs), V10-unite1 (badges décoratifs du محرّر
+  الوحدة 1, seul le flow enquête coche réellement), V12 (pas de persistance locale de l'exercice en
+  cours).
+- **v0.7** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
   des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
   (suppression du scaffolding).
 
