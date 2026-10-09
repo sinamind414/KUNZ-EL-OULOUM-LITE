@@ -22,6 +22,9 @@ interface Props {
     qualite: Qualite,
     meta: { verbe: string; exercice: string; erreur: string }
   ) => void;
+  /** سجلّ الأخطاء الذرّية (v0.8) : chaque erreur d'exercice est capturée (contexte, jeton
+   *  fautif, diagnostic typé) — jamais la bonne réponse. Persisté + exportable dans l'onglet « أنا ». */
+  onCarnetFaute?: (f: { contexte: string; enonce: string; donne: string; diagnostic: string }) => void;
 }
 
 type Ecran = 'accueil' | 'cle' | 'operations' | 'verbes' | 'diagnostic' | 'methode' | 'niveaux' | 'unite1' | 'exercice' | 'redaction' | 'enquete' | 'autopsie' | 'resultat';
@@ -1285,6 +1288,7 @@ export default function Methodologie({
   onFermer,
   modeInitial = 'accueil',
   onResultatKafaa,
+  onCarnetFaute,
 }: Props) {
   const [ecran, setEcran] = useState<Ecran>(modeInitial);
   const [q, setQ] = useState(0);
@@ -1382,6 +1386,13 @@ export default function Methodologie({
       setRate(true);
       setDernierFaux(selected);
       setSelected(null);
+      // سجلّ الأخطاء الذرّية (v0.8) : le choix fautif + son message typé (jamais la bonne).
+      loguerFaute(
+        'تشخيص المنهجية',
+        diagnostic[q][0],
+        diagnostic[q][1][sourceFaux],
+        msg ?? REFAIRE,
+      );
     }
   }
 
@@ -1415,6 +1426,13 @@ export default function Methodologie({
     setBarreaux(0);
     setFauxExo(0);
     setCleOuverte(false);
+  }
+
+  /** سجلّ الأخطاء الذرّية (v0.8) : chaque erreur d'exercice de منهجية est enregistrée avec son
+   *  contexte, le choix fautif de l'élève et le diagnostic typé déjà affiché — sans jamais
+   *  révéler la bonne réponse (anti-stress). Capturé aux 8 points `sonFaux` ci-dessous. */
+  function loguerFaute(contexte: string, enonce: string, donne: string, diagnostic: string): void {
+    onCarnetFaute?.({ contexte, enonce, donne, diagnostic });
   }
 
   // ───────────── استقصاء · وثيقتان — démarche guidée (exos 2 et 3 du Bac) ─────────────
@@ -1468,6 +1486,13 @@ export default function Methodologie({
       sonFaux();
       setAutopsieFaux((n) => n + 1);
       setAutopsieRevele(id);
+      // سجلّ الأخطاء الذرّية (v0.8) : faux positif — l'œil du correcteur s'entraîne.
+      loguerFaute(
+        'تشريح نسخة · عين المصحّح',
+        clause.texte,
+        'وسم خاطئ: عبارة سليمة اعتُبرت خطأ',
+        clause.raisonSaine ?? 'عبارة سليمة — لا خطأ هنا.',
+      );
       return;
     }
     sonJuste();
@@ -1515,7 +1540,15 @@ export default function Methodologie({
       setFauxTotalEnquete((n) => n + 1);
       setReponse(null);
       setFeedbackTon('refaire');
-      setFeedback(etapeAct.cible[options[reponse]] ?? REFAIRE);
+      const reprocheEnquete = etapeAct.cible[options[reponse]] ?? REFAIRE;
+      setFeedback(reprocheEnquete);
+      // سجلّ الأخطاء الذرّية (v0.8).
+      loguerFaute(
+        `استقصاء · وثيقتان · ${ETAPES_ENQUETE[etapeEnq]}`,
+        etapeAct.question,
+        options[reponse],
+        reprocheEnquete,
+      );
     }
   }
 
@@ -1605,8 +1638,16 @@ export default function Methodologie({
           setTuileFausse(idx);
           setFauxRedaction((n) => n + 1);
           const k = options[idx] === blanc.options[1] ? 0 : 1;
-          setDiagnoRedaction(blanc.diagno[k]);
+          const diagnoCloze = blanc.diagno[k];
+          setDiagnoRedaction(diagnoCloze);
           setVarianteRedaction((v) => v + 1);
+          // سجلّ الأخطاء الذرّية (v0.8) : la lexie fautive + son diagnostic (jamais la bonne).
+          loguerFaute(
+            `محرّر · فراغات · ${TUILES_BAREME[slotRedaction].label}`,
+            `فراغ ${blancRedaction + 1} من ${slotCloze.blancs.length}`,
+            options[idx],
+            diagnoCloze,
+          );
         }
         return;
       }
@@ -1637,8 +1678,16 @@ export default function Methodologie({
         setTuileFausse(idx);
         setFauxRedaction((n) => n + 1);
         const k = options[idx] === m.leurres[slotRedaction][0] ? 0 : 1;
-        setDiagnoRedaction(m.diagno[slotRedaction][k]);
+        const diagnoTuile = m.diagno[slotRedaction][k];
+        setDiagnoRedaction(diagnoTuile);
         setVarianteRedaction((v) => v + 1);
+        // سجلّ الأخطاء الذرّية (v0.8) : la tuile fautive + son diagnostic (jamais la bonne).
+        loguerFaute(
+          `محرّر · بطاقات · ${TUILES_BAREME[slotRedaction].label}`,
+          exoEnquete.titre,
+          options[idx],
+          diagnoTuile,
+        );
       }
       return;
     }
@@ -1667,6 +1716,13 @@ export default function Methodologie({
       sonFaux();
       setTuileFausse(idx);
       setFauxRedaction((n) => n + 1);
+      // سجلّ الأخطاء الذرّية (v0.8) : tuile déplacée hors de son emplacement.
+      loguerFaute(
+        `محرّر · ${exoU1.titre}`,
+        `الموضع ${slotRedaction + 1} من ${segments.length}`,
+        options[idx],
+        'ترتيب خاطئ: كل موضع له دوره (مقدمة ← سند ← علاقة ← خلاصة). أعد المحاولة.',
+      );
     }
   }
 
@@ -1701,6 +1757,8 @@ export default function Methodologie({
         setReponse(null);
         setFeedbackTon('refaire');
         setFeedback(reproche);
+        // سجلّ الأخطاء الذرّية (v0.8) : le choix fautif + son diagnostic typé.
+        loguerFaute(`تمرين الوحدة 1 · ${exoU1.titre}`, exoU1.question, optionsU1[reponse], reproche);
       }
       return;
     }
@@ -1722,6 +1780,8 @@ export default function Methodologie({
       setReponse(null);
       setFeedbackTon('refaire');
       setFeedback(reproche);
+      // سجلّ الأخطاء الذرّية (v0.8) : le choix fautif + son diagnostic typé.
+      loguerFaute(`مسار المنهجية · ${methodes[methode][0]}`, item.question, optsChemin[reponse], reproche);
     }
   }
 

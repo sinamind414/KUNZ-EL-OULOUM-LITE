@@ -1,7 +1,7 @@
 // أنا — الكرّاسة، الهوية، الإحصاء بالحروف (لا نسب مئوية)، وسجلّ النشاط.
 
 import { useState } from 'react';
-import type { Etat, NoteCarnet } from '../types';
+import type { Etat, NoteCarnet, FauteCarnet } from '../types';
 import { itemsFaits } from '../utils/moteur';
 import { aujourdhui, differenceJours, nb, nbMin, formatCourteAr, formatJourAr, joursNb } from '../utils/dates';
 import { joursConsecutifs, niveauDe, xpDe, xpTexte } from '../utils/xp';
@@ -14,6 +14,8 @@ import MascotteKunz from './MascotteKunz';
 
 interface Props {
   etat: Etat;
+  carnet?: FauteCarnet[]; // سجلّ الأخطاء الذرّية (v0.8) — capturé dans les exercices de منهجية
+  onEffacerCarnet: () => void;
   onNom: (nom: string) => void;
   onDateBac: (iso: string) => void;
   onSupprimerNote: (id: string) => void;
@@ -22,9 +24,40 @@ interface Props {
   onConsentementSync: (ok: boolean) => void;
 }
 
-export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReinitialiser, onDeconnexion, onConsentementSync }: Props) {
+/** Télécharge le carnet en JSON (offline : Blob + lien local). Numéros latins, zéro pourcentage —
+ *  pas de jugement, juste la trace consultable pour revoir ses propres erreurs. */
+function exporterCarnet(fautes: FauteCarnet[]): void {
+  const paquet = {
+    application: 'كنز العلوم · منهجية',
+    exporteLe: new Date().toISOString(),
+    total: fautes.length,
+    carnet: fautes,
+  };
+  const blob = new Blob([JSON.stringify(paquet, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'carnet-failles.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+export default function Ana({
+  etat,
+  carnet = [],
+  onEffacerCarnet,
+  onNom,
+  onDateBac,
+  onSupprimerNote,
+  onReinitialiser,
+  onDeconnexion,
+  onConsentementSync,
+}: Props) {
   const [confirme, setConfirme] = useState(false);
+  const [confirmeCarnet, setConfirmeCarnet] = useState(false);
   const notes = [...etat.notes].sort((a, b) => (a.ts < b.ts ? 1 : -1));
+  const fautes = [...carnet].sort((a, b) => (a.ts < b.ts ? 1 : -1));
+  const recentes = fautes.slice(0, 15);
   const faits = itemsFaits(etat);
   const jalons = Object.values(etat.jalons).filter((j) => j.fait).length;
   const xp = xpDe(etat);
@@ -245,6 +278,92 @@ export default function Ana({ etat, onNom, onDateBac, onSupprimerNote, onReiniti
               </li>
             ))}
           </ul>
+        )}
+      </section>
+
+      {/* سجلّ الأخطاء — v0.8 : capturé automatiquement dans les exercices de منهجية */}
+      <section className="card mt-5 p-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="eyebrow">سجلّ الأخطاء</p>
+            <p className="mt-1 text-sm font-bold text-ink-soft">
+              {fautes.length === 0
+                ? 'لا أخطاء مسجّلة بعد'
+                : fautes.length === 1
+                  ? 'خطأ واحد مسجّل'
+                  : fautes.length === 2
+                    ? 'خطآن مسجّلان'
+                    : `${nb(fautes.length)} أخطاء مسجّلة`}
+            </p>
+          </div>
+          <span className="text-2xl">🔍</span>
+        </div>
+        <p className="mt-2 text-xs leading-relaxed text-mute">
+          كل خطأ في تمارين المنهجية (اختيار، محرّر، استقصاء، تشريح) يُسجَّل هنا آليًا مع جوابك
+          الخاطئ وتشخيصه. لا يُسجَّل الجواب الصحيح: المفاجآت محفوظة لوقت التمرين، وهذه خريطة ما
+          ستعيد مراجعته.
+        </p>
+
+        {fautes.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              onClick={() => exporterCarnet(fautes)}
+              className="btn btn-primary flex-1 text-sm"
+            >
+              تصدير السجلّ
+            </button>
+            {!confirmeCarnet ? (
+              <button
+                onClick={() => setConfirmeCarnet(true)}
+                className="btn btn-ghost flex-1 text-sm text-clay"
+              >
+                مسح السجلّ
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setConfirmeCarnet(false);
+                  onEffacerCarnet();
+                }}
+                className="btn flex-1 bg-clay text-paper text-sm"
+              >
+                نعم، امسح السجلّ
+              </button>
+            )}
+          </div>
+        )}
+
+        {fautes.length === 0 ? (
+          <div className="mt-4">
+            <Morceau>
+              لا أخطاء بعد — عندما تخطئ في تمرين، يُسجَّل هنا جوابك وتشخيصه تلقائيًا. هذا ليس
+              عقابًا؛ إنها خريطة صغيرة لما ستعيده وتثبّته.
+            </Morceau>
+          </div>
+        ) : (
+          <ul className="mt-4 space-y-2.5">
+            {recentes.map((f) => (
+              <li key={f.id} className="rounded-2xl border border-line bg-cream/50 p-3.5">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="rounded-full bg-gold-soft px-2 py-0.5 text-[10px] font-bold text-[#6b5320]">
+                    {f.contexte}
+                  </span>
+                  <span className="rounded-full bg-clay-soft px-2 py-0.5 text-[10px] font-bold text-clay">
+                    اخترت: {f.donne}
+                  </span>
+                </div>
+                <p className="mt-1.5 text-xs leading-relaxed text-mute">{f.enonce}</p>
+                <p className="mt-1 text-sm leading-relaxed text-forest-deep">{f.diagnostic}</p>
+                <p className="mt-1.5 text-[10px] text-mute">{formatCourteAr(f.ts.slice(0, 10))}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+        {fautes.length > recentes.length && (
+          <p className="mt-3 text-[11px] text-mute">
+            تعرض آخر {nb(recentes.length)} أخطاء؛ السجلّ الكامل ({nb(fautes.length)}) جاهز في
+            التصدير.
+          </p>
         )}
       </section>
 

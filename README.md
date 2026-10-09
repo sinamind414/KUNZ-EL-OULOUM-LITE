@@ -687,9 +687,19 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   découverte complète** (anti-stress) avec la **carte `autopsie0`** (J+3 zéro faux positif / J+1 dès
   le premier). Build vert ; banc étendu à **26/26 tests** (5 dédiés à l'autopsie : affichage,
   faute → critère sans révélation, faux positif sans avance, achèvement J+3, J+1 rétrogradé).
-- **v0.8** — exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés) ; mode examen blanc, carnet
-  des failles (erreurs atomiques exportées), conversion des 25 leçons au format manuel scolaire
-  (suppression du scaffolding).
+- **v0.8 (actuelle = Carnet des failles)** — **traçabilité des erreurs (sans culpabiliser)** :
+  « سجلّ الأخطاء » dans l'onglet « أنا » — chaque erreur d'un exercice de منهجية (choix, محرّر,
+  فراغات, استقصاء, تشريح, مسار, diagnostic) est **capturée atomiquement** (contexte, énoncé,
+  choix fautif de l'élève, diagnostic typé déjà affiché) et **persistée** dans `Etat.carnet`
+  (localStorage, offline, cap 400) — **jamais la bonne réponse** (anti-stress : pas de révélation
+  hors exercice). L'écran liste les 15 plus récentes (jeton fautif en nuance argile + diagnostic)
+  et propose **« تصدير السجلّ »** (téléchargement JSON local) et un **« مسح السجلّ »** avec
+  confirmation. Réserve V12 (aucune persistance) partiellement refermée : les erreurs survivent au
+  rechargement. 8 points de capture instrumentés (les 8 sites `sonFaux`). Build vert ; banc étendu à
+  **31/31 tests** (5 dédiés : diagnostic, autopsie faux positif, cloze mauvaise lexie sans la bonne,
+  unité 1, aucune capture en réussite directe).
+- **v0.9** — mode examen blanc ; conversion des 25 leçons au format manuel scolaire (suppression du
+  scaffolding) ; exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés).
 
 ---
 

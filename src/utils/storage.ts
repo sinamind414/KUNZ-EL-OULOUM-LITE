@@ -17,6 +17,7 @@ export function chargerEtat(): Etat {
       progression: { ...analyse.progression },
       jalons: { ...analyse.jalons },
       notes: analyse.notes ?? [],
+      carnet: analyse.carnet ?? [],
       journal: analyse.journal ?? [],
       kafaa: analyse.kafaa ?? {},
       drills: analyse.drills ?? {},

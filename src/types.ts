@@ -80,6 +80,18 @@ export interface NoteCarnet {
   ts: string; // ISO
 }
 
+// خطأ ذرّي في تمرين منهجية — يُسجَّل آليًا لحظة وقوعه ثم يُصدَّر (v0.8 « carnet des failles »).
+// Il complète la boucle mémoire kafaa par une trace consultable : « j'ai choisi X, pourquoi c'est
+// fautif » — sans jamais y inscrire la bonne réponse (anti-stress : pas de révélation hors exercice).
+export interface FauteCarnet {
+  id: string;
+  ts: string; // ISO
+  contexte: string; // « تشخيص » « استقصاء · وثيقتان · مرحلة 3 » « محرّر · بطاقات » …
+  enonce: string; // السؤال أو الموضع المطلوب
+  donne: string; // جواب التلميذ الخاطئ (اختياره)
+  diagnostic: string; // التشخيص المصنّف الذي عُرض لحظة الخطأ
+}
+
 // حساب التلميذ — يُحفظ في المتصفح فقط (لا خادم، لا تتبّع).
 // motDePasse = نص مجزّأ بـ SHA-256 مع ملح «kunz» — لا يُخزَّن نصًّا صريحًا.
 export interface Compte {
@@ -96,6 +108,7 @@ export interface Etat {
   progression: Record<string, ProgressionLecon>;
   jalons: Record<string, JalonUnite>;
   notes: NoteCarnet[];
+  carnet?: FauteCarnet[]; // سجلّ الأخطاء الذرّية (v0.8) — exportable
   journal: string[]; // أيام النشاط (ISO) — لإيقاع 5/7
   minutesTotales: number;
   revisions: number;
@@ -128,6 +141,7 @@ export function etatVierge(): Etat {
     progression: {},
     jalons: {},
     notes: [],
+    carnet: [],
     journal: [],
     minutesTotales: 0,
     revisions: 0,

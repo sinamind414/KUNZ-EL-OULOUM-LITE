@@ -2,7 +2,7 @@
 // كل الحالة في localStorage. لا خادم، لا تحليلات، لا تبعات ثقيلة.
 
 import { useEffect, useRef, useState } from 'react';
-import type { Etat, CarteKafaa } from './types';
+import type { Etat, CarteKafaa, FauteCarnet } from './types';
 import { chargerEtat, sauvegarderEtat, viderStockage } from './utils/storage';
 import { ajouterJours, aujourdhui } from './utils/dates';
 import { debutSemaine, enregistrerSeance } from './utils/moteur';
@@ -250,6 +250,26 @@ export default function App() {
     });
   }
 
+  // ───────────── سجلّ الأخطاء الذرّية (v0.8) — capturé dans les exercices de منهجية ─────────────
+
+  /** Chaque erreur d'exercice est ajoutée au carnet (persisté, offline). Cap à 400 entrées :
+   *  l'export JSON du carnet couvre l'historique complet. Les bonnes réponses n'y figurent
+   *  jamais (anti-stress) — on y voit « j'ai choisi X, voici pourquoi c'est fautif ». */
+  function onCarnetFaute(f: Omit<FauteCarnet, 'id' | 'ts'>): void {
+    setEtat((prev) => {
+      const entree: FauteCarnet = {
+        ...f,
+        id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+        ts: new Date().toISOString(),
+      };
+      return { ...prev, carnet: [...(prev.carnet ?? []), entree].slice(-400) };
+    });
+  }
+
+  function onEffacerCarnet(): void {
+    setEtat((prev) => ({ ...prev, carnet: [] }));
+  }
+
   // ───────────── موافقة المزامنة ─────────────
 
   function onConsentementSync(ok: boolean): void {
@@ -299,6 +319,7 @@ export default function App() {
           modeInitial="niveaux"
           onFermer={() => setMode(null)}
           onResultatKafaa={onResultatKafaa}
+          onCarnetFaute={onCarnetFaute}
         />
       );
     }
@@ -451,11 +472,14 @@ export default function App() {
         <Methodologie
           onFermer={() => setOnglet('aujourdhui')}
           onResultatKafaa={onResultatKafaa}
+          onCarnetFaute={onCarnetFaute}
         />
       )}
       {pret && onglet === 'ana' && (
         <Ana
           etat={etat}
+          carnet={etat.carnet ?? []}
+          onEffacerCarnet={onEffacerCarnet}
           onNom={(nom) => setEtat((prev) => ({ ...prev, nom }))}
           onDateBac={(iso) => setEtat((prev) => ({ ...prev, dateBac: iso }))}
           onSupprimerNote={onSupprimerNote}
