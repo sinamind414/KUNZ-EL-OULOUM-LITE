@@ -1,6 +1,6 @@
 // عناصر مشتركة — صندوق المُرشد، خيارات الاختيار، الحقول، المؤقّت اللطيف، درج التدوين
 
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import type { QcmLecon } from '../data/qcmLecons';
 import { noterReponse, type SourceReponse } from '../utils/stats';
 import { sonFaux, sonJuste } from '../utils/son';
@@ -95,6 +95,10 @@ export function ChoixUnique({
   const [juste, setJuste] = useState(Boolean(fait));
   // معرّف الخيار الخاطئ الأخير (لا موقعه — الموقع يتبدّل بعد المزج) ليبقى أحمر حتى المحاولة التالية
   const [dernierFaux, setDernierFaux] = useState<number | null>(null);
+  // « plan B » (audit F6) : après 3 échecs consécutifs, on offre un indice fort + explication
+  // au lieu de re-mélanger à l'infini. On ne donne JAMAIS la réponse, on débloque le raisonnement.
+  const [echecs, setEchecs] = useState(0);
+  const [planB, setPlanB] = useState(false);
 
   if (juste) {
     return (
@@ -138,8 +142,23 @@ export function ChoixUnique({
           );
         })}
       </div>
-      {erreur && (
+      {erreur && !planB && (
         <p className="text-sm font-bold text-clay">ليس الجواب الصحيح — أعد المحاولة. خذ وقتك، لا عجلة.</p>
+      )}
+      {planB && (
+        <div className="rounded-2xl border border-clay-soft bg-clay-soft/40 p-3.5">
+          <p className="text-[11px] font-black text-clay">🆘 خُطّة بديلة — لنُخرِجك من المأزق</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-ink">
+            ثلاث محاولات بلا تحصيل — لا بأس، هذا يعني أن الفهم يحتاج مرساة. إليك الخيط الذي يفكّ
+            السؤال:
+          </p>
+          <p className="mt-2 rounded-xl bg-paper/70 p-2.5 text-sm font-semibold leading-relaxed text-forest-deep">
+            {qcm.explication}
+          </p>
+          <p className="mt-2 text-[11px] leading-relaxed text-mute">
+            أعد الآن بمعرفة هذا الخيط — ولن أُظهر لك الجواب مباشرة. محاولتك الآن تُثبّت الفهم.
+          </p>
+        </div>
       )}
       <button
         onClick={() => {
@@ -158,6 +177,10 @@ export function ChoixUnique({
             setDernierFaux(ordre[choix]);
             setOrdre(melanger(qcm.options.length));
             setChoix(null);
+            const e = echecs + 1;
+            setEchecs(e);
+            // بعد 3 محاولات: خُطّة بديلة (تلميح قوي + تفسير) بدل إعادة المزج اللانهائية (audit F6).
+            if (e >= 3) setPlanB(true);
           }
         }}
         disabled={choix === null}
@@ -238,4 +261,62 @@ export function ValveAide({
     );
   }
   return <Morceau ton="gold">{indice}</Morceau>;
+}
+
+// ───────────── سلسلة الأفخاخ التشخيصية (§11) ─────────────
+// déroule les pièges un par un via ChoixUnique (retry + plan B intégrés).
+// On n'affiche jamais la bonne réponse : l'élève progresse jusqu'à avoir franchi chaque piège.
+export function DiagnosticPieges({
+  pieges,
+  source = 'phase',
+  onTermine,
+}: {
+  pieges: QcmLecon[];
+  source?: SourceReponse;
+  onTermine?: () => void;
+}) {
+  const [index, setIndex] = useState(0);
+  const piege = pieges[index];
+
+  // Notification de fin via effet (jamais de setState parent pendant le render).
+  useEffect(() => {
+    if (!piege) onTermine?.();
+    // onTermine est stable dans l'usage (setState du parent) ; on l'exclut pour éviter la boucle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [piege]);
+
+  if (!piege) {
+    // Tous les pièges franchis.
+    return (
+      <div className="rounded-2xl border border-forest bg-sage p-4 text-sm font-bold leading-relaxed text-forest-deep">
+        تجاوزت كل الأفخاخ — فهمك سليم. هذه أخطاء Bac الشائعة، وآنك لا تقع فيها نقطة مضمونة.
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between text-[11px] font-bold text-mute">
+        <span>🧨 فخّ {index + 1} من {pieges.length}</span>
+        <span className="flex gap-1">
+          {pieges.map((_, k) => (
+            <span
+              key={k}
+              className={`h-1.5 w-4 rounded-full ${k < index ? 'bg-forest' : k === index ? 'bg-gold' : 'bg-line'}`}
+            />
+          ))}
+        </span>
+      </div>
+      <div className="rounded-2xl border border-clay-soft bg-clay-soft/30 p-3.5">
+        <p className="text-[11px] font-black text-clay">تمثّل خاطئ شائع — اكتشفه</p>
+        <p className="mt-1.5 text-sm font-bold leading-relaxed text-ink">{piege.question}</p>
+      </div>
+      <ChoixUnique
+        key={`piege-${index}`}
+        qcm={piege}
+        onValide={() => setIndex((i) => i + 1)}
+        source={source}
+      />
+    </div>
+  );
 }

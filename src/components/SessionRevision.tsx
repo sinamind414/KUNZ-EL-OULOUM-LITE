@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { getLessonGoldSummary } from '../data/lessonGoldSummaries';
+import { DIAGNOSTICS } from '../data/protocole';
 import { qcmPourLecon } from '../utils/qcm';
 import { uniteDeLecon, titreLecon } from '../data/programme';
 import type { Qualite } from '../utils/srs';
@@ -14,9 +15,17 @@ interface Props {
   lessonIds: string[];
   onResultat: (lessonId: string, qualite: Qualite) => void;
   onFermer: () => void;
+  /** تشخيص الثغرة المحفوظ لكل درس (lessonId → T1..T4) — يُعاد حقنه في المراجعة (audit F4). */
+  diagnostics?: Record<string, string>;
 }
 
-export default function SessionRevision({ lessonIds, onResultat, onFermer }: Props) {
+// نصّ التشخيص من معرّفه (T1..T4) — يُعاد حقنه كبطاقة استهداف قبل الاسترجاع.
+function libelleDiagnostic(id: string | undefined): string | null {
+  if (!id) return null;
+  return DIAGNOSTICS.find((d) => d.id === id)?.ar ?? null;
+}
+
+export default function SessionRevision({ lessonIds, onResultat, onFermer, diagnostics }: Props) {
   const [i, setI] = useState(0);
   const [etape, setEtape] = useState<1 | 2 | 3>(1);
   const [montre, setMontre] = useState(false);
@@ -141,6 +150,17 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
         {/* الخطوة 1: سؤال الاسترجاع */}
         {etape === 1 && (
           <div className="mt-4 space-y-3">
+            {libelleDiagnostic(diagnostics?.[lessonId]) && (
+              <div className="rounded-2xl border border-clay-soft bg-clay-soft/40 p-3.5">
+                <p className="text-[11px] font-black text-clay">🎯 ثغرتك المسجَّلة هنا — استهدفها</p>
+                <p className="mt-1.5 text-sm font-bold leading-relaxed text-ink">
+                  {libelleDiagnostic(diagnostics?.[lessonId])}
+                </p>
+                <p className="mt-1.5 text-[11px] leading-relaxed text-mute">
+                  سجّلنا هذه الثغرة في درسك الأخير. أعد الاسترجاع وأنت تُراقب هذا الجانب بالتحديد.
+                </p>
+              </div>
+            )}
             <div className="rounded-2xl border border-gold-soft bg-gold-soft/50 p-3.5">
               <p className="text-[11px] font-bold text-[#6b5320]">سؤال الاسترجاع</p>
               <p className="mt-1.5 text-sm font-bold leading-relaxed">{lecon.recallQuestionAr}</p>

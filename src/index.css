@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ───────────── نظام التصميم: زيتونُ وكريم ───────────── */
+/* ───────────── نظام التصميم: أطلس العلوم — مخطوط ذهبي على ورق مُتقادِم ───────────── */
 @theme {
   --color-ink: #1c1914;
   --color-ink-soft: #3f3a32;
@@ -10,15 +10,17 @@
   --color-line: #e4d9c5;
   --color-forest: #1f5c45;
   --color-forest-deep: #143d2e;
+  --color-forest-abyss: #0c2a1f;
   --color-sage: #d7e6dc;
   --color-sage-soft: #ebf2ed;
   --color-gold: #9a7a2c;
+  --color-gold-deep: #75591b;
   --color-gold-soft: #f3e6c4;
   --color-clay: #8a5a3c;
   --color-clay-soft: #f0e2d6;
 
-  --font-sans: "Segoe UI", "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
-  --font-naskh: "Noto Naskh Arabic", "Geeza Pro", "Amiri", "Times New Roman", serif;
+  --font-sans: "Segoe UI", "Noto Naskh Arabic", "Geeza Pro", "IBM Plex Sans Arabic", Tahoma, sans-serif;
+  --font-naskh: "Noto Naskh Arabic", "Amiri", "Geeza Pro", "Times New Roman", serif;
 }
 
 html,
@@ -36,10 +38,31 @@ body {
   font-family: var(--font-sans);
   color: var(--color-ink);
   background-color: var(--color-cream);
-  background-image: radial-gradient(rgba(28, 25, 20, 0.05) 0.7px, transparent 0.7px);
-  background-size: 4px 4px;
+  /* ورق مُتقادِم: نقط دقيقة + هالات دافئة + تظليل حواف (vignette) — عمق بلا صور */
+  background-image:
+    radial-gradient(1200px 700px at 100% -5%, rgba(154, 122, 44, 0.1), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(31, 92, 69, 0.12), transparent 55%),
+    radial-gradient(closest-side, rgba(28, 25, 20, 0.05) 0.7px, transparent 0.7px);
+  background-size: auto, auto, 4px 4px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* حبيبات ورق خفيفة فوق كل شيء (طبقة غير تفاعلية) — تُغنىّ المظهر الورقي */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
@@ -59,16 +82,22 @@ body {
     background-color: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: 24px;
+    /* ظلّ ورقي ناعم + لمعة علوية دقيقة → إحساس بصفحة مرفوعة عن الطاولة */
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 10px 30px -18px rgba(20, 61, 46, 0.35),
+      0 2px 6px -4px rgba(28, 25, 20, 0.12);
   }
 
   .eyebrow {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     color: var(--color-mute);
   }
 
   .btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -76,7 +105,8 @@ body {
     border-radius: 16px;
     padding: 0.75rem 1.1rem;
     font-weight: 700;
-    transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
+    transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease,
+      box-shadow 0.15s ease;
   }
   .btn:active {
     transform: scale(0.98);
@@ -84,13 +114,19 @@ body {
   .btn-primary {
     background-color: var(--color-forest);
     color: #fbf8f1;
+    box-shadow: 0 8px 18px -10px rgba(20, 61, 46, 0.7);
   }
   .btn-primary:hover {
     background-color: var(--color-forest-deep);
+    box-shadow: 0 10px 22px -10px rgba(20, 61, 46, 0.8);
   }
   .btn-gold {
     background-color: var(--color-gold-soft);
     color: #6b5320;
+    box-shadow: 0 8px 18px -12px rgba(154, 122, 44, 0.8);
+  }
+  .btn-gold:hover {
+    background-color: #eeda9f;
   }
   .btn-ghost {
     background-color: transparent;
@@ -103,6 +139,14 @@ body {
   .btn:disabled {
     opacity: 0.45;
     cursor: not-allowed;
+    box-shadow: none;
+  }
+  /* تركيز واضح للوصولية (لوحة المفاتيح) */
+  .btn:focus-visible,
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
   }
 
   .field {
@@ -113,9 +157,12 @@ body {
     background-color: var(--color-paper);
     padding: 0.75rem;
     color: var(--color-ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .field:focus {
-    outline: 2px solid color-mix(in srgb, var(--color-forest) 45%, transparent);
+    outline: none;
+    border-color: var(--color-forest);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-forest) 22%, transparent);
   }
   .field::placeholder {
     color: #a79c8a;
@@ -127,6 +174,14 @@ body {
     background-color: var(--color-sage-soft);
     padding: 0.3rem 0.75rem;
   }
+}
+
+/* عنوان بلمسة ذهبية — ورقة مذهّبة على العناوين الرئيسية */
+.titre-or {
+  background: linear-gradient(180deg, #6b5320, var(--color-gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* تمرير ناعم */
@@ -148,6 +203,97 @@ body {
 
 .animate-pop-in {
   animation: pop-in 0.28s ease-out both;
+}
+
+/* ───────────── أطلس العلوم: لمسات حركية راقية ───────────── */
+
+/* ظهور متدرّج للعناصر المتجاورة (stagger) — يُستخدم مع تأخير via style="--d" */
+@keyframes lever-doux {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-lever {
+  opacity: 0;
+  animation: lever-doux 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* بريق ذهبي عابر على الأزرار الذهبية والبطاقات المميّزة */
+@keyframes chatoiement {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+}
+.aurora:hover::after {
+  animation: chatoiement 0.9s ease-out;
+}
+
+/* نَفَسَة ذهبية خفيفة (للعنصر النشط/التالي) */
+@keyframes halo-or {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(154, 122, 44, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(154, 122, 44, 0.12);
+  }
+}
+.halo-or {
+  animation: halo-or 2.4s ease-in-out infinite;
+}
+
+/* فاصل زخرفي: خط بوسطة وردية في المنتصف */
+.filet-or {
+  height: 1px;
+  background: linear-gradient(
+    to left,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* احترام تقليل الحركة (وصولية) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop-in,
+  .animate-lever,
+  .animate-salue,
+  .halo-or,
+  .aurora::after {
+    animation: none !important;
+  }
+  .animate-lever {
+    opacity: 1;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ───────────── شخصية كنز العلوم: تخرج وتلوّح عند إنهاء مرحلة ───────────── */

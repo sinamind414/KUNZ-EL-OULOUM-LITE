@@ -16,7 +16,7 @@ import {
   composerJoueur,
 } from '../utils/drills';
 import { ChoixUnique } from './Communs';
-import { IcoCible, IcoOutils, IcoRetour, IcoTamrin, IcoVerrou } from './Icones';
+import { IcoCible, IcoDiplome, IcoOutils, IcoRetour, IcoTamrin, IcoVerrou } from './Icones';
 
 interface Props {
   etat: Etat;
@@ -26,6 +26,7 @@ interface Props {
   onOuvrirOrogenese: () => void;
   onOuvrirStructureTerre: () => void;
   onOuvrirMethodo: () => void;
+  onOuvrirExamen: () => void;
 }
 
 type Portee = { kind: 'axe'; axe: AxeDrill };
@@ -45,6 +46,7 @@ export default function Exercices({
   onOuvrirOrogenese,
   onOuvrirStructureTerre,
   onOuvrirMethodo,
+  onOuvrirExamen,
 }: Props) {
   const [vue, setVue] = useState<Vue>({ type: 'choix' });
   const [enCharge, setEnCharge] = useState(false);
@@ -98,59 +100,92 @@ export default function Exercices({
               ماذا تريد أن تدرّب اليوم؟
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-mute">
-              ثلاثة مسارات للتدريب: أسئلة QCM من البرنامج الرسمي، ورشات تركيبية تبني فيها المعلومة
-              بيدك ثم تسترجعها من الذاكرة، أو تمارين المنهجية التي تدرّبك على طريقة الإجابة.
+              أربعة مسارات للتدريب: أسئلة QCM من البرنامج الرسمي، ورشات تركيبية تبني فيها المعلومة
+              بيدك ثم تسترجعها من الذاكرة، أو تمارين المنهجية التي تدرّبك على طريقة الإجابة، أو
+              امتحانًا تجريبيًا يضعك في وضعية البكالوريا كاملة.
             </p>
           </div>
         </header>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <button
             type="button"
             onClick={() => setVue({ type: 'liste' })}
-            className="card p-5 text-right transition-colors hover:border-sage"
+            className="card group p-5 text-right transition-all duration-200 hover:-translate-y-1 hover:border-forest hover:shadow-[0_18px_36px_-22px_rgba(20,61,46,0.6)]"
           >
-            <span className="block h-10 w-10 text-forest">
-              <IcoCible />
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sage-soft text-forest transition-colors group-hover:bg-forest group-hover:text-paper">
+              <span className="block h-6 w-6">
+                <IcoCible />
+              </span>
             </span>
             <h2 className="font-naskh mt-3 text-lg font-bold">أسئلة QCM</h2>
             <p className="mt-1 text-sm leading-relaxed text-mute">
               {nb(TOTAL_QCM + TOTAL_DEFS)} سؤالًا على {nb(AXES.length)} محورًا · جولات من{' '}
               {nb(TAILLE_JOUR)} أسئلة، بلا مؤقّت.
             </p>
-            <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
+            <span className="mt-3 inline-block text-sm font-bold text-forest transition-transform group-hover:translate-x-1">
+              ابدأ ←
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={onOuvrirExamen}
+            className="card group p-5 text-right transition-all duration-200 hover:-translate-y-1 hover:border-clay hover:shadow-[0_18px_36px_-22px_rgba(138,90,60,0.55)]"
+          >
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-clay-soft text-clay transition-colors group-hover:bg-clay group-hover:text-paper">
+              <span className="block h-6 w-6">
+                <IcoDiplome />
+              </span>
+            </span>
+            <h2 className="font-naskh mt-3 text-lg font-bold">الامتحان التجريبي</h2>
+            <p className="mt-1 text-sm leading-relaxed text-mute">
+              وضعية بكالوريا كاملة: استرجاع المعارف ثم استغلال وثيقتين · بلا مؤقّت وبلا نسبة
+              مئوية.
+            </p>
+            <span className="mt-3 inline-block text-sm font-bold text-forest transition-transform group-hover:translate-x-1">
+              ابدأ ←
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setVue({ type: 'ateliers' })}
-            className="card p-5 text-right transition-colors hover:border-gold"
+            className="card group p-5 text-right transition-all duration-200 hover:-translate-y-1 hover:border-gold hover:shadow-[0_18px_36px_-22px_rgba(154,122,44,0.55)]"
           >
-            <span className="block h-10 w-10 text-gold">
-              <IcoOutils />
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gold-soft/60 text-gold transition-colors group-hover:bg-gold group-hover:text-paper">
+              <span className="block h-6 w-6">
+                <IcoOutils />
+              </span>
             </span>
             <h2 className="font-naskh mt-3 text-lg font-bold">ورشات الخرائط الذهنية</h2>
             <p className="mt-1 text-sm leading-relaxed text-mute">
               {nb(4)} ورشات: المجال الأول، المناعة، التكتونية، بنية الأرض — ترتيب، ربط، استرجاع
               نشط.
             </p>
-            <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
+            <span className="mt-3 inline-block text-sm font-bold text-forest transition-transform group-hover:translate-x-1">
+              ابدأ ←
+            </span>
           </button>
 
           <button
             type="button"
             onClick={onOuvrirMethodo}
-            className="card p-5 text-right transition-colors hover:border-forest"
+            className="card group p-5 text-right transition-all duration-200 hover:-translate-y-1 hover:border-forest hover:shadow-[0_18px_36px_-22px_rgba(20,61,46,0.6)]"
           >
-            <span className="block h-10 w-10 text-forest">
-              <IcoTamrin />
+            <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sage-soft text-forest transition-colors group-hover:bg-forest group-hover:text-paper">
+              <span className="block h-6 w-6">
+                <IcoTamrin />
+              </span>
             </span>
             <h2 className="font-naskh mt-3 text-lg font-bold">تمارين المنهجية</h2>
             <p className="mt-1 text-sm leading-relaxed text-mute">
               المفتاح فعل ← دليل ← جواب ← فحص و{nb(4)} مستويات: القدوة، التمرين الموجه، المستقل،
               تشخيص الخطأ.
             </p>
-            <span className="mt-3 inline-block text-sm font-bold text-forest">ابدأ ←</span>
+            <span className="mt-3 inline-block text-sm font-bold text-forest transition-transform group-hover:translate-x-1">
+              ابدأ ←
+            </span>
           </button>
         </div>
       </div>

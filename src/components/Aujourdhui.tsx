@@ -94,8 +94,25 @@ export default function Aujourdhui({
         </div>
       </header>
 
-      {/* بطاقة المهمّة الواحدة */}
-      <section className="card overflow-hidden p-6">
+      {/* بطاقة المهمّة الواحدة — الورقة الرئيسة في الأطلس */}
+      <section className="card animate-lever relative overflow-hidden p-6">
+        {/* شريط علوي متدرّج: غابة ← ذهب (بوصلة الأطلس) */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-l from-forest via-forest-deep to-gold"
+        />
+        {/* وشم بوصلة خفيف في الزاوية */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute -start-6 -top-6 h-28 w-28 text-forest/[0.05]"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="2" />
+          <circle cx="50" cy="50" r="34" stroke="currentColor" strokeWidth="1" strokeDasharray="3 4" />
+          <path d="M50 8 L58 46 L92 50 L58 54 L50 92 L42 54 L8 50 L42 46 Z" fill="currentColor" opacity="0.5" />
+        </svg>
+        <div className="relative">
         {action.type === 'reprise' && (
           <>
             <p className="eyebrow">استئناف</p>
@@ -191,7 +208,7 @@ export default function Aujourdhui({
           </>
         )}
 
-        <button onClick={principale} className="btn btn-primary mt-5 w-full text-base">
+        <button onClick={principale} className="btn btn-primary aurora mt-5 w-full overflow-hidden text-base">
           {titreBouton()}
         </button>
         {action.type === 'rappel' && (
@@ -199,6 +216,7 @@ export default function Aujourdhui({
             لن تُفتح أي حصّة جديدة قبل إنهاء الاسترجاع.
           </p>
         )}
+        </div>
       </section>
 
       {/* بطاقة كفاءة — مراجعة منهجية قصيرة (audit) : 1 à 2 fois par semaine */}

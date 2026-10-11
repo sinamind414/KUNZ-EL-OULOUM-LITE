@@ -112,6 +112,15 @@ export default function EcranDemarrage({ onTerminer }: Props) {
             <span className="ms-2 align-middle text-2xl font-bold text-sage md:text-3xl">Lite</span>
           </h1>
 
+          {/* فاصل ذهبي زخرفي تحت العنوان */}
+          <div className="relative mx-auto mt-3 flex items-center justify-center gap-2 kunz-entre">
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-gold/70" />
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-gold" fill="currentColor" aria-hidden>
+              <path d="M12 2l2.2 6.3L20.5 9l-4.7 4.1 1.4 6.4L12 16.3 6.8 19.5 8.2 13 3.5 9l6.3-.7z" opacity="0.9" />
+            </svg>
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-gold/70" />
+          </div>
+
           <p className="relative mt-2 text-sm font-medium text-sage/90 kunz-entre md:text-base">
             مراجعة البكالوريا — علوم الطبيعة والحياة
           </p>

@@ -3,9 +3,42 @@
 // والحفظ. لا نسبة، لا عدّ تنازلي، لا لوم — تشجيع فقط ثم متابعة الباقي.
 
 import { useEffect, useRef } from 'react';
-import type { LessonGoldSummary } from '../data/lessonGoldSummaries';
+import type { EditorialStatus, LessonGoldSummary } from '../data/lessonGoldSummaries';
 import { nb } from '../utils/dates';
 import { sonApplaudissement } from '../utils/son';
+
+// ───────────── شارة الحالة التحريرية (شفافية تربوية، تدقيق F3) ─────────────
+// Honnêteté éditoriale : on affiche le statut réel du résumé. Jamais « validé par un
+// professeur » sans reviewedBy réel. Sans statut de révision → bandeau « à recouper ».
+const LIBELLE_STATUT: Record<EditorialStatus, { label: string; tone: string }> = {
+  manuel_officiel_verifie: {
+    label: 'مطابق للمنشور الرسمي',
+    tone: 'border-forest bg-sage text-forest-deep',
+  },
+  adaptation_pedagogique: {
+    label: 'صياغة تربوية · تُقارن بالكتاب',
+    tone: 'border-gold-soft bg-gold-soft/60 text-[#6b5320]',
+  },
+  a_valider_enseignant: {
+    label: 'مسودّة · في انتظار مراجعة أستاذ',
+    tone: 'border-clay-soft bg-clay-soft/50 text-clay',
+  },
+};
+
+export function BadgeEditorial({ lecon }: { lecon: LessonGoldSummary }) {
+  const s = LIBELLE_STATUT[lecon.status] ?? LIBELLE_STATUT.a_valider_enseignant;
+  const relu = lecon.review?.reviewed;
+  return (
+    <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-[10px]">
+      <span className={`rounded-full border px-2.5 py-1 font-bold ${s.tone}`}>{s.label}</span>
+      {!relu && (
+        <span className="rounded-full border border-line bg-paper px-2.5 py-1 font-bold text-mute">
+          يُنصح بمقارنته بكتاب المدرسة وأستاذك
+        </span>
+      )}
+    </div>
+  );
+}
 
 // ───────────── الشخصية: كنز العلوم — Mascotte pirate (image, تعمل دون إنترنت) ─────────────
 
@@ -171,15 +204,27 @@ export default function EcranCelebration({
 
       <div className="relative z-10 mx-auto max-w-2xl px-4 py-8">
         {/* بطاقة الاحتفال */}
-        <div className="animate-pop-in rounded-3xl border border-gold-soft/50 bg-paper/95 p-6 text-center shadow-2xl">
-          <PersonnageKunz className="animate-salue mx-auto h-44 w-auto" />
+        <div className="animate-pop-in relative overflow-hidden rounded-3xl border border-gold-soft/60 bg-paper/95 p-6 text-center shadow-2xl">
+          {/* هالة ذهبية مشعة خلف الشخصية */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 -translate-y-1/3 rounded-full bg-gold/25 blur-3xl"
+          />
+          {/* ليزرة ذهبية علوية */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-l from-transparent via-gold to-transparent"
+          />
+          <div className="relative">
+            <PersonnageKunz className="animate-salue mx-auto h-44 w-auto" />
 
-          <p className="eyebrow mt-3 text-gold">
-            أنهيتَ المرحلة {nb(numero)} من {nb(total)}
-          </p>
-          <h1 className="font-naskh mt-1.5 text-2xl font-bold text-forest-deep">
-            {derniere ? 'أنهيتَ الدرس كاملًا!' : 'أحسنت — واصِل، الباقي أقرب ممّا تظن'}
-          </h1>
+            <p className="eyebrow mt-3 text-gold">
+              أنهيتَ المرحلة {nb(numero)} من {nb(total)}
+            </p>
+            <h1 className="font-naskh mt-1.5 text-2xl font-bold text-forest-deep">
+              {derniere ? 'أنهيتَ الدرس كاملًا!' : 'أحسنت — واصِل، الباقي أقرب ممّا تظن'}
+            </h1>
+          </div>
 
           {/* فقاعة كلام الشخصية */}
           <div className="relative mx-auto mt-4 w-fit max-w-sm rounded-2xl border border-sage bg-sage-soft px-4 py-3">
@@ -191,8 +236,8 @@ export default function EcranCelebration({
             </p>
           </div>
 
-          <div className="mt-5 flex flex-col gap-2">
-            <button onClick={onContinuer} className="btn btn-primary w-full text-base">
+          <div className="relative mt-5 flex flex-col gap-2">
+            <button onClick={onContinuer} className="btn btn-primary aurora w-full overflow-hidden text-base">
               {derniere ? 'إنهاء الدرس ←' : `متابعة ← المرحلة ${nb(numero + 1)}`}
             </button>
             <button onClick={() => window.print()} className="btn btn-ghost w-full">
@@ -204,13 +249,19 @@ export default function EcranCelebration({
         {/* الملخّص الذهبي — هذا ما يُطبع وحده */}
         <section
           id="zone-impression"
-          className="mt-4 rounded-3xl border border-gold-soft bg-paper p-5 text-right shadow-xl"
+          className="relative mt-4 overflow-hidden rounded-3xl border border-gold-soft bg-paper p-5 text-right shadow-xl"
         >
+          {/* ليزرة ذهبية + تظليل دافئ خفيف → إحساس بمخطوط thenّ */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-transparent via-gold to-transparent"
+          />
           <div className="mb-4 border-b-2 border-gold-soft pb-3 text-center">
-            <p className="text-[11px] font-bold tracking-wide text-gold">كنز العلوم Lite</p>
+            <p className="text-[11px] font-bold tracking-[0.2em] text-gold">كنز العلوم Lite</p>
             <h2 className="font-naskh mt-1 text-xl font-bold text-forest-deep">
               الملخّص الذهبي · {titre}
             </h2>
+            <BadgeEditorial lecon={lecon} />
           </div>
 
           <section>

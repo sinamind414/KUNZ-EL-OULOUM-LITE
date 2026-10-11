@@ -9,11 +9,12 @@ import { debutSemaine, enregistrerSeance } from './utils/moteur';
 import { envoyerSnapshot, syncActive } from './utils/sync';
 import type { ItemChemin } from './data/programme';
 import type { Qualite } from './utils/srs';
-import { mettreAJourSrs } from './utils/srs';
+import { mettreAJourSrs, premiereRevision } from './utils/srs';
 import Aujourdhui from './components/Aujourdhui';
 import Masari from './components/Masari';
 import Exercices from './components/Exercices';
 import Methodologie from './components/Methodologie';
+import ExamBlanc from './components/ExamBlanc';
 import Ana from './components/Ana';
 import ProtocoleRunner from './components/ProtocoleRunner';
 import SessionRevision from './components/SessionRevision';
@@ -46,7 +47,8 @@ type Mode =
   | { type: 'protocole'; lessonId: string }
   | { type: 'revision'; lessonIds: string[] }
   | { type: 'jalon'; uniteId: string }
-  | { type: 'lecture'; lessonId: string; retour?: Mode };
+  | { type: 'lecture'; lessonId: string; retour?: Mode }
+  | { type: 'examenBlanc' };
 
 const ONGLETS: { id: Onglet; label: string; icone: typeof IcoSoleil }[] = [
   { id: 'aujourdhui', label: 'اليوم', icone: IcoSoleil },
@@ -323,6 +325,17 @@ export default function App() {
         />
       );
     }
+    if (mode.type === 'examenBlanc') {
+      return (
+        <ExamBlanc
+          etat={etat}
+          onFermer={() => setMode(null)}
+          onItemReussi={onItemReussi}
+          onResultatKafaa={onResultatKafaa}
+          onCarnetFaute={onCarnetFaute}
+        />
+      );
+    }
     if (mode.type === 'structureTerre') {
       return (
         <AtelierStructureTerre
@@ -369,6 +382,20 @@ export default function App() {
       );
     }
     if (mode.type === 'protocole') {
+      const terminerLecon = () => {
+        const p = etat.progression[mode.lessonId];
+        const base = p ?? {
+          statut: 'en_cours' as const,
+          phases: [1, 2, 3, 4, 5, 6] as number[],
+          minutes: 0,
+          repetitions: 0,
+          intervalle: 0,
+          facilite: 2.5,
+        };
+        const frag = base.fragile ?? false;
+        const minutesFinales = base.minutes;
+        onTerminer(mode.lessonId, premiereRevision({ ...base, statut: 'terminee', fragile: frag }, frag));
+      };
       return (
         <>
           <ProtocoleRunner
@@ -380,6 +407,10 @@ export default function App() {
             onLireLecon={() => setOuverteLecon(mode.lessonId)}
             leconLue={leconLue}
             onFermer={() => setMode(null)}
+            onAllerMethodo={() => {
+              terminerLecon();
+              setMode({ type: 'methodoExos' });
+            }}
           />
           {ouverteLecon && (
             <div className="fixed inset-0 z-50 overflow-y-auto bg-cream">
@@ -396,11 +427,17 @@ export default function App() {
       );
     }
     if (mode.type === 'revision') {
+      const diagnostics: Record<string, string> = {};
+      for (const id of mode.lessonIds) {
+        const d = etat.progression[id]?.diagnostic;
+        if (d) diagnostics[id] = d;
+      }
       return (
         <SessionRevision
           lessonIds={mode.lessonIds}
           onResultat={onResultatRevision}
           onFermer={() => setMode(null)}
+          diagnostics={diagnostics}
         />
       );
     }
@@ -466,6 +503,7 @@ export default function App() {
           onOuvrirOrogenese={() => setMode({ type: 'orogenese' })}
           onOuvrirStructureTerre={() => setMode({ type: 'structureTerre' })}
           onOuvrirMethodo={() => setMode({ type: 'methodoExos' })}
+          onOuvrirExamen={() => setMode({ type: 'examenBlanc' })}
         />
       )}
       {pret && onglet === 'methodo' && (
@@ -489,10 +527,10 @@ export default function App() {
         />
       )}
 
-      {/* شريط التنقّل السفلي */}
+      {/* شريط التنقّل السفلي — إطار الأطلس */}
       {pret && (
         <nav
-        className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 backdrop-blur"
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 shadow-[0_-8px_24px_-16px_rgba(20,61,46,0.4)] backdrop-blur"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="mx-auto flex max-w-3xl">
@@ -507,11 +545,13 @@ export default function App() {
                 aria-current={actif ? 'page' : undefined}
               >
                 <span
-                  className={`block h-6 w-6 transition-colors ${
-                    actif ? 'text-forest' : 'text-mute'
+                  className={`grid h-8 w-8 place-items-center rounded-xl transition-all ${
+                    actif ? 'scale-105 bg-sage-soft text-forest' : 'text-mute'
                   }`}
                 >
-                  <Ico />
+                  <span className="block h-6 w-6">
+                    <Ico />
+                  </span>
                 </span>
                 <span
                   className={`text-[10px] font-bold transition-colors ${
@@ -521,7 +561,7 @@ export default function App() {
                   {o.label}
                 </span>
                 {actif && (
-                  <span className="absolute top-0 h-1 w-8 rounded-b-full bg-forest" />
+                  <span className="absolute top-0 h-1 w-10 rounded-b-full bg-gradient-to-l from-forest to-gold" />
                 )}
               </button>
             );

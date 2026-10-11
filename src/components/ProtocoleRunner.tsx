@@ -12,7 +12,7 @@ import { premiereRevision } from '../utils/srs';
 import { noterReponse } from '../utils/stats';
 import { sonFaux, sonJuste } from '../utils/son';
 import type { ProgressionLecon } from '../types';
-import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
+import { ChoixUnique, DiagnosticPieges, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
 import EcranCelebration from './Fetes';
 import { IcoRetour, IcoVerifie } from './Icones';
 import { qcmPourLecon } from '../utils/qcm';
@@ -25,6 +25,8 @@ interface Props {
   onLireLecon: () => void;
   leconLue: boolean;
   onFermer: () => void;
+  /** Pont vers la Manhadjia (audit F4) : proposé à la clôture de la leçon. */
+  onAllerMethodo?: () => void;
 }
 
 // المراحل التي يتكلّم فيها المُرشد (الباقي: صمت)
@@ -50,6 +52,51 @@ function progressionBase(p: ProgressionLecon | undefined): ProgressionLecon {
   );
 }
 
+// سلّم الفهم — من الظاهري (السؤال) إلى الآلي (الخطوات) إلى الجزيئي (الدليل).
+// ي situّ où en est l'élève et matérialise la progression macro→micro (mesure d'audit F2).
+function Echelle({ meso, total, micro }: { meso: number; total: number; micro: boolean }) {
+  const paliers: [string, boolean][] = [
+    ['الظاهرة', true],
+    [`الآلية ${nb(meso)}/${nb(total)}`, meso > 0],
+    ['الدليل الجزيئي', micro],
+  ];
+  return (
+    <div className="flex items-center gap-1" dir="rtl" aria-label="سلّم الفهم: من الظاهري إلى الجزيئي">
+      {paliers.map(([label, actif], i) => (
+        <div key={label} className="flex flex-1 items-center gap-1">
+          <span
+            className={`flex-1 rounded-lg px-2 py-1 text-center text-[10px] font-bold leading-tight transition-colors ${
+              actif ? 'bg-forest text-paper' : 'border border-dashed border-line bg-paper text-mute'
+            }`}
+          >
+            {label}
+          </span>
+          {i < paliers.length - 1 && <span className="text-[10px] text-mute">←</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// « Portillon de rappel imposé » (audit F1) : avant tout choix, l'élève PRODUIT sa réponse
+// (papier / à voix haute). Le QCM qui suit ne sert plus qu'à VÉRIFIER, pas à deviner.
+// Respecte la règle « click-only » de l'app : aucune saisie clavier, mais la production reste réelle.
+function PortillonRappel({ consigne, onProduit }: { consigne: string; onProduit: () => void }) {
+  return (
+    <div className="rounded-2xl border border-dashed border-gold bg-gold-soft/50 p-4">
+      <p className="text-[11px] font-black text-[#6b5320]">✋ قف وأنتج أولًا — لا تلمس الخيارات بعد</p>
+      <p className="mt-1.5 text-sm font-bold leading-relaxed text-ink">{consigne}</p>
+      <p className="mt-1.5 text-[11px] leading-relaxed text-mute">
+        اكتبها على ورقتك أو قلها بصوتٍ جهور. الانتاج من ذاكرتك هو ما يثبت — أمّا اختيار جواب جاهز
+        فيُصلّح التعرّف لا الاسترجاع.
+      </p>
+      <button onClick={onProduit} className="btn btn-gold mt-3 w-full text-sm">
+        أنتجتُ جوابي ← أظهر الخيارات للتحقّق فقط
+      </button>
+    </div>
+  );
+}
+
 export default function ProtocoleRunner({
   lessonId,
   progression,
@@ -58,10 +105,12 @@ export default function ProtocoleRunner({
   onLireLecon,
   leconLue,
   onFermer,
+  onAllerMethodo,
 }: Props) {
   const lecon = getLessonGoldSummary(lessonId);
   const unite = uniteDeLecon(lessonId);
   const qcmLecon = qcmPourLecon(lessonId, lecon);
+  const piegesPresents = Boolean(qcmLecon?.pieges && qcmLecon.pieges.length > 0);
 
   const faites = progression?.phases ?? [];
   const [index, setIndex] = useState<number>(Math.min(faites.length, PROTOCOLE.length - 1));
@@ -86,6 +135,18 @@ export default function ProtocoleRunner({
   const [auto, setAuto] = useState<'plein' | 'partiel' | 'non' | null>(null);
   const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const [aides, setAides] = useState(2);
+  // Phase 5 progressive : nombre d'étapes du mécanisme révélées (anti-surcharge, audit F2).
+  // Si la phase 5 est déjà accomplie, on rouvre tout le mécanisme d'un coup.
+  const [etapesVisibles, setEtapesVisibles] = useState<number>(() =>
+    faites.includes(5) ? (lecon?.mechanismAr.length ?? 1) : 1
+  );
+  // Phases 3 & 6 — « portillon de rappel imposé » (audit F1) : avant de voir les choix,
+  // l'élève doit produire sa réponse (papier / à voix haute). Le QCM ne sert alors
+  // plus à TROUVER mais à VÉRIFIER — reconnaissance → production. Respecte le « click-only ».
+  const [rappelProduit, setRappelProduit] = useState(false);
+  // Pièges diagnostiques §11 (audit croisé plan de cours SVT2) : en phase 6, avant la
+  // synthèse, l'élève confronte 4 représentations erronées fréquentes sanctionnées au Bac.
+  const [piegesFaits, setPiegesFaits] = useState(false);
 
   // متى فُتحت الجلسة (لحساب الدقائق عند الإنهاء)
   const [minutesDepart] = useState(() => progression?.minutes ?? 0);
@@ -104,6 +165,9 @@ export default function ProtocoleRunner({
     setAuto(null);
     setDiagnostic(null);
     setAides(2);
+    setEtapesVisibles(faites.includes(5) ? (lecon?.mechanismAr.length ?? 1) : 1);
+    setRappelProduit(false);
+    setPiegesFaits(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
@@ -154,13 +218,19 @@ export default function ProtocoleRunner({
       case 2:
         return lecon.vocabulary.every((v) => classes[v]);
       case 3:
-        return qcmFait;
+        return rappelProduit && qcmFait;
       case 4:
         return revele;
       case 5:
         return echecMax || mcq === qSequence?.reponse;
       case 6:
-        return qcmFait && auto !== null && (auto === 'plein' || diagnostic !== null);
+        return (
+          rappelProduit &&
+          (!piegesPresents || piegesFaits) &&
+          qcmFait &&
+          auto !== null &&
+          (auto === 'plein' || diagnostic !== null)
+        );
       default:
         return false;
     }
@@ -269,6 +339,14 @@ export default function ProtocoleRunner({
           >
             تم — العودة إلى المسار
           </button>
+
+          {/* Pont vers la Manhadjia (audit F4) : assimiler ≠ réussir le Bac.
+              On propose d'appliquer la méthodologie tant que la notion est chaude. */}
+          {onAllerMethodo && (
+            <button onClick={onAllerMethodo} className="btn btn-gold mt-2 w-full text-sm">
+              🎯 طبّق المنهجية الآن — من الفهم إلى صناعة النقطة
+            </button>
+          )}
         </div>
       </div>
     );
@@ -598,15 +676,27 @@ export default function ProtocoleRunner({
                 <p className="mt-1.5 text-sm font-bold leading-relaxed">{lecon.missionAr}</p>
               </div>
               <p className="text-xs font-bold text-ink-soft">
-                بوّابة المرحلة: استرجع الجواب من ذاكرتك، اختره، ثم تحقّق — إن أخطأت أعد المحاولة.
+                بوّابة المرحلة: أوّلًا استرجع الجواب من ذاكرتك وأنتجه، ثم تحقّق من اختيارك — إن أخطأت أعد المحاولة.
               </p>
-              {qcmLecon?.rappel && (
-                <ChoixUnique
-                  qcm={qcmLecon.rappel}
-                  fait={qcmFait}
-                  onValide={() => setQcmFait(true)}
-                  source="phase"
+              {!rappelProduit ? (
+                <PortillonRappel
+                  consigne="من ذاكرتك وحدها: كيف يُجاب عن سؤال الدرس؟ أنتج جوابك الآن (ورقة أو بصوتٍ جهور) قبل رؤية أي خيار."
+                  onProduit={() => setRappelProduit(true)}
                 />
+              ) : (
+                qcmLecon?.rappel && (
+                  <>
+                    <p className="text-[11px] leading-relaxed text-mute">
+                      الآن قارن ما أنتجته بالخيارات — أيّها يطابق جوابك؟ (الخيارات للتحقّق، لا للتخمين)
+                    </p>
+                    <ChoixUnique
+                      qcm={qcmLecon.rappel}
+                      fait={qcmFait}
+                      onValide={() => setQcmFait(true)}
+                      source="phase"
+                    />
+                  </>
+                )
               )}
             </div>
           )}
@@ -658,11 +748,20 @@ export default function ProtocoleRunner({
                   📖 أعد قراءة الدرس بانتباه للعلاقات (قراءة موجَّهة)
                 </button>
               )}
+
+              {/* سلّم الفهم — من الظاهري إلى الجزيئي (audit F2 : matérialiser macro→micro). */}
+              <Echelle
+                meso={etapesVisibles}
+                total={lecon.mechanismAr.length}
+                micro={etapesVisibles >= lecon.mechanismAr.length}
+              />
+
+              {/* الخطوات السببية — كشف تدريجي: خطوة واحدة كل مرة (تقليل الحمل المعرفي). */}
               <div className="space-y-2">
-                {lecon.mechanismAr.map((etape, i) => (
+                {lecon.mechanismAr.slice(0, etapesVisibles).map((etape, i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-3 rounded-xl border border-line bg-cream/50 px-3 py-2.5"
+                    className="animate-pop-in flex items-start gap-3 rounded-xl border border-line bg-cream/50 px-3 py-2.5"
                   >
                     <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest text-[10px] font-bold text-paper">
                       {i + 1}
@@ -671,41 +770,66 @@ export default function ProtocoleRunner({
                   </div>
                 ))}
               </div>
-              <div className="rounded-2xl border border-sage bg-sage-soft p-3.5">
-                <p className="text-[11px] font-bold text-forest">الدليل الوثائقي — ما تُصنع به النقطة في البكالوريا</p>
-                <p className="mt-1.5 text-sm leading-relaxed">{lecon.evidenceAr}</p>
-              </div>
-              <p className="text-xs font-bold text-ink-soft">
-                بوّابة المرحلة: ما الخطوة التي تأتي مباشرة بعد الخطوة {qSequence.indice + 1}؟
-              </p>
-              <OptionsMcq
-                nom="الخطوة التالية"
-                options={qSequence.options}
-                value={mcq}
-                cleFaux={mcq && mcq !== qSequence.reponse ? mcq : null}
-                cleJuste={echecMax ? qSequence.reponse : null}
-                onChange={(k) => {
-                  if (k === mcq) return; // نقرة مكرّرة — لا تُحتسب مرتين
-                  setMcq(k);
-                  const ok = k === qSequence.reponse;
-                  if (ok) sonJuste();
-                  else sonFaux();
-                  noterReponse('phase', ok);
-                  if (!ok) {
-                    const e = echecs + 1;
-                    setEchecs(e);
-                    if (e >= 2) setEchecMax(true);
-                  }
-                }}
-              />
-              {echecs === 1 && !echecMax && (
-                <p className="text-xs font-bold text-clay">ليست الإجابة — اقرأ الخطوات من جديد.</p>
+
+              {/* بوابة الكشف التدريجي: استرجاع نشط للرابط قبل رؤية الخطوة الموالية. */}
+              {etapesVisibles < lecon.mechanismAr.length && (
+                <div className="rounded-2xl border border-dashed border-sage bg-sage-soft/50 p-3.5">
+                  <p className="text-xs font-bold text-forest-deep">
+                    قبل أن تكشف الخطوة {nb(etapesVisibles + 1)}: لِماذا تأتي بعد «
+                    {lecon.mechanismAr[etapesVisibles - 1]}»؟ فكّر في الرابط لحظة.
+                  </p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-mute">
+                    قول الرابط بصوتٍ منخفض يصعّد التثبيت — ثم اكشف.
+                  </p>
+                  <button
+                    onClick={() => setEtapesVisibles((n) => Math.min(n + 1, lecon.mechanismAr.length))}
+                    className="btn btn-gold mt-3 w-full text-sm"
+                  >
+                    فكّرت في الرابط ← اكشف الخطوة {nb(etapesVisibles + 1)}
+                  </button>
+                </div>
               )}
-              {echecMax && (
-                <p className="text-xs font-bold text-clay">
-                  الإجابة الصحيحة هي الخطوة {qSequence.indice + 2}. سُجّلت المرحلة كـ«هشّة» — سنراجعها
-                  غدًا.
-                </p>
+
+              {/* الدليل + البوّابة يظهران بعد كشف كل الخطوات (الدليل هو القمة الجزيئية). */}
+              {etapesVisibles >= lecon.mechanismAr.length && (
+                <>
+                  <div className="rounded-2xl border border-sage bg-sage-soft p-3.5">
+                    <p className="text-[11px] font-bold text-forest">الدليل الوثائقي — ما تُصنع به النقطة في البكالوريا</p>
+                    <p className="mt-1.5 text-sm leading-relaxed">{lecon.evidenceAr}</p>
+                  </div>
+                  <p className="text-xs font-bold text-ink-soft">
+                    بوّابة المرحلة: ما الخطوة التي تأتي مباشرة بعد الخطوة {qSequence.indice + 1}؟
+                  </p>
+                  <OptionsMcq
+                    nom="الخطوة التالية"
+                    options={qSequence.options}
+                    value={mcq}
+                    cleFaux={mcq && mcq !== qSequence.reponse ? mcq : null}
+                    cleJuste={echecMax ? qSequence.reponse : null}
+                    onChange={(k) => {
+                      if (k === mcq) return; // نقرة مكرّرة — لا تُحتسب مرتين
+                      setMcq(k);
+                      const ok = k === qSequence.reponse;
+                      if (ok) sonJuste();
+                      else sonFaux();
+                      noterReponse('phase', ok);
+                      if (!ok) {
+                        const e = echecs + 1;
+                        setEchecs(e);
+                        if (e >= 2) setEchecMax(true);
+                      }
+                    }}
+                  />
+                  {echecs === 1 && !echecMax && (
+                    <p className="text-xs font-bold text-clay">ليست الإجابة — اقرأ الخطوات من جديد.</p>
+                  )}
+                  {echecMax && (
+                    <p className="text-xs font-bold text-clay">
+                      الإجابة الصحيحة هي الخطوة {qSequence.indice + 2}. سُجّلت المرحلة كـ«هشّة» — سنراجعها
+                      غدًا.
+                    </p>
+                  )}
+                </>
               )}
             </div>
           )}
@@ -713,7 +837,7 @@ export default function ProtocoleRunner({
           {phase.id === 6 && (
             <div className="space-y-3">
               <p className="text-xs font-bold text-ink-soft">
-                جملة البكالوريا — اقرأها، ثم اختر التكملة الصحيحة
+                جملة البكالوريا — أنتج الجملة كاملة بحروفك أولًا، ثم تحقّق
               </p>
               <div className="rounded-2xl border border-line bg-cream/60 p-4 text-center text-base font-bold leading-loose">
                 {lecon.bacSentenceFrameAr?.split('______').map((part, i, arr) => (
@@ -727,13 +851,32 @@ export default function ProtocoleRunner({
                   </span>
                 ))}
               </div>
-              {qcmLecon?.synthese && (
-                <ChoixUnique
-                  qcm={qcmLecon.synthese}
-                  fait={qcmFait}
-                  onValide={() => setQcmFait(true)}
-                  source="phase"
+              {!rappelProduit ? (
+                <PortillonRappel
+                  consigne="أكمل جملة البكالوريا أعلاه بكلماتك أنت (ورقة أو بصوتٍ جهور). جملة واحدة مكتوبة بحروفك تعادل عشر قراءات."
+                  onProduit={() => setRappelProduit(true)}
                 />
+              ) : piegesPresents && !piegesFaits ? (
+                // ── أفخاخ §11: اصطدم بالتمثّلات الخاطئة الشائعة قبل الخلاصة (تدقيق خطة الدرس) ──
+                <DiagnosticPieges
+                  pieges={qcmLecon!.pieges!}
+                  source="phase"
+                  onTermine={() => setPiegesFaits(true)}
+                />
+              ) : (
+                qcmLecon?.synthese && (
+                  <>
+                    <p className="text-[11px] leading-relaxed text-mute">
+                      الآن قارن جملتك بالتكملة الصحيحة — هل طابقت ما أنتجته؟ (للتحقّق، لا للتخمين)
+                    </p>
+                    <ChoixUnique
+                      qcm={qcmLecon.synthese}
+                      fait={qcmFait}
+                      onValide={() => setQcmFait(true)}
+                      source="phase"
+                    />
+                  </>
+                )
               )}
 
               {qcmFait && (

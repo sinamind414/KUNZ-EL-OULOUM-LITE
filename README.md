@@ -698,8 +698,26 @@ Le fichier fourni (71 entrées) a été traité avant intégration :
   rechargement. 8 points de capture instrumentés (les 8 sites `sonFaux`). Build vert ; banc étendu à
   **31/31 tests** (5 dédiés : diagnostic, autopsie faux positif, cloze mauvaise lexie sans la bonne,
   unité 1, aucune capture en réussite directe).
-- **v0.9** — mode examen blanc ; conversion des 25 leçons au format manuel scolaire (suppression du
-  scaffolding) ; exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés).
+- **v0.9 (actuelle = الامتحان التجريبي)** — **mode examen blanc** (`src/components/ExamBlanc.tsx`,
+  4ᵉ carte « الامتحان التجريبي » de l'onglet تدريبات, mode plein écran `examenBlanc`) : une
+  **feuille d'examen complète sur le modèle du Bac** — **التمرين الأول · استرجاع المعارف** :
+  6 QCM tirés de la banque drills (2 par domaine, niveau ≤ 2 privilégié, succès crédité dans
+  `etat.drills`) ; **التمرين الثاني · استغلال وثيقتين** : enquête inédite sur l'**origine de
+  l'O₂ photosynthétique** (Hill 1939 + Ruben & Kamen 1941) en **4 étapes guidées** (استخراج 1 →
+  استخراج 2 → علاقة → استنتاج) avec **diagnostics typés par distracteur**. La **grille de barème
+  (سند · تحليل · ربط · استنتاج) se coche à chaque étape réussie** devant l'élève. Conventions
+  maison respectées : **jamais la bonne réponse avant le bon choix**, erreur → `sonFaux` +
+  remélange déterministe des options + capture atomique dans le carnet des failles (contexte
+  « الامتحان التجريبي · … »), **réussite directe → carte كفاءة `examenBlanc` J+3 (qualité 5),
+  la moindre erreur → J+1 (qualité 3)**, écran de fin **sans note ni %** (dénombrement en lettres
+  + grille cochée + rappel que les erreurs sont dans سجلّ الأخطاء). Détail UX : le bouton de
+  sortie s'appelle « مغادرة الامتحان » pour ne pas le confondre avec le « إنهاء الامتحان ← » de
+  fin d'étape. Build vert ; banc étendu à **40/40 tests** (9 dédiés : consignes sans %, 6 QCM sur
+  3 domaines + explication après réussite, erreur sans révélation, validation désactivée sans
+  choix, grille qui se coche étape par étape, diagnostic typé au lieu du message générique,
+  كفاءة 5 vs 3, écran de fin sans %).
+- **v0.9+** — conversion des 25 leçons au format manuel scolaire (suppression du scaffolding) ;
+  exercices « نمط بكالوريا » et « تحليل وثيقة » (reportés).
 
 ---
 
