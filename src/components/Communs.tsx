@@ -263,7 +263,7 @@ export function ValveAide({
   return <Morceau ton="gold">{indice}</Morceau>;
 }
 
-// ───────────── سلسلة الأفخاخ التشخيصية (§11) ─────────────
+// ───────────── سلسلة الأفخاخ التشخيصية (§11 · §23 · §37) ─────────────
 // déroule les pièges un par un via ChoixUnique (retry + plan B intégrés).
 // On n'affiche jamais la bonne réponse : l'élève progresse jusqu'à avoir franchi chaque piège.
 export function DiagnosticPieges({
