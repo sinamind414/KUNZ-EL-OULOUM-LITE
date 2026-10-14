@@ -9,6 +9,7 @@ import { uniteDeLecon, titreLecon } from '../data/programme';
 import type { Qualite } from '../utils/srs';
 import { ChoixUnique, Morceau, OptionsMcq } from './Communs';
 import { IcoRetour, IcoVerifie } from './Icones';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   lessonIds: string[];
@@ -132,6 +133,7 @@ export default function SessionRevision({ lessonIds, onResultat, onFermer }: Pro
           ))}
         </div>
       </header>
+      <MascotteKunz compact message="لا تحاول تذكر كل شيء دفعة واحدة. استرجع، تحقق، ثم أعد المحاولة حتى تثبت المعلومة." />
 
       <main className="card animate-pop-in flex-1 p-5">
         <p className="eyebrow">

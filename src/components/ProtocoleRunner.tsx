@@ -13,6 +13,7 @@ import type { ProgressionLecon } from '../types';
 import { ChoixUnique, Minuteur, Morceau, OptionsMcq, ValveAide } from './Communs';
 import { IcoRetour, IcoVerifie } from './Icones';
 import { qcmPourLecon } from '../utils/qcm';
+import MascotteKunz from './MascotteKunz';
 
 interface Props {
   lessonId: string;
@@ -723,7 +724,7 @@ export default function ProtocoleRunner({
         {/* المُرشد: 4 لحظات فقط */}
         {PHASES_PARLANTES.has(phase.id) && (
           <div className="mt-5">
-            <Morceau ton={phase.id === 6 ? 'gold' : 'sage'}>{phase.morchidAr}</Morceau>
+            <MascotteKunz compact tone={phase.id === 6 ? 'gold' : 'forest'} message={phase.morchidAr} />
           </div>
         )}
 
